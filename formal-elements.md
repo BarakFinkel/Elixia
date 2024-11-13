@@ -54,7 +54,4 @@ Similar games include:
 ### Unique Selling Point
 **Elixia** combines platform and RPG worlds with an emphasis on real-time combat, integrating alchemy as a main combat skill, offering a unique gameplay experience where the alchemist is also a fighter, using unique potions as weapons.
 
----
-
-For more information:
 
