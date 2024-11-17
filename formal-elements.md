@@ -5,6 +5,9 @@
 **Elixia** is a 2D Platformer RPG game where the player takes on the role of a powerful alchemist.  
 The game combines platformer mechanics like running, jumping, and dodging with combat using melee combat, potions, and alchemical abilities. RPG mechanics, including skill trees, character attribute development, and a crafting system, provide a customized gameplay experience. The game is intended for **PC**.
 
+![image](https://github.com/user-attachments/assets/62bf6f88-2d56-4bae-819b-e6a25b75698f)
+
+
 ---
 
 ### 1. Players
