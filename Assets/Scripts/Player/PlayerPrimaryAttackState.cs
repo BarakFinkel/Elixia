@@ -18,7 +18,7 @@ public class PlayerPrimaryAttackState : PlayerState
         if (comboCount > 2 || Time.time >= lastTimeAttacked + comboWindow)
             comboCount = 0;
         
-        player.anim.SetInteger("ComboCounter", comboCount);
+        player.animator.SetInteger("ComboCounter", comboCount);
         
         #region Choose attack dirrection
 
@@ -38,7 +38,7 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Update();
         
         if(stateTimer < 0)
-            player.ZeroVelocity();
+            player.SetZeroVelocity();
         if(triggerCalled)
             stateMachine.ChangeState(player.idleState);
     }
