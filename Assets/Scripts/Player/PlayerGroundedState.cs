@@ -16,13 +16,19 @@ public class PlayerGroundedState : PlayerState
         base.Update();
 
         if (!player.IsGroundDetected())
+        {
             stateMachine.ChangeState(player.airState);
-        
-        if(Input.GetButtonDown("Jump") && player.IsGroundDetected())
+        }
+
+        if (Input.GetButtonDown("Jump") && player.IsGroundDetected())
+        {
             stateMachine.ChangeState(player.jumpState);
-        
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             stateMachine.ChangeState(player.pAttackState);
+        }
     }
 
     public override void Exit()

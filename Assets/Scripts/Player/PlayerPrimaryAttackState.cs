@@ -12,12 +12,16 @@ public class PlayerPrimaryAttackState : PlayerState
 
     public override void Enter()
     {
+      
         base.Enter();
-        
-        
+        xInput = 0; // attack direction bug fix
+
+
         if (comboCount > 2 || Time.time >= lastTimeAttacked + comboWindow)
+        {
             comboCount = 0;
-        
+        }
+
         player.animator.SetInteger("ComboCounter", comboCount);
         
         #region Choose attack dirrection
@@ -36,11 +40,16 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Update()
     {
         base.Update();
-        
-        if(stateTimer < 0)
+
+        if (stateTimer < 0)
+        {
             player.SetZeroVelocity();
-        if(triggerCalled)
+        }
+
+        if (triggerCalled)
+        {
             stateMachine.ChangeState(player.idleState);
+        }
     }
 
     public override void Exit()

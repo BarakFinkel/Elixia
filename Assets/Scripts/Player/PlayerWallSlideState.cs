@@ -22,13 +22,23 @@ public class PlayerWallSlideState : PlayerState
         }
 
         if (xInput != 0 && player.facingDir != xInput)
+        {
             player.stateMachine.ChangeState(player.idleState);
+        }
+
         if (player.IsGroundDetected())
+        {
             player.stateMachine.ChangeState(player.idleState);
-        if(yInput < 0 )
-            rb.linearVelocity = new Vector2(0,rb.linearVelocity.y);
+        }
+
+        if (yInput < 0)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        }
         else
-            rb.linearVelocity = new Vector2(0,rb.linearVelocity.y * 0.7f);
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y * 0.7f);
+        }
     }
 
     public override void Exit()

@@ -25,10 +25,14 @@ public class ParallaxBackground : MonoBehaviour
         float distanceToMove = cam.transform.position.x * parralaxEffect;
         
         transform.position = new Vector3(xPos + distanceToMove, transform.position.y);
-        
-        if(distanceMoved > xPos + length)
+
+        if (distanceMoved > xPos + length)
+        {
             xPos += length;
-        else if(distanceMoved < xPos - length)
+        }
+        else if (distanceMoved < xPos - length)
+        {
             xPos -= length;
+        }
     }
 }

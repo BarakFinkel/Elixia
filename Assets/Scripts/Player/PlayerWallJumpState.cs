@@ -16,10 +16,15 @@ public class PlayerWallJumpState : PlayerState
     public override void Update()
     {
         base.Update();
-        if(stateTimer < 0)
+        if (stateTimer < 0)
+        {
             stateMachine.ChangeState(player.airState);
-        if(player.IsGroundDetected())
+        }
+
+        if (player.IsGroundDetected())
+        {
             stateMachine.ChangeState(player.idleState);
+        }
     }
 
     public override void Exit()

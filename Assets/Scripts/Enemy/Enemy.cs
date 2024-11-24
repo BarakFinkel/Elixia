@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+    
     [SerializeField] protected LayerMask whatIsPlayer;
     
     [Header("Move info")]
@@ -33,8 +34,6 @@ public class Enemy : Entity
         base.Update();
         
         stateMachine.currentState.Update();
-        
-        Debug.Log(IsPlayerDetected().collider.gameObject.name + " is detected");
     }
     
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();

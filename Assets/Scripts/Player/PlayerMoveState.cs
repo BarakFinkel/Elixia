@@ -18,9 +18,11 @@ public class PlayerMoveState : PlayerGroundedState
         base.Update();
         
         player.SetVelocity(new Vector2(xInput * player.moveSpeed, rb.linearVelocity.y));
-        
-        if(xInput == 0 || (xInput == player.facingDir && player.IsWallDetected()))
+
+        if (xInput == 0 || (xInput == player.facingDir && player.IsWallDetected()))
+        {
             stateMachine.ChangeState(player.idleState);
+        }
     }
 
     public override void Exit()

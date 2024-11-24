@@ -7,6 +7,7 @@ public class Player : Entity
     [Header("Attack details")] 
     public Vector2[] attackMovement;
     
+    
     public bool isBusy { get;private set; }
 
     [Header("Movement")]
@@ -81,9 +82,11 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        if(IsWallDetected())
+        if (IsWallDetected())
+        {
             return;
-        
+        }
+
         dashUsageTimer -= Time.deltaTime;
         
         if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
@@ -92,8 +95,10 @@ public class Player : Entity
             dashDir = Input.GetAxisRaw("Horizontal");
 
             if (dashDir == 0)
+            {
                 dashDir = facingDir;
-            
+            }
+
             stateMachine.ChangeState(dashState);
         }
     }
