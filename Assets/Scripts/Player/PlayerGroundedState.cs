@@ -29,6 +29,11 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.pAttackState);
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            stateMachine.ChangeState(player.counterAttack);
+        }
     }
 
     public override void Exit()
