@@ -1,20 +1,19 @@
-using System;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-  public static PlayerManager instance;
-  public Player player;
+    public static PlayerManager instance;
+    public Player player;
 
-  private void Awake()
-  {
-    if (instance != null)
+    private void Awake()
     {
-      Destroy(instance.gameObject);
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
-    else
-    {
-      instance = this;
-    }
-  }
 }

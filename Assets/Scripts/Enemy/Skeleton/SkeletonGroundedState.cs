@@ -4,9 +4,10 @@ public class SkeletonGroundedState : EnemyState
 {
     protected Enemy_Skeleton enemy;
     protected Transform player;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public SkeletonGroundedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public SkeletonGroundedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
+        Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
     }

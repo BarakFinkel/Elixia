@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class EntityFx : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    
-    [Header("Flash FX")] 
-    [SerializeField] private Material hitMat;
+    [Header("Flash FX")] [SerializeField] private Material hitMat;
+
     [SerializeField] private float flashDuration;
     private Material originalMat;
+    private SpriteRenderer sr;
 
     private void Start()
     {
@@ -19,9 +18,9 @@ public class EntityFx : MonoBehaviour
     private IEnumerator FlashFx()
     {
         sr.material = hitMat;
-        
+
         yield return new WaitForSeconds(flashDuration);
-        
+
         sr.material = originalMat;
     }
 
@@ -30,7 +29,8 @@ public class EntityFx : MonoBehaviour
         if (sr.color != Color.white)
         {
             sr.color = Color.white;
-        }else
+        }
+        else
         {
             sr.color = Color.red;
         }
@@ -41,5 +41,4 @@ public class EntityFx : MonoBehaviour
         CancelInvoke();
         sr.color = Color.white;
     }
-
 }

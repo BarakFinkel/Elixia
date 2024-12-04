@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class SkeletonBattleState : EnemyState
 {
-    private Transform player;
-    private Enemy_Skeleton enemy;
+    private readonly Enemy_Skeleton enemy;
     private int moveDir;
-    
-    public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    private Transform player;
+
+    public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
+        Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
     }
@@ -14,7 +15,7 @@ public class SkeletonBattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        
+
         player = PlayerManager.instance.player.transform;
     }
 
@@ -25,7 +26,7 @@ public class SkeletonBattleState : EnemyState
         if (enemy.IsPlayerDetected())
         {
             stateTimer = enemy.battleTime;
-            
+
             if (enemy.IsPlayerDetected().distance < enemy.attackDist && CanAttack())
             {
                 stateMachine.ChangeState(enemy.attackState);
@@ -38,16 +39,17 @@ public class SkeletonBattleState : EnemyState
                 stateMachine.ChangeState(enemy.idleState);
             }
         }
-        
+
 
         if (player.position.x > enemy.transform.position.x)
         {
             moveDir = 1;
-        }else if (player.position.x < enemy.transform.position.x)
+        }
+        else if (player.position.x < enemy.transform.position.x)
         {
             moveDir = -1;
         }
-        
+
         enemy.SetVelocity(new Vector2(enemy.moveSpeed * moveDir, rb.linearVelocity.y));
     }
 
@@ -63,7 +65,7 @@ public class SkeletonBattleState : EnemyState
             enemy.lastTimeAttacked = Time.time;
             return true;
         }
-        
+
         return false;
     }
 }

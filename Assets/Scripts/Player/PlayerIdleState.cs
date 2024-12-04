@@ -1,8 +1,7 @@
-using UnityEngine;
-
 public class PlayerIdleState : PlayerGroundedState
 {
-    public PlayerIdleState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerIdleState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 
@@ -25,12 +24,10 @@ public class PlayerIdleState : PlayerGroundedState
         {
             stateMachine.ChangeState(player.moveState);
         }
-
-
     }
 
     public override void Exit()
     {
-       base.Exit();
+        base.Exit();
     }
 }

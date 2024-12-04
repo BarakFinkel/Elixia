@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 
@@ -34,6 +35,23 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.counterAttack);
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword())
+        {
+            stateMachine.ChangeState(player.aimSword);
+        }
+    }
+
+    private bool HasNoSword()
+    {
+        if (!player.sword)
+        {
+            return true;
+        }
+
+        player.sword.GetComponent<SwordSkillController>().ReturnSword();
+
+        return false;
     }
 
     public override void Exit()

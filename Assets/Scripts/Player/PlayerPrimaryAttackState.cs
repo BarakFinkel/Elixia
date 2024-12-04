@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class PlayerPrimaryAttackState : PlayerState
 {
+    private readonly float comboWindow = 2;
     private int comboCount;
     private float lastTimeAttacked;
-    private float comboWindow=2;
-    
-    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+
+    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(
+        _player, _stateMachine, _animBoolName)
     {
     }
 
     public override void Enter()
     {
-      
         base.Enter();
         xInput = 0; // attack direction bug fix
 
@@ -23,16 +23,19 @@ public class PlayerPrimaryAttackState : PlayerState
         }
 
         player.animator.SetInteger("ComboCounter", comboCount);
-        
+
         #region Choose attack dirrection
 
         float attackDir = player.facingDir;
         if (xInput != 0)
+        {
             attackDir = xInput;
-        
+        }
+
         #endregion
-        
-        player.SetVelocity(new Vector2(player.attackMovement[comboCount].x * attackDir, player.attackMovement[comboCount].y));
+
+        player.SetVelocity(new Vector2(player.attackMovement[comboCount].x * attackDir,
+            player.attackMovement[comboCount].y));
 
         stateTimer = 0.1f;
     }
@@ -57,7 +60,7 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Exit();
 
         player.StartCoroutine("BusyFor", .15f);
-        
+
         comboCount++;
         lastTimeAttacked = Time.time;
     }

@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class PlayerStateMachine 
+public class PlayerStateMachine
 {
     public PlayerState currState { get; private set; }
 

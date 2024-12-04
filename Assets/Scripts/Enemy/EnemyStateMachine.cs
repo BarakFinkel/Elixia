@@ -1,9 +1,6 @@
-using UnityEngine;
-
 public class EnemyStateMachine
 {
-    
-    public EnemyState currentState {get; private set;}
+    public EnemyState currentState { get; private set; }
 
 
     public void Inititalize(EnemyState _initialState)

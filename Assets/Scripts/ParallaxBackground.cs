@@ -2,28 +2,27 @@ using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
-    private GameObject cam;
-    
     [SerializeField] private float parralaxEffect;
-    
-    private float xPos;
+    private GameObject cam;
     private float length;
-    
+
+    private float xPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
-        
+
         length = GetComponent<SpriteRenderer>().bounds.size.x;
         xPos = transform.position.x;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float distanceMoved = cam.transform.position.x * (1-parralaxEffect);
-        float distanceToMove = cam.transform.position.x * parralaxEffect;
-        
+        var distanceMoved = cam.transform.position.x * (1 - parralaxEffect);
+        var distanceToMove = cam.transform.position.x * parralaxEffect;
+
         transform.position = new Vector3(xPos + distanceToMove, transform.position.y);
 
         if (distanceMoved > xPos + length)
