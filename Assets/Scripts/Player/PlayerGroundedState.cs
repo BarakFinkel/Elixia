@@ -40,6 +40,12 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.aimSword);
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse2) && HasNoSword())
+        {
+            player.skill.sword.ChangeToNextType();
+        }
+        
     }
 
     private bool HasNoSword()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -115,6 +116,12 @@ public class SwordSkill : Skill
         player.AssignNewSword(newSword);
 
         DotsActive(false);
+    }
+
+    public void ChangeToNextType()
+    {
+        swordType = (SwordType)(((int)swordType + 1) % Enum.GetValues(typeof(SwordType)).Length);
+        SetupGravity();
     }
 
     #region Aiming
