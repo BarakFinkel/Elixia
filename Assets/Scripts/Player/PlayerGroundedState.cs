@@ -45,6 +45,11 @@ public class PlayerGroundedState : PlayerState
         {
             player.skill.sword.ChangeToNextType();
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            stateMachine.ChangeState(player.blackhole);
+        }
         
     }
 

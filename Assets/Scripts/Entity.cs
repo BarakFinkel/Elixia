@@ -3,6 +3,16 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    # region Components
+
+    public Animator animator { get; private set; }
+    public Rigidbody2D rb { get; private set; }
+    public EntityFx fx { get; private set; }
+    
+    public SpriteRenderer sr { get; private set; }
+
+    # endregion Components
+    
     [Header("Knockback Info")] [SerializeField]
     protected Vector2 knockbackDir;
 
@@ -28,6 +38,7 @@ public class Entity : MonoBehaviour
     protected virtual void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFx>();
     }
@@ -53,13 +64,19 @@ public class Entity : MonoBehaviour
         isKnocked = false;
     }
 
-    # region Components
+    public void MakeTransparent(bool _transparent)
+    {
+        if (_transparent)
+        {
+            sr.color = Color.clear;
+        }
+        else
+        {
+            sr.color = Color.white;
+        }
+    }
 
-    public Animator animator { get; private set; }
-    public Rigidbody2D rb { get; private set; }
-    public EntityFx fx { get; private set; }
 
-    # endregion Components
 
     #region Collision
 
