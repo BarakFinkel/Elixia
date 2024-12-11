@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerBlackholeState : PlayerState
 {
-    private float flyTime = .4f;
+    private float defaultGravity;
+    private readonly float flyTime = .4f;
     private bool skillUsed;
 
-    private float defaultGravity;
-    
-    public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 
@@ -30,12 +30,12 @@ public class PlayerBlackholeState : PlayerState
         base.Update();
         if (stateTimer > 0)
         {
-            rb.linearVelocity = new Vector2(0,15);
+            rb.linearVelocity = new Vector2(0, 15);
         }
 
         if (stateTimer < 0)
         {
-            rb.linearVelocity = new Vector2(0,-.1f);
+            rb.linearVelocity = new Vector2(0, -.1f);
             if (!skillUsed)
             {
                 if (player.skill.blackhole.CanUseSkill())

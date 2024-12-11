@@ -16,25 +16,6 @@ public class Player : Entity
     [Header("Dash Info")] public float dashSpeed;
 
     public float dashDuration;
-    
-    # region States
-
-    public PlayerStateMachine stateMachine { get; private set; }
-
-    public PlayerIdleState idleState { get; private set; }
-    public PlayerMoveState moveState { get; private set; }
-    public PlayerJumpState jumpState { get; private set; }
-    public PlayerAirState airState { get; private set; }
-    public PlayerDashState dashState { get; private set; }
-    public PlayerWallSlideState wallSlideState { get; private set; }
-    public PlayerWallJumpState wallJumpState { get; private set; }
-    public PlayerPrimaryAttackState pAttackState { get; private set; }
-    public PlayerCounterAttackState counterAttack { get; private set; }
-    public PlayerAimSwordState aimSword { get; private set; }
-    public PlayerCatchSwordState catchSword { get; private set; }
-    public PlayerBlackholeState blackhole { get; private set; }
-
-    # endregion States
 
 
     public bool isBusy { get; private set; }
@@ -62,7 +43,7 @@ public class Player : Entity
 
         aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSword = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
-        
+
         blackhole = new PlayerBlackholeState(this, stateMachine, "Jump");
     }
 
@@ -92,6 +73,7 @@ public class Player : Entity
         stateMachine.ChangeState(catchSword);
         Destroy(sword);
     }
+
     public IEnumerator BusyFor(float _seconds)
     {
         isBusy = true;
@@ -126,6 +108,22 @@ public class Player : Entity
         stateMachine.currState.AnimationFinishTrigger();
     }
 
+    # region States
 
-  
+    public PlayerStateMachine stateMachine { get; private set; }
+
+    public PlayerIdleState idleState { get; private set; }
+    public PlayerMoveState moveState { get; private set; }
+    public PlayerJumpState jumpState { get; private set; }
+    public PlayerAirState airState { get; private set; }
+    public PlayerDashState dashState { get; private set; }
+    public PlayerWallSlideState wallSlideState { get; private set; }
+    public PlayerWallJumpState wallJumpState { get; private set; }
+    public PlayerPrimaryAttackState pAttackState { get; private set; }
+    public PlayerCounterAttackState counterAttack { get; private set; }
+    public PlayerAimSwordState aimSword { get; private set; }
+    public PlayerCatchSwordState catchSword { get; private set; }
+    public PlayerBlackholeState blackhole { get; private set; }
+
+    # endregion States
 }

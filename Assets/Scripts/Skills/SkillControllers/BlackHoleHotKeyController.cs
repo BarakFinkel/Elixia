@@ -3,24 +3,12 @@ using UnityEngine;
 
 public class BlackHoleHotKeyController : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    private KeyCode myHotKey;
-    private TextMeshProUGUI myText;
-
-    private Transform myEnemy;
     private BlackholeSkillController myBlackhole;
 
-    public void SetupHotKey(KeyCode _hotKey, Transform _myEnemy, BlackholeSkillController _myBlackHole)
-    {
-        sr = GetComponent<SpriteRenderer>();
-        myText = GetComponentInChildren<TextMeshProUGUI>();
-
-        myEnemy = _myEnemy;
-        myBlackhole = _myBlackHole;
-        
-        myHotKey = _hotKey;
-        myText.text = myHotKey.ToString();
-    }
+    private Transform myEnemy;
+    private KeyCode myHotKey;
+    private TextMeshProUGUI myText;
+    private SpriteRenderer sr;
 
     private void Update()
     {
@@ -30,5 +18,17 @@ public class BlackHoleHotKeyController : MonoBehaviour
             myText.color = Color.clear;
             sr.color = Color.clear;
         }
+    }
+
+    public void SetupHotKey(KeyCode _hotKey, Transform _myEnemy, BlackholeSkillController _myBlackHole)
+    {
+        sr = GetComponent<SpriteRenderer>();
+        myText = GetComponentInChildren<TextMeshProUGUI>();
+
+        myEnemy = _myEnemy;
+        myBlackhole = _myBlackHole;
+
+        myHotKey = _hotKey;
+        myText.text = myHotKey.ToString();
     }
 }

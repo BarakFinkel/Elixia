@@ -50,7 +50,6 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.blackhole);
         }
-        
     }
 
     private bool HasNoSword()
