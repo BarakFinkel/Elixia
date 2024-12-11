@@ -10,7 +10,7 @@ public class PlayerWallJumpState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        stateTimer = 0.4f;
+        stateTimer = 0.4f; // cant hold the wall forever so it will fall after a little time 
         player.SetVelocity(new Vector2(5 * -player.facingDir, player.jumpForce));
     }
 

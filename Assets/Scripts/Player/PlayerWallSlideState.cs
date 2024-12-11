@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerWallSlideState : PlayerState
 {
+    private float slidingSpeed = .7f;
     public PlayerWallSlideState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
         _stateMachine, _animBoolName)
     {
@@ -38,7 +39,7 @@ public class PlayerWallSlideState : PlayerState
         }
         else
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y * 0.7f);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y * slidingSpeed);
         }
     }
 

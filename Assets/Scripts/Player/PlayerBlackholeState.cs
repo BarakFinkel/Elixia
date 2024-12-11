@@ -5,6 +5,7 @@ public class PlayerBlackholeState : PlayerState
     private float defaultGravity;
     private readonly float flyTime = .4f;
     private bool skillUsed;
+    private int flyingHeight = 15;
 
     public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
         _stateMachine, _animBoolName)
@@ -30,12 +31,12 @@ public class PlayerBlackholeState : PlayerState
         base.Update();
         if (stateTimer > 0)
         {
-            rb.linearVelocity = new Vector2(0, 15);
+            rb.linearVelocity = new Vector2(0, flyingHeight);
         }
 
         if (stateTimer < 0)
         {
-            rb.linearVelocity = new Vector2(0, -.1f);
+            rb.linearVelocity = new Vector2(0, -.1f); // slow falling
             if (!skillUsed)
             {
                 if (player.skill.blackhole.CanUseSkill())

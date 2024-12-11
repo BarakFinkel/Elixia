@@ -89,7 +89,8 @@ public class Enemy : Entity
 
     public virtual RaycastHit2D IsPlayerDetected()
     {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, 50, whatIsPlayer);
+        int raycastSize = 50;
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, raycastSize, whatIsPlayer);
     }
 
     #region counterAttack

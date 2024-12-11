@@ -31,6 +31,7 @@ public class SwordSkillController : MonoBehaviour
     private float spinTimer;
     private int targetIndex;
     private bool wasStopped;
+    private int enemyDetectRadius = 10;
 
 
     private void Awake()
@@ -98,9 +99,11 @@ public class SwordSkillController : MonoBehaviour
             {
                 spinTimer -= Time.deltaTime;
 
+                float speed = 1.5f;
+
                 transform.position = Vector2.MoveTowards(transform.position,
                     new Vector2(transform.position.x + spinDir, transform.position.y),
-                    Time.deltaTime * 1.5f);
+                    Time.deltaTime * speed);
 
                 if (spinTimer <= 0)
                 {
@@ -139,7 +142,8 @@ public class SwordSkillController : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position,
                 enemyTargets[targetIndex].position, Time.deltaTime * bounceSpeed);
 
-            if (Vector2.Distance(transform.position, enemyTargets[targetIndex].position) < .1f)
+            float dinstanceToHit = .1f;
+            if (Vector2.Distance(transform.position, enemyTargets[targetIndex].position) < dinstanceToHit)
             {
                 SwordSkillDamage(enemyTargets[targetIndex].GetComponent<Enemy>());
 
@@ -172,7 +176,7 @@ public class SwordSkillController : MonoBehaviour
         {
             if (isBouncing && enemyTargets.Count <= 0)
             {
-                var colliders = Physics2D.OverlapCircleAll(transform.position, 10);
+                var colliders = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
 
                 foreach (var hit in colliders)
                     if (hit.GetComponent<Enemy>() != null)

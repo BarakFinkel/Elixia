@@ -65,7 +65,8 @@ public class CloneSkillController : MonoBehaviour
 
     private void FaceClosestTarget()
     {
-        var colliders = Physics2D.OverlapCircleAll(transform.position, 25);
+        int detectingRadius = 25;
+        var colliders = Physics2D.OverlapCircleAll(transform.position, detectingRadius);
 
         var closestDistance = Mathf.Infinity;
 

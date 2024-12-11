@@ -3,6 +3,7 @@ using UnityEngine;
 public class SkeletonStunState : EnemyState
 {
     private readonly Enemy_Skeleton enemy;
+    private float blinkRepeat = 0.1f;
 
     public SkeletonStunState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
         Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
@@ -14,7 +15,7 @@ public class SkeletonStunState : EnemyState
     {
         base.Enter();
 
-        enemy.fx.InvokeRepeating("RedColorBlink", 0, 0.1f);
+        enemy.fx.InvokeRepeating("RedColorBlink", 0, blinkRepeat);
 
         stateTimer = enemy.stunDuration;
         rb.linearVelocity = new Vector2(-enemy.facingDir * enemy.stunDirection.x, enemy.stunDirection.y);

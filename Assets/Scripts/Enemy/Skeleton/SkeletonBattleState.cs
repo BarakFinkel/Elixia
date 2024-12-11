@@ -4,6 +4,7 @@ public class SkeletonBattleState : EnemyState
 {
     private readonly Enemy_Skeleton enemy;
     private int moveDir;
+    private int distToLoose = 7;
     private Transform player;
 
     public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
@@ -34,7 +35,7 @@ public class SkeletonBattleState : EnemyState
         }
         else
         {
-            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 7)
+            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > distToLoose) 
             {
                 stateMachine.ChangeState(enemy.idleState);
             }
