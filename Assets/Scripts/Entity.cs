@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [Header("Knockback Info")] [SerializeField]
-    protected Vector2 knockbackDir;
+    [Header("Knockback Info")]
+    [SerializeField] protected Vector2 knockbackDir;
 
     [SerializeField] protected float knockbackDuration;
     [Header("Collision Info")] public Transform attackCheck;
     public float attackCheckRadius;
     [SerializeField] protected Transform groundCheck;
-    [SerializeField] protected float groundCheckDist; 
+    [SerializeField] protected float groundCheckDist;
     [SerializeField] protected Transform wallCheck; 
     [SerializeField] protected float wallCheckDist;
     [SerializeField] protected LayerMask whatIsGround;
