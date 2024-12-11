@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CloneSkill : Skill
 {
-    [Header("Clone info")] 
+    [Header("Clone info")]
     [SerializeField] private GameObject clonePrefab;
     [SerializeField] private float cloneDuration;
     [SerializeField] private bool canAttack;

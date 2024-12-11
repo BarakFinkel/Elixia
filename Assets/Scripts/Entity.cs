@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
     public float attackCheckRadius;
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDist;
-    [SerializeField] protected Transform wallCheck; 
+    [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDist;
     [SerializeField] protected LayerMask whatIsGround;
     protected bool facingRight = true;

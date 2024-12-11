@@ -14,24 +14,24 @@ public class SwordSkill : Skill
 {
     public SwordType swordType = SwordType.Regular;
 
-    [Header("Bounce info")] 
+    [Header("Bounce info")]
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
     [SerializeField] private float bounceSpeed;
 
-    [Header("Pierce info")] 
+    [Header("Pierce info")]
     [SerializeField] private int pierceAmount;
     [SerializeField] private float pierceGravity;
 
-    [Header("Spin info")] 
+    [Header("Spin info")]
     [SerializeField] private float hitCooldown;
 
     [SerializeField] private float maxTravelDist;
     [SerializeField] private float spinDuration;
     [SerializeField] private float spinGravity;
 
-    [Header("Skill Info")] [SerializeField]
-    private GameObject swordPrefab;
+    [Header("Skill Info")]
+    [SerializeField] private GameObject swordPrefab;
 
     [SerializeField] private float freezeTimeDuration;
     [SerializeField] private float returnSpeed;
