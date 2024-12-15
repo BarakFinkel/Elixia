@@ -85,6 +85,9 @@ The dramatic curve of *Elixia*:
     - Confront the student in their lair. The final battle reveals the full truth about the alchemist’s past and the cost of their shared discoveries.
 4. **Resolution**:
     - Depending on choices made, the alchemist either destroys the artifact, restores balance, or succumbs to the same ambition as the student, resulting in different endings.
+  
+![plot](https://github.com/user-attachments/assets/eeefe77d-8ca6-43a6-a28b-77d408480bb0)
+
 
 ---
 
