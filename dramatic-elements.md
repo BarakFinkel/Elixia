@@ -1,5 +1,3 @@
-Here’s the adjusted version of the file based on your feedback and suggestions:
-
 ---
 
 # Dramatic Elements of *Elixia*
