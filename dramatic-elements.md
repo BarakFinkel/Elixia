@@ -1,3 +1,4 @@
+Here’s the adjusted version of the file based on your feedback and suggestions:
 
 ---
 
@@ -34,9 +35,11 @@ The game prioritizes depth and originality, catering to a niche audience that va
 ---
 
 ### **Feelings**
-The primary emotional goal is **satisfaction**:
-- Players feel rewarded when completing difficult challenges, defeating tough bosses, or uncovering rare secrets.
-- Meaningful rewards like unique weapons, abilities, or items enhance gameplay and make accomplishments impactful.
+The primary emotional goals include:
+- **Satisfaction**: Players feel rewarded when completing difficult challenges, defeating tough bosses, or uncovering rare secrets.
+- **Sadness**: The desolate and dark world creates moments of melancholy, especially when learning about the protagonist's tragic backstory or encountering remnants of a lost world.
+- **Happiness**: Achieving progress, uncovering secrets, or mastering combat mechanics provide a sense of joy and accomplishment.
+- **Tension and Fear**: Facing unknown, dangerous enemies in eerie environments keeps players on edge.
 
 ---
 
@@ -44,6 +47,11 @@ The primary emotional goal is **satisfaction**:
 The alchemist awakens in a ruined sanctuary with no memory of their past. They discover they are cursed, and the world is overrun by corrupted creatures. As they venture deeper, they learn that their student betrayed them, using their shared alchemical discoveries to unleash monsters.
 
 The student seeks a legendary alchemical artifact capable of controlling human minds, believing it will grant ultimate power. The alchemist must recover their memory, stop their former student, and undo the devastation caused by the betrayal.
+
+#### **Storytelling Method**
+- **NPC Dialogs**: Friendly or neutral characters provide pieces of the story through conversations.
+- **Hidden Notes**: Scattered throughout the world, these provide insights into the past and the antagonist’s motivations.
+- **Item Descriptions**: Certain items reveal fragments of the lore, often requiring players to piece together the narrative themselves.
 
 ---
 
@@ -58,6 +66,10 @@ The student seeks a legendary alchemical artifact capable of controlling human m
 - **Supporting Characters**:
     - A mysterious sage who helps the alchemist recover their memory and provides guidance.
     - Hermit traders and outcasts who offer resources and cryptic clues about the student's plan.
+- **Free Will in Characters**:
+    - Some characters exhibit "free will," behaving unpredictably and reacting dynamically to the player’s actions. For example:
+        - NPCs who refuse help or change their stance based on the player's progress.
+        - Enemies who adapt their combat style during encounters.
 
 ---
 
@@ -77,8 +89,15 @@ The dramatic curve of *Elixia*:
 ---
 
 ### **World Rules**
-- A dark fantasy, 2D platformer world filled with monsters, traps, and secrets.
-- Few friendly characters populate the world, creating a sense of isolation and danger.
-- **Souls**: Collected from defeated enemies, used to improve the character. These may also serve as currency for crafting or acquiring items.
+The world of *Elixia* is governed by:
+- **Laws of Nature**:
+    - Alchemy is a dominant force, allowing manipulation of elements and life. However, overuse or misuse of alchemy leads to corruption and chaos.
+    - The environment reacts dynamically to alchemy, e.g., crafting fire-based potions in a forest risks causing wildfires.
+- **History**:
+    - The world was once a thriving hub of alchemical knowledge, but a great catastrophe (caused by the antagonist) turned it into a desolate, monster-filled land.
+    - The alchemist was a key figure in this golden age, though much of their memory and legacy are lost.
+- **Geography**:
+    - A mix of ruins, dense forests, underground caverns, and desolate towns.
+    - The student's lair is a towering alchemical fortress, blending natural and mechanical elements.
 
 ---
