@@ -20,7 +20,7 @@ The game combines platformer mechanics like running, jumping, and dodging with c
 - Beyond initial guidance, players are expected to use their intuition and follow subtle hints in the world to progress.
 
 ### 3. Processes
-- **Starting Process**: At the beginning, players start on a simple level without tough enemies, with a character who lacks special abilities. Players learn core gameplay principles like running, jumping, basic attacks, potion crafting, dodging attacks, and more.
+- **Starting Process**: At the beginning, players start on a simple level without tough enemies, with a character who lacks special abilities. Players learn core gameplay principles like running, jumping, basic attacks, counter attacks, and more.
 - **Core Process**: Over time, the character evolves based on player choices in the skill tree and basic attribute development. Players will learn to craft potions and tools to help them face new enemies and advance.
 - **End Process**: The game ends when the player defeats the final boss.
 
