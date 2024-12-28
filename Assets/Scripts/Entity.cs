@@ -3,6 +3,16 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    # region Components
+
+    public Animator animator { get; private set; }
+    public Rigidbody2D rb { get; private set; }
+    public EntityFx fx { get; private set; }
+
+    public SpriteRenderer sr { get; private set; }
+
+    # endregion Components
+    
     [Header("Knockback Info")]
     [SerializeField] protected Vector2 knockbackDir;
 
@@ -16,9 +26,13 @@ public class Entity : MonoBehaviour
     [SerializeField] protected LayerMask whatIsGround;
     protected bool facingRight = true;
     protected bool isKnocked;
-
     public int facingDir { get; private set; } = 1;
+    
+    public CharacterStats stats { get; private set;}
+    public CapsuleCollider2D cd { get; private set; }
 
+    public System.Action onFlipped;
+    
     protected virtual void Awake()
     {
     }
@@ -29,6 +43,8 @@ public class Entity : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFx>();
+        stats = GetComponent<CharacterStats>();
+        cd = GetComponent<CapsuleCollider2D>();
     }
 
 
@@ -36,9 +52,18 @@ public class Entity : MonoBehaviour
     {
     }
 
-    public virtual void Damage()
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {
-        fx.StartCoroutine("FlashFx");
+        
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        animator.speed = 1;
+    }
+
+    public virtual void DamageImpact()
+    {
         StartCoroutine("HitKnockback");
     }
 
@@ -52,27 +77,14 @@ public class Entity : MonoBehaviour
         isKnocked = false;
     }
 
-    public void MakeTransparent(bool _transparent)
+    
+
+    public virtual void Die()
     {
-        if (_transparent)
-        {
-            sr.color = Color.clear;
-        }
-        else
-        {
-            sr.color = Color.white;
-        }
+        
     }
 
-    # region Components
 
-    public Animator animator { get; private set; }
-    public Rigidbody2D rb { get; private set; }
-    public EntityFx fx { get; private set; }
-
-    public SpriteRenderer sr { get; private set; }
-
-    # endregion Components
 
 
     #region Collision
@@ -105,6 +117,11 @@ public class Entity : MonoBehaviour
         facingDir *= -1;
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
+
+        if (onFlipped != null)
+        {
+            onFlipped();
+        }
     }
 
     public virtual void FlipController(float _x)

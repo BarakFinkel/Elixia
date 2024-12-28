@@ -25,7 +25,7 @@ public class BlackholeSkillController : MonoBehaviour
     private readonly List<GameObject> hotKeys = new();
 
     private float maxSize;
-    private readonly bool playerCanDissapear = true;
+    private bool playerCanDissapear = true;
     private float shrinkSpeed;
 
     public bool playerCanExitState { get; private set; }
@@ -99,6 +99,11 @@ public class BlackholeSkillController : MonoBehaviour
         amountOfAttacks = _amountOfAttacks;
         cloneAttackCooldown = _cloneAttackCooldown;
         blackholeTimer = _blackholeDuration;
+
+        if (SkillManager.instance.clone.crystalInstead)
+        {
+            playerCanDissapear = false;
+        }
     }
 
     private void ReleaseCloneAttack()
@@ -115,7 +120,7 @@ public class BlackholeSkillController : MonoBehaviour
         if (playerCanDissapear)
         {
             playerCanExitState = false;
-            PlayerManager.instance.player.MakeTransparent(true);
+            PlayerManager.instance.player.fx.MakeTransparent(true);
         }
     }
 
@@ -137,7 +142,15 @@ public class BlackholeSkillController : MonoBehaviour
                 xOffset = -2;
             }
 
-            SkillManager.instance.clone.CreateClone(targets[randomIndex], new Vector3(xOffset, 0));
+            if (SkillManager.instance.clone.crystalInstead)
+            {
+                SkillManager.instance.crystal.CreateCrystal();
+                SkillManager.instance.crystal.CurrentCrystalChooseRandomTarget();
+            }
+            else
+            {
+                SkillManager.instance.clone.CreateClone(targets[randomIndex], new Vector3(xOffset, 0));
+            }
 
             amountOfAttacks--;
 
@@ -155,6 +168,7 @@ public class BlackholeSkillController : MonoBehaviour
         cloneAttackReleased = false;
         canShrink = true;
         DestroyAllHotKeys();
+        PlayerManager.instance.player.fx.MakeTransparent(false);
     }
 
     private void DestroyAllHotKeys()
@@ -193,4 +207,6 @@ public class BlackholeSkillController : MonoBehaviour
     {
         targets.Add(_enemyTransform);
     }
+
+    
 }

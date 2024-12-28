@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,6 +25,13 @@ public class Enemy : Entity
 
 
     public EnemyStateMachine stateMachine { get; private set; }
+    
+    public string lastAnimBoolName { get; private set; }
+
+    public void AssignLastAnimName(string _animBoolName)
+    {
+        lastAnimBoolName = _animBoolName;
+    }
 
     protected override void Awake()
     {
@@ -91,6 +99,21 @@ public class Enemy : Entity
     {
         int raycastSize = 50;
         return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, raycastSize, whatIsPlayer);
+    }
+    
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        animator.speed = animator.speed * (1 - _slowPercentage);
+        
+        Invoke("ReturnDefaultSpeed", _slowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+        
+        moveSpeed = defaultMoveSpeed;
     }
 
     #region counterAttack
