@@ -9,4 +9,4 @@
 
 ## UML Diagram
 
-You can view the UML diagram [here](https://nikita-barak.github.io/Elixia/docs/index.html).
+You can view the UML diagram here: [HTML](https://nikita-barak.github.io/Elixia/docs/index.html) or [PNG](https://github.com/Nikita-Barak/Elixia/blob/main/docs/Overview.png).
