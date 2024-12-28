@@ -43,7 +43,7 @@ public class Enemy_Skeleton : Enemy
     public override void Die()
     {
         base.Die();
-        
+
         stateMachine.ChangeState(deathState);
     }
 

@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class SkeletonDeathState : EnemyState
 {
-    private Enemy_Skeleton enemy;
-    
-    public SkeletonDeathState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    private readonly Enemy_Skeleton enemy;
+
+    public SkeletonDeathState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
+        Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
     }
@@ -12,7 +13,7 @@ public class SkeletonDeathState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        
+
         enemy.animator.SetBool(enemy.lastAnimBoolName, true);
         enemy.animator.speed = 0f; // stop animation
 
@@ -30,5 +31,4 @@ public class SkeletonDeathState : EnemyState
             rb.linearVelocity = new Vector2(0f, 10); // fly up like in mario
         }
     }
-
 }

@@ -6,17 +6,17 @@ public class CloneSkillController : MonoBehaviour
     [SerializeField] private Transform attackCheck;
     [SerializeField] private float attackCheckRadius = .8f;
     private Animator anim;
+
+    private bool canDuplicate;
+
+    private float chanceToDup;
     private float cloneTimer;
 
     private Transform closestEnemy;
-    private SpriteRenderer sr;
-
-    private bool canDuplicate;
     private int facingDir = 1;
 
-    private float chanceToDup;
-
     private Player player;
+    private SpriteRenderer sr;
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class CloneSkillController : MonoBehaviour
         {
             anim.SetInteger("AttackNumber", Random.Range(1, 3));
         }
-        
+
         player = _player;
 
         transform.position = _newTransform.position + _offset;
@@ -73,9 +73,10 @@ public class CloneSkillController : MonoBehaviour
 
                 if (canDuplicate)
                 {
-                    if (Random.Range(0, 100) < chanceToDup) 
+                    if (Random.Range(0, 100) < chanceToDup)
                     {
-                        SkillManager.instance.clone.CreateClone(hit.transform, new Vector3(1.5f * facingDir,0)); // little bit closer to the enemy
+                        SkillManager.instance.clone.CreateClone(hit.transform,
+                            new Vector3(1.5f * facingDir, 0)); // little bit closer to the enemy
                     }
                 }
             }

@@ -4,8 +4,8 @@ public class PlayerPrimaryAttackState : PlayerState
 {
     private readonly float comboWindow = 2;
     private int comboCount;
+    private readonly int comboSize = 2;
     private float lastTimeAttacked;
-    private int comboSize = 2;
 
     public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(
         _player, _stateMachine, _animBoolName)

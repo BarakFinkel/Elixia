@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SkeletonGroundedState : EnemyState
 {
+    private readonly int distToNotice = 2;
     protected Enemy_Skeleton enemy;
     protected Transform player;
-    private int distToNotice = 2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public SkeletonGroundedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,

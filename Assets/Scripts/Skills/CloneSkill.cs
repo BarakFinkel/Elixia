@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class CloneSkill : Skill
 {
-    [Header("Clone info")]
-    [SerializeField] private GameObject clonePrefab;
+    [Header("Clone info")] [SerializeField]
+    private GameObject clonePrefab;
+
     [SerializeField] private float cloneDuration;
     [SerializeField] private bool canAttack;
-    
+
     [SerializeField] private bool createClonOnDashStart;
     [SerializeField] private bool createClonOnDashOver;
     [SerializeField] private bool createCloneOnCounter;
@@ -16,8 +17,8 @@ public class CloneSkill : Skill
     [SerializeField] private bool canDuplicateClone;
     [SerializeField] private float chanceToDup = 99;
 
-    [Header("Crystal instead of clone")]
-    [SerializeField] public bool crystalInstead;
+    [Header("Crystal instead of clone")] [SerializeField]
+    public bool crystalInstead;
 
     public void CreateClone(Transform _clonePosition, Vector3 _offset)
     {
@@ -26,7 +27,7 @@ public class CloneSkill : Skill
             SkillManager.instance.crystal.CreateCrystal();
             return;
         }
-        
+
         var newClone = Instantiate(clonePrefab);
 
         newClone.GetComponent<CloneSkillController>().SetupClone(_clonePosition, cloneDuration, canAttack,
@@ -37,7 +38,7 @@ public class CloneSkill : Skill
     {
         if (createClonOnDashStart)
         {
-            CreateClone(player.transform,Vector3.zero);
+            CreateClone(player.transform, Vector3.zero);
         }
     }
 
@@ -45,7 +46,7 @@ public class CloneSkill : Skill
     {
         if (createClonOnDashOver)
         {
-            CreateClone(player.transform,Vector3.zero);
+            CreateClone(player.transform, Vector3.zero);
         }
     }
 
@@ -60,7 +61,6 @@ public class CloneSkill : Skill
     private IEnumerator CreateCloneWithDelay(Transform _enemyTransform)
     {
         yield return new WaitForSeconds(delay);
-        CreateClone(_enemyTransform,  new Vector3(cloneOffset * player.facingDir, 0));
+        CreateClone(_enemyTransform, new Vector3(cloneOffset * player.facingDir, 0));
     }
-    
 }

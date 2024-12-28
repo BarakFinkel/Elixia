@@ -3,8 +3,8 @@ using UnityEngine;
 public class SkeletonBattleState : EnemyState
 {
     private readonly Enemy_Skeleton enemy;
+    private readonly int distToLoose = 7;
     private int moveDir;
-    private int distToLoose = 7;
     private Transform player;
 
     public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,

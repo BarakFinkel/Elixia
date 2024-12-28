@@ -10,6 +10,7 @@ public class SwordSkillController : MonoBehaviour
 
     private bool canRotate = true;
     private CircleCollider2D cd;
+    private readonly int enemyDetectRadius = 10;
     private List<Transform> enemyTargets;
 
     private float freezeTimeDur;
@@ -31,7 +32,6 @@ public class SwordSkillController : MonoBehaviour
     private float spinTimer;
     private int targetIndex;
     private bool wasStopped;
-    private int enemyDetectRadius = 10;
 
 
     private void Awake()
@@ -99,7 +99,7 @@ public class SwordSkillController : MonoBehaviour
             {
                 spinTimer -= Time.deltaTime;
 
-                float speed = 1.5f;
+                var speed = 1.5f;
 
                 transform.position = Vector2.MoveTowards(transform.position,
                     new Vector2(transform.position.x + spinDir, transform.position.y),
@@ -142,7 +142,7 @@ public class SwordSkillController : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position,
                 enemyTargets[targetIndex].position, Time.deltaTime * bounceSpeed);
 
-            float dinstanceToHit = .1f;
+            var dinstanceToHit = .1f;
             if (Vector2.Distance(transform.position, enemyTargets[targetIndex].position) < dinstanceToHit)
             {
                 SwordSkillDamage(enemyTargets[targetIndex].GetComponent<Enemy>());

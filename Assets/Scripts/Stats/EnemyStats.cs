@@ -1,9 +1,7 @@
-using UnityEngine;
-
 public class EnemyStats : CharacterStats
 {
     private Enemy enemy;
-    
+
     protected override void Start()
     {
         base.Start();
@@ -19,7 +17,7 @@ public class EnemyStats : CharacterStats
     protected override void Die()
     {
         base.Die();
-        
+
         enemy.Die();
     }
 }

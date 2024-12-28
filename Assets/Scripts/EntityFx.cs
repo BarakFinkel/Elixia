@@ -4,9 +4,10 @@ using UnityEngine;
 public class EntityFx : MonoBehaviour
 {
     [Header("Flash FX")] [SerializeField] private Material hitMat;
-    
-    [Header("Ailment colors")]
-    [SerializeField] private Color[] chillColor;
+
+    [Header("Ailment colors")] [SerializeField]
+    private Color[] chillColor;
+
     [SerializeField] private Color[] igniteColor;
     [SerializeField] private Color[] shockColor;
 
@@ -23,8 +24,8 @@ public class EntityFx : MonoBehaviour
     private IEnumerator FlashFx()
     {
         sr.material = hitMat;
-        Color currentColor = sr.color;
-        
+        var currentColor = sr.color;
+
         sr.color = Color.white;
         yield return new WaitForSeconds(flashDuration);
         sr.color = currentColor;
@@ -42,7 +43,7 @@ public class EntityFx : MonoBehaviour
             sr.color = Color.red;
         }
     }
-    
+
     private void IgniteColorFX()
     {
         if (sr.color != igniteColor[0])
@@ -78,13 +79,13 @@ public class EntityFx : MonoBehaviour
             sr.color = chillColor[1];
         }
     }
-    
+
     public void ChillFXFor(float _sec)
     {
         InvokeRepeating("ChillColorFX", 0, .3f);
         Invoke("CancelColorChange", _sec);
     }
-    
+
     private void ShockColorFX()
     {
         if (sr.color != shockColor[0])
@@ -96,13 +97,13 @@ public class EntityFx : MonoBehaviour
             sr.color = shockColor[1];
         }
     }
-    
+
     public void ShockFXFor(float _sec)
     {
         InvokeRepeating("ShockColorFX", 0, .3f);
         Invoke("CancelColorChange", _sec);
     }
-    
+
     public void MakeTransparent(bool _transparent)
     {
         if (_transparent)

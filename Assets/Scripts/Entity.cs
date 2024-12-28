@@ -1,20 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    # region Components
-
-    public Animator animator { get; private set; }
-    public Rigidbody2D rb { get; private set; }
-    public EntityFx fx { get; private set; }
-
-    public SpriteRenderer sr { get; private set; }
-
-    # endregion Components
-    
-    [Header("Knockback Info")]
-    [SerializeField] protected Vector2 knockbackDir;
+    [Header("Knockback Info")] [SerializeField]
+    protected Vector2 knockbackDir;
 
     [SerializeField] protected float knockbackDuration;
     [Header("Collision Info")] public Transform attackCheck;
@@ -26,13 +17,13 @@ public class Entity : MonoBehaviour
     [SerializeField] protected LayerMask whatIsGround;
     protected bool facingRight = true;
     protected bool isKnocked;
+
+    public Action onFlipped;
     public int facingDir { get; private set; } = 1;
-    
-    public CharacterStats stats { get; private set;}
+
+    public CharacterStats stats { get; private set; }
     public CapsuleCollider2D cd { get; private set; }
 
-    public System.Action onFlipped;
-    
     protected virtual void Awake()
     {
     }
@@ -54,7 +45,6 @@ public class Entity : MonoBehaviour
 
     public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {
-        
     }
 
     protected virtual void ReturnDefaultSpeed()
@@ -77,14 +67,20 @@ public class Entity : MonoBehaviour
         isKnocked = false;
     }
 
-    
 
     public virtual void Die()
     {
-        
     }
 
+    # region Components
 
+    public Animator animator { get; private set; }
+    public Rigidbody2D rb { get; private set; }
+    public EntityFx fx { get; private set; }
+
+    public SpriteRenderer sr { get; private set; }
+
+    # endregion Components
 
 
     #region Collision

@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Stat
 {
     [SerializeField] private int baseValue;
@@ -10,11 +11,8 @@ public class Stat
 
     public int GetValue()
     {
-        int finalValue = baseValue;
-        foreach (var modifier in modifiers)
-        {
-            finalValue += modifier;
-        }
+        var finalValue = baseValue;
+        foreach (var modifier in modifiers) finalValue += modifier;
         return finalValue;
     }
 
@@ -27,7 +25,7 @@ public class Stat
     {
         modifiers.Remove(_mod);
     }
-    
+
     public void SetDefaultValue(int _value)
     {
         baseValue = _value;

@@ -8,21 +8,21 @@ public class BlackholeSkillController : MonoBehaviour
     [SerializeField] private List<KeyCode> keyCodeList;
 
     public List<Transform> targets = new();
+
+    private readonly bool canGrow = true;
+    private readonly List<GameObject> hotKeys = new();
     private int amountOfAttacks = 4;
 
     private float blackholeTimer;
 
 
     private bool canCreateHotKey = true;
-
-    private readonly bool canGrow = true;
     private bool canShrink;
     private float cloneAttackCooldown = .3f;
 
     private bool cloneAttackReleased;
     private float cloneAttackTimer;
     private float growSpeed;
-    private readonly List<GameObject> hotKeys = new();
 
     private float maxSize;
     private bool playerCanDissapear = true;
@@ -207,6 +207,4 @@ public class BlackholeSkillController : MonoBehaviour
     {
         targets.Add(_enemyTransform);
     }
-
-    
 }

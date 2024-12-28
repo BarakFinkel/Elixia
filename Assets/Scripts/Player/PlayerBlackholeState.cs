@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerBlackholeState : PlayerState
 {
-    private float defaultGravity;
     private readonly float flyTime = .4f;
+    private float defaultGravity;
+    private readonly int flyingHeight = 15;
     private bool skillUsed;
-    private int flyingHeight = 15;
 
     public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
         _stateMachine, _animBoolName)
