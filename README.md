@@ -6,3 +6,7 @@
 ***24/12/2024 Update:*** Now includes propper starting level tutorial signs and adjusted level design. 
 
 [Itch.io](https://nikita-barak.itch.io/elixia-core)
+
+## UML Diagram
+
+You can view the UML diagram [here](https://nikita-barak.github.io/Elixia/docs/index.html).
