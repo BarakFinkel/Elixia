@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class EntityFx : MonoBehaviour
 {
-    [Header("Flash FX")] [SerializeField] private Material hitMat;
-
-    [Header("Ailment colors")] [SerializeField]
-    private Color[] chillColor;
-
+    [Header("Flash FX")]
+    [SerializeField] private Material hitMat;
+    [Header("Ailment colors")]
+    [SerializeField] private Color[] chillColor;
     [SerializeField] private Color[] igniteColor;
     [SerializeField] private Color[] shockColor;
 

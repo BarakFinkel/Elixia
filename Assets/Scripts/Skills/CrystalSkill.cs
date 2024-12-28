@@ -6,20 +6,18 @@ public class CrystalSkill : Skill
     [SerializeField] private float crystalDuration;
     [SerializeField] private GameObject crystalPrefab;
 
-    [Header("Crystal Mirage")] [SerializeField]
-    private bool cloneInsteadOfCrystal;
+    [Header("Crystal Mirage")]
+    [SerializeField] private bool cloneInsteadOfCrystal;
 
-    [Header("Explosive crystal")] [SerializeField]
-    private bool canExplode;
+    [Header("Explosive crystal")]
+    [SerializeField] private bool canExplode;
 
-    [Header("Moving Crystal")] [SerializeField]
-    private bool canMoveToEnemy;
-
+    [Header("Moving Crystal")]
+    [SerializeField] private bool canMoveToEnemy;
     [SerializeField] private float moveSpeed;
 
-    [Header("Multi stacking crystal")] [SerializeField]
-    private bool canMultiStack;
-
+    [Header("Multi stacking crystal")]
+    [SerializeField] private bool canMultiStack;
     [SerializeField] private int amountOfStacks;
     [SerializeField] private float multiStackCooldown;
     [SerializeField] private float useTimeWindow;

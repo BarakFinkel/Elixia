@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class CloneSkill : Skill
 {
-    [Header("Clone info")] [SerializeField]
-    private GameObject clonePrefab;
-
+    [Header("Clone info")]
+    [SerializeField] private GameObject clonePrefab;
     [SerializeField] private float cloneDuration;
     [SerializeField] private bool canAttack;
 
@@ -17,8 +16,8 @@ public class CloneSkill : Skill
     [SerializeField] private bool canDuplicateClone;
     [SerializeField] private float chanceToDup = 99;
 
-    [Header("Crystal instead of clone")] [SerializeField]
-    public bool crystalInstead;
+    [Header("Crystal instead of clone")]
+    [SerializeField] public bool crystalInstead;
 
     public void CreateClone(Transform _clonePosition, Vector3 _offset)
     {
