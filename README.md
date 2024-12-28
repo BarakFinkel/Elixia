@@ -7,6 +7,6 @@
 
 [Itch.io](https://nikita-barak.itch.io/elixia-core)
 
-## UML Diagram
+## UML Diagram 27.12.24
 
 You can view the UML diagram here: [HTML](https://nikita-barak.github.io/Elixia/docs/index.html) or [PNG](https://github.com/Nikita-Barak/Elixia/blob/main/docs/Overview.png).
