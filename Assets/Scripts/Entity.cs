@@ -7,7 +7,6 @@ public class Entity : MonoBehaviour
     [Header("Knockback Info")]
     [SerializeField] protected Vector2 knockbackDir;
     [SerializeField] protected float knockbackDuration;
-    
     [Header("Collision Info")]
     public Transform attackCheck;
     public float attackCheckRadius;
