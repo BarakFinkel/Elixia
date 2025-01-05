@@ -44,7 +44,7 @@ Balancing will be refined through testing after all features are developed. The 
     - **Amulet of Agility**: On a cliff requiring precise platforming.
 
 ### **Start Location Map Sketch**
-
+![map_537x79](https://github.com/user-attachments/assets/c3b65f56-3fd6-4f8f-a0e8-b13fddb76818)
 
 ---
 
