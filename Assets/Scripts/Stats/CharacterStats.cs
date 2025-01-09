@@ -1,27 +1,32 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CharacterStats : MonoBehaviour
 {
-    [Header("Major Stats")] public Stat strength; // 1 point dmg increase by 1 and crit.power by 1%
+    [Header("Major Stats")]
+    public Stat strength; // 1 point dmg increase by 1 and crit.power by 1%
 
     public Stat agility; // 1 point evaison increase by 1 and crit.chance by 1%
     public Stat intelligence; // 1 point magic dmg increase by 1 and magic resist by 3
     public Stat vitality; // 1 point increase hlth by 3 or 5 points
 
-    [Header("Offensive Stats")] public Stat damage;
+    [Header("Offensive Stats")]
+    public Stat damage;
 
     public Stat critChance;
     public Stat critPower; // default 150%
 
-    [Header("Defensive Stats")] public Stat maxHp;
+    [Header("Defensive Stats")]
+    public Stat maxHp;
 
     public Stat armor;
     public Stat evasion;
     public Stat magicResist;
 
-    [Header("Magic Stats")] public Stat fireDamage;
+    [Header("Magic Stats")]
+    public Stat fireDamage;
 
     public Stat iceDamage;
     public Stat lightningDamage;
@@ -31,22 +36,24 @@ public class CharacterStats : MonoBehaviour
     public bool isShocked; // reduce accuracy
 
     public float ailmentsDuration = 4;
-    [SerializeField] private GameObject shockStrikePrefab;
+
+    [SerializeField]
+    private GameObject shockStrikePrefab;
 
     public int currHp;
+
+    private readonly float igniteDmgCooldown = .3f;
     private float chilledTimer;
     private EntityFx fx;
     private int igniteDmg;
-
-    private readonly float igniteDmgCooldown = .3f;
     private float igniteDmgTimer;
     private float ignitedTimer;
-
-    protected bool isDead;
 
     public Action onHealthChanged;
     private int shockDmg;
     private float shockedTimer;
+
+    public bool isDead { get; private set; }
 
     protected virtual void Start()
     {
@@ -84,6 +91,18 @@ public class CharacterStats : MonoBehaviour
         {
             ApplyIgniteDmg();
         }
+    }
+
+    public virtual void IncreaseStatBy(int _modifier, float _duration, Stat _statToModify)
+    {
+        StartCoroutine(StatModCoroutine(_modifier, _duration, _statToModify));
+    }
+
+    private IEnumerator StatModCoroutine(int _modifier, float _duration, Stat _statToModify)
+    {
+        _statToModify.AddModifier(_modifier);
+        yield return new WaitForSeconds(_duration);
+        _statToModify.RemoveModifier(_modifier);
     }
 
 
@@ -127,6 +146,20 @@ public class CharacterStats : MonoBehaviour
     protected virtual void DecreaseHealthBy(int _damage)
     {
         currHp -= _damage;
+        if (onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
+    }
+
+    public virtual void IncreaseHealthBy(int _amount)
+    {
+        currHp += _amount;
+        if (currHp >= GetMaxHealthValue())
+        {
+            currHp = GetMaxHealthValue();
+        }
+
         if (onHealthChanged != null)
         {
             onHealthChanged();

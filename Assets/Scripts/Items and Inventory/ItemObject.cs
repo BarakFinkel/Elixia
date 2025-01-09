@@ -1,24 +1,44 @@
-using System;
 using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    
-    [SerializeField] private ItemData itemData;
+    [SerializeField]
+    private ItemData itemData;
 
-    private void OnValidate()
+    [SerializeField]
+    private Rigidbody2D rb;
+
+    private SpriteRenderer sr;
+
+
+    private void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = itemData.icon;
-        gameObject.name = "Item object - " + itemData.itemName;
+        SetupVisuals();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetupItem(ItemData _itemData, Vector2 _velocity)
     {
-        if (collision.GetComponent<Player>() != null)
+        itemData = _itemData;
+        rb.linearVelocity = _velocity;
+
+        SetupVisuals();
+    }
+
+    public void PickUpItem()
+    {
+        Inventory.instance.AddItem(itemData);
+        Destroy(gameObject);
+    }
+
+
+    private void SetupVisuals()
+    {
+        if (itemData == null)
         {
-            Inventory.instance.AddItem(itemData);
-            Destroy(gameObject);
+            return;
         }
+
+        GetComponent<SpriteRenderer>().sprite = itemData.icon;
+        gameObject.name = "Item object - " + itemData.itemName;
     }
 }

@@ -3,25 +3,42 @@ using UnityEngine;
 
 public class CrystalSkill : Skill
 {
-    [SerializeField] private float crystalDuration;
-    [SerializeField] private GameObject crystalPrefab;
+    [SerializeField]
+    private float crystalDuration;
+
+    [SerializeField]
+    private GameObject crystalPrefab;
 
     [Header("Crystal Mirage")]
-    [SerializeField] private bool cloneInsteadOfCrystal;
+    [SerializeField]
+    private bool cloneInsteadOfCrystal;
 
     [Header("Explosive crystal")]
-    [SerializeField] private bool canExplode;
+    [SerializeField]
+    private bool canExplode;
 
     [Header("Moving Crystal")]
-    [SerializeField] private bool canMoveToEnemy;
-    [SerializeField] private float moveSpeed;
+    [SerializeField]
+    private bool canMoveToEnemy;
+
+    [SerializeField]
+    private float moveSpeed;
 
     [Header("Multi stacking crystal")]
-    [SerializeField] private bool canMultiStack;
-    [SerializeField] private int amountOfStacks;
-    [SerializeField] private float multiStackCooldown;
-    [SerializeField] private float useTimeWindow;
-    [SerializeField] private List<GameObject> crystaslLeft = new();
+    [SerializeField]
+    private bool canMultiStack;
+
+    [SerializeField]
+    private int amountOfStacks;
+
+    [SerializeField]
+    private float multiStackCooldown;
+
+    [SerializeField]
+    private float useTimeWindow;
+
+    [SerializeField]
+    private List<GameObject> crystaslLeft = new();
 
     private GameObject currentCrystal;
 

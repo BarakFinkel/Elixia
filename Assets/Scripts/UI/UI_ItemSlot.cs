@@ -9,12 +9,26 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
     public TextMeshProUGUI itemText;
 
     public InventoryItem item;
-    
+
+    public virtual void OnPointerDown(PointerEventData eventData)
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            Inventory.instance.RemoveItem(item.data);
+            return;
+        }
+
+        if (item.data.itemType == ItemType.Equipment)
+        {
+            Inventory.instance.EquipItem(item.data);
+        }
+    }
+
 
     public void UpdateSlot(InventoryItem _newItem)
     {
         item = _newItem;
-        
+
         itemImage.color = Color.white;
         if (item != null)
         {
@@ -38,14 +52,5 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
         itemImage.sprite = null;
         itemImage.color = Color.clear;
         itemText.text = "";
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (item.data.itemType == ItemType.Equipment)
-        {
-            Inventory.instance.EquipItem(item.data);
-            Debug.Log(item.data.itemName + " clicked");
-        }
     }
 }

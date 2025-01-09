@@ -3,22 +3,31 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    [SerializeField] protected LayerMask whatIsPlayer;
+    [SerializeField]
+    protected LayerMask whatIsPlayer;
 
-    [Header("Stunned Info")] public float stunDuration;
+    [Header("Stunned Info")]
+    public float stunDuration;
 
     public Vector2 stunDirection;
-    [SerializeField] protected GameObject counterImage;
 
-    [Header("Move info")] public float moveSpeed;
+    [SerializeField]
+    protected GameObject counterImage;
+
+    [Header("Move info")]
+    public float moveSpeed;
 
     public float idleTime;
     public float battleTime;
 
-    [Header("Attack Info")] public float attackDist;
+    [Header("Attack Info")]
+    public float attackDist;
 
     public float attackCooldown;
-    [HideInInspector] public float lastTimeAttacked;
+
+    [HideInInspector]
+    public float lastTimeAttacked;
+
     protected bool canBeStunned;
     private float defaultMoveSpeed;
 
@@ -70,13 +79,17 @@ public class Enemy : Entity
         }
     }
 
-    protected virtual IEnumerator FreezeTimeFor(float _seconds)
+    protected virtual IEnumerator FreezeTimeCoroutine(float _seconds)
     {
         FreezeTime(true);
         yield return new WaitForSeconds(_seconds);
         FreezeTime(false);
     }
 
+    public virtual void FreezeTimeFor(float _seconds)
+    {
+        StartCoroutine(FreezeTimeCoroutine(_seconds));
+    }
 
     public virtual bool CanBeStunned()
     {

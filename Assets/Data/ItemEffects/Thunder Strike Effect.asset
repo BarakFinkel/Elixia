@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ece1fa8b82e7d466a99fe590dfab2788, type: 3}
-  m_Name: AnimalSkin
+  m_Script: {fileID: 11500000, guid: 48cbb1df036354efa9fda1be40456123, type: 3}
+  m_Name: Thunder Strike Effect
   m_EditorClassIdentifier: 
-  itemType: 0
-  itemName: AnimalSkin
-  icon: {fileID: -973012730, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  thhunderStrikePrefab: {fileID: 5402095783794545532, guid: 11cb9defbabb54b269de7b6a6596f2cf, type: 3}

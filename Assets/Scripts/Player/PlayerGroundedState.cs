@@ -28,7 +28,7 @@ public class PlayerGroundedState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            stateMachine.ChangeState(player.pAttackState);
+            stateMachine.ChangeState(player.primaryAttack);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

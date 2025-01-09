@@ -4,20 +4,39 @@ using UnityEngine;
 public class CloneSkill : Skill
 {
     [Header("Clone info")]
-    [SerializeField] private GameObject clonePrefab;
-    [SerializeField] private float cloneDuration;
-    [SerializeField] private bool canAttack;
+    [SerializeField]
+    private GameObject clonePrefab;
 
-    [SerializeField] private bool createClonOnDashStart;
-    [SerializeField] private bool createClonOnDashOver;
-    [SerializeField] private bool createCloneOnCounter;
-    [SerializeField] private float cloneOffset = 2;
-    [SerializeField] private float delay = .4f;
-    [SerializeField] private bool canDuplicateClone;
-    [SerializeField] private float chanceToDup = 99;
+    [SerializeField]
+    private float cloneDuration;
+
+    [SerializeField]
+    private bool canAttack;
+
+    [SerializeField]
+    private bool createClonOnDashStart;
+
+    [SerializeField]
+    private bool createClonOnDashOver;
+
+    [SerializeField]
+    private bool createCloneOnCounter;
+
+    [SerializeField]
+    private float cloneOffset = 2;
+
+    [SerializeField]
+    private float delay = .4f;
+
+    [SerializeField]
+    private bool canDuplicateClone;
+
+    [SerializeField]
+    private float chanceToDup = 99;
 
     [Header("Crystal instead of clone")]
-    [SerializeField] public bool crystalInstead;
+    [SerializeField]
+    public bool crystalInstead;
 
     public void CreateClone(Transform _clonePosition, Vector3 _offset)
     {

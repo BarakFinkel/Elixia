@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class CloneSkillController : MonoBehaviour
 {
-    [SerializeField] private float colorLoosingSpeed;
-    [SerializeField] private Transform attackCheck;
-    [SerializeField] private float attackCheckRadius = .8f;
+    [SerializeField]
+    private float colorLoosingSpeed;
+
+    [SerializeField]
+    private Transform attackCheck;
+
+    [SerializeField]
+    private float attackCheckRadius = .8f;
+
     private Animator anim;
 
     private bool canDuplicate;

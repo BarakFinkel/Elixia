@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class CrystalSkillController : MonoBehaviour
 {
-    [SerializeField] private float growSpeed;
-    [SerializeField] private Vector3 growSize = new(3, 3);
-    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField]
+    private float growSpeed;
+
+    [SerializeField]
+    private Vector3 growSize = new(3, 3);
+
+    [SerializeField]
+    private LayerMask whatIsEnemy;
 
     private bool canExplode;
 
@@ -83,6 +88,13 @@ public class CrystalSkillController : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
+
+                var equippedAmulet = Inventory.instance.GetEquipment(EquipmentType.Amulet);
+
+                if (equippedAmulet != null)
+                {
+                    equippedAmulet.Effect(hit.transform);
+                }
             }
     }
 

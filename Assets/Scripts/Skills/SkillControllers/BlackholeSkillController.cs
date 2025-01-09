@@ -4,8 +4,11 @@ using Random = UnityEngine.Random;
 
 public class BlackholeSkillController : MonoBehaviour
 {
-    [SerializeField] private GameObject hotKeyPrefab;
-    [SerializeField] private List<KeyCode> keyCodeList;
+    [SerializeField]
+    private GameObject hotKeyPrefab;
+
+    [SerializeField]
+    private List<KeyCode> keyCodeList;
 
     public List<Transform> targets = new();
 

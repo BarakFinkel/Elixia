@@ -3,15 +3,21 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    [Header("Attack details")] public Vector2[] attackMovement;
+    [Header("Attack details")]
+    public Vector2[] attackMovement;
+
     public float counterAttackDuration = .2f;
 
-    [Header("Movement")] public float moveSpeed = 8;
+    [Header("Movement")]
+    public float moveSpeed = 8;
+
     public float jumpForce = 12;
     public float swordReturnImpact;
 
 
-    [Header("Dash Info")] public float dashSpeed;
+    [Header("Dash Info")]
+    public float dashSpeed;
+
     public float dashDuration;
     private float defaultDashSpeed;
     private float defaultJumpForce;
@@ -40,7 +46,7 @@ public class Player : Entity
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         deathState = new PlayerDeathState(this, stateMachine, "Die");
 
-        pAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttack = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
 
         aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
@@ -71,6 +77,11 @@ public class Player : Entity
         if (Input.GetKeyDown(KeyCode.F))
         {
             skill.crystal.CanUseSkill();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Inventory.instance.UseFlask();
         }
     }
 
@@ -156,7 +167,7 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
-    public PlayerPrimaryAttackState pAttackState { get; private set; }
+    public PlayerPrimaryAttackState primaryAttack { get; private set; }
     public PlayerCounterAttackState counterAttack { get; private set; }
     public PlayerAimSwordState aimSword { get; private set; }
     public PlayerCatchSwordState catchSword { get; private set; }

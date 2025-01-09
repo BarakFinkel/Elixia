@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class SwordSkillController : MonoBehaviour
 {
+    private readonly int enemyDetectRadius = 10;
     private Animator anim;
     private int bounceAmount;
 
-    [Header("Bounce info")] private float bounceSpeed;
+    [Header("Bounce info")]
+    private float bounceSpeed;
 
     private bool canRotate = true;
     private CircleCollider2D cd;
-    private readonly int enemyDetectRadius = 10;
     private List<Transform> enemyTargets;
 
     private float freezeTimeDur;
@@ -20,9 +21,11 @@ public class SwordSkillController : MonoBehaviour
     private bool isReturning;
     private bool isSpining;
 
-    [Header("Spin info")] private float maxTravelDist;
+    [Header("Spin info")]
+    private float maxTravelDist;
 
-    [Header("Pierce info")] private int pierceAmount;
+    [Header("Pierce info")]
+    private int pierceAmount;
 
     private Player player;
     private Rigidbody2D rb;
@@ -167,7 +170,14 @@ public class SwordSkillController : MonoBehaviour
     private void SwordSkillDamage(Enemy enemy)
     {
         player.stats.DoDamage(enemy.GetComponent<CharacterStats>());
-        enemy.StartCoroutine("FreezeTimeFor", freezeTimeDur);
+        enemy.FreezeTimeFor(freezeTimeDur);
+
+        var equippedAmulet = Inventory.instance.GetEquipment(EquipmentType.Amulet);
+
+        if (equippedAmulet != null)
+        {
+            equippedAmulet.Effect(enemy.transform);
+        }
     }
 
     private void SetupTargetsForBounce(Collider2D collision)

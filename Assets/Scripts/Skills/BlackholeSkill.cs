@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class BlackholeSkill : Skill
 {
-    [SerializeField] private float cloneCooldown;
-    [SerializeField] private int amountOfAttacks;
-    [SerializeField] private float blackholeDuration;
+    [SerializeField]
+    private float cloneCooldown;
 
-    [Space] [SerializeField] private GameObject blackholePrefab;
+    [SerializeField]
+    private int amountOfAttacks;
 
-    [SerializeField] private float maxSize;
-    [SerializeField] private float growSpeed;
-    [SerializeField] private float shrinkSpeed;
+    [SerializeField]
+    private float blackholeDuration;
+
+    [Space]
+    [SerializeField]
+    private GameObject blackholePrefab;
+
+    [SerializeField]
+    private float maxSize;
+
+    [SerializeField]
+    private float growSpeed;
+
+    [SerializeField]
+    private float shrinkSpeed;
 
     private BlackholeSkillController currentBlackhole;
 

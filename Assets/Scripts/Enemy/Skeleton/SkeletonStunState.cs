@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SkeletonStunState : EnemyState
 {
-    private readonly Enemy_Skeleton enemy;
     private readonly float blinkRepeat = 0.1f;
+    private readonly Enemy_Skeleton enemy;
 
     public SkeletonStunState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
         Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)

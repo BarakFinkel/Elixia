@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ShockStrikeController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    [SerializeField]
+    private float moveSpeed;
 
     private Animator animator;
     private int damage;

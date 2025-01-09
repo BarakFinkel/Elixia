@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public enum SwordType
 {
@@ -15,33 +14,63 @@ public class SwordSkill : Skill
     public SwordType swordType = SwordType.Regular;
 
     [Header("Bounce info")]
-    [SerializeField] private int bounceAmount;
-    [SerializeField] private float bounceGravity;
-    [SerializeField] private float bounceSpeed;
+    [SerializeField]
+    private int bounceAmount;
+
+    [SerializeField]
+    private float bounceGravity;
+
+    [SerializeField]
+    private float bounceSpeed;
 
     [Header("Pierce info")]
-    [SerializeField] private int pierceAmount;
-    [SerializeField] private float pierceGravity;
+    [SerializeField]
+    private int pierceAmount;
+
+    [SerializeField]
+    private float pierceGravity;
 
     [Header("Spin info")]
-    [SerializeField] private float hitCooldown;
-    [SerializeField] private float maxTravelDist;
-    [SerializeField] private float spinDuration;
-    [SerializeField] private float spinGravity;
+    [SerializeField]
+    private float hitCooldown;
+
+    [SerializeField]
+    private float maxTravelDist;
+
+    [SerializeField]
+    private float spinDuration;
+
+    [SerializeField]
+    private float spinGravity;
 
     [Header("Skill Info")]
-    [SerializeField] private GameObject swordPrefab;
-    [SerializeField] private float freezeTimeDuration;
-    [SerializeField] private float returnSpeed;
+    [SerializeField]
+    private GameObject swordPrefab;
 
-    [SerializeField] private Vector2 launchForce;
-    [SerializeField] private float swordGravity;
+    [SerializeField]
+    private float freezeTimeDuration;
+
+    [SerializeField]
+    private float returnSpeed;
+
+    [SerializeField]
+    private Vector2 launchForce;
+
+    [SerializeField]
+    private float swordGravity;
 
     [Header("Aim dots")]
-    [SerializeField] private GameObject aimDotPrefab;
-    [SerializeField] private int numberOfDots;
-    [SerializeField] private float spaceBetweenDots;
-    [SerializeField] private Transform dotsParent;
+    [SerializeField]
+    private GameObject aimDotPrefab;
+
+    [SerializeField]
+    private int numberOfDots;
+
+    [SerializeField]
+    private float spaceBetweenDots;
+
+    [SerializeField]
+    private Transform dotsParent;
 
     private GameObject[] dots;
 
