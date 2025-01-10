@@ -15,8 +15,6 @@ Item system:
 - Entities has level system
 
 
-***24/12/2024 Update:*** Now includes propper starting level tutorial signs and adjusted level design.
-
 ***27/12/2024 Update:***
 - Expansive skill system with new abilities.
 
@@ -27,6 +25,8 @@ Item system:
 - All entities can die.
 
 - Health bars on entities (players bar will be in ui in the future)
+
+***24/12/2024 Update:*** Now includes propper starting level tutorial signs and adjusted level design.
 
 ## UML Diagram 27.12.24
 
