@@ -3,15 +3,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
+public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image itemImage;
     public TextMeshProUGUI itemText;
 
+    private UI ui;
     public InventoryItem item;
 
+
+    private void Start()
+    {
+        ui = GetComponentInParent<UI>();
+    }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        if (item == null)
+        {
+            return;
+        }
         if (Input.GetKey(KeyCode.LeftControl))
         {
             Inventory.instance.RemoveItem(item.data);
@@ -52,5 +62,26 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
         itemImage.sprite = null;
         itemImage.color = Color.clear;
         itemText.text = "";
+    }
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item == null)
+        {
+            return;
+        }
+        
+        ui.itemTooltip.ShowTooltip(item.data as ItemData_Equipment);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (item == null)
+        {
+            return;
+        }
+        
+        ui.itemTooltip.HideTooltip();
     }
 }

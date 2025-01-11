@@ -24,11 +24,15 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private Transform equipmentSlotParent;
+    
+    [SerializeField]
+    private Transform statSlotParent;
 
     private float armorCooldown;
 
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
     private UI_EquipmentSlot[] equipmentItemSlots;
+    private UI_StatSlot[] statSlots;
 
     [Header("Items cooldown")]
     private float flaskCooldown;
@@ -67,6 +71,8 @@ public class Inventory : MonoBehaviour
         inventoryItemSlots = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlots = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentItemSlots = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+        
+        statSlots = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
 
         AddStartingItems();
     }
@@ -146,11 +152,18 @@ public class Inventory : MonoBehaviour
         {
             stashItemSlots[i].UpdateSlot(stash[i]);
         }
+
+        for (int i = 0; i < statSlots.Length; i++)
+        {
+            statSlots[i].UpdateStatValueUI();
+        }
     }
+
+    public bool CanAddItem() => !(inventory.Count >= inventoryItemSlots.Length);
 
     public void AddItem(ItemData _item)
     {
-        if (_item.itemType == ItemType.Equipment)
+        if (_item.itemType == ItemType.Equipment && CanAddItem())
         {
             AddToInventory(_item);
         }
