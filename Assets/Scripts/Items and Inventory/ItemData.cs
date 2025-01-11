@@ -16,8 +16,8 @@ public class ItemData : ScriptableObject
 
     [Range(0, 100)]
     public float dropChance;
-    
-    protected StringBuilder sb = new StringBuilder();
+
+    protected StringBuilder sb = new();
 
     public virtual string GetDescription()
     {

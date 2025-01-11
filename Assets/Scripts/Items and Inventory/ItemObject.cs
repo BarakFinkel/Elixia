@@ -31,6 +31,7 @@ public class ItemObject : MonoBehaviour
             rb.linearVelocity = new Vector2(0, 7); // pop up the item
             return;
         }
+
         Inventory.instance.AddItem(itemData);
         Destroy(gameObject);
     }

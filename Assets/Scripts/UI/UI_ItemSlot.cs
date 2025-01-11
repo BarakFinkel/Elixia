@@ -7,21 +7,23 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 {
     public Image itemImage;
     public TextMeshProUGUI itemText;
+    public InventoryItem item;
 
     private UI ui;
-    public InventoryItem item;
 
 
     private void Start()
     {
         ui = GetComponentInParent<UI>();
     }
+
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         if (item == null)
         {
             return;
         }
+
         if (Input.GetKey(KeyCode.LeftControl))
         {
             Inventory.instance.RemoveItem(item.data);
@@ -32,6 +34,27 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         {
             Inventory.instance.EquipItem(item.data);
         }
+    }
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item == null)
+        {
+            return;
+        }
+
+        ui.itemTooltip.ShowTooltip(item.data as ItemData_Equipment);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (item == null)
+        {
+            return;
+        }
+
+        ui.itemTooltip.HideTooltip();
     }
 
 
@@ -62,26 +85,5 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         itemImage.sprite = null;
         itemImage.color = Color.clear;
         itemText.text = "";
-    }
-
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (item == null)
-        {
-            return;
-        }
-        
-        ui.itemTooltip.ShowTooltip(item.data as ItemData_Equipment);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (item == null)
-        {
-            return;
-        }
-        
-        ui.itemTooltip.HideTooltip();
     }
 }

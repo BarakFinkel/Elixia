@@ -184,6 +184,28 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    public Stat GetStat(StatType _statType)
+    {
+        switch (_statType)
+        {
+            case StatType.strength: return strength;
+            case StatType.agility: return agility;
+            case StatType.intelligence: return intelligence;
+            case StatType.vitality: return vitality;
+            case StatType.damage: return damage;
+            case StatType.critChance: return critChance;
+            case StatType.critPower: return critPower;
+            case StatType.health: return maxHp;
+            case StatType.armor: return armor;
+            case StatType.evasion: return evasion;
+            case StatType.magicResist: return magicResist;
+            case StatType.fireDamage: return fireDamage;
+            case StatType.iceDamage: return iceDamage;
+            case StatType.lightningDamage: return lightningDamage;
+            default: return null;
+        }
+    }
+
     #region Magic damage and ailments
 
     public virtual void DoMagicalDamage(CharacterStats _targetStats)
@@ -421,26 +443,4 @@ public class CharacterStats : MonoBehaviour
     }
 
     #endregion
-    
-    public Stat GetStat(StatType _statType)
-    {
-        switch (_statType)
-        {
-            case StatType.strength: return strength;
-            case StatType.agility: return agility;
-            case StatType.intelligence: return intelligence;
-            case StatType.vitality: return vitality;
-            case StatType.damage: return damage;
-            case StatType.critChance: return critChance;
-            case StatType.critPower: return critPower;
-            case StatType.health: return maxHp;
-            case StatType.armor: return armor;
-            case StatType.evasion: return evasion;
-            case StatType.magicResist: return magicResist;
-            case StatType.fireDamage: return fireDamage;
-            case StatType.iceDamage: return iceDamage;
-            case StatType.lightningDamage: return lightningDamage;
-            default: return null;
-        }
-    }
 }

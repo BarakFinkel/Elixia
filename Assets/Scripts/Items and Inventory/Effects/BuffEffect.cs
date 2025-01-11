@@ -21,6 +21,4 @@ public class BuffEffect : ItemEffect
 
         stats.IncreaseStatBy(buffAmount, buffDuration, stats.GetStat(buffType));
     }
-
-    
 }

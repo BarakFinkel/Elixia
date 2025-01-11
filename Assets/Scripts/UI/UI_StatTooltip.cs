@@ -11,6 +11,9 @@ public class UI_StatTooltip : MonoBehaviour
         statDescText.text = _text;
         gameObject.SetActive(true);
     }
-    
-    public void HideTooltip() => gameObject.SetActive(false);
+
+    public void HideTooltip()
+    {
+        gameObject.SetActive(false);
+    }
 }

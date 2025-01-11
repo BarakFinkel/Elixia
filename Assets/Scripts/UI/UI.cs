@@ -5,19 +5,23 @@ public class UI : MonoBehaviour
 {
     [FormerlySerializedAs("tooltip")]
     public UI_ItemTooltip itemTooltip;
+
     public UI_StatTooltip statTooltip;
 
     [SerializeField]
     private GameObject characterUI;
+
     [SerializeField]
     private GameObject skillsUI;
+
     [SerializeField]
     private GameObject craftUI;
+
     [SerializeField]
     private GameObject optionsUI;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         SwitchTo(null);
         itemTooltip.gameObject.SetActive(false);
@@ -25,7 +29,7 @@ public class UI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -55,7 +59,7 @@ public class UI : MonoBehaviour
 
     public void SwitchTo(GameObject _menu)
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (var i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -73,8 +77,7 @@ public class UI : MonoBehaviour
             _menu.SetActive(false);
             return;
         }
-        
+
         SwitchTo(_menu);
-        
     }
 }
