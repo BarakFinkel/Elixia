@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class UI_StatTooltip : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI statDescText;
+    [SerializeField] private TextMeshProUGUI description;
 
-    public void ShowTooltip(string _text)
+    public void ShowStatTooltip(string _text)
     {
-        statDescText.text = _text;
+        description.text = _text;
+
         gameObject.SetActive(true);
     }
 
-    public void HideTooltip()
+    public void HideStatTooltip()
     {
+        description.text = "";
         gameObject.SetActive(false);
     }
 }

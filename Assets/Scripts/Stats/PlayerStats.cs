@@ -1,7 +1,9 @@
+using UnityEngine;
+
 public class PlayerStats : CharacterStats
 {
     private Player player;
-
+    
     protected override void Start()
     {
         base.Start();
@@ -17,18 +19,17 @@ public class PlayerStats : CharacterStats
     protected override void Die()
     {
         base.Die();
-
         player.Die();
 
-        GetComponent<PlayerItemDrop>().GenerateDrop();
+        GetComponent<PlayerItemDrop>()?.GenerateDrop();
     }
 
     protected override void DecreaseHealthBy(int _damage)
     {
         base.DecreaseHealthBy(_damage);
 
-        var currentArmor = Inventory.instance.GetEquipment(EquipmentType.Armor);
-
+        // Apply on-take-hit effects when health is decreased.
+        ItemData_Equipment currentArmor = Inventory.instance.GetEquipmentOfType(EquipmentType.Armor);
         if (currentArmor != null)
         {
             currentArmor.Effect(player.transform);

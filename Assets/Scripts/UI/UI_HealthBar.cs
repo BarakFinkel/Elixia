@@ -10,10 +10,10 @@ public class UI_HealthBar : MonoBehaviour
 
     private void Start()
     {
-        myTransform = GetComponent<RectTransform>();
         entity = GetComponentInParent<Entity>();
-        slider = GetComponentInChildren<Slider>();
         myStats = GetComponentInParent<CharacterStats>();
+        myTransform = GetComponent<RectTransform>();
+        slider = GetComponentInChildren<Slider>();
 
         entity.onFlipped += FlipUI;
         myStats.onHealthChanged += UpdateHealthUI;
@@ -21,21 +21,17 @@ public class UI_HealthBar : MonoBehaviour
         UpdateHealthUI();
     }
 
+    private void UpdateHealthUI()
+    {
+        slider.maxValue = myStats.GetMaxHealthValue();
+        slider.value = myStats.currentHealth;
+    }
+
+    private void FlipUI() => myTransform.Rotate(0,180,0);
+
     private void OnDisable()
     {
         entity.onFlipped -= FlipUI;
         myStats.onHealthChanged -= UpdateHealthUI;
-    }
-
-
-    private void UpdateHealthUI()
-    {
-        slider.maxValue = myStats.GetMaxHealthValue();
-        slider.value = myStats.currHp;
-    }
-
-    private void FlipUI()
-    {
-        myTransform.Rotate(0, 180f, 0);
     }
 }

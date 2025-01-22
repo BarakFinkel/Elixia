@@ -4,30 +4,15 @@ using UnityEngine.EventSystems;
 
 public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
-    private string statName;
-
-    [SerializeField]
-    private StatType statType;
-
-    [SerializeField]
-    private TextMeshProUGUI statValueText;
-
-    [SerializeField]
-    private TextMeshProUGUI statNameText;
+    private UI ui;
+    
+    [SerializeField] private string statName;
+    [SerializeField] private StatType statType;
+    [SerializeField] private TextMeshProUGUI statValueText;
+    [SerializeField] private TextMeshProUGUI statNameText;
 
     [TextArea]
-    [SerializeField]
-    private string statDescription;
-
-    private UI ui;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
-    {
-        ui = GetComponentInParent<UI>();
-        UpdateStatValueUI();
-    }
+    [SerializeField] private string statDescription;
 
     private void OnValidate()
     {
@@ -39,52 +24,62 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    void Start()
     {
-        if (statDescription.Length > 0)
-        {
-            ui.statTooltip.ShowTooltip(statDescription);
-        }
-    }
+        UpdateStatValueUI();
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        ui.statTooltip.HideTooltip();
+        ui = GetComponentInParent<UI>();
     }
 
     public void UpdateStatValueUI()
     {
-        var playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
         if (playerStats != null)
         {
             statValueText.text = playerStats.GetStat(statType).GetValue().ToString();
-        }
 
-        if (statType == StatType.health)
-        {
-            statValueText.text = playerStats.GetMaxHealthValue().ToString();
+            if (statType == StatType.health)
+            {
+                statValueText.text = playerStats.GetMaxHealthValue().ToString();
+            }
+
+            if (statType == StatType.damage)
+            {
+                statValueText.text = (playerStats.damage.GetValue() + playerStats.strength.GetValue()).ToString();
+            }
+
+            if (statType == StatType.critPower)
+            {
+                statValueText.text = (playerStats.critPower.GetValue() + playerStats.strength.GetValue()).ToString();
+            }
+
+            if (statType == StatType.critChance)
+            {
+                statValueText.text = (playerStats.critChance.GetValue() + playerStats.agility.GetValue()).ToString();
+            }
+
+            if (statType == StatType.evasion)
+            {
+                statValueText.text = (playerStats.evasion.GetValue() + playerStats.agility.GetValue()).ToString();
+            }
+
+            if (statType == StatType.magicResistance)
+            {
+                statValueText.text = (playerStats.magicResistance.GetValue() + playerStats.intelligence.GetValue() * playerStats.intToMR).ToString();
+            }
+
+            /// Add intelligence to element powers.
         }
-        else if (statType == StatType.damage)
-        {
-            statValueText.text = (playerStats.damage.GetValue() + playerStats.strength.GetValue()).ToString();
-        }
-        else if (statType == StatType.critPower)
-        {
-            statValueText.text = (playerStats.critPower.GetValue() + playerStats.strength.GetValue()).ToString();
-        }
-        else if (statType == StatType.critChance)
-        {
-            statValueText.text = (playerStats.critChance.GetValue() + playerStats.agility.GetValue()).ToString();
-        }
-        else if (statType == StatType.evasion)
-        {
-            statValueText.text = (playerStats.evasion.GetValue() + playerStats.agility.GetValue()).ToString();
-        }
-        else if (statType == StatType.magicResist)
-        {
-            statValueText.text =
-                (playerStats.magicResist.GetValue() + playerStats.intelligence.GetValue() * 3).ToString();
-        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ui.statTooltip.ShowStatTooltip(statDescription);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ui.statTooltip.HideStatTooltip();
     }
 }

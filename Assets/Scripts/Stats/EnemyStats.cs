@@ -2,28 +2,25 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
-    [Header("Level details")]
-    [SerializeField]
-    private int level = 1;
+    private Enemy enemy;
+    private ItemDrop myDropSystem => GetComponent<ItemDrop>();
+
+    [Header("Level Details")]
+    [SerializeField] private int level = 1;
 
     [Range(0f, 1f)]
-    [SerializeField]
-    private float percentageModifier = .4f;
-
-    private Enemy enemy;
-    private ItemDrop myDropSystem;
+    [SerializeField] private float percentageModifier = 0.4f;
 
     protected override void Start()
     {
-        ApplyLvlModifiers();
+        ApplyLevelModifiers();
 
         base.Start();
 
         enemy = GetComponent<Enemy>();
-        myDropSystem = GetComponent<ItemDrop>();
     }
 
-    private void ApplyLvlModifiers()
+    private void ApplyLevelModifiers()
     {
         Modify(strength);
         Modify(agility);
@@ -34,21 +31,22 @@ public class EnemyStats : CharacterStats
         Modify(critChance);
         Modify(critPower);
 
-        Modify(maxHp);
+        Modify(maxHealth);
         Modify(armor);
         Modify(evasion);
-        Modify(magicResist);
+        Modify(magicResistance);
 
         Modify(fireDamage);
         Modify(iceDamage);
-        Modify(lightningDamage);
+        Modify(poisonDamage);
+        Modify(arcaneDamage);
     }
 
     private void Modify(Stat _stat)
     {
-        for (var i = 1; i < level; i++)
+        for (int i = 1; i < level; i++)
         {
-            var modifier = _stat.GetValue() * percentageModifier;
+            float modifier = _stat.GetValue() * percentageModifier;
             _stat.AddModifier(Mathf.RoundToInt(modifier));
         }
     }
@@ -61,7 +59,6 @@ public class EnemyStats : CharacterStats
     protected override void Die()
     {
         base.Die();
-
         enemy.Die();
 
         myDropSystem.GenerateDrop();

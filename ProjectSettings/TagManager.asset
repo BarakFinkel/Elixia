@@ -3,19 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Player
   - Water
   - UI
-  - Player
+  - Ground
   - Enemy
-  - Sword
+  - ThrowObjects
   - Item
-  - 
+  - Sword
   - 
   - 
   - 
@@ -42,19 +43,19 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 76582477
+    uniqueID: 3671018495
     locked: 0
   - name: Ground
-    uniqueID: 1194063169
+    uniqueID: 2573666711
     locked: 0
   - name: Item
-    uniqueID: 3832820539
+    uniqueID: 1280138077
     locked: 0
   - name: Enemy
-    uniqueID: 3532505363
+    uniqueID: 121883551
     locked: 0
   - name: Player
-    uniqueID: 1759797603
+    uniqueID: 1254924987
     locked: 0
   m_RenderingLayers:
   - Default

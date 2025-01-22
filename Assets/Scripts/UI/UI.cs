@@ -1,65 +1,53 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class UI : MonoBehaviour
 {
-    [FormerlySerializedAs("tooltip")]
+    [SerializeField] private GameObject characterUI;
+    [SerializeField] private GameObject skillTreeUI;
+    [SerializeField] private GameObject craftUI;
+    [SerializeField] private GameObject settingsUI;
+
     public UI_ItemTooltip itemTooltip;
-
     public UI_StatTooltip statTooltip;
-
-    [SerializeField]
-    private GameObject characterUI;
-
-    [SerializeField]
-    private GameObject skillsUI;
-
-    [SerializeField]
-    private GameObject craftUI;
-
-    [SerializeField]
-    private GameObject optionsUI;
+    public UI_CraftWindow craftWindow;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    void Start()
     {
         SwitchTo(null);
+
         itemTooltip.gameObject.SetActive(false);
         statTooltip.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            SwitchTo(characterUI);
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SwitchTo(skillsUI);
+            SwitchWithKeyTo(characterUI);
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            SwitchTo(craftUI);
+            SwitchWithKeyTo(craftUI);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SwitchWithKeyTo(skillTreeUI);
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            SwitchTo(optionsUI);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SwitchTo(null);
+            SwitchWithKeyTo(settingsUI);
         }
     }
 
+    // Responsible for switching to the desired menu tab on-click
     public void SwitchTo(GameObject _menu)
     {
-        for (var i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -70,14 +58,16 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void SwitchWithKey(GameObject _menu)
+    public void SwitchWithKeyTo(GameObject _menu)
     {
-        if (_menu == null || _menu.activeSelf)
+        if (_menu != null && _menu.activeSelf)
         {
             _menu.SetActive(false);
             return;
         }
-
-        SwitchTo(_menu);
+        else
+        {
+            SwitchTo(_menu);
+        }
     }
 }

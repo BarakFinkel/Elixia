@@ -3,30 +3,24 @@ using UnityEngine;
 
 public class UI_ItemTooltip : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI itemTypeText;
+    [SerializeField] private TextMeshProUGUI itemDescription;    
+    [SerializeField] private int minDescriptionLength = 5;
 
-    [SerializeField]
-    private TextMeshProUGUI itemTypeText;
-
-    [SerializeField]
-    private TextMeshProUGUI itemDescriptionText;
-
-    private void Start()
+    public void ShowTooltip(ItemData_Equipment _item)
     {
-    }
-
-    public void ShowTooltip(ItemData_Equipment data)
-    {
-        itemNameText.text = data.itemName;
-        itemTypeText.text = data.equipmentType.ToString();
-        itemDescriptionText.text = data.GetDescription();
+        if (_item == null)
+        {
+            return;
+        }
+        
+        itemNameText.text = _item.itemName;
+        itemTypeText.text = _item.equipmentType.ToString();
+        itemDescription.text = _item.GetDescription(minDescriptionLength);
 
         gameObject.SetActive(true);
     }
 
-    public void HideTooltip()
-    {
-        gameObject.SetActive(false);
-    }
+    public void HideTooltip() => gameObject.SetActive(false);
 }
