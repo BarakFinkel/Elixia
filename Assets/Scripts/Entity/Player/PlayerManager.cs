@@ -4,11 +4,13 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    [SerializeField] public Player player;
+
+    [SerializeField]
+    public Player player;
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Destroy(instance.gameObject);
         }

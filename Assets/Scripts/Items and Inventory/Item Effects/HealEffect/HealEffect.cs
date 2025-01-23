@@ -3,14 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Heal Effect", menuName = "Data/Item Effect/Heal Effect")]
 public class HealEffect : ItemEffect
 {
-    [Range(0.0f,1.0f)]
-    [SerializeField] private float healPercent;
-    
+    [Range(0.0f, 1.0f)]
+    [SerializeField]
+    private float healPercent;
+
     public override void ExecuteEffect(Transform _enemyPosition)
     {
-        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        var playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
-        int healAmount = Mathf.RoundToInt(playerStats.GetMaxHealthValue() * healPercent);
+        var healAmount = Mathf.RoundToInt(playerStats.GetMaxHealthValue() * healPercent);
         playerStats.IncreaseHealthBy(healAmount);
     }
 }

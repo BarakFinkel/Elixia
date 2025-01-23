@@ -1,8 +1,7 @@
-using UnityEngine;
-
 public class PlayerDodgeState : PlayerState
 {
-    public PlayerDodgeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerDodgeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 

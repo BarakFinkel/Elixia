@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerStateMachine
 {
     public PlayerState currentState { get; private set; }
@@ -7,7 +5,7 @@ public class PlayerStateMachine
     // Initializing a state on a fresh character.
     public void Initialize(PlayerState _startState)
     {
-        this.currentState = _startState;
+        currentState = _startState;
         currentState.Enter();
     }
 

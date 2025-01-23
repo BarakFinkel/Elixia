@@ -147,7 +147,7 @@ public class BlackholeSkillController : MonoBehaviour
 
             if (SkillManager.instance.clone.createCrystalInsteadOfClone)
             {
-                PotionEffectManager.instance.arcane.CreateCrystal(gameObject, new Vector3(0,0,0));
+                PotionEffectManager.instance.arcane.CreateCrystal(gameObject, new Vector3(0, 0, 0));
                 PotionEffectManager.instance.arcane.CurrentCrystalChooseRandomTarget();
             }
             else

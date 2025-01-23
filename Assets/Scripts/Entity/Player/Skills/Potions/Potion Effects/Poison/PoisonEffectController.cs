@@ -2,33 +2,16 @@ using UnityEngine;
 
 public class PoisonEffectController : MonoBehaviour
 {
-    private float totalDuration;
-    private float emissionDuration;
-    private float startScale;
-    private float endScale;
-    private float scalingDuration;
-    private ParticleSystem system;
     private Transform colliderObject;
+    private float emissionDuration;
+    private float endScale;
+    private bool isScaling;
+    private float scalingDuration;
+    private float startScale;
+    private ParticleSystem system;
 
-    private float timer = 0f;
-    private bool isScaling = false;
-
-    public void SetupPoisonCloud(float _totalDuration, float _emissionDuration, float _startScale, float _endScale, float _scalingDuration)
-    {
-        emissionDuration = _emissionDuration;
-        totalDuration = _totalDuration;
-        startScale = _startScale;
-        endScale = _endScale;
-        scalingDuration = _scalingDuration;
-        system = GetComponent<ParticleSystem>();
-        colliderObject = transform.GetChild(0);
-        isScaling = true;
-
-        if (colliderObject != null)
-        {
-            colliderObject.localScale = Vector3.one * startScale;
-        }
-    }
+    private float timer;
+    private float totalDuration;
 
     private void Update()
     {
@@ -47,13 +30,31 @@ public class PoisonEffectController : MonoBehaviour
         UpdateScaling();
     }
 
+    public void SetupPoisonCloud(float _totalDuration, float _emissionDuration, float _startScale, float _endScale,
+        float _scalingDuration)
+    {
+        emissionDuration = _emissionDuration;
+        totalDuration = _totalDuration;
+        startScale = _startScale;
+        endScale = _endScale;
+        scalingDuration = _scalingDuration;
+        system = GetComponent<ParticleSystem>();
+        colliderObject = transform.GetChild(0);
+        isScaling = true;
+
+        if (colliderObject != null)
+        {
+            colliderObject.localScale = Vector3.one * startScale;
+        }
+    }
+
     public void UpdateScaling()
     {
         if (isScaling)
         {
             // Calculate the current scale using Lerp.
-            float t = Mathf.Clamp01(timer / scalingDuration);
-            float currentScale = Mathf.Lerp(startScale, endScale, t);
+            var t = Mathf.Clamp01(timer / scalingDuration);
+            var currentScale = Mathf.Lerp(startScale, endScale, t);
 
             // Apply the scale to the object.
             colliderObject.localScale = Vector3.one * currentScale;

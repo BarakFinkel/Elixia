@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class SkeletonBattleState : EnemyState
 {
-    private Transform player;
-    private Skeleton enemy;
+    private readonly Skeleton enemy;
     private int moveDir;
+    private Transform player;
 
-    public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy)
+        : base(_enemyBase, _stateMachine, _animBoolName)
     {
-        this.enemy = _enemy;
+        enemy = _enemy;
     }
 
     public override void Enter()
@@ -49,7 +50,8 @@ public class SkeletonBattleState : EnemyState
         }
         else
         {
-            if (stateTimer == 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > enemy.battleDistance)
+            if (stateTimer == 0 || Vector2.Distance(player.transform.position, enemy.transform.position) >
+                enemy.battleDistance)
             {
                 stateMachine.ChangeState(enemy.idleState);
             }

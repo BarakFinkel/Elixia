@@ -87,7 +87,7 @@ public class SwordSkill : Skill
 
     protected override void Update()
     {
-        if(player.canUseSwordSkill)
+        if (player.canUseSwordSkill)
         {
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {

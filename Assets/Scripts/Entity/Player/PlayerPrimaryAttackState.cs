@@ -2,18 +2,20 @@ using UnityEngine;
 
 public class PlayerPrimaryAttackState : PlayerState
 {
-    public int comboCounter { get; private set; }       // The counter for how many attacks were being made.
-    private float lastTimeAttacked; // last time an attack was performed
     private float attackDir;
+    private float lastTimeAttacked; // last time an attack was performed
 
-    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(
+        _player, _stateMachine, _animBoolName)
     {
     }
+
+    public int comboCounter { get; private set; } // The counter for how many attacks were being made.
 
     public override void Enter()
     {
         xInput = 0; // To avoid a bug with the direction of the attack, sometimes causing the player to attack in the opposite direction.
-        
+
         base.Enter();
 
         // Check if the last time an attack was performed was too far away, or if we already did a full combo - if so, reset the counter.

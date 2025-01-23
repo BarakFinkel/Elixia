@@ -2,26 +2,31 @@ using UnityEngine;
 
 public class CloneSkillController : MonoBehaviour
 {
-    private Player player;
-    private SpriteRenderer sr;
-    private Animator anim;
-    [SerializeField] private float colorFadeSpeed;
+    [SerializeField]
+    private float colorFadeSpeed;
 
-    [SerializeField] private Transform attackCheck;
-    [SerializeField] private float attackCheckRadius = 0.8f;
-    private Transform closestEnemy;
+    [SerializeField]
+    private Transform attackCheck;
+
+    [SerializeField]
+    private float attackCheckRadius = 0.8f;
+
+    private Animator anim;
     private bool canDuplicateClone;
-    private float duplicationChance;
-    private int facingDir = 1;
 
     private float cloneTimer;
+    private Transform closestEnemy;
+    private float duplicationChance;
+    private int facingDir = 1;
+    private Player player;
+    private SpriteRenderer sr;
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
-    
+
     // We decrement the timer, and if done - we start fading the sprite of the clone.
     // If done fading, we delete the game object.
     private void Update()
@@ -33,7 +38,7 @@ public class CloneSkillController : MonoBehaviour
 
         if (cloneTimer == 0)
         {
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a - (Time.deltaTime * colorFadeSpeed));
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a - Time.deltaTime * colorFadeSpeed);
 
             if (sr.color.a <= 0)
             {
@@ -43,13 +48,15 @@ public class CloneSkillController : MonoBehaviour
     }
 
     // This is the method that initiates a clone - meant to be called from various player states.
-    public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, bool _canDuplicate, float _duplicationChance, Vector3 offset, Player _player, Transform _closestEnemy)
+    public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, bool _canDuplicate,
+        float _duplicationChance, Vector3 offset, Player _player, Transform _closestEnemy)
     {
-        if(_canAttack)
+        if (_canAttack)
         {
-            anim.SetInteger("AttackNumber", Random.Range(1,3)); // Only the first 2 attacks of the player are allowed - will stay static.
+            anim.SetInteger("AttackNumber",
+                Random.Range(1, 3)); // Only the first 2 attacks of the player are allowed - will stay static.
         }
-        
+
         player = _player;
         transform.position = _newTransform.position + offset;
         cloneTimer = _cloneDuration;
@@ -57,7 +64,7 @@ public class CloneSkillController : MonoBehaviour
         closestEnemy = _closestEnemy;
         canDuplicateClone = _canDuplicate;
         duplicationChance = _duplicationChance;
-        FaceClosestTarget(); 
+        FaceClosestTarget();
     }
 
     // This method takes care of getting the clone to face the closest enemy target.
@@ -67,7 +74,7 @@ public class CloneSkillController : MonoBehaviour
         if (closestEnemy != null)
         {
             // And he is to the clone's left.
-            if(transform.position.x > closestEnemy.position.x)
+            if (transform.position.x > closestEnemy.position.x)
             {
                 facingDir = -1;
                 transform.Rotate(0, 180, 0); // We flip the clone's direction (which is defaultively facing right). 
@@ -86,22 +93,21 @@ public class CloneSkillController : MonoBehaviour
     private void AttackTrigger()
     {
         // All enemies within the attack range
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius);
+        var colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius);
 
-        foreach(var hit in colliders)
-        {
+        foreach (var hit in colliders)
             if (hit.GetComponent<Enemy>() != null)
             {
                 player.cs.DoDamage(hit.GetComponent<CharacterStats>());
 
-                if(canDuplicateClone)
+                if (canDuplicateClone)
                 {
-                    if(Random.Range(0,100) < duplicationChance)
+                    if (Random.Range(0, 100) < duplicationChance)
                     {
-                        SkillManager.instance.clone.CreateClone(hit.transform, new Vector3(1.0f * facingDir, 0.0f, 0.0f));
+                        SkillManager.instance.clone.CreateClone(hit.transform,
+                            new Vector3(1.0f * facingDir, 0.0f, 0.0f));
                     }
                 }
             }
-        }
     }
 }

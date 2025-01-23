@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private ItemData itemData;
+    [SerializeField]
+    private Rigidbody2D rb;
+
+    [SerializeField]
+    private ItemData itemData;
 
     private void SetupVisuals()
     {
@@ -11,9 +14,9 @@ public class ItemObject : MonoBehaviour
         {
             return;
         }
-        
+
         GetComponent<SpriteRenderer>().sprite = itemData.icon;
-        gameObject.name = "Item Object - " + itemData.itemName;        
+        gameObject.name = "Item Object - " + itemData.itemName;
     }
 
     public void SetupItem(ItemData _itemData, Vector2 _velocity)
@@ -29,7 +32,10 @@ public class ItemObject : MonoBehaviour
         // If we're about to pick an equipment item but are out of inventory room, we won't pickup the item.
         if (!Inventory.instance.CanAddItem() && itemData.itemType == ItemType.Equipment)
         {
-            rb.linearVelocity = new Vector2(0, Random.Range(5,7)); // Just a number to simulate trying to pick up the item but failing, won't be changed.
+            rb.linearVelocity =
+                new Vector2(0,
+                    Random.Range(5,
+                        7)); // Just a number to simulate trying to pick up the item but failing, won't be changed.
             return;
         }
 

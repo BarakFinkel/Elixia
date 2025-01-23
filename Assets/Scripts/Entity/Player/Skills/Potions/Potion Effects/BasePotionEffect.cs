@@ -1,10 +1,14 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BasePotionEffect : MonoBehaviour
 {
-    [SerializeField] public GameObject potionPrefab;
-    [SerializeField] public Color potionColor = new Color(1,1,1);
+    [SerializeField]
+    public GameObject potionPrefab;
 
-    public virtual void ActivatePotionEffect(GameObject potion) {}
+    [SerializeField]
+    public Color potionColor = new(1, 1, 1);
+
+    public virtual void ActivatePotionEffect(GameObject potion)
+    {
+    }
 }

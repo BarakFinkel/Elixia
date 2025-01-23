@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
-    private Enemy enemy;
-    private ItemDrop myDropSystem => GetComponent<ItemDrop>();
-
     [Header("Level Details")]
-    [SerializeField] private int level = 1;
+    [SerializeField]
+    private int level = 1;
 
     [Range(0f, 1f)]
-    [SerializeField] private float percentageModifier = 0.4f;
+    [SerializeField]
+    private float percentageModifier = 0.4f;
+
+    private Enemy enemy;
+    private ItemDrop myDropSystem => GetComponent<ItemDrop>();
 
     protected override void Start()
     {
@@ -44,9 +46,9 @@ public class EnemyStats : CharacterStats
 
     private void Modify(Stat _stat)
     {
-        for (int i = 1; i < level; i++)
+        for (var i = 1; i < level; i++)
         {
-            float modifier = _stat.GetValue() * percentageModifier;
+            var modifier = _stat.GetValue() * percentageModifier;
             _stat.AddModifier(Mathf.RoundToInt(modifier));
         }
     }

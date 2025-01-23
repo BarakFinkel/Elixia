@@ -2,20 +2,19 @@ using UnityEngine;
 
 public class EnemyState
 {
-    protected EnemyStateMachine stateMachine;
+    private readonly string animBoolName;
     protected Enemy enemyBase;
     protected Rigidbody2D rb;
-
-    private string animBoolName;
-    protected float stateTimer = 0.0f;
+    protected EnemyStateMachine stateMachine;
+    protected float stateTimer;
     protected bool triggerCalled;
 
 
     public EnemyState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName)
     {
-        this.enemyBase = _enemyBase;
-        this.stateMachine = _stateMachine;
-        this.animBoolName = _animBoolName;
+        enemyBase = _enemyBase;
+        stateMachine = _stateMachine;
+        animBoolName = _animBoolName;
     }
 
     public virtual void Enter()

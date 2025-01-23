@@ -1,12 +1,11 @@
-using UnityEngine;
-
 public class SkeletonDeadState : EnemyState
 {
-    private Skeleton enemy;
-    
-    public SkeletonDeadState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    private readonly Skeleton enemy;
+
+    public SkeletonDeadState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy) :
+        base(_enemyBase, _stateMachine, _animBoolName)
     {
-        this.enemy = _enemy;
+        enemy = _enemy;
     }
 
     public override void Enter()
@@ -15,7 +14,7 @@ public class SkeletonDeadState : EnemyState
 
         enemy.anim.SetBool(enemy.lastAnimBoolName, true);
         enemy.anim.speed = 0;
-        
+
         enemy.cd.enabled = false;
         stateTimer = enemy.knockUpTime;
     }
@@ -24,7 +23,7 @@ public class SkeletonDeadState : EnemyState
     {
         base.Update();
 
-        if(stateTimer > 0)
+        if (stateTimer > 0)
         {
             rb.linearVelocity = enemy.knockUpVelocity;
         }

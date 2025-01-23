@@ -3,10 +3,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Buff Effect", menuName = "Data/Item Effect/Buff Effect")]
 public class BuffEffect : ItemEffect
 {
+    [SerializeField]
+    private StatType buffType;
+
+    [SerializeField]
+    private int buffAmount;
+
+    [SerializeField]
+    private float buffDuration;
+
     private PlayerStats stats;
-    [SerializeField] private StatType buffType;
-    [SerializeField] private int buffAmount;
-    [SerializeField] private float buffDuration;
 
     public override void ExecuteEffect(Transform _enemyPosition)
     {

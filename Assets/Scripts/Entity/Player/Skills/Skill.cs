@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    [SerializeField] protected float cooldown;
-    [SerializeField] protected float cooldownTimer;
+    [SerializeField]
+    protected float cooldown;
+
+    [SerializeField]
+    protected float cooldownTimer;
 
     protected Player player;
 
@@ -22,11 +25,11 @@ public class Skill : MonoBehaviour
 
     public virtual bool CanUseSkill()
     {
-        if(cooldownTimer == 0)
+        if (cooldownTimer == 0)
         {
             UseSkill();
             cooldownTimer = cooldown;
-            
+
             return true;
         }
 
@@ -41,17 +44,16 @@ public class Skill : MonoBehaviour
     public virtual Transform FindClosestEnemy(Transform _checkTransform)
     {
         // All enemies within the attack range
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(_checkTransform.position, SkillManager.instance.enemyDetectRadius);
+        var colliders = Physics2D.OverlapCircleAll(_checkTransform.position, SkillManager.instance.enemyDetectRadius);
 
-        float closestDistance = Mathf.Infinity;
+        var closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
 
         // We go over all enemies in the attack range, we find the one closest and store it in our closestEnemy varible.
-        foreach(var hit in colliders)
-        {
+        foreach (var hit in colliders)
             if (hit.GetComponent<Enemy>() != null)
             {
-                float distanceToEnemy = Vector2.Distance(_checkTransform.position, hit.transform.position);
+                var distanceToEnemy = Vector2.Distance(_checkTransform.position, hit.transform.position);
 
                 if (distanceToEnemy < closestDistance)
                 {
@@ -61,7 +63,6 @@ public class Skill : MonoBehaviour
                     Debug.Log("Enemy found!");
                 }
             }
-        }
 
         return closestEnemy;
     }

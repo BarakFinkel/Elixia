@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class UI_EquipmentSlot : UI_ItemSlot
@@ -7,7 +6,7 @@ public class UI_EquipmentSlot : UI_ItemSlot
 
     private void OnValidate()
     {
-        gameObject.name = "Equipment slot - " + slotType.ToString();
+        gameObject.name = "Equipment slot - " + slotType;
     }
 
     // When we click on an item in the equipment tab, we want to plainly remove it from our equipment and add it to our inventory.
@@ -17,7 +16,7 @@ public class UI_EquipmentSlot : UI_ItemSlot
         {
             return;
         }
-        
+
         Inventory.instance.UnequipItem(item.data as ItemData_Equipment);
         Inventory.instance.AddItem(item.data as ItemData_Equipment);
 

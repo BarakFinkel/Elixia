@@ -4,7 +4,8 @@ public class PlayerCatchSwordState : PlayerState
 {
     private Transform sword;
 
-    public PlayerCatchSwordState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerCatchSwordState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 

@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class PoisonColliderController : MonoBehaviour
 {
-    protected float damageCooldown = 2f;
-
     protected CircleCollider2D cd;
-    protected Dictionary<Enemy, float> damageCooldowns = new Dictionary<Enemy, float>();
+    protected float damageCooldown = 2f;
+    protected Dictionary<Enemy, float> damageCooldowns = new();
 
     private void Start()
     {
@@ -16,11 +15,11 @@ public class PoisonColliderController : MonoBehaviour
     private void Update()
     {
         // All enemies within the attack range
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, cd.radius);
+        var colliders = Physics2D.OverlapCircleAll(transform.position, cd.radius);
 
-        foreach(var hit in colliders)
+        foreach (var hit in colliders)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
+            var enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
                 if (CanDamage(enemy))

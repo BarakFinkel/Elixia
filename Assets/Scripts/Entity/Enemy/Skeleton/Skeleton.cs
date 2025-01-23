@@ -2,17 +2,6 @@ using UnityEngine;
 
 public class Skeleton : Enemy
 {
-    #region States
-
-    public SkeletonIdleState idleState { get; private set; }
-    public SkeletonMoveState moveState { get; private set; }
-    public SkeletonBattleState battleState { get; private set; }
-    public SkeletonAttackState attackState { get; private set; }
-    public SkeletonStunnedState stunnedState { get; private set; }
-    public SkeletonDeadState deadState { get; private set; }
-
-    #endregion
-
     // When awaking, we construct the state machines and all possible states.
     protected override void Awake()
     {
@@ -38,7 +27,7 @@ public class Skeleton : Enemy
     {
         base.Update();
 
-        if(Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             stateMachine.ChangeState(stunnedState);
         }
@@ -47,7 +36,7 @@ public class Skeleton : Enemy
     // We check this way if the enemy could be stunned or not, but actively will only be checking once we are in attack-range with the player.
     public override bool CanBeStunned()
     {
-        if(base.CanBeStunned())
+        if (base.CanBeStunned())
         {
             stateMachine.ChangeState(stunnedState);
             return true;
@@ -62,4 +51,15 @@ public class Skeleton : Enemy
 
         stateMachine.ChangeState(deadState);
     }
+
+    #region States
+
+    public SkeletonIdleState idleState { get; private set; }
+    public SkeletonMoveState moveState { get; private set; }
+    public SkeletonBattleState battleState { get; private set; }
+    public SkeletonAttackState attackState { get; private set; }
+    public SkeletonStunnedState stunnedState { get; private set; }
+    public SkeletonDeadState deadState { get; private set; }
+
+    #endregion
 }

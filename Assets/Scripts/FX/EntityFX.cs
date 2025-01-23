@@ -3,25 +3,43 @@ using UnityEngine;
 
 public class EntityFX : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    private Material ogMaterial;
-
     [Header("Flash FX")]
-    [SerializeField] private Material hitMaterial;
-    [SerializeField] public float flashDuration = 0.2f; 
+    [SerializeField]
+    private Material hitMaterial;
+
+    [SerializeField]
+    public float flashDuration = 0.2f;
 
     [Header("Ailment Colors")]
-    [SerializeField] private Color[] ignitedColor;
-    [SerializeField] private float ignitedColorChangeFreq = 0.25f;
+    [SerializeField]
+    private Color[] ignitedColor;
+
+    [SerializeField]
+    private float ignitedColorChangeFreq = 0.25f;
+
     [Space]
-    [SerializeField] private Color[] chilledColor;
-    [SerializeField] private float chilledColorChangeFreq = 0.5f;
+    [SerializeField]
+    private Color[] chilledColor;
+
+    [SerializeField]
+    private float chilledColorChangeFreq = 0.5f;
+
     [Space]
-    [SerializeField] private Color[] poisonedColor;
-    [SerializeField] private float poisonedColorChangeFreq = 0.5f;
+    [SerializeField]
+    private Color[] poisonedColor;
+
+    [SerializeField]
+    private float poisonedColorChangeFreq = 0.5f;
+
     [Space]
-    [SerializeField] private Color[] enchantedColor;
-    [SerializeField] private float enchantedColorChangeFreq = 0.5f;
+    [SerializeField]
+    private Color[] enchantedColor;
+
+    [SerializeField]
+    private float enchantedColorChangeFreq = 0.5f;
+
+    private Material ogMaterial;
+    private SpriteRenderer sr;
 
     private void Start()
     {
@@ -58,7 +76,7 @@ public class EntityFX : MonoBehaviour
 
     public void MakeTransparent(bool _transparent)
     {
-        if(_transparent)
+        if (_transparent)
         {
             sr.color = Color.clear;
         }
@@ -87,7 +105,7 @@ public class EntityFX : MonoBehaviour
             sr.color = ignitedColor[1];
         }
     }
-    
+
     #endregion
 
     #region Chill FX
@@ -108,7 +126,7 @@ public class EntityFX : MonoBehaviour
         {
             sr.color = chilledColor[1];
         }
-    }  
+    }
 
     #endregion
 
@@ -130,8 +148,8 @@ public class EntityFX : MonoBehaviour
         {
             sr.color = poisonedColor[1];
         }
-    }    
-    
+    }
+
     #endregion
 
     #region Enchant FX
@@ -152,7 +170,7 @@ public class EntityFX : MonoBehaviour
         {
             sr.color = enchantedColor[1];
         }
-    }     
+    }
 
     #endregion
 }

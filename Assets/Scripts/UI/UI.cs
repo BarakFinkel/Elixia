@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private GameObject characterUI;
-    [SerializeField] private GameObject skillTreeUI;
-    [SerializeField] private GameObject craftUI;
-    [SerializeField] private GameObject settingsUI;
+    [SerializeField]
+    private GameObject characterUI;
+
+    [SerializeField]
+    private GameObject skillTreeUI;
+
+    [SerializeField]
+    private GameObject craftUI;
+
+    [SerializeField]
+    private GameObject settingsUI;
 
     public UI_ItemTooltip itemTooltip;
     public UI_StatTooltip statTooltip;
     public UI_CraftWindow craftWindow;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         SwitchTo(null);
 
@@ -21,7 +28,7 @@ public class UI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -47,7 +54,7 @@ public class UI : MonoBehaviour
     // Responsible for switching to the desired menu tab on-click
     public void SwitchTo(GameObject _menu)
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (var i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -63,7 +70,6 @@ public class UI : MonoBehaviour
         if (_menu != null && _menu.activeSelf)
         {
             _menu.SetActive(false);
-            return;
         }
         else
         {

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class IcePotionEffect : BasePotionEffect
 {
-    [SerializeField] private float enemyFreezeTime;
+    [SerializeField]
+    private float enemyFreezeTime;
 
     public override void ActivatePotionEffect(GameObject potion)
     {

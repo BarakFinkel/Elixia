@@ -3,26 +3,19 @@ using UnityEngine;
 
 public class FireEffectController : MonoBehaviour
 {
-    private float damageCooldown;
-
     private CapsuleCollider2D cd;
-    private Dictionary<Enemy, float> damageCooldowns = new Dictionary<Enemy, float>();
-    private bool toDamage = false;
-
-    public void SetupFlame(float _damageCooldown)
-    {
-        damageCooldown = _damageCooldown;
-        cd = GetComponent<CapsuleCollider2D>();
-    }
+    private float damageCooldown;
+    private readonly Dictionary<Enemy, float> damageCooldowns = new();
+    private bool toDamage;
 
     private void Update()
     {
         // All enemies within the attack range
-        Collider2D[] colliders = Physics2D.OverlapCapsuleAll(transform.position, cd.size, cd.direction, transform.eulerAngles.z);
+        var colliders = Physics2D.OverlapCapsuleAll(transform.position, cd.size, cd.direction, transform.eulerAngles.z);
 
-        foreach(var hit in colliders)
+        foreach (var hit in colliders)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
+            var enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
                 if (CanDamage(enemy))
@@ -34,13 +27,19 @@ public class FireEffectController : MonoBehaviour
         }
     }
 
+    public void SetupFlame(float _damageCooldown)
+    {
+        damageCooldown = _damageCooldown;
+        cd = GetComponent<CapsuleCollider2D>();
+    }
+
     private bool CanDamage(Enemy enemy)
     {
         if (!toDamage)
         {
             return false;
         }
-        
+
         // Add the enemy to the dictionary if not already present
         if (!damageCooldowns.ContainsKey(enemy))
         {

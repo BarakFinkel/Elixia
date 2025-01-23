@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EnemyStateMachine
 {
     public EnemyState currentState { get; private set; }

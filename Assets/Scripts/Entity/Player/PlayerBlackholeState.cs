@@ -7,7 +7,8 @@ public class PlayerBlackholeState : PlayerState
     private float defaultGravity;
     private bool skillUsed;
 
-    public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 

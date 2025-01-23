@@ -13,6 +13,13 @@ public class InventoryItem
         AddToStack(); // increment stack
     }
 
-    public void AddToStack() => stackSize++;
-    public void RemoveFromStack() => stackSize--;
+    public void AddToStack()
+    {
+        stackSize++;
+    }
+
+    public void RemoveFromStack()
+    {
+        stackSize--;
+    }
 }

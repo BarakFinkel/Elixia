@@ -4,15 +4,30 @@ using UnityEngine.EventSystems;
 
 public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private UI ui;
-    
-    [SerializeField] private string statName;
-    [SerializeField] private StatType statType;
-    [SerializeField] private TextMeshProUGUI statValueText;
-    [SerializeField] private TextMeshProUGUI statNameText;
+    [SerializeField]
+    private string statName;
+
+    [SerializeField]
+    private StatType statType;
+
+    [SerializeField]
+    private TextMeshProUGUI statValueText;
+
+    [SerializeField]
+    private TextMeshProUGUI statNameText;
 
     [TextArea]
-    [SerializeField] private string statDescription;
+    [SerializeField]
+    private string statDescription;
+
+    private UI ui;
+
+    private void Start()
+    {
+        UpdateStatValueUI();
+
+        ui = GetComponentInParent<UI>();
+    }
 
     private void OnValidate()
     {
@@ -24,16 +39,19 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    void Start()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        UpdateStatValueUI();
+        ui.statTooltip.ShowStatTooltip(statDescription);
+    }
 
-        ui = GetComponentInParent<UI>();
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ui.statTooltip.HideStatTooltip();
     }
 
     public void UpdateStatValueUI()
     {
-        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        var playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
         if (playerStats != null)
         {
@@ -66,20 +84,12 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
             if (statType == StatType.magicResistance)
             {
-                statValueText.text = (playerStats.magicResistance.GetValue() + playerStats.intelligence.GetValue() * playerStats.intToMR).ToString();
+                statValueText.text =
+                    (playerStats.magicResistance.GetValue() + playerStats.intelligence.GetValue() * playerStats.intToMR)
+                    .ToString();
             }
 
             /// Add intelligence to element powers.
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        ui.statTooltip.ShowStatTooltip(statDescription);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        ui.statTooltip.HideStatTooltip();
     }
 }

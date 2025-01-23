@@ -29,7 +29,7 @@ public class BlackHoleHotKeyController : MonoBehaviour
         myBlackhole = _myBlackHole;
 
         myHotKey = _hotKey;
-        string text = myHotKey.ToString();
+        var text = myHotKey.ToString();
         myText.text = text[text.Length - 1].ToString();
     }
 }

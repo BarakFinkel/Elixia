@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class SkeletonAttackState : EnemyState
 {
-    private Skeleton enemy;
+    private readonly Skeleton enemy;
 
-    public SkeletonAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public SkeletonAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy)
+        : base(_enemyBase, _stateMachine, _animBoolName)
     {
-        this.enemy = _enemy;
+        enemy = _enemy;
     }
 
     public override void Enter()

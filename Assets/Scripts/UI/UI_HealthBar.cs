@@ -21,17 +21,20 @@ public class UI_HealthBar : MonoBehaviour
         UpdateHealthUI();
     }
 
+    private void OnDisable()
+    {
+        entity.onFlipped -= FlipUI;
+        myStats.onHealthChanged -= UpdateHealthUI;
+    }
+
     private void UpdateHealthUI()
     {
         slider.maxValue = myStats.GetMaxHealthValue();
         slider.value = myStats.currentHealth;
     }
 
-    private void FlipUI() => myTransform.Rotate(0,180,0);
-
-    private void OnDisable()
+    private void FlipUI()
     {
-        entity.onFlipped -= FlipUI;
-        myStats.onHealthChanged -= UpdateHealthUI;
+        myTransform.Rotate(0, 180, 0);
     }
 }

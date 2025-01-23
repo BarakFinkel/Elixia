@@ -3,8 +3,9 @@ using UnityEngine;
 public class PlayerCounterAttackState : PlayerState
 {
     private bool canCreateClone;
-    
-    public PlayerCounterAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+
+    public PlayerCounterAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(
+        _player, _stateMachine, _animBoolName)
     {
     }
 
@@ -24,29 +25,27 @@ public class PlayerCounterAttackState : PlayerState
         player.ZeroVelocity(); // Make sure the player doesn't move within the counter attack.
 
         // All game objects within range within the attack range
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
+        var colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 
         // Any of "Enemy" type will be stunned, and the counter attack animation will play.
-        foreach(var hit in colliders)
-        {
+        foreach (var hit in colliders)
             if (hit.GetComponent<Enemy>() != null)
             {
-                if(hit.GetComponent<Enemy>().CanBeStunned())
+                if (hit.GetComponent<Enemy>().CanBeStunned())
                 {
                     stateTimer = 10.0f; // Static value - just to make sure the player doesn't exit the state too soon.
                     player.anim.SetBool("SuccessfulCounterAttack", true);
 
-                    if(canCreateClone)
+                    if (canCreateClone)
                     {
                         canCreateClone = false;
                         player.skillManager.clone.CreateCloneOnCounterAttack(hit.transform);
                     }
                 }
             }
-        }
 
         // If we're out of time for countering, or we've successfully counter-attacked an enemy - we change to the idle state.
-        if(stateTimer == 0 || triggerCalled)
+        if (stateTimer == 0 || triggerCalled)
         {
             stateMachine.ChangeState(player.idleState);
         }

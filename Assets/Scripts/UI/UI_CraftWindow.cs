@@ -4,27 +4,34 @@ using UnityEngine.UI;
 
 public class UI_CraftWindow : MonoBehaviour
 {
-    [SerializeField] private Image itemImage;
-    [SerializeField] private TextMeshProUGUI itemName;
-    [SerializeField] private TextMeshProUGUI itemDescription;
+    [SerializeField]
+    private Image itemImage;
 
-    [SerializeField] private Image[] materialsImages;
+    [SerializeField]
+    private TextMeshProUGUI itemName;
 
-    [SerializeField] private Button craftButton;
+    [SerializeField]
+    private TextMeshProUGUI itemDescription;
+
+    [SerializeField]
+    private Image[] materialsImages;
+
+    [SerializeField]
+    private Button craftButton;
 
     public void SetupCraftWindow(ItemData_Equipment _data)
     {
         craftButton.onClick.RemoveAllListeners();
-        
+
         // We first make the icons and the stack ammount text translucent.
-        for (int i = 0; i < materialsImages.Length; i++)
+        for (var i = 0; i < materialsImages.Length; i++)
         {
             materialsImages[i].color = Color.clear;
             materialsImages[i].GetComponentInChildren<TextMeshProUGUI>().color = Color.clear;
         }
 
         // We update the materials visuals.
-        for (int i = 0; i < _data.craftingMaterials.Count; i++)
+        for (var i = 0; i < _data.craftingMaterials.Count; i++)
         {
             if (_data.craftingMaterials.Count > materialsImages.Length)
             {
@@ -36,7 +43,7 @@ public class UI_CraftWindow : MonoBehaviour
             materialsImages[i].color = Color.white;
 
             // We update the current needed material's text.
-            TextMeshProUGUI materialSlotText = materialsImages[i].GetComponentInChildren<TextMeshProUGUI>();
+            var materialSlotText = materialsImages[i].GetComponentInChildren<TextMeshProUGUI>();
             materialSlotText.text = _data.craftingMaterials[i].stackSize.ToString();
             materialSlotText.color = Color.white;
         }

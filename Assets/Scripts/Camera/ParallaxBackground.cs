@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
-    private GameObject cam;
-    private float startPosition;
-    private float length;
+    [SerializeField]
+    private float parallaxEffect = 1.0f;
 
-    [SerializeField] private float parallaxEffect = 1.0f;
+    private GameObject cam;
+    private float length;
+    private float startPosition;
 
     // Will get the camera and it's position on the x-axis.
-    void Start()
+    private void Start()
     {
         cam = GameObject.Find("Main Camera");
 
@@ -19,12 +20,15 @@ public class ParallaxBackground : MonoBehaviour
     }
 
     // Will update the camera's x-placement according to the desired parallax effect.
-    void Update()
+    private void Update()
     {
-        float distanceToMove = cam.transform.position.x * parallaxEffect; // Calculating how much to move the background.
-        float distanceMoved = cam.transform.position.x * (1 - parallaxEffect); // Calculating how much distance was crossed till now.
+        var distanceToMove = cam.transform.position.x * parallaxEffect; // Calculating how much to move the background.
+        var distanceMoved =
+            cam.transform.position.x * (1 - parallaxEffect); // Calculating how much distance was crossed till now.
 
-        transform.position = new Vector3(startPosition + distanceToMove, transform.position.y); // Moving the background's placement as required.
+        transform.position =
+            new Vector3(startPosition + distanceToMove,
+                transform.position.y); // Moving the background's placement as required.
 
         // The following takes care of an endless background effect, just in case if ever relevant.
         // If we moved the whole distance of the background rightwards, we place it just after it was supposed to end.

@@ -4,7 +4,8 @@ public class PlayerJumpState : PlayerState
 {
     private bool isToSlide;
 
-    public PlayerJumpState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerJumpState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 

@@ -1,9 +1,7 @@
-using UnityEngine;
-
 public class PlayerStats : CharacterStats
 {
     private Player player;
-    
+
     protected override void Start()
     {
         base.Start();
@@ -29,7 +27,7 @@ public class PlayerStats : CharacterStats
         base.DecreaseHealthBy(_damage);
 
         // Apply on-take-hit effects when health is decreased.
-        ItemData_Equipment currentArmor = Inventory.instance.GetEquipmentOfType(EquipmentType.Armor);
+        var currentArmor = Inventory.instance.GetEquipmentOfType(EquipmentType.Armor);
         if (currentArmor != null)
         {
             currentArmor.Effect(player.transform);

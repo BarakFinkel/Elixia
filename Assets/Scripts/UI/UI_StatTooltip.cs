@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class UI_StatTooltip : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI description;
+    [SerializeField]
+    private TextMeshProUGUI description;
 
     public void ShowStatTooltip(string _text)
     {

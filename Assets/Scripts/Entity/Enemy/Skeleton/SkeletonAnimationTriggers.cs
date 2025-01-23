@@ -13,19 +13,23 @@ public class SkeletonAnimationTriggers : MonoBehaviour
     private void AttackTrigger()
     {
         // All enemies within the attack range
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(enemy.attackCheck.position, enemy.attackCheckRadius);
+        var colliders = Physics2D.OverlapCircleAll(enemy.attackCheck.position, enemy.attackCheckRadius);
 
-        foreach(var hit in colliders)
-        {
+        foreach (var hit in colliders)
             if (hit.GetComponent<Player>() != null)
             {
-                PlayerStats target = hit.GetComponent<PlayerStats>();
+                var target = hit.GetComponent<PlayerStats>();
                 enemy.cs.DoDamage(target);
             }
-        }
     }
 
-    private void OpenCounterWindow() => enemy.OpenCounterAttackWindow();
+    private void OpenCounterWindow()
+    {
+        enemy.OpenCounterAttackWindow();
+    }
 
-    private void CloseCounterWindow() => enemy.CloseCounterAttackWindow();
+    private void CloseCounterWindow()
+    {
+        enemy.CloseCounterAttackWindow();
+    }
 }

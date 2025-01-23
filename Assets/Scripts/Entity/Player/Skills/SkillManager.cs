@@ -4,8 +4,10 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager instance;
-    [SerializeField] public float enemyDetectRadius;
-    
+
+    [SerializeField]
+    public float enemyDetectRadius;
+
     // Skills
     public DodgeSkill dash { get; private set; }
     public CloneSkill clone { get; private set; }
