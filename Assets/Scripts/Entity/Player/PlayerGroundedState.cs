@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 
@@ -22,12 +23,12 @@ public class PlayerGroundedState : PlayerState
         }
 
         // If we press R-Click, we move to the aim state.
-        if(!player.canUseSwordSkill && Input.GetKeyDown(KeyCode.Mouse1) && SkillManager.instance.potion.CanUseSkill())
+        if (!player.canUseSwordSkill && Input.GetKeyDown(KeyCode.Mouse1) && SkillManager.instance.potion.CanUseSkill())
         {
             stateMachine.ChangeState(player.aimState);
         }
 
-        if(Input.GetKeyDown(KeyCode.H) && Inventory.instance.CanUseSyringe() != null)
+        if (Input.GetKeyDown(KeyCode.H) && Inventory.instance.CanUseSyringe() != null)
         {
             stateMachine.ChangeState(player.healState);
         }

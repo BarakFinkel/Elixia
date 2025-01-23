@@ -16,30 +16,36 @@ public class ItemData_Equipment : ItemData
 
     [Header("Unique Effect")]
     public float itemCooldown;
+
     public ItemEffect[] itemEffects;
+
     [TextArea]
     public string itemEffectDescription;
 
     // Stats:
     [Header("Major Stats")]
     public int strength;
+
     public int agility;
     public int intelligence;
     public int vitality;
 
     [Header("Offensive Stats")]
     public int damage;
+
     public int critChance;
     public int critPower;
 
     [Header("Defensive Stats")]
     public int health;
+
     public int armor;
     public int evasion;
     public int magicResistance;
 
     [Header("Magic Stats")]
     public int fireDamage;
+
     public int iceDamage;
     public int poisonDamage;
     public int arcaneDamage;
@@ -51,15 +57,12 @@ public class ItemData_Equipment : ItemData
 
     public void Effect(Transform _enemyPosition)
     {
-        foreach (var item in itemEffects)
-        {
-            item.ExecuteEffect(_enemyPosition);
-        }
+        foreach (var item in itemEffects) item.ExecuteEffect(_enemyPosition);
     }
 
     public void AddModifiers()
     {
-        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        var playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
         playerStats.strength.AddModifier(strength);
         playerStats.agility.AddModifier(agility);
@@ -83,8 +86,8 @@ public class ItemData_Equipment : ItemData
 
     public void RemoveModifiers()
     {
-        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
-        
+        var playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+
         playerStats.strength.RemoveModifier(strength);
         playerStats.agility.RemoveModifier(agility);
         playerStats.intelligence.RemoveModifier(intelligence);
@@ -128,7 +131,7 @@ public class ItemData_Equipment : ItemData
         AddItemDescription(iceDamage, "Ice Damage");
         AddItemDescription(poisonDamage, "Poison Damage");
         AddItemDescription(arcaneDamage, "Arcane Damage");
-        
+
         /*
         if (descriptionLength < minDescriptionLength)
         {

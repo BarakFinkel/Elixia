@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerAimState : PlayerState
 {
-    public PlayerAimState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerAimState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player,
+        _stateMachine, _animBoolName)
     {
     }
 
@@ -12,7 +13,8 @@ public class PlayerAimState : PlayerState
 
         player.potionOnPlayer.enabled = true; // We activate the sprite displaying the potion.
 
-        player.skillManager.potion.DotsActive(true); // We activate the aiming dots within the PotionSkill script via the SkillManager
+        player.skillManager.potion
+            .DotsActive(true); // We activate the aiming dots within the PotionSkill script via the SkillManager
     }
 
     public override void Update()
@@ -23,7 +25,7 @@ public class PlayerAimState : PlayerState
         player.ZeroVelocity();
 
         // If we release the left mouse button, we get back to the idle state
-        if(Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             stateMachine.ChangeState(player.idleState);
         }
@@ -42,7 +44,7 @@ public class PlayerAimState : PlayerState
     }
 
     public override void Exit()
-    {         
+    {
         base.Exit();
 
         player.potionOnPlayer.enabled = false; // We deactivate the sprite displaying the potion.

@@ -3,79 +3,71 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    [Header("General Information")]
-    public bool isBusy { get; private set; }
-    [SerializeField] public float busyWaitDuration = 0.2f;
+    [SerializeField]
+    public float busyWaitDuration = 0.2f;
 
     [Header("Movement Information")]
-    [SerializeField] public float moveSpeed = 7.0f;
-    private float defaultMovespeed;
-    [SerializeField] public float jumpForce = 12.0f;
-    private float defaultJumpForce;
-    [SerializeField] public float airSpeedFactor = 0.8f;
-    [SerializeField] public float jumpToAirThreshold = -0.2f;
-    [SerializeField] public float swordReturnImpact = 1.0f;
+    [SerializeField]
+    public float moveSpeed = 7.0f;
+
+    [SerializeField]
+    public float jumpForce = 12.0f;
+
+    [SerializeField]
+    public float airSpeedFactor = 0.8f;
+
+    [SerializeField]
+    public float jumpToAirThreshold = -0.2f;
+
+    [SerializeField]
+    public float swordReturnImpact = 1.0f;
 
     [Header("Wall Movement Information")]
-    [SerializeField] public float wallSlideSpeedFactor = 0.6f;
-    [SerializeField] public float wallSlideLockJumpTime = 0.5f;
-    [SerializeField] public float wallJumpDuration = 0.15f;
-    [SerializeField] public float wallJumpXSpeed = 5.0f;
+    [SerializeField]
+    public float wallSlideSpeedFactor = 0.6f;
+
+    [SerializeField]
+    public float wallSlideLockJumpTime = 0.5f;
+
+    [SerializeField]
+    public float wallJumpDuration = 0.15f;
+
+    [SerializeField]
+    public float wallJumpXSpeed = 5.0f;
 
     [Header("Dodge Information")]
-    [SerializeField] public float dodgeSpeed = 3.0f;
-    private float defaultDodgeSpeed;
-    [SerializeField] public float dodgeDuration = 2.0f / 3.0f;
-    public float dodgeDir { get; private set; }
+    [SerializeField]
+    public float dodgeSpeed = 3.0f;
+
+    [SerializeField]
+    public float dodgeDuration = 2.0f / 3.0f;
 
     [Header("Attack Information")]
-    [SerializeField] public float maxComboCount = 2; // The number of the attacks contained in the combo.
-    [SerializeField] public float comboWindow = 1;   // Time to wait before resetting combo after we stopped attacking.
-    [SerializeField] public Vector2[] attackMovement;
-    [SerializeField] public float attackMovementTime = 0.1f; // Time of movement after an attack was made.
-    [SerializeField] public float counterAttackDuration = 0.3f;
+    [SerializeField]
+    public float maxComboCount = 2; // The number of the attacks contained in the combo.
 
-    [SerializeField] public bool canUseSwordSkill = false;
+    [SerializeField]
+    public float comboWindow = 1; // Time to wait before resetting combo after we stopped attacking.
 
-    #region Components
+    [SerializeField]
+    public Vector2[] attackMovement;
 
-    public SkillManager skillManager { get; private set; }
-    public GameObject sword { get; private set; }
-    [SerializeField] public SpriteRenderer potionOnPlayer;
+    [SerializeField]
+    public float attackMovementTime = 0.1f; // Time of movement after an attack was made.
 
-    #endregion
+    [SerializeField]
+    public float counterAttackDuration = 0.3f;
 
-    #region States
+    [SerializeField]
+    public bool canUseSwordSkill;
 
-    // The state machine
-    public PlayerStateMachine stateMachine { get; private set; }
+    private float defaultDodgeSpeed;
+    private float defaultJumpForce;
+    private float defaultMovespeed;
 
-    // Movement States
-    public PlayerIdleState idleState { get; private set; }
-    public PlayerMoveState moveState { get; private set; }
-    public PlayerJumpState jumpState { get; private set; }
-    public PlayerAirState airState { get; private set; }
-    public PlayerWallSlideState wallSlideState { get; private set; }
-    public PlayerWallJumpState wallJumpState { get; private set; }
-    public PlayerDodgeState dodgeState { get; private set; }
+    [Header("General Information")] public bool isBusy { get; private set; }
 
-    // Attack States
-    public PlayerPrimaryAttackState primaryAttackState { get; private set; }
-    public PlayerCounterAttackState counterAttackState { get; private set; }
-    public PlayerAimSwordState aimSwordState { get; private set; }
-    public PlayerCatchSwordState catchSwordState { get; private set; }
-    public PlayerAimState aimState { get; private set; }
-
-    // Black Hole State
-    public PlayerBlackholeState blackholeState { get; private set; }
-
-    // Heal State
-    public PlayerHealState healState { get; private set; }
-
-    // Death State
-    public PlayerDeadState deadState { get; private set; }
-
-    #endregion
+    public float dodgeDir { get; private set; }
 
     // When awaking, we construct the state machines and all possible states.
     protected override void Awake()
@@ -96,7 +88,7 @@ public class Player : Entity
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
 
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
-        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");        
+        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         aimState = new PlayerAimState(this, stateMachine, "Aim");
 
         blackholeState = new PlayerBlackholeState(this, stateMachine, "Blackhole");
@@ -180,7 +172,10 @@ public class Player : Entity
     }
 
     // Used to trigger the animation end boolean varible in the PlayerState component.
-    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public void AnimationTrigger()
+    {
+        stateMachine.currentState.AnimationFinishTrigger();
+    }
 
 
     // To improve performance of dodge, enabling to dodge when doing other activities.
@@ -213,4 +208,46 @@ public class Player : Entity
 
         stateMachine.ChangeState(deadState);
     }
+
+    #region Components
+
+    public SkillManager skillManager { get; private set; }
+    public GameObject sword { get; private set; }
+
+    [SerializeField]
+    public SpriteRenderer potionOnPlayer;
+
+    #endregion
+
+    #region States
+
+    // The state machine
+    public PlayerStateMachine stateMachine { get; private set; }
+
+    // Movement States
+    public PlayerIdleState idleState { get; private set; }
+    public PlayerMoveState moveState { get; private set; }
+    public PlayerJumpState jumpState { get; private set; }
+    public PlayerAirState airState { get; private set; }
+    public PlayerWallSlideState wallSlideState { get; private set; }
+    public PlayerWallJumpState wallJumpState { get; private set; }
+    public PlayerDodgeState dodgeState { get; private set; }
+
+    // Attack States
+    public PlayerPrimaryAttackState primaryAttackState { get; private set; }
+    public PlayerCounterAttackState counterAttackState { get; private set; }
+    public PlayerAimSwordState aimSwordState { get; private set; }
+    public PlayerCatchSwordState catchSwordState { get; private set; }
+    public PlayerAimState aimState { get; private set; }
+
+    // Black Hole State
+    public PlayerBlackholeState blackholeState { get; private set; }
+
+    // Heal State
+    public PlayerHealState healState { get; private set; }
+
+    // Death State
+    public PlayerDeadState deadState { get; private set; }
+
+    #endregion
 }

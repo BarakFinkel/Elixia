@@ -1,26 +1,27 @@
-using System.Dynamic;
 using UnityEngine;
 
 public class PlayerState
 {
+    private readonly string animBoolName;
+    protected Player player;
+
+    protected Rigidbody2D rb;
+
     // Components
     protected PlayerStateMachine stateMachine;
-    protected Player player;
-    protected Rigidbody2D rb;
+    protected float stateTimer;
+    protected bool triggerCalled;
 
     // Variables
     protected float xInput;
     protected float yInput;
-    private string animBoolName;
-    protected float stateTimer = 0.0f;
-    protected bool triggerCalled;
 
     // PlayerState Constructor
     public PlayerState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName)
     {
-        this.player = _player;
-        this.stateMachine = _stateMachine;
-        this.animBoolName = _animBoolName;
+        player = _player;
+        stateMachine = _stateMachine;
+        animBoolName = _animBoolName;
     }
 
     // Enter method (Not MonoBehaviour's!)

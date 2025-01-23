@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class FireEffectController : MonoBehaviour
 {
+    private readonly Dictionary<Enemy, float> damageCooldowns = new();
     private CapsuleCollider2D cd;
     private float damageCooldown;
-    private readonly Dictionary<Enemy, float> damageCooldowns = new();
     private bool toDamage;
 
     private void Update()

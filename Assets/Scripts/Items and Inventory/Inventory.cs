@@ -5,34 +5,44 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
-    [SerializeField] public List<ItemData> startingItems;
+    [SerializeField]
+    public List<ItemData> startingItems;
 
     public List<InventoryItem> inventory; // A list containing the current items.
-    public Dictionary<ItemData,InventoryItem> inventoryDictionary; // A dictionary containing the Item Data objects as keys to the Inventory Items constructed by them.
 
     public List<InventoryItem> equipment;
-    public Dictionary<ItemData_Equipment,InventoryItem> equipmentDictionary;
 
     public List<InventoryItem> stash; // A list containing the current materials in our inventory.
-    public Dictionary<ItemData,InventoryItem> stashDictionary;
 
     [Header("Inventory UI")]
-    [SerializeField] private Transform inventorySlotsParent;
-    [SerializeField] private Transform equipmentSlotsParent;
-    [SerializeField] private Transform stashSlotsParent;
-    [SerializeField] private Transform statSlotsParent;
+    [SerializeField]
+    private Transform inventorySlotsParent;
 
-    [Header("Items Cooldown")]
-    private float syringeCooldown = 0.0f;
-    private float lastTimeUsedSyringe;
+    [SerializeField]
+    private Transform equipmentSlotsParent;
 
-    private float armorCooldown = 0.0f;
-    private float lastTimeUsedArmor;
+    [SerializeField]
+    private Transform stashSlotsParent;
+
+    [SerializeField]
+    private Transform statSlotsParent;
+
+    private float armorCooldown;
+    public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
+    private UI_EquipmentSlot[] equipmentItemSlots;
+
+    public Dictionary<ItemData, InventoryItem>
+        inventoryDictionary; // A dictionary containing the Item Data objects as keys to the Inventory Items constructed by them.
 
     private UI_ItemSlot[] inventoryItemSlots;
-    private UI_EquipmentSlot[] equipmentItemSlots;
+    private float lastTimeUsedArmor;
+    private float lastTimeUsedSyringe;
+    public Dictionary<ItemData, InventoryItem> stashDictionary;
     private UI_ItemSlot[] stashItemSlots;
     private UI_StatSlot[] statSlots;
+
+    [Header("Items Cooldown")]
+    private float syringeCooldown;
 
     // Singleton behaviour
     private void Awake()
@@ -67,7 +77,7 @@ public class Inventory : MonoBehaviour
 
     private void AddStartingItems()
     {
-        for (int i = 0; i < startingItems.Count; i++)
+        for (var i = 0; i < startingItems.Count; i++)
         {
             if (startingItems[i] != null)
             {
@@ -78,12 +88,14 @@ public class Inventory : MonoBehaviour
 
     public void EquipItem(ItemData _item)
     {
-        ItemData_Equipment newEquipment = _item as ItemData_Equipment; // Converts the item to ItemData_Equipment type.
-        InventoryItem newItem = new InventoryItem(newEquipment); // Constructs a new inventory item with the ItemData_Equipment object we just created.
-        
+        var newEquipment = _item as ItemData_Equipment; // Converts the item to ItemData_Equipment type.
+        var newItem =
+            new InventoryItem(
+                newEquipment); // Constructs a new inventory item with the ItemData_Equipment object we just created.
+
         // If we already have an equipment item of the same type already equipped, we'll remove from the equipment.
-        ItemData_Equipment oldEquipment = GetEquipmentOfSameType(newEquipment);
-        if(oldEquipment != null)
+        var oldEquipment = GetEquipmentOfSameType(newEquipment);
+        if (oldEquipment != null)
         {
             UnequipItem(oldEquipment); // Unequip old item.
             AddItem(oldEquipment); // Add it back to the inventory.
@@ -101,15 +113,13 @@ public class Inventory : MonoBehaviour
     }
 
     public ItemData_Equipment GetEquipmentOfSameType(ItemData_Equipment _newEquipment)
-    {       
+    {
         // We now check if there's already an item in the equipment with the same type, and 
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
-        {
+        foreach (var item in equipmentDictionary)
             if (item.Key.equipmentType == _newEquipment.equipmentType)
             {
                 return item.Key;
             }
-        }
 
         return null;
     }
@@ -117,13 +127,11 @@ public class Inventory : MonoBehaviour
     public ItemData_Equipment GetEquipmentOfType(EquipmentType _type)
     {
         // We now check if there's already an item in the equipment with the same type, and 
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
-        {
+        foreach (var item in equipmentDictionary)
             if (item.Key.equipmentType == _type)
             {
                 return item.Key;
             }
-        }
 
         return null;
     }
@@ -131,7 +139,7 @@ public class Inventory : MonoBehaviour
     // Removes an item from the equipment.
     public void UnequipItem(ItemData_Equipment itemToRemove)
     {
-        if (equipmentDictionary.TryGetValue(itemToRemove, out InventoryItem value))
+        if (equipmentDictionary.TryGetValue(itemToRemove, out var value))
         {
             equipment.Remove(value);
             equipmentDictionary.Remove(itemToRemove);
@@ -143,41 +151,39 @@ public class Inventory : MonoBehaviour
     public void UpdateUISlots()
     {
         // Update the UI Item slots in the equipment tab
-        for (int i = 0; i < equipmentItemSlots.Length; i++)
+        for (var i = 0; i < equipmentItemSlots.Length; i++)
         {
             // For pair in our dictionary
-            foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
-            {
+            foreach (var item in equipmentDictionary)
                 // We check if the key's equipment type matches the one item we currently iterating over.
                 if (item.Key.equipmentType == equipmentItemSlots[i].slotType)
                 {
                     // If so, we update the current slot's variables with the InventoryItem value's.
                     equipmentItemSlots[i].UpdateSlot(item.Value);
                 }
-            }
         }
-        
-        for (int i = 0; i < inventoryItemSlots.Length; i++)
+
+        for (var i = 0; i < inventoryItemSlots.Length; i++)
         {
             inventoryItemSlots[i].CleanUpSlot();
         }
 
-        for (int i = 0; i < inventoryItemSlots.Length; i++)
+        for (var i = 0; i < inventoryItemSlots.Length; i++)
         {
             stashItemSlots[i].CleanUpSlot();
-        }        
-        
-        for (int i = 0; i < inventory.Count; i++)
+        }
+
+        for (var i = 0; i < inventory.Count; i++)
         {
             inventoryItemSlots[i].UpdateSlot(inventory[i]);
         }
 
-        for (int i = 0; i < stash.Count; i++)
+        for (var i = 0; i < stash.Count; i++)
         {
             stashItemSlots[i].UpdateSlot(stash[i]);
         }
 
-        for (int i = 0; i < statSlots.Length; i++)
+        for (var i = 0; i < statSlots.Length; i++)
         {
             statSlots[i].UpdateStatValueUI();
         }
@@ -185,11 +191,11 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData _item)
     {
-        if(_item.itemType == ItemType.Equipment && CanAddItem())
+        if (_item.itemType == ItemType.Equipment && CanAddItem())
         {
             AddToInventory(_item);
         }
-        else if(_item.itemType == ItemType.Material)
+        else if (_item.itemType == ItemType.Material)
         {
             AddToStash(_item);
         }
@@ -200,10 +206,10 @@ public class Inventory : MonoBehaviour
     public void RemoveItem(ItemData _item)
     {
         // If the item type exists in our inventory, we have 2 choices:
-        if(inventoryDictionary.TryGetValue(_item, out InventoryItem value))
+        if (inventoryDictionary.TryGetValue(_item, out var value))
         {
             // If it's the last item of the itemData type, we remove it from both the list and the dictionary
-            if(value.stackSize == 1)
+            if (value.stackSize == 1)
             {
                 inventory.Remove(value);
                 inventoryDictionary.Remove(_item);
@@ -216,10 +222,10 @@ public class Inventory : MonoBehaviour
         }
 
         // If the item type exists in our stash, we have 2 choices:
-        if(stashDictionary.TryGetValue(_item, out InventoryItem stashValue))
+        if (stashDictionary.TryGetValue(_item, out var stashValue))
         {
             // If it's the last item of the itemData type, we remove it from both the list and the dictionary
-            if(stashValue.stackSize == 1)
+            if (stashValue.stackSize == 1)
             {
                 stash.Remove(stashValue);
                 stashDictionary.Remove(_item);
@@ -229,7 +235,7 @@ public class Inventory : MonoBehaviour
             {
                 stashValue.RemoveFromStack();
             }
-        }        
+        }
 
         UpdateUISlots();
     }
@@ -237,7 +243,7 @@ public class Inventory : MonoBehaviour
     private void AddToInventory(ItemData _item)
     {
         // If the item type is already in our inventory, we just increment it's stack value.
-        if(inventoryDictionary.TryGetValue(_item, out InventoryItem value))
+        if (inventoryDictionary.TryGetValue(_item, out var value))
         {
             value.AddToStack();
         }
@@ -245,7 +251,7 @@ public class Inventory : MonoBehaviour
         // and also add it to the dictionary as a key with the newly created inventory item object.
         else
         {
-            InventoryItem newItem = new InventoryItem(_item);
+            var newItem = new InventoryItem(_item);
             inventory.Add(newItem);
             inventoryDictionary.Add(_item, newItem);
         }
@@ -254,7 +260,7 @@ public class Inventory : MonoBehaviour
     private void AddToStash(ItemData _item)
     {
         // If the item type is already in our inventory, we just increment it's stack value.
-        if(stashDictionary.TryGetValue(_item, out InventoryItem value))
+        if (stashDictionary.TryGetValue(_item, out var value))
         {
             value.AddToStack();
         }
@@ -262,7 +268,7 @@ public class Inventory : MonoBehaviour
         // and also add it to the dictionary as a key with the newly created inventory item object.
         else
         {
-            InventoryItem newItem = new InventoryItem(_item);
+            var newItem = new InventoryItem(_item);
             stash.Add(newItem);
             stashDictionary.Add(_item, newItem);
         }
@@ -280,24 +286,22 @@ public class Inventory : MonoBehaviour
 
     public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiredMaterials)
     {
-        List<InventoryItem> materialsToRemove = new List<InventoryItem>();
-        
-        for (int i = 0; i < _requiredMaterials.Count; i++)
+        var materialsToRemove = new List<InventoryItem>();
+
+        for (var i = 0; i < _requiredMaterials.Count; i++)
         {
             // If we can find this type of item in our inventory by looking at our stash's dictionary
-            if(stashDictionary.TryGetValue(_requiredMaterials[i].data, out InventoryItem stashValue))
+            if (stashDictionary.TryGetValue(_requiredMaterials[i].data, out var stashValue))
             {
                 // If we don't have enough of the required type, we return false;
-                if(stashValue.stackSize < _requiredMaterials[i].stackSize)
+                if (stashValue.stackSize < _requiredMaterials[i].stackSize)
                 {
                     Debug.Log("Not enough materials.");
                     return false;
                 }
                 // If we do, we'll add them to our temporary list of items to remove from the stash.
-                else
-                {
-                    materialsToRemove.Add(stashValue);
-                }
+
+                materialsToRemove.Add(stashValue);
             }
             // If we couldn't, we don't have enough materials so we return false
             else
@@ -308,7 +312,7 @@ public class Inventory : MonoBehaviour
         }
 
         // If we reached here, we have all items required to craft the item, so we remvoe them from the stash.
-        for (int i = 0; i < materialsToRemove.Count; i++)
+        for (var i = 0; i < materialsToRemove.Count; i++)
         {
             RemoveItem(materialsToRemove[i].data);
         }
@@ -322,7 +326,7 @@ public class Inventory : MonoBehaviour
 
     public ItemData_Equipment CanUseSyringe()
     {
-        ItemData_Equipment currentSyringe = GetEquipmentOfType(EquipmentType.Syringe);
+        var currentSyringe = GetEquipmentOfType(EquipmentType.Syringe);
 
         if (currentSyringe != null)
         {
@@ -330,17 +334,13 @@ public class Inventory : MonoBehaviour
             {
                 return currentSyringe;
             }
-            else
-            {
-                Debug.Log("Syringe on cooldown.");
-                return null;
-            }
+
+            Debug.Log("Syringe on cooldown.");
+            return null;
         }
-        else
-        {
-            Debug.Log("No Syringe Equipped.");
-            return null;            
-        }
+
+        Debug.Log("No Syringe Equipped.");
+        return null;
     }
 
     public void UseSyringe(ItemData_Equipment _syringe)
@@ -352,7 +352,7 @@ public class Inventory : MonoBehaviour
 
     public bool CanUseArmor()
     {
-        ItemData_Equipment currentArmor = GetEquipmentOfType(EquipmentType.Armor);
+        var currentArmor = GetEquipmentOfType(EquipmentType.Armor);
 
         if (currentArmor != null)
         {
@@ -362,22 +362,22 @@ public class Inventory : MonoBehaviour
                 armorCooldown = currentArmor.itemCooldown;
                 return true;
             }
-            else
-            {
-                Debug.Log("Armor on cooldown.");
-                return false;
-            }
+
+            Debug.Log("Armor on cooldown.");
+            return false;
         }
-        else
-        {
-            Debug.Log("No Armor Equipped.");
-            return false;            
-        }
+
+        Debug.Log("No Armor Equipped.");
+        return false;
     }
 
-    public List<InventoryItem> GetEquipmentList() => equipment;
+    public List<InventoryItem> GetEquipmentList()
+    {
+        return equipment;
+    }
 
-    public List<InventoryItem> GetStashList() => stash;
-
-
+    public List<InventoryItem> GetStashList()
+    {
+        return stash;
+    }
 }

@@ -1,21 +1,21 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Stat
 {
-    [SerializeField] private int baseValue;
+    [SerializeField]
+    private int baseValue;
+
     public List<int> modifiers;
 
     public int GetValue()
     {
-        int finalValue = baseValue;
+        var finalValue = baseValue;
 
-        foreach (var modifier in modifiers)
-        {
-            finalValue += modifier;
-        }
-        
+        foreach (var modifier in modifiers) finalValue += modifier;
+
         return finalValue;
     }
 
