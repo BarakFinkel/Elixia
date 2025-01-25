@@ -19,6 +19,7 @@ MonoBehaviour:
   equipmentType: 0
   itemCooldown: 0
   itemEffects: []
+  itemEffectDescription: 
   strength: 0
   agility: 0
   intelligence: 0
@@ -36,6 +37,6 @@ MonoBehaviour:
   arcaneDamage: 0
   craftingMaterials:
   - data: {fileID: 11400000, guid: 81541ca0f47da8e4999dbd992e2d598a, type: 2}
-    stackSize: 7
+    stackSize: 1
   - data: {fileID: 11400000, guid: 4f9eb68ad4220f046b7411a68ce31874, type: 2}
-    stackSize: 8
+    stackSize: 1
