@@ -9,9 +9,10 @@ public class PlayerDodgeState : PlayerState
     {
         base.Enter();
 
-        player.skillManager.clone.CreateCloneOnDodgeStart();
-
+        player.skillManager.dodge.CreateCloneOnDodgeStart();
         stateTimer = player.dodgeDuration;
+
+        player.cs.EnableInvulnerability();
     }
 
     public override void Update()
@@ -44,9 +45,11 @@ public class PlayerDodgeState : PlayerState
     {
         base.Exit();
 
-        player.skillManager.clone.CreateCloneOnDodgeOver();
+        player.skillManager.dodge.CreateCloneOnDodgeEnd();
 
         // Stopping the player's movement in the dodge direction when finished.
         player.SetVelocity(0, rb.linearVelocityY);
+
+        player.cs.DisableInvulnerability();
     }
 }

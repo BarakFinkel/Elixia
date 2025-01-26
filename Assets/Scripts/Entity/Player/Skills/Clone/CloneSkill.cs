@@ -1,49 +1,52 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloneSkill : Skill
 {
     [Header("General Information")]
-    [SerializeField]
-    private GameObject clonePrefab;
+    [SerializeField] private GameObject clonePrefab;
+    [SerializeField] private float cloneDuration;
+    [SerializeField] private float cloneSpawnOffset = 2.0f;
+    [SerializeField] private float cloneSpawnDelay = 0.4f;
+    private float attackMultiplier = 0.0f;
+    
+    [Header("Clone Attack Information")]
+    [SerializeField] private UI_SkillTreeSlot cloneAttackUnlockButton;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float cloneAttackDamageRatio;
+    public bool cloneAttackUnlocked { get; private set; }
 
-    [SerializeField]
-    private float cloneDuration;
-
-    [SerializeField]
-    private bool canAttack;
-
-    [Header("Counter Attack Clone Information")]
-    [SerializeField]
-    private bool canCreateCloneOnCounterAttack;
-
-    [SerializeField]
-    private float counterAttackCloneOffset = 2.0f;
-
-    [SerializeField]
-    private float counterAttackCloneDelay = 0.4f;
-
-    [Header("Dodge Clone Information")]
-    [SerializeField]
-    private bool createCloneOnDodgeStart;
-
-    [SerializeField]
-    private bool createCloneOnDodgeOver;
+    [Header("Enhanced Clone Attack Information")]
+    [SerializeField] private UI_SkillTreeSlot enhancedCloneAttackUnlockButton;
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float enhancedCloneAttackDamageRatio;
+    public bool enhancedCloneAttackUnlocked { get; private set; }
 
     [Header("Duplicate Clone Information")]
-    [SerializeField]
-    private bool canDuplicateClone;
-
-    [SerializeField]
-    private float duplicationChance = 30.0f;
+    [SerializeField] private UI_SkillTreeSlot duplicateCloneUnlockButton;
+    [SerializeField] private float duplicationChance = 30.0f;
+    public bool duplicateCloneUnlocked { get; private set; }
 
     [Header("Crystal Alternative Information")]
-    [SerializeField]
-    public bool createCrystalInsteadOfClone;
+    [SerializeField] private UI_SkillTreeSlot crystalAlternativeUnlockButton;
+    public bool crystalAlternativeUnlocked { get; private set; }
 
+    protected override void Start()
+    {
+        base.Start();
+        
+        cloneAttackUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockAttack);
+        enhancedCloneAttackUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockEnhancedAttack);
+        duplicateCloneUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockDuplicateClone);
+        crystalAlternativeUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockCrystalAlternative);
+    }
+
+    // We create either a crystal or a clone, depends on the skill tree choices.
     public void CreateClone(Transform _clonePosition, Vector3 _offset)
     {
-        if (createCrystalInsteadOfClone)
+        // If we chose to create crystals instead of clones via the skill tree, we instantiate a crystal instead
+        if (crystalAlternativeUnlocked)
         {
             PotionEffectManager.instance.arcane.CreateCrystal(PlayerManager.instance.player.gameObject, Vector3.zero);
             return;
@@ -51,41 +54,58 @@ public class CloneSkill : Skill
 
         var newClone = Instantiate(clonePrefab);
 
-        newClone.GetComponent<CloneSkillController>().SetupClone(_clonePosition, cloneDuration, canAttack,
-            canDuplicateClone, duplicationChance, _offset, player, FindClosestEnemy(newClone.transform));
+        newClone.GetComponent<CloneSkillController>().SetupClone(_clonePosition, cloneDuration, cloneAttackUnlocked,
+            duplicateCloneUnlocked, duplicationChance, _offset, player, FindClosestEnemy(newClone.transform), attackMultiplier);
     }
 
-    // Responsible for creating a clone when starting to dodge.
-    public void CreateCloneOnDodgeStart()
+    public void CreateCloneWithDelay(Transform _enemyTransform)
     {
-        if (createCloneOnDodgeStart)
-        {
-            CreateClone(player.transform, Vector3.zero);
-        }
+        StartCoroutine(CloneDelayCoroutine(_enemyTransform,
+            new Vector3(cloneSpawnOffset * player.facingDir, 0)));
     }
 
-    // Responsible for creating a clone when finishing to dodge.
-    public void CreateCloneOnDodgeOver()
+    public IEnumerator CloneDelayCoroutine(Transform _transform, Vector3 _offset)
     {
-        if (createCloneOnDodgeOver)
-        {
-            CreateClone(player.transform, Vector3.zero);
-        }
-    }
-
-    public void CreateCloneOnCounterAttack(Transform _enemyTransform)
-    {
-        if (canCreateCloneOnCounterAttack)
-        {
-            StartCoroutine(CreateCloneWithDelay(_enemyTransform,
-                new Vector3(counterAttackCloneOffset * player.facingDir, 0)));
-        }
-    }
-
-    public IEnumerator CreateCloneWithDelay(Transform _transform, Vector3 _offset)
-    {
-        yield return new WaitForSeconds(counterAttackCloneDelay);
+        yield return new WaitForSeconds(cloneSpawnDelay);
 
         CreateClone(_transform, _offset);
     }
+
+    #region Unlock
+
+    private void UnlockAttack()
+    {
+        if (cloneAttackUnlockButton.unlocked && !cloneAttackUnlocked)
+        {
+            cloneAttackUnlocked = true;
+            attackMultiplier = cloneAttackDamageRatio;
+        }
+    }
+
+    private void UnlockEnhancedAttack()
+    {
+        if(enhancedCloneAttackUnlockButton.unlocked && !enhancedCloneAttackUnlocked)
+        {
+            enhancedCloneAttackUnlocked = true;
+            attackMultiplier = enhancedCloneAttackDamageRatio;
+        }
+    }
+
+    private void UnlockDuplicateClone()
+    {
+        if (duplicateCloneUnlockButton.unlocked && !duplicateCloneUnlocked)
+        {
+            duplicateCloneUnlocked = true;
+        }
+    }
+
+    private void UnlockCrystalAlternative()
+    {
+        if (crystalAlternativeUnlockButton.unlocked && !crystalAlternativeUnlocked)
+        {
+            crystalAlternativeUnlocked = true;
+        }
+    }
+
+    #endregion
 }

@@ -5,48 +5,33 @@ using Random = UnityEngine.Random;
 public class ArcanePotionEffect : BasePotionEffect
 {
     [Header("General Information")]
-    [SerializeField]
-    private GameObject crystalPrefab;
-
-    [SerializeField]
-    private float crystalDuration;
-
-    [SerializeField]
-    private float spawnHeightOffset;
-
-    public GameObject currentCrystal;
+    [SerializeField] private GameObject arcaneEffectPrefab;
+    [SerializeField] private GameObject crystalPrefab;
+    [SerializeField] private float crystalDuration;
+    [SerializeField] private float spawnHeightOffset;
+    public GameObject currentEffect;
+    public GameObject currentCrystal { get; private set; }
 
     [Header("Multiplication information")]
-    [SerializeField]
-    private int amountOfCrystals = 3;
+    [SerializeField] private int amountOfCrystals = 3;
 
-    [SerializeField]
-    private float spawnRadius = 2.0f;
+    [SerializeField] private float spawnRadius = 2.0f;
     // [SerializeField] private bool canUseMultiStack;
     // [SerializeField] private float multiStackCooldown;
     // [SerializeField] private float useTimeWindow;
     // [SerializeField] private List<GameObject> crystalsLeft = new List<GameObject>();
 
     [Header("Explosion Information")]
-    [SerializeField]
-    private bool canExplode;
+    [SerializeField] private bool canExplode;
 
     [Header("Movement Information")]
-    [SerializeField]
-    private bool canMoveToEnemy;
-
-    [SerializeField]
-    private float minMoveSpeed;
-
-    [SerializeField]
-    private float maxMoveSpeed;
+    [SerializeField] private bool canMoveToEnemy;
+    [SerializeField] private float minMoveSpeed;
+    [SerializeField] private float maxMoveSpeed;
 
     [Header("Grow Information")]
-    [SerializeField]
-    private float growSpeed;
-
-    [SerializeField]
-    private float growScale;
+    [SerializeField] private float growSpeed;
+    [SerializeField] private float growScale;
 
     // [Header("Clone Information")]
     // [SerializeField] private bool cloneInsteadOfCrystal;
@@ -62,8 +47,13 @@ public class ArcanePotionEffect : BasePotionEffect
         {
             return;
         }
+        */
 
+        // Create the effect for the crystals.
+        Vector3 effectOffset = new Vector3(0, spawnHeightOffset, 0);
+        CreatePowerEffect(potion, effectOffset);
 
+        /*
         if(currentCrystal == null)
         {
         */
@@ -99,6 +89,11 @@ public class ArcanePotionEffect : BasePotionEffect
             }
         }
         */
+    }
+
+    public void CreatePowerEffect(GameObject obj, Vector3 offset)
+    {
+        currentEffect = Instantiate(arcaneEffectPrefab, obj.transform.position + offset, Quaternion.identity);
     }
 
     public void CreateCrystal(GameObject obj, Vector3 offset)

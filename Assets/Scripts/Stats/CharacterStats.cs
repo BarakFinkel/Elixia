@@ -61,6 +61,9 @@ public class CharacterStats : MonoBehaviour
     [SerializeField]
     private int mrBalanceFactor = 300;
 
+    [Range(1.0f, 2.0f)]
+    [SerializeField] private float stunShockDamageMultiplier = 1.1f;
+
     public Stat evasion;
 
     [Header("Magic Stats")]
@@ -133,6 +136,9 @@ public class CharacterStats : MonoBehaviour
     private int poisonedDamage;
     private float poisonedTickTimer;
     private float poisonedTimer;
+
+    public bool isStunShocked { get; private set; }
+    public bool isInvulnerable { get; private set; }
     public bool isDead { get; private set; }
 
     protected virtual void Start()
@@ -167,6 +173,11 @@ public class CharacterStats : MonoBehaviour
     // Calculation Pipeline of the physical damage dealt to the target.
     public virtual void DoDamage(CharacterStats _targetStats)
     {
+        if (_targetStats.isInvulnerable)
+        {
+            return;
+        }
+        
         // We check if the target evades the attack, is so - we return and do nothing.
         if (TargetCanEvadeAttack(_targetStats))
         {
@@ -187,8 +198,6 @@ public class CharacterStats : MonoBehaviour
 
         // We deal the overall damage to the target.
         _targetStats.TakeDamage(totalDamage);
-
-        //DoMagicalDamage(_targetStats);
     }
 
     // Method responsible for taking impactful damage (ailments not included)
@@ -208,6 +217,11 @@ public class CharacterStats : MonoBehaviour
     // Method responsible for reducing heatlh without impact
     protected virtual void DecreaseHealthBy(int _damage)
     {
+        if (isStunShocked)
+        {
+            _damage = Mathf.RoundToInt(_damage * stunShockDamageMultiplier);
+        }
+        
         currentHealth -= _damage;
 
         if (onHealthChanged != null)
@@ -237,6 +251,17 @@ public class CharacterStats : MonoBehaviour
         StartCoroutine(StartModCoroutine(_statToModifiy, _modifier, _duration));
     }
 
+    public void StunShockFor(float _duration) => StartCoroutine(StunShockedCoroutine(_duration));
+
+    public IEnumerator StunShockedCoroutine(float _duration)
+    {
+        isStunShocked = true;
+
+        yield return new WaitForSeconds(_duration);
+
+        isStunShocked = false;
+    }
+
     private IEnumerator StartModCoroutine(Stat _statToModifiy, int _modifier, float _duration)
     {
         _statToModifiy.AddModifier(_modifier);
@@ -248,9 +273,24 @@ public class CharacterStats : MonoBehaviour
         Inventory.instance.UpdateUISlots();
     }
 
+    public void EnableInvulnerability()
+    {
+        isInvulnerable = true;
+    }
+    
+    public void DisableInvulnerability()
+    {
+        isInvulnerable = false;
+    }
+
     protected virtual void Die()
     {
         isDead = true;
+    }
+
+    public virtual void OnEvasion()
+    {
+
     }
 
     // Method to update timers down to 0.
@@ -550,7 +590,7 @@ public class CharacterStats : MonoBehaviour
 
     #region Stats Calculation
 
-    private bool TargetCanEvadeAttack(CharacterStats _targetStats)
+    protected bool TargetCanEvadeAttack(CharacterStats _targetStats)
     {
         var totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
 
@@ -561,13 +601,14 @@ public class CharacterStats : MonoBehaviour
 
         if (Random.Range(0, 100) < totalEvasion)
         {
+            _targetStats.OnEvasion();
             return true;
         }
 
         return false;
     }
 
-    private int TargetPhysicalDamageReduction(CharacterStats _targetStats, int totalDamage)
+    protected int TargetPhysicalDamageReduction(CharacterStats _targetStats, int totalDamage)
     {
         var currArmor = _targetStats.armor.GetValue();
 
@@ -583,7 +624,7 @@ public class CharacterStats : MonoBehaviour
         return Mathf.Clamp(totalDamage, 0, int.MaxValue);
     }
 
-    private int TargetMagicalDamageReduction(CharacterStats _targetStats, int totalMagicalDamage)
+    protected int TargetMagicalDamageReduction(CharacterStats _targetStats, int totalMagicalDamage)
     {
         var currMR = _targetStats.magicResistance.GetValue();
 
@@ -599,7 +640,7 @@ public class CharacterStats : MonoBehaviour
         return Mathf.Clamp(totalMagicalDamage, 0, int.MaxValue);
     }
 
-    private bool CanCritTarget()
+    protected bool CanCritTarget()
     {
         var totalCriticalChance = critChance.GetValue() + agility.GetValue();
 
@@ -612,7 +653,7 @@ public class CharacterStats : MonoBehaviour
     }
 
     // Calculates total crit damage
-    private int CalculateCritDamage(int _damage)
+    protected int CalculateCritDamage(int _damage)
     {
         var totalCritPower =
             (critPower.GetValue() + strength.GetValue()) *

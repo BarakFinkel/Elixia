@@ -1,12 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasePotionEffect : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject potionPrefab;
-
-    [SerializeField]
-    public Color potionColor = new(1, 1, 1);
+    [Header("Potion Information")]
+    [SerializeField] public GameObject potionPrefab;
+    [SerializeField] public Color potionColor = new(1, 1, 1);
+    [SerializeField] public float cooldown;
 
     public virtual void ActivatePotionEffect(GameObject potion)
     {

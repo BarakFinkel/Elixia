@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885243b77fc7d84488513115a990a21f, type: 3}
   m_Name: On Hit Evasion increase
   m_EditorClassIdentifier: 
+  itemEffectDescription: Upon activation, buffs the alchemist's evasion by 7 for
+    3 seconds.
   buffType: 9
   buffAmount: 7
   buffDuration: 3

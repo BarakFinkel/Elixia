@@ -7,11 +7,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     public List<ItemData> startingItems;
-
     public List<InventoryItem> inventory; // A list containing the current items.
-
     public List<InventoryItem> equipment;
-
     public List<InventoryItem> stash; // A list containing the current materials in our inventory.
 
     [Header("Inventory UI")]
@@ -26,6 +23,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField]
     private Transform statSlotsParent;
+
+    [SerializeField] UI_InGame uiInGame;
 
     private float armorCooldown;
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
@@ -42,7 +41,7 @@ public class Inventory : MonoBehaviour
     private UI_StatSlot[] statSlots;
 
     [Header("Items Cooldown")]
-    private float syringeCooldown;
+    public float syringeCooldown { get; private set; }
 
     // Singleton behaviour
     private void Awake()
@@ -183,10 +182,7 @@ public class Inventory : MonoBehaviour
             stashItemSlots[i].UpdateSlot(stash[i]);
         }
 
-        for (var i = 0; i < statSlots.Length; i++)
-        {
-            statSlots[i].UpdateStatValueUI();
-        }
+        UpdateStatsUI();
     }
 
     public void AddItem(ItemData _item)
@@ -348,6 +344,7 @@ public class Inventory : MonoBehaviour
         _syringe.Effect(null);
         syringeCooldown = _syringe.itemCooldown;
         lastTimeUsedSyringe = Time.time;
+        uiInGame.SetCooldownForSyringe();
     }
 
     public bool CanUseArmor()
@@ -379,5 +376,13 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> GetStashList()
     {
         return stash;
+    }
+
+    public void UpdateStatsUI()
+    {
+        for (var i = 0; i < statSlots.Length; i++)
+        {
+            statSlots[i].UpdateStatValueUI();
+        }        
     }
 }

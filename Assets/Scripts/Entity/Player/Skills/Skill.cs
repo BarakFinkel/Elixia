@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    [SerializeField]
-    protected float cooldown;
-
-    [SerializeField]
+    [SerializeField] public float cooldown;
     protected float cooldownTimer;
 
     protected Player player;
@@ -59,8 +56,6 @@ public class Skill : MonoBehaviour
                 {
                     closestDistance = distanceToEnemy;
                     closestEnemy = hit.transform;
-
-                    Debug.Log("Enemy found!");
                 }
             }
 

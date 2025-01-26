@@ -16,44 +16,6 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        // If we press L-Click, we move to the attack state.
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            stateMachine.ChangeState(player.primaryAttackState);
-        }
-
-        // If we press R-Click, we move to the aim state.
-        if (!player.canUseSwordSkill && Input.GetKeyDown(KeyCode.Mouse1) && SkillManager.instance.potion.CanUseSkill())
-        {
-            stateMachine.ChangeState(player.aimState);
-        }
-
-        if (Input.GetKeyDown(KeyCode.H) && Inventory.instance.CanUseSyringe() != null)
-        {
-            stateMachine.ChangeState(player.healState);
-        }
-
-        // If we press F, we move to the counter attack state.
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            stateMachine.ChangeState(player.counterAttackState);
-        }
-
-        if (player.canUseSwordSkill && Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword())
-        {
-            stateMachine.ChangeState(player.aimSwordState);
-        }
-
-        if (player.canUseSwordSkill && Input.GetKeyDown(KeyCode.Mouse2) && HasNoSword())
-        {
-            player.skillManager.sword.ChangeToNextType();
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            stateMachine.ChangeState(player.blackholeState);
-        }
-
         // If we press Space - we change to the Jump state.
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -64,6 +26,42 @@ public class PlayerGroundedState : PlayerState
         if (!player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.airState);
+        }
+
+        // If we press L-Click, we move to the attack state.
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            stateMachine.ChangeState(player.primaryAttackState);
+        }
+
+        // If we press R-Click, we move to the aim sword state if we're able to.
+        if (Input.GetKeyDown(KeyCode.Mouse1) && player.skillManager.sword.swordUnlocked && player.canUseSwordSkill && HasNoSword() && player.skillManager.sword.CanUseSkill())
+        {
+            stateMachine.ChangeState(player.aimSwordState);
+        }
+
+        // If we press R-Click, we move to the aim potion state if we're able to.
+        if (Input.GetKeyDown(KeyCode.Mouse1) && player.skillManager.potion.potionUnlocked && !player.canUseSwordSkill && player.skillManager.potion.CanUseSkill())
+        {
+            stateMachine.ChangeState(player.aimState);
+        }
+
+        // If we press H, and can use a syringe - we move to the heal state.
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Inventory.instance.CanUseSyringe() != null)
+        {
+            stateMachine.ChangeState(player.healState);
+        }
+
+        // If we press F, we move to the counter attack state.
+        if (Input.GetKeyDown(KeyCode.F) && player.skillManager.counterAttack.counterAttackUnlocked && player.skillManager.counterAttack.CanUseSkill())
+        {
+            stateMachine.ChangeState(player.counterAttackState);
+        }
+
+        // If we press X and the ability's off-cooldown, we enter the blackhole ultimate ability state.
+        if (Input.GetKeyDown(KeyCode.X) && player.skillManager.blackhole.blackholeUnlocked && player.skillManager.blackhole.CanUseSkill())
+        {
+            stateMachine.ChangeState(player.blackholeState);
         }
     }
 

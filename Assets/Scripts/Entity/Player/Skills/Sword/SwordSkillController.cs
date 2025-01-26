@@ -168,8 +168,20 @@ public class SwordSkillController : MonoBehaviour
 
     private void SwordSkillDamage(Enemy enemy)
     {
-        player.cs.DoDamage(enemy.GetComponent<CharacterStats>());
-        enemy.FreezeTimeFor(freezeTimeDur);
+        EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
+        player.cs.DoDamage(enemyStats);
+        
+        // If the player unlocked the stun passive skill, the enemy will be stunned.
+        if (player.skillManager.sword.stunUnlocked)
+        {
+            enemy.FreezeTimeFor(freezeTimeDur);
+        }
+
+        // If the player unlocked the stun shock skill, the enemy will take more damage.
+        if (player.skillManager.sword.shockUnlocked)
+        {
+            enemy.cs.StunShockFor(freezeTimeDur);
+        }
 
         var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Amulet);
 
@@ -222,6 +234,9 @@ public class SwordSkillController : MonoBehaviour
         //rb.bodyType = RigidbodyType2D.Dynamic;
         transform.parent = null;
         isReturning = true;
+
+        SkillManager.instance.sword.SetCooldown();
+        SkillManager.instance.sword.uiIngame.SetCooldownForSword();
     }
 
     private void StuckInto(Collider2D collision)

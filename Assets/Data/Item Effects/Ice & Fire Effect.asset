@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdfd55a7f118b84b9803179f686add1, type: 3}
   m_Name: Ice & Fire Effect
   m_EditorClassIdentifier: 
+  itemEffectDescription: If your physical attack's final combo hits an enemy, launch
+    ice and fire projectiles that either burn or freeze any enemy hit.
   iceAndFirePrefab: {fileID: 1345714263059914193, guid: 972db2b69e6f7ed48a34b99b76396f70, type: 3}
-  newVelocity: {x: 15, y: 0}
+  xVelocity: 15
+  timeTillDestruction: 5

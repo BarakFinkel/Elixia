@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885243b77fc7d84488513115a990a21f, type: 3}
   m_Name: Fire Damage Buff
   m_EditorClassIdentifier: 
+  itemEffectDescription: Upon activation, buffs the alchemist's fire damage by 10
+    for 5 seconds.
   buffType: 11
   buffAmount: 10
   buffDuration: 5

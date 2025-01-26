@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2ebbdbce29f1d4c8efae0208e968ed, type: 3}
   m_Name: Heal On Hit
   m_EditorClassIdentifier: 
-  healPercent: 0.1
+  itemEffectDescription: Your physical attacks heal you for 2.5% of your maximum
+    HP.
+  healPercent: 0.025

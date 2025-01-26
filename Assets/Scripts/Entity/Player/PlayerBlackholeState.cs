@@ -24,6 +24,7 @@ public class PlayerBlackholeState : PlayerState
         stateTimer = flyTime;
         defaultGravity = rb.gravityScale;
         rb.gravityScale = 0;
+        player.cs.EnableInvulnerability();
     }
 
     public override void Update()
@@ -39,10 +40,8 @@ public class PlayerBlackholeState : PlayerState
             rb.linearVelocity = new Vector2(0, -.1f); // slow falling
             if (!skillUsed)
             {
-                if (player.skillManager.blackhole.CanUseSkill())
-                {
-                    skillUsed = true;
-                }
+                player.skillManager.blackhole.UseSkill();
+                skillUsed = true;
             }
         }
 
@@ -57,5 +56,6 @@ public class PlayerBlackholeState : PlayerState
         base.Exit();
         player.rb.gravityScale = defaultGravity;
         player.fx.MakeTransparent(false);
+        player.cs.DisableInvulnerability();
     }
 }

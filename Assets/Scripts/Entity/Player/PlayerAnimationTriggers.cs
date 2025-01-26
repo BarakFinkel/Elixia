@@ -13,24 +13,25 @@ public class PlayerAnimationTriggers : MonoBehaviour
     private void AttackTrigger()
     {
         // All enemies within the attack range
-        var colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 
         foreach (var hit in colliders)
+        {
             if (hit.GetComponent<Enemy>() != null)
             {
-                var target = hit.GetComponent<EnemyStats>();
-
+                EnemyStats target = hit.GetComponent<EnemyStats>();
                 if (target != null)
                 {
                     player.cs.DoDamage(target);
                 }
 
-                var weaponData = Inventory.instance.GetEquipmentOfType(EquipmentType.Weapon);
+                ItemData_Equipment weaponData = Inventory.instance.GetEquipmentOfType(EquipmentType.Weapon);
                 if (weaponData != null)
                 {
                     weaponData.Effect(target.transform);
                 }
             }
+        }
     }
 
     private void HealPlayer()

@@ -2,24 +2,20 @@ using UnityEngine;
 
 public class CloneSkillController : MonoBehaviour
 {
-    [SerializeField]
-    private float colorFadeSpeed;
-
-    [SerializeField]
-    private Transform attackCheck;
-
-    [SerializeField]
-    private float attackCheckRadius = 0.8f;
+    [SerializeField] private float colorFadeSpeed;
+    [SerializeField] private Transform attackCheck;
+    [SerializeField] private float attackCheckRadius = 0.8f;
 
     private Animator anim;
-    private bool canDuplicateClone;
-
-    private float cloneTimer;
-    private Transform closestEnemy;
-    private float duplicationChance;
-    private int facingDir = 1;
     private Player player;
     private SpriteRenderer sr;
+    private Transform closestEnemy;
+    
+    private bool canDuplicateClone;
+    private float cloneTimer;
+    private float duplicationChance;
+    private int facingDir = 1;
+    private float cloneAttackMultiplier;
 
     private void Awake()
     {
@@ -49,7 +45,7 @@ public class CloneSkillController : MonoBehaviour
 
     // This is the method that initiates a clone - meant to be called from various player states.
     public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, bool _canDuplicate,
-        float _duplicationChance, Vector3 offset, Player _player, Transform _closestEnemy)
+        float _duplicationChance, Vector3 offset, Player _player, Transform _closestEnemy, float _cloneAttackMultiplier)
     {
         if (_canAttack)
         {
@@ -64,6 +60,8 @@ public class CloneSkillController : MonoBehaviour
         closestEnemy = _closestEnemy;
         canDuplicateClone = _canDuplicate;
         duplicationChance = _duplicationChance;
+        cloneAttackMultiplier = _cloneAttackMultiplier;
+
         FaceClosestTarget();
     }
 
@@ -96,9 +94,23 @@ public class CloneSkillController : MonoBehaviour
         var colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius);
 
         foreach (var hit in colliders)
+        {
             if (hit.GetComponent<Enemy>() != null)
             {
-                player.cs.DoDamage(hit.GetComponent<CharacterStats>());
+                PlayerStats ps = player.GetComponent<PlayerStats>();
+                EnemyStats es = hit.GetComponent<EnemyStats>();
+
+                ps.CloneDoDamage(es, cloneAttackMultiplier);
+
+                // If the player enhanced the shadow clones via the skill tree, they will apply on-hit effects.
+                if (player.skillManager.clone.enhancedCloneAttackUnlocked)
+                {
+                    ItemData_Equipment weaponData = Inventory.instance.GetEquipmentOfType(EquipmentType.Weapon);
+                    if (weaponData != null)
+                    {
+                        weaponData.Effect(hit.transform);
+                    }
+                }
 
                 if (canDuplicateClone)
                 {
@@ -109,5 +121,6 @@ public class CloneSkillController : MonoBehaviour
                     }
                 }
             }
+        }
     }
 }

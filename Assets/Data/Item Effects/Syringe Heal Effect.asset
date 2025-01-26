@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2ebbdbce29f1d4c8efae0208e968ed, type: 3}
   m_Name: Syringe Heal Effect
   m_EditorClassIdentifier: 
+  itemEffectDescription: Heal the player for 30% HP
   healPercent: 0.3

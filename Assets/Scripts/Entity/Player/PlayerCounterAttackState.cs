@@ -29,20 +29,28 @@ public class PlayerCounterAttackState : PlayerState
 
         // Any of "Enemy" type will be stunned, and the counter attack animation will play.
         foreach (var hit in colliders)
-            if (hit.GetComponent<Enemy>() != null)
+        {
+            Enemy enemy = hit.GetComponent<Enemy>();
+            
+            if (enemy != null)
             {
                 if (hit.GetComponent<Enemy>().CanBeStunned())
                 {
                     stateTimer = 10.0f; // Static value - just to make sure the player doesn't exit the state too soon.
                     player.anim.SetBool("SuccessfulCounterAttack", true);
 
+                    player.skillManager.counterAttack.UseSkill(); // Will have effect when the player unlocks the health restoration feature on this skill.
+
                     if (canCreateClone)
                     {
                         canCreateClone = false;
-                        player.skillManager.clone.CreateCloneOnCounterAttack(hit.transform);
+                        player.skillManager.counterAttack.MakeCloneOnCounterAttack(hit.transform);
                     }
+
+                    player.cs.DoDamage(enemy.cs);
                 }
             }
+        }
 
         // If we're out of time for countering, or we've successfully counter-attacked an enemy - we change to the idle state.
         if (stateTimer == 0 || triggerCalled)

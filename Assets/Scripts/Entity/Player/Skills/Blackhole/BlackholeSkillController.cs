@@ -103,7 +103,7 @@ public class BlackholeSkillController : MonoBehaviour
         cloneAttackCooldown = _cloneAttackCooldown;
         blackholeTimer = _blackholeDuration;
 
-        if (SkillManager.instance.clone.createCrystalInsteadOfClone)
+        if (SkillManager.instance.clone.crystalAlternativeUnlocked)
         {
             playerCanDissapear = false;
         }
@@ -145,7 +145,7 @@ public class BlackholeSkillController : MonoBehaviour
                 xOffset = -1;
             }
 
-            if (SkillManager.instance.clone.createCrystalInsteadOfClone)
+            if (SkillManager.instance.clone.crystalAlternativeUnlocked)
             {
                 PotionEffectManager.instance.arcane.CreateCrystal(gameObject, new Vector3(0, 0, 0));
                 PotionEffectManager.instance.arcane.CurrentCrystalChooseRandomTarget();

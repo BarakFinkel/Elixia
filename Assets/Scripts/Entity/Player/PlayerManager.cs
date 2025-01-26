@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     public Player player;
+    public int currency;
+
 
     private void Awake()
     {
@@ -19,4 +21,17 @@ public class PlayerManager : MonoBehaviour
             instance = this;
         }
     }
+
+    public bool HaveEnoughCurrency(int _price)
+    {
+        if (_price > currency)
+        {
+            return false;
+        }
+        
+        currency -= _price;
+        return true;
+    }
+
+    public int GetCurrencyAmount() => currency;
 }

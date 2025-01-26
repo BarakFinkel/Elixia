@@ -1,7 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PotionSkill : Skill
 {
+    [Header("Unlock Information")]
+    [SerializeField] private UI_SkillTreeSlot potionUnlockButton;
+    [SerializeField] public UI_Potions potionsUI;
+    [SerializeField] private UI_InGame ingameUI;
+    public bool potionUnlocked { get; private set; }
+    
     [Header("Skill Information")]
     [SerializeField]
     private GameObject potionPrefab; // The potion prefab we want to spawn
@@ -46,13 +53,17 @@ public class PotionSkill : Skill
     {
         base.Start();
 
+        potionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockPotion);
         GenerateDots();
     }
 
     protected override void Update()
     {
-        // Change the color we display when about to throw the potion.
-        potionOnPlayer.color = PotionEffectManager.instance.CurrentEffect().potionColor;
+        // Change the color we display if it has changed.
+        if (potionOnPlayer.color != PotionEffectManager.instance.CurrentEffect().potionColor)
+        {
+            potionOnPlayer.color = PotionEffectManager.instance.CurrentEffect().potionColor;
+        }
 
         // We only update the timer when we wish to - controllable via the updateTimer, and it's usage is explained below.
         if (updateTimer)
@@ -91,15 +102,15 @@ public class PotionSkill : Skill
 
     public void CreatePotion()
     {
-        var potionEffect =
-            PotionEffectManager.instance
-                .CurrentEffect(); // To be replaced with a better method of keeping track of player inputs and effect retrieval.
+        BasePotionEffect potionEffect = PotionEffectManager.instance.CurrentEffect(); // To be replaced with a better method of keeping track of player inputs and effect retrieval.
 
-        var newPotion = Instantiate(potionEffect.potionPrefab, player.transform.position + potionSpawnOffset,
-            transform.rotation);
-        var newPotionScript = newPotion.GetComponent<PotionSkillController>();
+        GameObject newPotion = Instantiate(potionEffect.potionPrefab, player.transform.position + potionSpawnOffset, transform.rotation);
+        PotionSkillController newPotionScript = newPotion.GetComponent<PotionSkillController>();
 
         newPotionScript.SetupPotion(finalDirection, potionGravity, potionEffect);
+
+        cooldownTimer = potionEffect.cooldown; // We set the cooldown to match the chosen element's.
+        ingameUI.SetCooldownForPotion(potionEffect.cooldown);
 
         DotsActive(false); // We stop updating and displaying the aim dots since we already threw the potion.
     }
@@ -132,8 +143,7 @@ public class PotionSkill : Skill
 
         for (var i = 0; i < numberOfDots; i++)
         {
-            dots[i] = Instantiate(dotPrefab, player.transform.position + potionSpawnOffset, Quaternion.identity,
-                dotsParent);
+            dots[i] = Instantiate(dotPrefab, player.transform.position + potionSpawnOffset, Quaternion.identity, dotsParent);
             dots[i].SetActive(false);
         }
     }
@@ -151,4 +161,13 @@ public class PotionSkill : Skill
     }
 
     #endregion
+
+    private void UnlockPotion()
+    {
+        if (potionUnlockButton.unlocked && !potionUnlocked)
+        {
+            potionUnlocked = true;
+            potionsUI.UnlockPotionOne();
+        }
+    }
 }

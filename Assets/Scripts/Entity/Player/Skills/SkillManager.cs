@@ -9,9 +9,11 @@ public class SkillManager : MonoBehaviour
     public float enemyDetectRadius;
 
     // Skills
-    public DodgeSkill dash { get; private set; }
+    public DodgeSkill dodge { get; private set; }
+    public EvadeSkill evade { get; private set; }
     public CloneSkill clone { get; private set; }
     public SwordSkill sword { get; private set; }
+    public CounterAttackSkill counterAttack { get; private set; }
     public BlackholeSkill blackhole { get; private set; }
     public PotionSkill potion { get; private set; }
 
@@ -29,9 +31,11 @@ public class SkillManager : MonoBehaviour
 
     private void Start()
     {
-        dash = GetComponent<DodgeSkill>();
+        dodge = GetComponent<DodgeSkill>();
+        evade = GetComponent<EvadeSkill>();
         clone = GetComponent<CloneSkill>();
         sword = GetComponent<SwordSkill>();
+        counterAttack = GetComponent<CounterAttackSkill>();
         potion = GetComponent<PotionSkill>();
         blackhole = GetComponent<BlackholeSkill>();
     }

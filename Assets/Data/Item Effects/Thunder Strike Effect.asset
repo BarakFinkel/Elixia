@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0297ef37635ca4889983e799f9d312, type: 3}
   m_Name: Thunder Strike Effect
   m_EditorClassIdentifier: 
+  itemEffectDescription: Your attacks have a 25% chance to call a lightning upon
+    your enemies, dealing magical damage to them.
   thunderStrikePrefab: {fileID: 7815507636204259711, guid: 720b7e05451a61f4da9ac387bdf19673, type: 3}
   timeTillDestruction: 0.5
-  effectChance: 99
+  effectChance: 25

@@ -1,4 +1,5 @@
 using System.Collections;
+using TreeEditor;
 using UnityEngine;
 
 public class Player : Entity
@@ -118,6 +119,7 @@ public class Player : Entity
 
         stateMachine.currentState.Update();
         CheckForDodgeInput();
+        CheckForWeaponSkillChange();
     }
 
     public void AssignNewSword(GameObject _newSword)
@@ -187,8 +189,13 @@ public class Player : Entity
             return;
         }
 
+        if (!skillManager.dodge.dodgeUnlocked)
+        {
+            return;
+        }
+
         // If we press Shift and also on the ground.
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGroundDetected() && SkillManager.instance.dash.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGroundDetected() && SkillManager.instance.dodge.CanUseSkill())
         {
             dodgeDir = Input.GetAxisRaw("Horizontal");
 
@@ -199,6 +206,16 @@ public class Player : Entity
             }
 
             stateMachine.ChangeState(dodgeState);
+        }
+    }
+
+    // temporary
+    private void CheckForWeaponSkillChange()
+    {
+        // If we're not currently trying to use the weapon skill and try scrolling, change the weapon skill.
+        if (!Input.GetKeyDown(KeyCode.Mouse1) && Input.GetAxis("Mouse ScrollWheel") != 0.0f)
+        {
+            canUseSwordSkill = !canUseSwordSkill;
         }
     }
 

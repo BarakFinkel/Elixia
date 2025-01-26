@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885243b77fc7d84488513115a990a21f, type: 3}
   m_Name: Armor Buff
   m_EditorClassIdentifier: 
+  itemEffectDescription: Upon activation, buffs the alchemist's armor by 50 for 10
+    seconds.
   buffType: 8
   buffAmount: 50
   buffDuration: 10

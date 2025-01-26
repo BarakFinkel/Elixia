@@ -19,9 +19,6 @@ public class ItemData_Equipment : ItemData
 
     public ItemEffect[] itemEffects;
 
-    [TextArea]
-    public string itemEffectDescription;
-
     // Stats:
     [Header("Major Stats")]
     public int strength;
@@ -132,22 +129,24 @@ public class ItemData_Equipment : ItemData
         AddItemDescription(poisonDamage, "Poison Damage");
         AddItemDescription(arcaneDamage, "Arcane Damage");
 
-        /*
-        if (descriptionLength < minDescriptionLength)
+        for (int i = 0; i < itemEffects.Length; i++)
         {
-            for (int i = 0; i < minDescriptionLength - descriptionLength; i++)
+            if (itemEffects[i].itemEffectDescription.Length > 0)
             {
-                sb.AppendLine();
-                sb.Append("");
-            }
-        }
-        */
+                if (i == 0 && sb.Length > 0)
+                {
+                    sb.AppendLine();
+                }
 
-        if (itemEffectDescription.Length > 0)
-        {
-            sb.AppendLine();
-            sb.AppendLine();
-            sb.Append(itemEffectDescription);
+                sb.AppendLine("* " + itemEffects[i].itemEffectDescription);
+
+                if (i != itemEffects.Length - 1)
+                {
+                    sb.AppendLine();
+                }
+
+                descriptionLength++;
+            }
         }
 
         return sb.ToString();
@@ -157,16 +156,12 @@ public class ItemData_Equipment : ItemData
     {
         if (_value != 0)
         {
-            if (sb.Length > 0)
-            {
-                sb.AppendLine();
-            }
-
             if (_value > 0)
             {
                 sb.Append("+ " + _value + " " + _name);
             }
 
+            sb.AppendLine();
             descriptionLength++;
         }
     }

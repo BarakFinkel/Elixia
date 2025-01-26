@@ -20,13 +20,10 @@ public class FirePotionEffect : BasePotionEffect
 
     public void CreateFlame(GameObject obj)
     {
-        var offset = new Vector3(0, spawnYOffset, 0);
+        Vector3 offset = new Vector3(0, spawnYOffset, 0);
         currentFlame = Instantiate(flamePrefab, obj.transform.position + offset, Quaternion.identity);
 
-        var currentFlameScript = currentFlame.GetComponent<FireEffectController>();
-        currentFlameScript.SetupFlame
-        (
-            tickDuration
-        );
+        FireEffectController currentFlameScript = currentFlame.GetComponent<FireEffectController>();
+        currentFlameScript.SetupFlame(tickDuration);
     }
 }
