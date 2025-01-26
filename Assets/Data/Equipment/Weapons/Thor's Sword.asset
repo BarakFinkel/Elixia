@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Thor's Sword
-  icon: {fileID: -671158514, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  dropChance: 20
+  icon: {fileID: 1724600912, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 10.1
   equipmentType: 0
   itemCooldown: 0
   itemEffects:
-  - {fileID: 11400000, guid: 5e71046323f055b4bbcbd398e5cb4e5a, type: 2}
   - {fileID: 11400000, guid: d9d82288b02cda241bdfe256e605eb5e, type: 2}
+  - {fileID: 11400000, guid: 5e71046323f055b4bbcbd398e5cb4e5a, type: 2}
   itemEffectDescription: 
-  strength: 0
+  strength: 5
   agility: 0
   intelligence: 0
   vitality: 0
@@ -30,10 +30,10 @@ MonoBehaviour:
   critChance: 0
   critPower: 0
   health: 0
-  armor: 10
-  evasion: 0
+  armor: 0
+  evasion: 5
   magicResistance: 0
-  fireDamage: 5
+  fireDamage: 0
   iceDamage: 0
   poisonDamage: 0
   arcaneDamage: 0
