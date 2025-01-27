@@ -21,6 +21,12 @@ public class EvadeSkill : Skill
         unlockCloneButton.GetComponent<Button>().onClick.AddListener(UnlockClone);
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockEvade();
+        UnlockClone();
+    }
+
     private void UnlockEvade()
     {
         if (unlockEvadeButton.unlocked && !evadeUnlocked)

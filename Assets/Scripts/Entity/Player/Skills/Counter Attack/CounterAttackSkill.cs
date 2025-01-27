@@ -38,6 +38,13 @@ public class CounterAttackSkill : Skill
         }
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockCounterAttack();
+        UnlockRestoration();
+        UnlockClone();
+    }
+
     private void UnlockCounterAttack()
     {
         if (counterAttackUnlockButton.unlocked && !counterAttackUnlocked)

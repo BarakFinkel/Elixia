@@ -5,10 +5,16 @@ public class PotionSkill : Skill
 {
     [Header("Unlock Information")]
     [SerializeField] private UI_SkillTreeSlot potionUnlockButton;
+    [SerializeField] private UI_SkillTreeSlot secondPotionUnlockButton;
+    [SerializeField] private UI_SkillTreeSlot thirdPotionUnlockButton;
+    [SerializeField] private UI_SkillTreeSlot fourthPotionUnlockButton;
     [SerializeField] public UI_Potions potionsUI;
     [SerializeField] private UI_InGame ingameUI;
     public bool potionUnlocked { get; private set; }
-    
+    public bool secondUnlocked { get; private set; }
+    public bool thirdUnlocked { get; private set; }
+    public bool fourthUnlocked { get; private set; }
+
     [Header("Skill Information")]
     [SerializeField]
     private GameObject potionPrefab; // The potion prefab we want to spawn
@@ -54,6 +60,10 @@ public class PotionSkill : Skill
         base.Start();
 
         potionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockPotion);
+        secondPotionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSecondPotion);
+        thirdPotionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockThirdPotion);
+        fourthPotionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockFourthPotion);
+        
         GenerateDots();
     }
 
@@ -98,6 +108,14 @@ public class PotionSkill : Skill
         {
             updateTimer = false;
         }
+    }
+
+    protected override void CheckUnlock()
+    {
+        UnlockPotion();
+        UnlockSecondPotion();
+        UnlockThirdPotion();
+        UnlockFourthPotion();
     }
 
     public void CreatePotion()
@@ -168,6 +186,33 @@ public class PotionSkill : Skill
         {
             potionUnlocked = true;
             potionsUI.UnlockPotionOne();
+        }
+    }
+
+    private void UnlockSecondPotion()
+    {
+        if (secondPotionUnlockButton.unlocked && !secondUnlocked)
+        {
+            secondUnlocked = true;
+            potionsUI.UnlockPotionTwo();
+        }
+    }
+
+    private void UnlockThirdPotion()
+    {
+        if (thirdPotionUnlockButton.unlocked && !thirdUnlocked)
+        {
+            thirdUnlocked = true;
+            potionsUI.UnlockPotionThree();
+        }
+    }
+
+    private void UnlockFourthPotion()
+    {
+        if (fourthPotionUnlockButton.unlocked && !fourthUnlocked)
+        {
+            fourthUnlocked = true;
+            potionsUI.UnlockPotionFour();
         }
     }
 }

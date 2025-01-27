@@ -14,9 +14,13 @@ public class UI_InGame : MonoBehaviour
     [SerializeField] private Image swordImage;
     [SerializeField] private Image potionImage;
 
-    [SerializeField] private TextMeshProUGUI currentSoulEssence;
-
     private SkillManager skills;
+
+    [Header("Souls Information")]
+    [SerializeField] private TextMeshProUGUI currentSoulEssence;
+    [SerializeField] private float increaseRate = 2500;
+    private float soulsAmount;
+
     private bool usingSword = true;
 
     private float swordCooldownTimer;
@@ -35,7 +39,7 @@ public class UI_InGame : MonoBehaviour
 
     private void Update()
     {
-        currentSoulEssence.text = PlayerManager.instance.GetCurrencyAmount().ToString("#,#");
+        UpdateSoulsUI();
         
         if (swordCooldownTimer > 0)
         {
@@ -86,6 +90,20 @@ public class UI_InGame : MonoBehaviour
         {
             CheckCooldownOfPotion(potionImage);
         }
+    }
+
+    private void UpdateSoulsUI()
+    {
+        if (soulsAmount < PlayerManager.instance.currency)
+        {
+            soulsAmount += Time.deltaTime * increaseRate;
+        }
+        else
+        {
+            soulsAmount = PlayerManager.instance.currency;
+        }
+        
+        currentSoulEssence.text = ((int)soulsAmount).ToString("#,#");
     }
 
     private void UpdateHealthUI()

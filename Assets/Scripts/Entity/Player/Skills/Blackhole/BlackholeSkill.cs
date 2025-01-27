@@ -75,6 +75,11 @@ public class BlackholeSkill : Skill
         return maxSize / 2;
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockBlackhole();
+    }
+
     private void UnlockBlackhole()
     {
         if (BlackholeUnlockButton.unlocked && !blackholeUnlocked)

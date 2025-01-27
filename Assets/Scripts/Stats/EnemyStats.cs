@@ -11,15 +11,18 @@ public class EnemyStats : CharacterStats
     private float percentageModifier = 0.4f;
 
     private Enemy enemy;
-    private ItemDrop myDropSystem => GetComponent<ItemDrop>();
+    private ItemDrop myDropSystem;
+    public Stat soulsDropAmount;
 
     protected override void Start()
     {
+        soulsDropAmount.SetValue(100);
         ApplyLevelModifiers();
 
         base.Start();
 
         enemy = GetComponent<Enemy>();
+        myDropSystem = GetComponent<ItemDrop>();
     }
 
     private void ApplyLevelModifiers()
@@ -42,6 +45,8 @@ public class EnemyStats : CharacterStats
         Modify(iceDamage);
         Modify(poisonDamage);
         Modify(arcaneDamage);
+
+        Modify(soulsDropAmount);
     }
 
     private void Modify(Stat _stat)
@@ -63,6 +68,7 @@ public class EnemyStats : CharacterStats
         base.Die();
         enemy.Die();
 
+        PlayerManager.instance.currency += soulsDropAmount.GetValue();
         myDropSystem.GenerateDrop();
     }
 }

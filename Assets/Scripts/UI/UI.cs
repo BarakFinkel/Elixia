@@ -1,7 +1,16 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+    [Header("Game Over Screen")]
+    [SerializeField] private UI_ScreenFade screenFade;
+    [SerializeField] private GameObject youDiedMessage;
+    [SerializeField] private float youDiedDisplayDelay = 1.0f;
+    [SerializeField] private GameObject restartButton;
+    [SerializeField] private float restartButtonDisplayDelay = 2.0f;
+    [Space]
     [SerializeField] private GameObject characterUI;
     [SerializeField] private GameObject skillTreeUI;
     [SerializeField] private GameObject craftUI;
@@ -16,7 +25,8 @@ public class UI : MonoBehaviour
     // Helps assign events to the skill tree slots before we assign events on the skill scripts
     private void Awake()
     {
-        SwitchTo(skillTreeUI); 
+        SwitchTo(skillTreeUI);
+        screenFade.gameObject.SetActive(true);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,10 +66,15 @@ public class UI : MonoBehaviour
 
     // Responsible for switching to the desired menu tab on-click
     public void SwitchTo(GameObject _menu)
-    {
+    {      
         for (var i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            bool screenFade = transform.GetChild(i).GetComponent<UI_ScreenFade>() != null;
+
+            if (!screenFade)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
 
         if (_menu != null)
@@ -86,7 +101,7 @@ public class UI : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if(transform.GetChild(i).gameObject.activeSelf)
+            if (transform.GetChild(i).GetComponent<UI_ScreenFade>() == null && transform.GetChild(i).gameObject.activeSelf)
             {
                 return;
             }
@@ -94,4 +109,23 @@ public class UI : MonoBehaviour
 
         SwitchTo(inGameUI);
     }
+
+    public void SwitchOnEndScreen()
+    {
+        screenFade.FadeOut();
+        StartCoroutine(EndScreenCoroutine());
+    }
+
+    private IEnumerator EndScreenCoroutine()
+    {
+        // Wait and display the end message.
+        yield return new WaitForSeconds(youDiedDisplayDelay);
+        youDiedMessage.SetActive(true);
+
+        // Wait and display the restart button.
+        yield return new WaitForSeconds(restartButtonDisplayDelay);
+        restartButton.SetActive(true);
+    }
+
+    public void RestartGameButton() => GameManager.instance.RestartScene();
 }

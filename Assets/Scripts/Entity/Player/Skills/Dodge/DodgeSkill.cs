@@ -27,6 +27,13 @@ public class DodgeSkill : Skill
         base.UseSkill();
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockDash();
+        UnlockCloneOnDodgeStart();
+        UnlockCloneOnDodgeEnd();
+    }
+
     private void UnlockDash()
     {
         if (unlockDashButton.unlocked && !dodgeUnlocked)

@@ -10,6 +10,7 @@ public class PlayerIdleState : PlayerGroundedState
         base.Enter();
 
         player.ZeroVelocity();
+
     }
 
     public override void Update()

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62d5b04f093e1a48ad800a4e10aeab7, type: 3}
   m_Name: Blood Syringe
   m_EditorClassIdentifier: 
+  itemID: 700ac488caed10f46a16b6cbc1ec2898
   itemType: 1
   itemName: Blood Syringe
   icon: {fileID: -410334530, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
@@ -20,7 +21,6 @@ MonoBehaviour:
   itemCooldown: 10
   itemEffects:
   - {fileID: 11400000, guid: e744a0a79457b2943bf34ad632af3ed7, type: 2}
-  itemEffectDescription: 
   strength: 0
   agility: 0
   intelligence: 0
@@ -38,4 +38,4 @@ MonoBehaviour:
   arcaneDamage: 0
   craftingMaterials:
   - data: {fileID: 11400000, guid: e54a64415328ff1479645de5320a3d16, type: 2}
-    stackSize: 10
+    stackSize: 1
