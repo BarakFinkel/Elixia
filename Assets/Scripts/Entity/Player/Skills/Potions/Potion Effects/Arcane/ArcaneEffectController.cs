@@ -84,7 +84,6 @@ public class ArcaneEffectController : MonoBehaviour
         var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Amulet);
         if (equippedAmulet != null)
         {
-            Debug.Log("Amulet found!");
             equippedAmulet.Effect(_target);
         }
     }
