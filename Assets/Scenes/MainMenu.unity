@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb167f049a9d5c44b6e1a98f823d461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Demo
+  sceneName: MainScene
   continueButton: {fileID: 520634312}
   screenFade: {fileID: 113840465}
   fadeTime: 2

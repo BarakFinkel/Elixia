@@ -15,7 +15,7 @@ public class PlayerLedgeDetection : MonoBehaviour
             player.ledgeDetected = Physics2D.OverlapCircle(transform.position, radius, whatIsGround);
         }
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))

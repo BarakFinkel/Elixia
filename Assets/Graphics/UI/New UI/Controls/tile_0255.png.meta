@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: b2987bf08be5d4fe686c38c1fab45c25
+guid: 1989727f11a10d844b28c7c4cc545a5b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8435870302652061844
-    second: Overgrowth_pt1_0
-  - first:
-      213: 4596967051632831873
-    second: Overgrowth_pt1_1
-  - first:
-      213: 9116316579737714791
-    second: Overgrowth_pt1_2
+      213: -1045189931128943570
+    second: tile_0255_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -81,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -116,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -145,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Overgrowth_pt1_0
+      name: tile_0255_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 85
-        width: 109
-        height: 84
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,52 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 498d7d8585b321570800000000000000
-      internalID: 8435870302652061844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Overgrowth_pt1_1
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 36
-        width: 83
-        height: 115
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 18defbc7d25bbcf30800000000000000
-      internalID: 4596967051632831873
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Overgrowth_pt1_2
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 1
-        width: 88
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 760454301a9a38e70800000000000000
-      internalID: 9116316579737714791
+      spriteID: e2c8e389b4dbe71f0800000000000000
+      internalID: -1045189931128943570
       vertices: []
       indices: 
       edges: []
@@ -224,9 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Overgrowth_pt1_0: 8435870302652061844
-      Overgrowth_pt1_1: 4596967051632831873
-      Overgrowth_pt1_2: 9116316579737714791
+      tile_0255_0: -1045189931128943570
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -602,6 +602,7 @@ public class CharacterStats : MonoBehaviour
         if (Random.Range(0, 100) < totalEvasion)
         {
             _targetStats.OnEvasion();
+            Debug.Log("I evaded!");
             return true;
         }
 

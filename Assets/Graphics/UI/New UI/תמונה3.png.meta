@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: b2987bf08be5d4fe686c38c1fab45c25
+guid: 3c4aa36bbc0688c4b845c53d0ac979c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8435870302652061844
-    second: Overgrowth_pt1_0
+      213: -4816943134347786852
+    second: "\u05EA\u05DE\u05D5\u05E0\u05D43_0"
   - first:
-      213: 4596967051632831873
-    second: Overgrowth_pt1_1
+      213: -7337303665155464880
+    second: "\u05EA\u05DE\u05D5\u05E0\u05D43_1"
   - first:
-      213: 9116316579737714791
-    second: Overgrowth_pt1_2
+      213: -1720473795257645601
+    second: "\u05EA\u05DE\u05D5\u05E0\u05D43_2"
+  - first:
+      213: -3207404509940083510
+    second: "\u05EA\u05DE\u05D5\u05E0\u05D43_3"
+  - first:
+      213: -830459309342036586
+    second: "\u05EA\u05DE\u05D5\u05E0\u05D43_4"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -52,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,7 +109,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -116,7 +122,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -145,13 +151,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Overgrowth_pt1_0
+      name: "\u05EA\u05DE\u05D5\u05E0\u05D43_0"
       rect:
         serializedVersion: 2
-        x: 9
-        y: 85
-        width: 109
-        height: 84
+        x: 72
+        y: 434
+        width: 701
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 498d7d8585b321570800000000000000
-      internalID: 8435870302652061844
+      spriteID: c9581f59db7c62db0800000000000000
+      internalID: -4816943134347786852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overgrowth_pt1_1
+      name: "\u05EA\u05DE\u05D5\u05E0\u05D43_1"
       rect:
         serializedVersion: 2
-        x: 133
-        y: 36
-        width: 83
-        height: 115
+        x: 807
+        y: 89
+        width: 395
+        height: 585
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18defbc7d25bbcf30800000000000000
-      internalID: 4596967051632831873
+      spriteID: 051ac35f039ac2a90800000000000000
+      internalID: -7337303665155464880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overgrowth_pt1_2
+      name: "\u05EA\u05DE\u05D5\u05E0\u05D43_2"
       rect:
         serializedVersion: 2
-        x: 36
-        y: 1
-        width: 88
-        height: 68
+        x: 1349
+        y: 229
+        width: 120
+        height: 445
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,8 +210,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 760454301a9a38e70800000000000000
-      internalID: 9116316579737714791
+      spriteID: fd5cc4cd236af18e0800000000000000
+      internalID: -1720473795257645601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u05EA\u05DE\u05D5\u05E0\u05D43_3"
+      rect:
+        serializedVersion: 2
+        x: 1615
+        y: 229
+        width: 120
+        height: 445
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4190e77920d73d0800000000000000
+      internalID: -3207404509940083510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u05EA\u05DE\u05D5\u05E0\u05D43_4"
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 89
+        width: 557
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d604a78ad9974f0800000000000000
+      internalID: -830459309342036586
       vertices: []
       indices: 
       edges: []
@@ -214,7 +264,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -224,9 +274,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Overgrowth_pt1_0: 8435870302652061844
-      Overgrowth_pt1_1: 4596967051632831873
-      Overgrowth_pt1_2: 9116316579737714791
+      "\u05EA\u05DE\u05D5\u05E0\u05D43_0": -4816943134347786852
+      "\u05EA\u05DE\u05D5\u05E0\u05D43_1": -7337303665155464880
+      "\u05EA\u05DE\u05D5\u05E0\u05D43_2": -1720473795257645601
+      "\u05EA\u05DE\u05D5\u05E0\u05D43_3": -3207404509940083510
+      "\u05EA\u05DE\u05D5\u05E0\u05D43_4": -830459309342036586
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
