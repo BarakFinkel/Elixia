@@ -38,6 +38,7 @@ public class PlayerCounterAttackState : PlayerState
                 {
                     stateTimer = 10.0f; // Static value - just to make sure the player doesn't exit the state too soon.
                     player.anim.SetBool("SuccessfulCounterAttack", true);
+                    AudioManager.instance.PlaySFX(28, 0, null);
 
                     player.skillManager.counterAttack.UseSkill(); // Will have effect when the player unlocks the health restoration feature on this skill.
 

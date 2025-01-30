@@ -9,6 +9,8 @@ public class IceEffectController : MonoBehaviour
     {
         enemyFreezeTime = _enemyFreezeTime;
         cd = GetComponent<CircleCollider2D>();
+
+        AudioManager.instance.PlaySFX(27, 0, null);
     }
 
     public void IceBlastDamage()

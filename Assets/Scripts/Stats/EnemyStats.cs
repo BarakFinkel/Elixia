@@ -6,6 +6,9 @@ public class EnemyStats : CharacterStats
     [SerializeField]
     private int level = 1;
 
+    [SerializeField]
+    private int startAmount = 10000;
+
     [Range(0f, 1f)]
     [SerializeField]
     private float percentageModifier = 0.4f;
@@ -16,7 +19,7 @@ public class EnemyStats : CharacterStats
 
     protected override void Start()
     {
-        soulsDropAmount.SetValue(100);
+        soulsDropAmount.SetValue(startAmount);
         ApplyLevelModifiers();
 
         base.Start();

@@ -94,6 +94,8 @@ public class ArcanePotionEffect : BasePotionEffect
     public void CreatePowerEffect(GameObject obj, Vector3 offset)
     {
         currentEffect = Instantiate(arcaneEffectPrefab, obj.transform.position + offset, Quaternion.identity);
+
+        AudioManager.instance.PlaySFX(0, 0, PlayerManager.instance.player.transform);
     }
 
     public void CreateCrystal(GameObject obj, Vector3 offset)

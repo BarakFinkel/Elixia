@@ -36,5 +36,10 @@ public class PlayerAirState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        if (player.IsGroundDetected())
+        {
+            AudioManager.instance.PlaySFX(24, 0, null);
+        }
     }
 }

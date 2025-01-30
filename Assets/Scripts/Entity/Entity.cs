@@ -24,7 +24,7 @@ public class Entity : MonoBehaviour
     protected Transform wallCheck;
 
     [SerializeField]
-    protected float wallCheckDistance;
+    protected Vector2 wallCheckSize = new Vector3 (0.2f, 2.0f, 0.0f);
 
     [SerializeField]
     protected LayerMask whatIsGround;
@@ -143,7 +143,7 @@ public class Entity : MonoBehaviour
     // A method to check if the player is within the given distance from a ground object.
     public bool IsWallDetected()
     {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
+        return Physics2D.OverlapBox(wallCheck.position, new Vector2(wallCheckSize.x, wallCheckSize.y), transform.eulerAngles.z, whatIsGround);
     }
 
     // A method to display a line representing the ray for collision checks.
@@ -151,8 +151,7 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position,
             new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
-        Gizmos.DrawLine(wallCheck.position,
-            new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        Gizmos.DrawWireCube(wallCheck.position, wallCheckSize);
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
 
@@ -165,8 +164,7 @@ public class Entity : MonoBehaviour
     {
         facingDir = facingDir * -1; // -1 in order to represent flipping on the x axis on the opposite direction.
         facingRight = !facingRight;
-        transform.Rotate(0, 180,
-            0); // 180 Degrees in order to actively flip the player to the opposite x-axis direction.
+        transform.Rotate(0, 180, 0); // 180 Degrees in order to actively flip the player to the opposite x-axis direction.
 
         if (onFlipped != null)
         {

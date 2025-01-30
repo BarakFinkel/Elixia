@@ -29,19 +29,19 @@ public class PlayerGroundedState : PlayerState
         }
 
         // If we press L-Click, we move to the attack state.
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !player.isUIActive)
         {
             stateMachine.ChangeState(player.primaryAttackState);
         }
 
         // If we press R-Click, we move to the aim sword state if we're able to.
-        if (Input.GetKeyDown(KeyCode.Mouse1) && player.skillManager.sword.swordUnlocked && player.canUseSwordSkill && HasNoSword() && player.skillManager.sword.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !player.isUIActive && player.skillManager.sword.swordUnlocked && player.canUseSwordSkill && HasNoSword() && player.skillManager.sword.CanUseSkill())
         {
             stateMachine.ChangeState(player.aimSwordState);
         }
 
         // If we press R-Click, we move to the aim potion state if we're able to.
-        if (Input.GetKeyDown(KeyCode.Mouse1) && player.skillManager.potion.potionUnlocked && !player.canUseSwordSkill && player.skillManager.potion.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !player.isUIActive && player.skillManager.potion.potionUnlocked && !player.canUseSwordSkill && player.skillManager.potion.CanUseSkill())
         {
             stateMachine.ChangeState(player.aimState);
         }
@@ -53,7 +53,7 @@ public class PlayerGroundedState : PlayerState
         }
 
         // If we press F, we move to the counter attack state.
-        if (Input.GetKeyDown(KeyCode.F) && player.skillManager.counterAttack.counterAttackUnlocked && player.skillManager.counterAttack.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.F) && !player.IsWallDetected() && player.skillManager.counterAttack.counterAttackUnlocked && player.skillManager.counterAttack.CanUseSkill())
         {
             stateMachine.ChangeState(player.counterAttackState);
         }

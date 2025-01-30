@@ -7,6 +7,14 @@ public class UI_InGame : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Slider HPslider;
 
+    // Locked Images
+    [SerializeField] private Image lockedSyringeImage;
+    [SerializeField] private Image lockedDodgeImage;
+    [SerializeField] private Image lockedCounterAttackImage;
+    [SerializeField] private Image lockedBlackholeImage;
+    [SerializeField] private Image lockedSwordImage;
+    [SerializeField] private Image lockedPotionImage;
+
     [SerializeField] private Image syringeImage;
     [SerializeField] private Image dodgeImage;
     [SerializeField] private Image counterAttackImage;
@@ -19,10 +27,9 @@ public class UI_InGame : MonoBehaviour
     [Header("Souls Information")]
     [SerializeField] private TextMeshProUGUI currentSoulEssence;
     [SerializeField] private float increaseRate = 2500;
-    private float soulsAmount;
+    private float soulsAmount = 0;
 
     private bool usingSword = true;
-
     private float swordCooldownTimer;
     private float potionCooldownTimer;
     private float currentPotionCooldown;
@@ -40,7 +47,9 @@ public class UI_InGame : MonoBehaviour
     private void Update()
     {
         UpdateSoulsUI();
-        
+        CheckUnlockSkillsUI();
+        CheckUnlockSyringeUI();
+
         if (swordCooldownTimer > 0)
         {
             swordCooldownTimer = Mathf.Max(swordCooldownTimer - Time.deltaTime, 0);
@@ -63,7 +72,7 @@ public class UI_InGame : MonoBehaviour
             potionImage.transform.parent.gameObject.SetActive(true);                
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftShift) && skills.dodge.dodgeUnlocked)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && skills.dodge.dodgeUnlocked && !PlayerManager.instance.player.IsWallDetected())
         {
             SetCooldownOf(dodgeImage);
         }
@@ -102,8 +111,15 @@ public class UI_InGame : MonoBehaviour
         {
             soulsAmount = PlayerManager.instance.currency;
         }
-        
-        currentSoulEssence.text = ((int)soulsAmount).ToString("#,#");
+
+        if (soulsAmount == 0)
+        {
+            currentSoulEssence.text = "0";
+        }
+        else
+        {
+            currentSoulEssence.text = ((int)soulsAmount).ToString("#,#");
+        }
     }
 
     private void UpdateHealthUI()
@@ -160,5 +176,45 @@ public class UI_InGame : MonoBehaviour
         SetCooldownOf(potionImage);
         potionCooldownTimer = _cooldown;
         currentPotionCooldown = _cooldown;
+    }
+
+    public void CheckUnlockSkillsUI()
+    {
+        if (skills.dodge.dodgeUnlocked)
+        {
+            lockedDodgeImage.gameObject.SetActive(false);
+        }
+
+        if (skills.counterAttack.counterAttackUnlocked)
+        {
+            lockedCounterAttackImage.gameObject.SetActive(false);
+        }
+        
+        if (skills.blackhole.blackholeUnlocked)
+        {
+            lockedBlackholeImage.gameObject.SetActive(false);
+        }
+
+        if (skills.sword.swordUnlocked)
+        {
+            lockedSwordImage.gameObject.SetActive(false);
+        }
+
+        if (skills.potion.potionUnlocked)
+        {
+            lockedPotionImage.gameObject.SetActive(false);
+        }
+    }
+
+    public void CheckUnlockSyringeUI()
+    {
+        if (Inventory.instance.EquipmentOfTypeExists(EquipmentType.Syringe))
+        {
+            lockedSyringeImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            lockedSyringeImage.gameObject.SetActive(true);
+        }
     }
 }

@@ -22,8 +22,9 @@ public class SkeletonGroundedState : EnemyState
     {
         base.Update();
 
-        if (enemy.IsPlayerDetected() ||
-            Vector2.Distance(enemy.transform.position, player.position) < enemy.closeAggroDistance)
+        if ((enemy.IsPlayerDetected() ||
+            Vector2.Distance(enemy.transform.position, player.position) < enemy.closeAggroDistance) &&
+            !player.gameObject.GetComponent<CharacterStats>().isDead)
         {
             stateMachine.ChangeState(enemy.battleState);
         }

@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Player>() != null)
+        if (other.GetComponent<Player>() != null && !activationStatus)
         {
             ActivateCheckpoint();
         }
@@ -24,5 +24,6 @@ public class Checkpoint : MonoBehaviour
     {
         activationStatus = true;
         anim.SetBool("active", true);
+        AudioManager.instance.PlaySFX(20, 0, PlayerManager.instance.player.transform);
     }
 }

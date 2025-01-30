@@ -1,9 +1,8 @@
 using System.Collections;
-using TreeEditor;
 using UnityEngine;
 
 public class Player : Entity
-{
+{  
     [SerializeField]
     public float busyWaitDuration = 0.2f;
 
@@ -35,6 +34,14 @@ public class Player : Entity
 
     [SerializeField]
     public float wallJumpXSpeed = 5.0f;
+    [SerializeField] private PlayerLedgeDetection ledgeDetector;
+    [SerializeField] private Vector2 ledgeOffset1;
+    [SerializeField] private Vector2 ledgeOffset2;
+    public Vector2 climbBegunPosition;
+    public Vector2 climbOverPosition;
+    public bool canGrabLedge = true;
+    public bool canClimb;
+    public bool jumpAfterLedgeClimb = false;
 
     [Header("Dodge Information")]
     [SerializeField]
@@ -59,12 +66,13 @@ public class Player : Entity
     [SerializeField]
     public float counterAttackDuration = 0.3f;
 
-    [SerializeField]
     public bool canUseSwordSkill;
-
     private float defaultDodgeSpeed;
     private float defaultJumpForce;
     private float defaultMovespeed;
+    public bool ledgeDetected;
+
+    public bool isUIActive;
 
     [Header("General Information")] public bool isBusy { get; private set; }
 
@@ -83,6 +91,7 @@ public class Player : Entity
         airState = new PlayerAirState(this, stateMachine, "Jump");
         wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
+        canClimbState = new PlayerCanClimbState(this, stateMachine, "CanClimb");
         dodgeState = new PlayerDodgeState(this, stateMachine, "Dodge");
 
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
@@ -106,6 +115,7 @@ public class Player : Entity
 
         skillManager = SkillManager.instance;
         stateMachine.Initialize(idleState);
+        ledgeDetector = gameObject.GetComponentInChildren<PlayerLedgeDetection>();
 
         defaultMovespeed = moveSpeed;
         defaultJumpForce = jumpForce;
@@ -119,6 +129,7 @@ public class Player : Entity
 
         stateMachine.currentState.Update();
         CheckForDodgeInput();
+        CheckForLedge();
         CheckForWeaponSkillChange();
     }
 
@@ -164,6 +175,34 @@ public class Player : Entity
         isBusy = false;
     }
 
+    private void CheckForLedge()
+    {
+        if (ledgeDetected && canGrabLedge)
+        {
+            canGrabLedge = false;
+
+            Vector2 ledgePosition = GetComponentInChildren<PlayerLedgeDetection>().transform.position;
+
+            climbBegunPosition = ledgePosition + new Vector2(ledgeOffset1.x * facingDir, ledgeOffset1.y);
+            climbOverPosition = ledgePosition + new Vector2(ledgeOffset2.x * facingDir, ledgeOffset2.y);
+
+            canClimb = true;
+        }
+
+        if (canClimb)
+        {
+            stateMachine.ChangeState(canClimbState);
+            canClimb = false;
+        }
+    }
+
+    public void AllowLedgeGrabWithDelay()
+    {
+        Invoke("AllowLedgeGrab", 0.5f);
+    }
+    
+    private void AllowLedgeGrab() => canGrabLedge = true;
+
     public IEnumerator CancelGroundCheck(float _seconds)
     {
         groundCheck.gameObject.SetActive(false);
@@ -184,28 +223,21 @@ public class Player : Entity
     // This state transition is being made in the player script because we want to enable dodging when performing other activities.
     private void CheckForDodgeInput()
     {
-        if (IsWallDetected())
+        if (!IsWallDetected() && skillManager.dodge.dodgeUnlocked)
         {
-            return;
-        }
-
-        if (!skillManager.dodge.dodgeUnlocked)
-        {
-            return;
-        }
-
-        // If we press Shift and also on the ground.
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGroundDetected() && SkillManager.instance.dodge.CanUseSkill())
-        {
-            dodgeDir = Input.GetAxisRaw("Horizontal");
-
-            // If there is no x-Axis input, we just set the dodge direction to the facing direction.
-            if (dodgeDir == 0)
+            // If we press Shift and also on the ground.
+            if (Input.GetKeyDown(KeyCode.LeftShift) && IsGroundDetected() && SkillManager.instance.dodge.CanUseSkill())
             {
-                dodgeDir = facingDir;
-            }
+                dodgeDir = Input.GetAxisRaw("Horizontal");
 
-            stateMachine.ChangeState(dodgeState);
+                // If there is no x-Axis input, we just set the dodge direction to the facing direction.
+                if (dodgeDir == 0)
+                {
+                    dodgeDir = facingDir;
+                }
+
+                stateMachine.ChangeState(dodgeState);
+            }
         }
     }
 
@@ -248,6 +280,7 @@ public class Player : Entity
     public PlayerAirState airState { get; private set; }
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
+    public PlayerCanClimbState canClimbState { get; private set; }
     public PlayerDodgeState dodgeState { get; private set; }
 
     // Attack States

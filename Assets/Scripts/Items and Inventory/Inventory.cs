@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
 
@@ -44,6 +43,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     public float syringeCooldown { get; private set; }
 
     [Header("Database")]
+    public List<ItemData> itemDataBase;
     public List<InventoryItem> loadedItems;
     public List<ItemData_Equipment> loadedEquipment;
 
@@ -416,8 +416,8 @@ public class Inventory : MonoBehaviour, ISaveManager
         foreach (KeyValuePair<string, int> pair in _data.inventory)
         {
             // We go over each item in the database
-            foreach (var loadedItemID in GetItemDataBase())
-            {
+            foreach (ItemData loadedItemID in itemDataBase)
+            {    
                 // If we have a match between the id's of both sides, we create an InventoryItem that will be store in our load file.
                 if (loadedItemID != null && loadedItemID.itemID == pair.Key)
                 {
@@ -431,7 +431,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         foreach (string loadedItemID in _data.equipmentIDs)
         {
-            foreach (var item in GetItemDataBase())
+            foreach (ItemData item in itemDataBase)
             {
                 if (item != null && loadedItemID == item.itemID)
                 {
@@ -464,6 +464,10 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
     }
 
+    #if UNITY_EDITOR
+    [ContextMenu("Fillup item data base")]
+    private void FillUpItemDataBase() => itemDataBase = new List<ItemData>(GetItemDataBase());
+
     private List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDataBase = new List<ItemData>();
@@ -478,5 +482,18 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
 
         return itemDataBase;
+    }
+    #endif
+
+    public bool EquipmentOfTypeExists(EquipmentType type)
+    {
+        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
+        {
+            if(pair.Key.equipmentType == type)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

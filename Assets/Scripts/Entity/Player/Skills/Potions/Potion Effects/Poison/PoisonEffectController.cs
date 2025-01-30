@@ -41,6 +41,7 @@ public class PoisonEffectController : MonoBehaviour
         system = GetComponent<ParticleSystem>();
         colliderObject = transform.GetChild(0);
         isScaling = true;
+        AudioManager.instance.PlaySFX(3, 0, PlayerManager.instance.player.transform);
 
         if (colliderObject != null)
         {

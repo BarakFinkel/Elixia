@@ -41,6 +41,7 @@ public class PotionSkillController : MonoBehaviour
 
         sr.sprite = SkillManager.instance.potion.brokenPotion;
         rb.linearVelocity = new Vector2(0, 0);
+        AudioManager.instance.PlaySFX(26, 0, null);
 
         potionEffect.ActivatePotionEffect(gameObject);
 

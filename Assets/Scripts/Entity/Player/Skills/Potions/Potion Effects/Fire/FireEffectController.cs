@@ -31,6 +31,7 @@ public class FireEffectController : MonoBehaviour
     {
         damageCooldown = _damageCooldown;
         cd = GetComponent<CapsuleCollider2D>();
+        AudioManager.instance.PlaySFX(7, 0, PlayerManager.instance.player.transform);
     }
 
     private bool CanDamage(Enemy enemy)

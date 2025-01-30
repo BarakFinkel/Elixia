@@ -12,6 +12,7 @@ public class PlayerWallSlideState : PlayerState
         base.Enter();
 
         stateTimer = player.wallSlideLockJumpTime;
+        AudioManager.instance.PlaySFX(29, 0, null);
     }
 
     public override void Update()
@@ -49,5 +50,7 @@ public class PlayerWallSlideState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        AudioManager.instance.StopSFX(29);
     }
 }

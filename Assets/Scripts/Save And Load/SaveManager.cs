@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.Collections;
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
     
     [SerializeField] private string fileName;
+    [SerializeField] private string filePath = "idbfs/ElixiaGameSaveDirectory206332bfnb";
     [SerializeField] private bool encryptData;
-    private GameData gameData;
+    public GameData gameData;
     private FileDataHandler dataHandler;
     private List<ISaveManager> saveManagers;
+    private bool saveLoaded = false;
 
     public void Awake()
     {
@@ -27,9 +28,10 @@ public class SaveManager : MonoBehaviour
 
     public void Start()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
+        dataHandler = new FileDataHandler(filePath, fileName, encryptData);
         saveManagers = FindAllSaveManagers();
         LoadGame();
+        saveLoaded = true;
     }
 
     public void NewGame()
@@ -71,7 +73,7 @@ public class SaveManager : MonoBehaviour
     [ContextMenu("Delete Save File")]
     public void DeleteSavedData()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
+        dataHandler = new FileDataHandler(filePath, fileName, encryptData);
         dataHandler.Delete();
     }
 
@@ -89,5 +91,10 @@ public class SaveManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public bool LoadStatus()
+    {
+        return saveLoaded;
     }
 }

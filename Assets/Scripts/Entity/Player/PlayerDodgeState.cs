@@ -11,6 +11,7 @@ public class PlayerDodgeState : PlayerState
 
         player.skillManager.dodge.CreateCloneOnDodgeStart();
         stateTimer = player.dodgeDuration;
+        AudioManager.instance.PlaySFX(23, 0, null);
 
         player.cs.EnableInvulnerability();
     }

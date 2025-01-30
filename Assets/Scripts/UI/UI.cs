@@ -1,8 +1,8 @@
 using System.Collections;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class UI : MonoBehaviour
+public class UI : MonoBehaviour, ISaveManager
 {
     [Header("Game Over Screen")]
     [SerializeField] private UI_ScreenFade screenFade;
@@ -21,6 +21,8 @@ public class UI : MonoBehaviour
     public UI_StatTooltip statTooltip;
     public UI_SkillTooltip skillTooltip;
     public UI_CraftWindow craftWindow;
+
+    [SerializeField] private UI_VolumeSlider[] volumeSettings;
 
     // Helps assign events to the skill tree slots before we assign events on the skill scripts
     private void Awake()
@@ -61,7 +63,14 @@ public class UI : MonoBehaviour
             SwitchWithKeyTo(settingsUI);
         }
 
-
+        if (inGameUI.activeSelf)
+        {
+            PlayerManager.instance.player.isUIActive = false;
+        }
+        else
+        {
+            PlayerManager.instance.player.isUIActive = true;
+        }
     }
 
     // Responsible for switching to the desired menu tab on-click
@@ -70,7 +79,6 @@ public class UI : MonoBehaviour
         for (var i = 0; i < transform.childCount; i++)
         {
             bool screenFade = transform.GetChild(i).GetComponent<UI_ScreenFade>() != null;
-
             if (!screenFade)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
@@ -128,4 +136,28 @@ public class UI : MonoBehaviour
     }
 
     public void RestartGameButton() => GameManager.instance.RestartScene();
+
+    public void LoadData(GameData _data)
+    {
+        foreach (KeyValuePair<string, float> pair in _data.volumeSettings)
+        {
+            foreach (UI_VolumeSlider slider in volumeSettings)
+            {
+                if (slider.parameter == pair.Key)
+                {
+                    slider.LoadSlider(pair.Value);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.volumeSettings.Clear();
+
+        foreach (UI_VolumeSlider slider in volumeSettings)
+        {
+            _data.volumeSettings.Add(slider.parameter, slider.slider.value);
+        }
+    }
 }

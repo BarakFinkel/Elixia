@@ -1,5 +1,3 @@
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -9,11 +7,15 @@ public class GameData
     public SerializableDictionary<string,bool> skillTree;
     public SerializableDictionary<string, int> inventory;
     public SerializableDictionary<string, bool> checkpoints;
-    public List<string> equipmentIDs;
     public string closestCheckpointID;
+    
+    public List<string> equipmentIDs;
+    
     public float lostCurrencyX;
     public float lostCurrencyY;
     public int lostCurrencyAmount;
+
+    public SerializableDictionary<string, float> volumeSettings;
 
     public GameData()
     {
@@ -27,5 +29,6 @@ public class GameData
         this.checkpoints = new SerializableDictionary<string, bool>();
         this.equipmentIDs = new List<string>();
         this.closestCheckpointID = string.Empty;
+        this.volumeSettings = new SerializableDictionary<string, float>();
     }
 }

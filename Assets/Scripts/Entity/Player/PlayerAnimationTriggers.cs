@@ -12,6 +12,8 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
     private void AttackTrigger()
     {
+        AudioManager.instance.PlaySFX(13, 0.0f, null); // attack sfx
+        
         // All enemies within the attack range
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 
@@ -32,6 +34,21 @@ public class PlayerAnimationTriggers : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void StepSound1()
+    {
+        AudioManager.instance.PlaySFX(18, 0, null);
+    }
+
+    private void StepSound2()
+    {
+        AudioManager.instance.PlaySFX(19, 0, null);
+    }
+
+    private void PlayHealSound()
+    {
+        AudioManager.instance.PlaySFX(30, 0, null);
     }
 
     private void HealPlayer()

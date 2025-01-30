@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 // Created as a singleton - since we don't want more than 1 to be active.
 public class PotionEffectManager : MonoBehaviour

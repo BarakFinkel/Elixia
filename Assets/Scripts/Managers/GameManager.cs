@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Linq;
-using TMPro;
 using System.Collections;
 
 public class GameManager : MonoBehaviour, ISaveManager

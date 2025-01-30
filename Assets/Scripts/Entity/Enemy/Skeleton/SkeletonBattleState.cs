@@ -17,11 +17,22 @@ public class SkeletonBattleState : EnemyState
         base.Enter();
 
         player = PlayerManager.instance.player.transform;
+
+        if (enemy.initialBattleState)
+        {
+            AudioManager.instance.PlaySFX(10,0,enemy.transform);
+            enemy.initialBattleState = false;
+        }
     }
 
     public override void Update()
     {
         base.Update();
+
+        if (player.gameObject.GetComponent<CharacterStats>().isDead)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+        }
 
         // Determine the direcion in which the player is at, and move towards him.
         if (player.position.x > enemy.transform.position.x)

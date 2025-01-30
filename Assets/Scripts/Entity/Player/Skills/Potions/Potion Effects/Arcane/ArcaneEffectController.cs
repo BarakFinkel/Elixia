@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class ArcaneEffectController : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask whatIsEnemy;
+    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private AudioClip movementSound;
+    [SerializeField] private AudioClip explosionSound;
+    private AudioSource movementSoundSource;
+    private AudioSource explosionSoundSource;
 
     private bool canExplode;
     private bool canGrow;
@@ -62,6 +65,15 @@ public class ArcaneEffectController : MonoBehaviour
         growSpeed = _growSpeed;
         growScale = _growScale;
         closestTarget = FindClosestEnemy(gameObject.transform);
+
+        movementSoundSource = gameObject.AddComponent<AudioSource>();
+        movementSoundSource.clip = movementSound;
+
+        explosionSoundSource = gameObject.AddComponent<AudioSource>();
+        explosionSoundSource.clip = explosionSound;
+
+        movementSoundSource.volume = 0.25f;
+        movementSoundSource.Play();
     }
 
     private void AnimationExplodeEvent()
@@ -84,7 +96,6 @@ public class ArcaneEffectController : MonoBehaviour
         var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Amulet);
         if (equippedAmulet != null)
         {
-            Debug.Log("Amulet found!");
             equippedAmulet.Effect(_target);
         }
     }
@@ -95,6 +106,9 @@ public class ArcaneEffectController : MonoBehaviour
         {
             canMove = false;
             canGrow = true;
+
+            movementSoundSource.Stop();
+            //explosionSoundSource.Play();
             anim.SetTrigger("Explode");
         }
         else

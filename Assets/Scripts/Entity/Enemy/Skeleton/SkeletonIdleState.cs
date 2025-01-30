@@ -10,6 +10,7 @@ public class SkeletonIdleState : SkeletonGroundedState
         base.Enter();
 
         enemy.ZeroVelocity();
+        enemy.initialBattleState = true;
         stateTimer = enemy.idleTime;
     }
 
@@ -26,5 +27,7 @@ public class SkeletonIdleState : SkeletonGroundedState
     public override void Exit()
     {
         base.Exit();
+
+        AudioManager.instance.PlaySFX(9, 0, enemy.transform);
     }
 }
