@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerBlackholeState : PlayerState
 {
-    private readonly int flyingHeight = 6;
+    private readonly int flyingHeight = 4;
     private readonly float flyTime = .8f;
     private float defaultGravity;
     private bool skillUsed;

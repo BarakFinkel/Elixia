@@ -9946,7 +9946,7 @@ MonoBehaviour:
     modifiers: 
   baseCritPower: 150
   maxHealth:
-    baseValue: 100
+    baseValue: 10000
     modifiers: 
   armor:
     baseValue: 0
@@ -43670,7 +43670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24eaf378759d00a4c81beabe3dece225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 30
+  cooldown: 0
   BlackholeUnlockButton: {fileID: 923365631}
   cloneCooldown: 0.35
   amountOfAttacks: 5
@@ -43679,7 +43679,7 @@ MonoBehaviour:
   maxSize: 15
   growSpeed: 3
   shrinkSpeed: 6
-  yOffset: 4
+  yOffset: 3
 --- !u!114 &1527624339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52817,7 +52817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 709741110}
-  currency: 0
+  currency: 100000
 --- !u!4 &2048644654
 Transform:
   m_ObjectHideFlags: 0
