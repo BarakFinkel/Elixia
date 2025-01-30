@@ -183,7 +183,7 @@ public class SwordSkillController : MonoBehaviour
             enemy.cs.StunShockFor(freezeTimeDur);
         }
 
-        var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Amulet);
+        var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Jewelry);
 
         if (equippedAmulet != null)
         {

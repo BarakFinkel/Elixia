@@ -5,7 +5,7 @@ public enum EquipmentType
 {
     Weapon,
     Armor,
-    Amulet,
+    Jewelry,
     Syringe
 }
 

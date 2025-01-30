@@ -93,7 +93,7 @@ public class ArcaneEffectController : MonoBehaviour
     // If we have an amulet that should add additional effects to the ability - we execute the effect.
     protected void ItemEffect(Transform _target)
     {
-        var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Amulet);
+        var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Jewelry);
         if (equippedAmulet != null)
         {
             equippedAmulet.Effect(_target);
