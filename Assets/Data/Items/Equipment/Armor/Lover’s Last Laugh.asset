@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62d5b04f093e1a48ad800a4e10aeab7, type: 3}
+  m_Name: "Lover\u2019s Last Laugh"
+  m_EditorClassIdentifier: 
+  itemID: 8dc11f563b28e45daa6bdb66a599a8f6
+  itemType: 1
+  itemName: "Lover\u2019s Last Laugh"
+  iconTransparent: {fileID: 1236261992, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  iconBackground: {fileID: -1226918627, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 5
+  equipmentType: 1
+  itemCooldown: 60
+  itemEffects:
+  - {fileID: 11400000, guid: 5e1e0dae51845d9418d3dc1156ad3380, type: 2}
+  strength: 30
+  agility: 30
+  intelligence: 30
+  vitality: 30
+  damage: 0
+  critChance: 0
+  critPower: 0
+  health: 100
+  armor: 100
+  evasion: 100
+  magicResistance: 100
+  fireDamage: 0
+  iceDamage: 0
+  poisonDamage: 0
+  arcaneDamage: 0
+  craftingMaterials: []

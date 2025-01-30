@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c976ab7564960c479f1af611e01ea06, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
+  itemID: 81541ca0f47da8e4999dbd992e2d598a
   itemType: 0
   itemName: Iron
-  icon: {fileID: 1025795234, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  dropChance: 55
+  iconTransparent: {fileID: -104826009, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  iconBackground: {fileID: 1025795234, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 70

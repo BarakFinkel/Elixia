@@ -12,7 +12,7 @@ public class UI_CraftSlot : UI_ItemSlot
         if (_data != null)
         {
             item.data = _data;
-            itemImage.sprite = _data.icon;
+            itemImage.sprite = _data.iconBackground;
             itemText.text = _data.itemName;
         }
     }

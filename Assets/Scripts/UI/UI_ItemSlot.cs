@@ -69,7 +69,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
         if (item != null)
         {
-            itemImage.sprite = item.data.icon;
+            itemImage.sprite = item.data.iconBackground;
 
             if (item.stackSize > 1)
             {

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62d5b04f093e1a48ad800a4e10aeab7, type: 3}
+  m_Name: Titanbane Cuirass
+  m_EditorClassIdentifier: 
+  itemID: 51be3ac5e8cb14664b464c77e1928f1d
+  itemType: 1
+  itemName: Titanbane Cuirass
+  iconTransparent: {fileID: -1294465547, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  iconBackground: {fileID: -1547736094, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
+  equipmentType: 1
+  itemCooldown: 0
+  itemEffects: []
+  strength: 10
+  agility: 0
+  intelligence: 0
+  vitality: 30
+  damage: 0
+  critChance: 0
+  critPower: 0
+  health: 200
+  armor: 120
+  evasion: 20
+  magicResistance: 20
+  fireDamage: 0
+  iceDamage: 0
+  poisonDamage: 0
+  arcaneDamage: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 81541ca0f47da8e4999dbd992e2d598a, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 8fcf9221745e5425e8d69dca73a8866f, type: 2}
+    stackSize: 1

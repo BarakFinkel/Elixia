@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62d5b04f093e1a48ad800a4e10aeab7, type: 3}
+  m_Name: Stormheart Tonic
+  m_EditorClassIdentifier: 
+  itemID: 1095605b4a7fe4bb3b835ffe0ab76525
+  itemType: 1
+  itemName: Stormheart Tonic
+  iconTransparent: {fileID: -725617236, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  iconBackground: {fileID: 23200006, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
+  equipmentType: 3
+  itemCooldown: 70
+  itemEffects:
+  - {fileID: 11400000, guid: e744a0a79457b2943bf34ad632af3ed7, type: 2}
+  - {fileID: 11400000, guid: f147217b478ed4872b9404c4a6c3c1d0, type: 2}
+  strength: 0
+  agility: 0
+  intelligence: 0
+  vitality: 0
+  damage: 0
+  critChance: 0
+  critPower: 0
+  health: 0
+  armor: 0
+  evasion: 0
+  magicResistance: 0
+  fireDamage: 0
+  iceDamage: 0
+  poisonDamage: 0
+  arcaneDamage: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: aa7746774b5cc46429c7ec6c9eff4d6f, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 527657c287cbb4462a181f10db296272, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 1b97b075585da4792a552e1a69510106, type: 2}
+    stackSize: 1

@@ -39,7 +39,7 @@ public class UI_CraftWindow : MonoBehaviour
             }
 
             // We update the current needed material's icon.
-            materialsImages[i].sprite = _data.craftingMaterials[i].data.icon;
+            materialsImages[i].sprite = _data.craftingMaterials[i].data.iconBackground;
             materialsImages[i].color = Color.white;
 
             // We update the current needed material's text.
@@ -48,7 +48,7 @@ public class UI_CraftWindow : MonoBehaviour
             materialSlotText.color = Color.white;
         }
 
-        itemImage.sprite = _data.icon;
+        itemImage.sprite = _data.iconBackground;
         itemName.text = _data.itemName;
         itemDescription.text = _data.GetDescription(0);
 

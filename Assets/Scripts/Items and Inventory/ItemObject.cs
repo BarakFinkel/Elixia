@@ -15,7 +15,7 @@ public class ItemObject : MonoBehaviour
             return;
         }
 
-        GetComponent<SpriteRenderer>().sprite = itemData.icon;
+        GetComponent<SpriteRenderer>().sprite = itemData.iconTransparent;
         gameObject.name = "Item Object - " + itemData.itemName;
     }
 

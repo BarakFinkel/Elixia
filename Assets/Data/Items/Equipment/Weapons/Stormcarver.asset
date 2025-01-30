@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62d5b04f093e1a48ad800a4e10aeab7, type: 3}
+  m_Name: Stormcarver
+  m_EditorClassIdentifier: 
+  itemID: 917f5e757c7f34d9c88aebfa46523778
+  itemType: 1
+  itemName: Stormcarver
+  iconTransparent: {fileID: 1863113123, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  iconBackground: {fileID: 1724600912, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
+  equipmentType: 0
+  itemCooldown: 0
+  itemEffects: []
+  strength: 15
+  agility: 0
+  intelligence: 5
+  vitality: 0
+  damage: 20
+  critChance: 10
+  critPower: 40
+  health: 0
+  armor: 0
+  evasion: 0
+  magicResistance: 0
+  fireDamage: 0
+  iceDamage: 0
+  poisonDamage: 0
+  arcaneDamage: 10
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 81541ca0f47da8e4999dbd992e2d598a, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 1b97b075585da4792a552e1a69510106, type: 2}
+    stackSize: 1

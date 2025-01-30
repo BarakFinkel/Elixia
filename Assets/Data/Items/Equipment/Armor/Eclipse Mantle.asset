@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62d5b04f093e1a48ad800a4e10aeab7, type: 3}
+  m_Name: Eclipse Mantle
+  m_EditorClassIdentifier: 
+  itemID: f18b17685ba404d7795854adf3fd2fdf
+  itemType: 1
+  itemName: Eclipse Mantle
+  iconTransparent: {fileID: 2114130076, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  iconBackground: {fileID: -273343914, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 0
+  equipmentType: 1
+  itemCooldown: 0
+  itemEffects: []
+  strength: 0
+  agility: 0
+  intelligence: 30
+  vitality: 10
+  damage: 0
+  critChance: 0
+  critPower: 0
+  health: 60
+  armor: 40
+  evasion: 60
+  magicResistance: 60
+  fireDamage: 0
+  iceDamage: 0
+  poisonDamage: 0
+  arcaneDamage: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 189dae17b34c44ed8bde26bb6828d25e, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 8c1cbe86a13d54a9b95cc8477f5fd6b9, type: 2}
+    stackSize: 1

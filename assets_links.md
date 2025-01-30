@@ -1,3 +1,6 @@
+Fantasy Worlds tileset:
+https://szadiart.itch.io/sidescroll-worlds-set2
+
 Woods Tileset
 https://brullov.itch.io/oak-woods
 
