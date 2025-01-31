@@ -53,7 +53,7 @@ public class Entity : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>(); // Since the animator is a child object.
         rb = GetComponent<Rigidbody2D>();
-        cd = GetComponent<CapsuleCollider2D>();
+        cd = GetComponent<Collider2D>();
         fx = GetComponent<EntityFX>();
         sr = GetComponent<SpriteRenderer>();
         cs = GetComponent<CharacterStats>();
@@ -98,7 +98,7 @@ public class Entity : MonoBehaviour
     // The player's animator component
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
-    public CapsuleCollider2D cd { get; private set; }
+    public Collider2D cd { get; private set; }
     public EntityFX fx { get; private set; }
     public SpriteRenderer sr { get; private set; }
     public CharacterStats cs { get; private set; }
