@@ -44,5 +44,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95124099940aecc42849948f41c06037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: ElixiaData.NikitaBarak
-  encryptData: 1
+  fileName: ElixiaSave.NikitaBarak
+  filePath: idbfs/ElixiaGameSaveDirectory206332bfnb
+  encryptData: 0
+  gameData:
+    currency: 0
+    skillTree:
+      keys: []
+      values: 
+    inventory:
+      keys: []
+      values: 
+    checkpoints:
+      keys: []
+      values: 
+    closestCheckpointID: 
+    equipmentIDs: []
+    lostCurrencyX: 0
+    lostCurrencyY: 0
+    lostCurrencyAmount: 0
+    volumeSettings:
+      keys: []
+      values: []

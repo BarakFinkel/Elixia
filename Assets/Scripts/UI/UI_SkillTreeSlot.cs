@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -78,7 +79,16 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         ui.skillTooltip.HideTooltip();
     }
 
-    public void LoadData(GameData _data)
+    public void LoadData(GameData _data) => StartCoroutine(LoadWithDelay(_data));
+
+    public IEnumerator LoadWithDelay(GameData _data)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        LoadUnlockStatus(_data);
+    }
+
+    public void LoadUnlockStatus(GameData _data)
     {
         if (_data.skillTree.TryGetValue(skillName, out bool value))
         {

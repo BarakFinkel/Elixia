@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -410,7 +411,16 @@ public class Inventory : MonoBehaviour, ISaveManager
         }        
     }
 
-    public void LoadData(GameData _data)
+    public void LoadData(GameData _data) => StartCoroutine(LoadWithDelay(_data));
+
+    private IEnumerator LoadWithDelay(GameData _data)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        LoadInventory(_data);
+    }
+
+    public void LoadInventory(GameData _data)
     {
         // For each pair in the serializable dictionary
         foreach (KeyValuePair<string, int> pair in _data.inventory)

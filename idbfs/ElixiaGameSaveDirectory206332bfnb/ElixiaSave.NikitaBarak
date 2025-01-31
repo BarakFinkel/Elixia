@@ -1,0 +1,90 @@
+{
+    "currency": 5200,
+    "skillTree": {
+        "keys": [
+            "Enhanced Illful Shadows",
+            "Arcane Potion",
+            "Shadow Gift",
+            "Counter Shot",
+            "You're Next",
+            "Dark Luck",
+            "Evade",
+            "Cleaver Stun",
+            "Pierce Their Lines",
+            "Illful Shadows",
+            "Enhanced Shadow Gift",
+            "Dodge",
+            "Vengeful Shadow",
+            "Cleaver Throw",
+            "Potion Throw",
+            "Vampiric Counter Shot",
+            "Poison Potion",
+            "Legion of Shadows",
+            "Stun Shock",
+            "Shadow Counter Shot",
+            "Elemental Fusion",
+            "Ice Potion",
+            "Chainsword",
+            "Equivalent Exchange"
+        ],
+        "values": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false
+        ]
+    },
+    "inventory": {
+        "keys": [],
+        "values": []
+    },
+    "checkpoints": {
+        "keys": [
+            "1569ff98-6be4-4856-ab37-ca03d9a0157c",
+            "2477063b-a4f1-4d31-92ac-c8b02e93dae7",
+            "a20c947e-2ac2-4dc4-9322-6313dd808624",
+            "2ed5d217-911a-42ac-a04b-d0d0f4d3ef1b"
+        ],
+        "values": [
+            false,
+            false,
+            false,
+            false
+        ]
+    },
+    "closestCheckpointID": "",
+    "equipmentIDs": [],
+    "lostCurrencyX": -0.13001008331775666,
+    "lostCurrencyY": -3.793856382369995,
+    "lostCurrencyAmount": 0,
+    "volumeSettings": {
+        "keys": [
+            "sfx",
+            "music"
+        ],
+        "values": [
+            1.0,
+            1.0
+        ]
+    }
+}

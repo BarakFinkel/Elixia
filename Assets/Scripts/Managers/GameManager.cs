@@ -40,9 +40,7 @@ public class GameManager : MonoBehaviour, ISaveManager
 
     public void RestartScene()
     {
-        SaveManager.instance.SaveGame();
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void InitCheckpointsList()

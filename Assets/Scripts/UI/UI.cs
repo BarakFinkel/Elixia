@@ -137,7 +137,16 @@ public class UI : MonoBehaviour, ISaveManager
 
     public void RestartGameButton() => GameManager.instance.RestartScene();
 
-    public void LoadData(GameData _data)
+    public void LoadData(GameData _data) => StartCoroutine(LoadWithDelay(_data));
+    
+    private IEnumerator LoadWithDelay(GameData _data)
+    {
+        yield return new WaitForSeconds(0.1f); // Small delay, not meant to change.
+        
+        LoadVolumeSettings(_data);
+    }
+
+    public void LoadVolumeSettings(GameData _data)
     {
         foreach (KeyValuePair<string, float> pair in _data.volumeSettings)
         {

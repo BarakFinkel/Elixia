@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Collections;
 
 public class SaveManager : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private string fileName;
     [SerializeField] private string filePath = "idbfs/ElixiaGameSaveDirectory206332bfnb";
     [SerializeField] private bool encryptData;
+    [SerializeField] private List<ISaveManager> saveManagers;
     public GameData gameData;
     private FileDataHandler dataHandler;
-    private List<ISaveManager> saveManagers;
+
     private bool saveLoaded = false;
 
     public void Awake()
@@ -29,7 +31,7 @@ public class SaveManager : MonoBehaviour
     public void Start()
     {
         dataHandler = new FileDataHandler(filePath, fileName, encryptData);
-        saveManagers = FindAllSaveManagers();
+        FindAllSaveManagers();
         LoadGame();
         saveLoaded = true;
     }
@@ -77,11 +79,11 @@ public class SaveManager : MonoBehaviour
         dataHandler.Delete();
     }
 
-    private List<ISaveManager> FindAllSaveManagers()
+    private void FindAllSaveManagers()
     {
-        IEnumerable<ISaveManager> saveManagers = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ISaveManager>();
 
-        return new List<ISaveManager>(saveManagers);
+        IEnumerable<ISaveManager> saveManagersEnum = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ISaveManager>();
+        saveManagers = new List<ISaveManager>(saveManagersEnum);
     }
 
     public bool HasSavedData()
