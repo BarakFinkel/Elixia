@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public enum StatType
@@ -20,7 +22,8 @@ public enum StatType
     fireDamage,
     iceDamage,
     poisonDamage,
-    arcaneDamage
+    arcaneDamage,
+    lightningDamage
 }
 
 public class CharacterStats : MonoBehaviour
@@ -124,6 +127,16 @@ public class CharacterStats : MonoBehaviour
     [SerializeField]
     private float enchantedDuration = 3.0f;
 
+    [Header("Electricity")]
+    public Stat lightningDamage;
+    public bool isElectrified;
+    [SerializeField]
+    private float electrifiedDuration = 5.0f;
+    private float electrifiedTimer;
+    private int lightningDmg;
+    [SerializeField]
+    private GameObject lightningStrikePrefab;
+    
     public int currentHealth;
     private int burnDamage;
     private float chilledTimer;
@@ -168,6 +181,11 @@ public class CharacterStats : MonoBehaviour
         // Enchant Timers:
         enchantedTimer = UpdateTimer(enchantedTimer);
         HandleEnchantedAilment();
+        
+        // Shock Timers:
+        electrifiedTimer = UpdateTimer(electrifiedTimer);
+        HandleElectricityAilment();
+
     }
 
     // Calculation Pipeline of the physical damage dealt to the target.
@@ -198,6 +216,7 @@ public class CharacterStats : MonoBehaviour
 
         // We deal the overall damage to the target.
         _targetStats.TakeDamage(totalDamage);
+        DoMagicalDamage(_targetStats);
     }
 
     // Method responsible for taking impactful damage (ailments not included)
@@ -384,23 +403,24 @@ public class CharacterStats : MonoBehaviour
         var _iceDamage = iceDamage.GetValue();
         var _poisonDamage = poisonDamage.GetValue();
         var _arcaneDamage = arcaneDamage.GetValue();
+        var _lightningDamage = lightningDamage.GetValue();
 
         // Summing up them all.
-        var totalMagicalDamage = _fireDamage + _iceDamage + _poisonDamage + _arcaneDamage + intelligence.GetValue();
+        var totalMagicalDamage = _fireDamage + _iceDamage + _poisonDamage + _arcaneDamage + _lightningDamage + intelligence.GetValue();
 
         // Calculating MR damage reduction.
         totalMagicalDamage = TargetMagicalDamageReduction(_targetStats, totalMagicalDamage);
         _targetStats.TakeDamage(totalMagicalDamage);
 
         // Choosing the element which will apply ailment to the target.
-        AttemptApplyingAilments(_targetStats, _fireDamage, _iceDamage, _poisonDamage, _arcaneDamage);
+        AttemptApplyingAilments(_targetStats, _fireDamage, _iceDamage, _poisonDamage, _arcaneDamage,_lightningDamage);
     }
 
     private void AttemptApplyingAilments(CharacterStats _targetStats, int _fireDamage, int _iceDamage,
-        int _poisonDamage, int _arcaneDamage)
+        int _poisonDamage, int _arcaneDamage, int _lightningDamage)
     {
         // Choosing the element which will apply ailment to the target.
-        var DominantElement = GetMaxDamageElement(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage);
+        var DominantElement = GetMaxDamageElement(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage, _lightningDamage);
 
         // If there was no element returned, it means that all elements have no damage, so we can't apply an ailment and return.
         if (DominantElement == string.Empty)
@@ -413,6 +433,7 @@ public class CharacterStats : MonoBehaviour
         var canApplyChill = DominantElement == "Ice";
         var canApplyPoison = DominantElement == "Poison";
         var canApplyEnchant = DominantElement == "Arcane";
+        var canApplyElectricity = DominantElement == "Lightning";
 
         // In the following if statements, we change the overtime damage the target takes accordingly, or keep it the same if unnecessary.
         if (canApplyIgnite)
@@ -425,21 +446,26 @@ public class CharacterStats : MonoBehaviour
             _targetStats.SetupPoisonedDamage(Mathf.RoundToInt(_poisonDamage * poisonedDamageRatio));
         }
 
+        if (canApplyElectricity)
+        {
+            _targetStats.SetupLightningDamage(Mathf.RoundToInt(_lightningDamage));
+        }
+
         // Lastly, we apply the chosen ailment to the target.
-        _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyPoison, canApplyEnchant);
+        _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyPoison, canApplyEnchant, canApplyElectricity);
     }
 
-    private string GetMaxDamageElement(int _fireDamage, int _iceDamage, int _poisonDamage, int _arcaneDamage)
+    private string GetMaxDamageElement(int _fireDamage, int _iceDamage, int _poisonDamage, int _arcaneDamage, int _lightningDamage)
     {
         // Check if there is no magical damage type greater than 0
-        if (Mathf.Max(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage) <= 0)
+        if (Mathf.Max(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage, _lightningDamage) <= 0)
         {
             return string.Empty;
         }
 
         // Create a list to hold elements with maximum damage
         var tiedElements = new List<string>();
-        float maxDamage = Mathf.Max(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage);
+        float maxDamage = Mathf.Max(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage, _lightningDamage);
 
         // Add elements that are tied in damage
         if (_fireDamage == maxDamage && _fireDamage > 0)
@@ -462,6 +488,11 @@ public class CharacterStats : MonoBehaviour
             tiedElements.Add("Arcane");
         }
 
+        if (_lightningDamage == maxDamage && _lightningDamage > 0)
+        {
+            tiedElements.Add("Lightning");
+        }
+
         // If there's only one tied element, return it directly
         if (tiedElements.Count == 1)
         {
@@ -473,9 +504,9 @@ public class CharacterStats : MonoBehaviour
         return tiedElements[randomIndex];
     }
 
-    public void ApplyAilments(bool _ignited, bool _chilled, bool _poisoned, bool _enchanted)
+    public void ApplyAilments(bool _ignited, bool _chilled, bool _poisoned, bool _enchanted, bool _electrified)
     {
-        if (isIgnited || isChilled || isPoisoned || isEnchanted)
+        if (isIgnited || isChilled || isPoisoned || isEnchanted || isElectrified)
         {
             return;
         }
@@ -511,6 +542,18 @@ public class CharacterStats : MonoBehaviour
             enchantedTimer = enchantedDuration;
 
             fx.EnchantedFxFor(enchantedTimer);
+        }
+
+        if (_electrified)
+        {
+            if (!isElectrified)
+            {
+                ApplyShock(_electrified);
+            }
+            else if (GetComponent<Player>() ==null)
+            {
+                HitNearesTargetWithLightningStrike();
+            }
         }
     }
 
@@ -575,6 +618,14 @@ public class CharacterStats : MonoBehaviour
             isEnchanted = false;
         }
     }
+    
+    private void HandleElectricityAilment()
+    {
+        if (electrifiedTimer == 0)
+        {
+            isElectrified = false;
+        }
+    }
 
     public void SetupBurnDamage(int _damage)
     {
@@ -584,6 +635,55 @@ public class CharacterStats : MonoBehaviour
     public void SetupPoisonedDamage(int _damage)
     {
         poisonedDamage = _damage;
+    }
+
+    public void SetupLightningDamage(int _damage)
+    {
+        lightningDmg = _damage;
+    }
+    
+    public void ApplyShock(bool _shock)
+    {
+        if (isElectrified)
+        {
+            return;
+        }
+
+        electrifiedTimer = electrifiedDuration;
+        isElectrified = _shock;
+        fx.ElectricityFXFor(electrifiedTimer);
+    }
+    
+    private void HitNearesTargetWithLightningStrike()
+    {
+        var detectingRadius = 25;
+        var colliders = Physics2D.OverlapCircleAll(transform.position, detectingRadius);
+
+        var closestDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+
+        foreach (var hit in colliders)
+            if (hit.GetComponent<Enemy>() != null && Vector2.Distance(transform.position, hit.transform.position) > 1)
+            {
+                var distanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);
+
+                if (distanceToEnemy < closestDistance)
+                {
+                    closestDistance = distanceToEnemy;
+                    closestEnemy = hit.transform;
+                }
+            }
+            else if (closestEnemy == null)
+            {
+                closestEnemy = transform;
+            }
+
+        if (closestEnemy != null)
+        {
+            var newShockStrike = Instantiate(lightningStrikePrefab, transform.position, Quaternion.identity);
+            newShockStrike.GetComponent<LightningStrikeController>()
+                .Setup(lightningDmg, closestEnemy.GetComponent<CharacterStats>());
+        }
     }
 
     #endregion

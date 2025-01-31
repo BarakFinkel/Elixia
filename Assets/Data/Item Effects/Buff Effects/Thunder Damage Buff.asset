@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemEffectDescription: Upon activation, buffs the alchemist's thunder damage by
     10 for 5 seconds.
-  buffType: 14
+  buffType: 15
   buffAmount: 10
   buffDuration: 5

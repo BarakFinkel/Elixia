@@ -1,5 +1,5 @@
 {
-    "currency": 5200,
+    "currency": 10000,
     "skillTree": {
         "keys": [
             "Enhanced Illful Shadows",
@@ -29,27 +29,27 @@
         ],
         "values": [
             false,
-            true,
             false,
             false,
             false,
             false,
             false,
-            true,
-            true,
             false,
             false,
             false,
             false,
-            true,
-            true,
-            false,
-            true,
             false,
             false,
             false,
-            true,
-            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false
         ]
@@ -74,8 +74,8 @@
     },
     "closestCheckpointID": "",
     "equipmentIDs": [],
-    "lostCurrencyX": -0.13001008331775666,
-    "lostCurrencyY": -3.793856382369995,
+    "lostCurrencyX": 18.566356658935548,
+    "lostCurrencyY": -5.791164875030518,
     "lostCurrencyAmount": 0,
     "volumeSettings": {
         "keys": [
@@ -84,7 +84,7 @@
         ],
         "values": [
             1.0,
-            1.0
+            0.0010000000474974514
         ]
     }
 }

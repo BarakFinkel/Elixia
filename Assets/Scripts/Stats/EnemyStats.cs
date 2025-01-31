@@ -48,6 +48,7 @@ public class EnemyStats : CharacterStats
         Modify(iceDamage);
         Modify(poisonDamage);
         Modify(arcaneDamage);
+        Modify(lightningDamage);
 
         Modify(soulsDropAmount);
     }
