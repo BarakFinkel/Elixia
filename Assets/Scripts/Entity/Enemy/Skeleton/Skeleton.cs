@@ -24,17 +24,6 @@ public class Skeleton : Enemy
         stateMachine.Initiallize(idleState);
     }
 
-    // We constantly update using the state machine's current state (Non-MonoBehaviour) update method.
-    protected override void Update()
-    {
-        base.Update();
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            stateMachine.ChangeState(stunnedState);
-        }
-    }
-
     // We check this way if the enemy could be stunned or not, but actively will only be checking once we are in attack-range with the player.
     public override bool CanBeStunned()
     {

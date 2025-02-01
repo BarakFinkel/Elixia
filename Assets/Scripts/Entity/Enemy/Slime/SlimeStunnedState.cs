@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class SkeletonStunnedState : EnemyState
+public class SlimeStunnedState : EnemyState
 {
-    private readonly Skeleton enemy;
+    private readonly Slime enemy;
+    private bool stunFoldDone = false;
     private float stunVelocityApplyDuration = 0.05f; // small delay for updating velocity in case of bugs.
 
-    public SkeletonStunnedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
-        Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public SlimeStunnedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
+        Slime _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
     }
@@ -32,7 +33,15 @@ public class SkeletonStunnedState : EnemyState
             stunVelocityApplyDuration -= Time.deltaTime;
         }
 
-        if (stateTimer == 0)
+        if (!stunFoldDone && rb.linearVelocityY < .1f && enemy.IsGroundDetected())
+        {
+            enemy.fx.Invoke("CancelColorChange", 0.0f);            
+            enemy.anim.SetTrigger("StunFold");
+            enemy.cs.EnableInvulnerability();
+            stunFoldDone = true;
+        }
+
+        if (stateTimer == 0 && stunFoldDone)
         {
             stateMachine.ChangeState(enemy.idleState);
         }
@@ -42,7 +51,8 @@ public class SkeletonStunnedState : EnemyState
     {
         base.Exit();
 
-        enemy.fx.Invoke("CancelColorChange", 0.0f);
+        enemy.cs.DisableInvulnerability();
+        stunFoldDone = false;
         stunVelocityApplyDuration = 0.05f; // small delay for updating velocity in case of bugs.
     }
 }

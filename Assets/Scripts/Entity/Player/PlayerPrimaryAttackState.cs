@@ -14,8 +14,6 @@ public class PlayerPrimaryAttackState : PlayerState
 
     public override void Enter()
     {
-        xInput = 0; // To avoid a bug with the direction of the attack, sometimes causing the player to attack in the opposite direction.
-
         base.Enter();
 
         // Check if the last time an attack was performed was too far away, or if we already did a full combo - if so, reset the counter.
@@ -29,6 +27,7 @@ public class PlayerPrimaryAttackState : PlayerState
 
         // If we have an input on the x-Axis, we will attack in that direction.
         attackDir = player.facingDir;
+        xInput = Input.GetAxisRaw("Horizontal");
         if (xInput != 0)
         {
             attackDir = xInput;

@@ -1,0 +1,373 @@
+fileFormatVersion: 2
+guid: 11f7dd0208eee0b44901936c9696fe3a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8403410790035271535
+    second: Low attack_0
+  - first:
+      213: -8502063277425198500
+    second: Low attack_1
+  - first:
+      213: -2910032413183382065
+    second: Low attack_2
+  - first:
+      213: 5432141319273638558
+    second: Low attack_3
+  - first:
+      213: 3756432609374729523
+    second: Low attack_4
+  - first:
+      213: 1941472712371670388
+    second: Low attack_5
+  - first:
+      213: -8536265209292865208
+    second: Low attack_6
+  - first:
+      213: 8834942445281159229
+    second: Low attack_7
+  - first:
+      213: 3136984032107253029
+    second: Low attack_8
+  - first:
+      213: -6761999817498398275
+    second: Low attack_9
+  - first:
+      213: 4476797149643614759
+    second: Low attack_10
+  - first:
+      213: -2219328374712089409
+    second: Low attack_11
+  - first:
+      213: -5387255101309868334
+    second: Low attack_12
+  - first:
+      213: -8735096509234728324
+    second: Low attack_13
+  - first:
+      213: -4505460343281520874
+    second: Low attack_14
+  - first:
+      213: 8668831065253289317
+    second: Low attack_15
+  - first:
+      213: -6588196043466891212
+    second: Low attack_16
+  - first:
+      213: 436736683079168712
+    second: Low attack_17
+  - first:
+      213: -2534417610429474195
+    second: Low attack_18
+  - first:
+      213: -1666692288154221873
+    second: Low attack_19
+  - first:
+      213: -7569022370635189515
+    second: Low attack_20
+  - first:
+      213: -8483635079154828460
+    second: Low attack_21
+  - first:
+      213: 2360375059938528129
+    second: Low attack_22
+  - first:
+      213: -2690612955571607887
+    second: Low attack_23
+  - first:
+      213: -6115469853277254881
+    second: Low attack_24
+  - first:
+      213: -2757344715296021187
+    second: Low attack_25
+  - first:
+      213: -8538630717486180985
+    second: Low attack_26
+  - first:
+      213: 5705635936019069637
+    second: Low attack_27
+  - first:
+      213: 5438437067440000610
+    second: Low attack_28
+  - first:
+      213: -6229542300631463533
+    second: Low attack_29
+  - first:
+      213: 1615653308840739000
+    second: Low attack_30
+  - first:
+      213: -4175882912489731226
+    second: Low attack_31
+  - first:
+      213: -1708230552486451046
+    second: Low attack_32
+  - first:
+      213: 6095412265474618362
+    second: Low attack_33
+  - first:
+      213: 7346097815174047666
+    second: Low attack_34
+  - first:
+      213: 7900239324313794452
+    second: Low attack_35
+  - first:
+      213: 8738484487647942135
+    second: Low attack_36
+  - first:
+      213: 3619851099510483398
+    second: Low attack_37
+  - first:
+      213: 7171667675465997710
+    second: Low attack_38
+  - first:
+      213: 3376875086946667572
+    second: Low attack_39
+  - first:
+      213: 4413288654370061222
+    second: Low attack_40
+  - first:
+      213: -6862849290606561957
+    second: Low attack_41
+  - first:
+      213: -4045174648173007842
+    second: Low attack_42
+  - first:
+      213: -2923208617131243515
+    second: Low attack_43
+  - first:
+      213: 56287019125989145
+    second: Low attack_44
+  - first:
+      213: 262737367285615142
+    second: Low attack_45
+  - first:
+      213: 8112661023813256154
+    second: Low attack_46
+  - first:
+      213: 4344033074005076081
+    second: Low attack_47
+  - first:
+      213: -7326281346042916911
+    second: Low attack_48
+  - first:
+      213: -2503172566903680554
+    second: Low attack_49
+  - first:
+      213: 1284799630691008426
+    second: Low attack_50
+  - first:
+      213: -6437629225204049579
+    second: Low attack_51
+  - first:
+      213: 6440115050004842204
+    second: Low attack_52
+  - first:
+      213: -1982864669308500247
+    second: Low attack_53
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Low attack 1_30
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 96
+        width: 17
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86935934744dcf242b2d09a0322aa0fa
+      internalID: 1518292638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: cae39f5788acd6949b83ed0e0ab69b64
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Low attack 1_0: 190268599
+      Low attack 1_1: -204261496
+      Low attack 1_10: -2060701878
+      Low attack 1_11: 1364027771
+      Low attack 1_12: 1345947237
+      Low attack 1_13: -1320436803
+      Low attack 1_14: -959543878
+      Low attack 1_15: -720690441
+      Low attack 1_16: -1391733599
+      Low attack 1_17: -997402665
+      Low attack 1_18: -1039848076
+      Low attack 1_19: 586370424
+      Low attack 1_2: 989338575
+      Low attack 1_20: 2008927045
+      Low attack 1_21: 701146635
+      Low attack 1_22: -581572558
+      Low attack 1_23: -103924482
+      Low attack 1_24: -1441213755
+      Low attack 1_25: 676065531
+      Low attack 1_26: -718202025
+      Low attack 1_27: 867051278
+      Low attack 1_28: 46213294
+      Low attack 1_29: 1855441569
+      Low attack 1_3: -880715399
+      Low attack 1_30: 1518292638
+      Low attack 1_31: 1984734668
+      Low attack 1_32: -1044407848
+      Low attack 1_4: -328806743
+      Low attack 1_5: -411329964
+      Low attack 1_6: 1184384393
+      Low attack 1_7: 291098976
+      Low attack 1_8: 1222401906
+      Low attack 1_9: -1390393008
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

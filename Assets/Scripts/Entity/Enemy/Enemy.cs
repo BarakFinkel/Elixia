@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
-[RequireComponent(typeof(CharacterStats))]
+[RequireComponent(typeof(EnemyStats))]
 [RequireComponent(typeof(EntityFX))]
 [RequireComponent(typeof(ItemDrop))]
 public class Enemy : Entity
@@ -37,6 +37,9 @@ public class Enemy : Entity
 
     [SerializeField]
     public float closeAggroDistance = 2.0f;
+    
+    [SerializeField]
+    public float attackDistanceFromPlayer = 0.1f;
 
     [HideInInspector]
     public float lastTimeAttacked;
@@ -60,6 +63,9 @@ public class Enemy : Entity
 
     [SerializeField]
     public Vector2 knockUpVelocity = new(0, 10);
+
+    [SerializeField]
+    public float destructionDelay = 3.0f;
 
     public string lastAnimBoolName;
     protected bool canBeStunned;
@@ -148,6 +154,16 @@ public class Enemy : Entity
         yield return new WaitForSeconds(_seconds);
 
         FreezeTime(false);
+    }
+
+    public void DestroySelfInDelay()
+    {
+        Invoke("DestroySelf", destructionDelay);
+    }
+
+    protected void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 
     #endregion

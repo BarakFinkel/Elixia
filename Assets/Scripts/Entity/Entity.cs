@@ -34,6 +34,9 @@ public class Entity : MonoBehaviour
     protected Vector2 knockbackPower;
 
     [SerializeField]
+    protected Vector2 knockbackOffset;
+
+    [SerializeField]
     protected float knockBackDuration;
 
     protected bool facingRight = true;
@@ -81,7 +84,10 @@ public class Entity : MonoBehaviour
     protected virtual IEnumerator HitKnockback()
     {
         isKnocked = true;
-        rb.linearVelocity = new Vector2(knockbackPower.x * -facingDir, knockbackPower.y);
+
+        float xOffset = UnityEngine.Random.Range(knockbackOffset.x, knockbackOffset.y);
+
+        rb.linearVelocity = new Vector2((knockbackPower.x + xOffset)* -facingDir, knockbackPower.y);
 
         yield return new WaitForSeconds(knockBackDuration);
 
@@ -179,6 +185,16 @@ public class Entity : MonoBehaviour
         if ((_x > 0 && !facingRight) || (_x < 0 && facingRight))
         {
             Flip();
+        }
+    }
+
+    public virtual void SetupDefaultFacingDirection(int _direction)
+    {
+        facingDir = _direction;
+
+        if (facingDir == -1)
+        {
+            facingRight = false;
         }
     }
 

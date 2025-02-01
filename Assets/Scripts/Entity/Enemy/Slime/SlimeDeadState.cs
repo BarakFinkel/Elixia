@@ -1,8 +1,10 @@
-public class SkeletonDeadState : EnemyState
-{
-    private readonly Skeleton enemy;
+using UnityEngine;
 
-    public SkeletonDeadState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy) :
+public class SlimeDeadState : EnemyState
+{
+    private readonly Slime enemy;
+
+    public SlimeDeadState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Slime _enemy) :
         base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;

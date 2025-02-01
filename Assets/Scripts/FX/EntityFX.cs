@@ -13,16 +13,19 @@ public class EntityFX : MonoBehaviour
 
     [Header("Ailment Colors")]
     [SerializeField]
-    private Color[] ignitedColor;
-    [FormerlySerializedAs("shockColor")]
-    [SerializeField]
     private Color[] electricityColor;
+    [SerializeField]
+    private float electricityColorChangeFreq = 0.3f;    
 
+    [Space]
 
+    [SerializeField]
+    private Color[] ignitedColor;
     [SerializeField]
     private float ignitedColorChangeFreq = 0.25f;
 
     [Space]
+
     [SerializeField]
     private Color[] chilledColor;
 
@@ -30,6 +33,7 @@ public class EntityFX : MonoBehaviour
     private float chilledColorChangeFreq = 0.5f;
 
     [Space]
+
     [SerializeField]
     private Color[] poisonedColor;
 
@@ -37,6 +41,7 @@ public class EntityFX : MonoBehaviour
     private float poisonedColorChangeFreq = 0.5f;
 
     [Space]
+
     [SerializeField]
     private Color[] enchantedColor;
 
@@ -44,12 +49,14 @@ public class EntityFX : MonoBehaviour
     private float enchantedColorChangeFreq = 0.5f;
 
     private Material ogMaterial;
+    private Color ogSpriteColor;
     private SpriteRenderer sr;
 
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         ogMaterial = sr.material;
+        ogSpriteColor = sr.color;
     }
 
     public IEnumerator FlashFX()
@@ -59,6 +66,7 @@ public class EntityFX : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
 
         sr.material = ogMaterial;
+        sr.color = ogSpriteColor;
     }
 
     private void RedColorBlink()
@@ -194,7 +202,7 @@ public class EntityFX : MonoBehaviour
 
     public void ElectricityFXFor(float _sec)
     {
-        InvokeRepeating("ElectricityColorFX", 0, .3f);
+        InvokeRepeating("ElectricityColorFX", 0, electricityColorChangeFreq);
         Invoke("CancelColorChange", _sec);
     }
     

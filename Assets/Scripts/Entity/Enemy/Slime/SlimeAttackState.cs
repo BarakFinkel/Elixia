@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class SkeletonAttackState : EnemyState
+public class SlimeAttackState : EnemyState
 {
-    private Skeleton enemy;
+    private Slime enemy;
 
-    public SkeletonAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy)
+    public SlimeAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Slime _enemy)
         : base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
@@ -13,13 +13,13 @@ public class SkeletonAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.ZeroVelocity();
     }
 
     public override void Update()
     {
         base.Update();
-
-        enemy.ZeroVelocity();
 
         if (triggerCalled)
         {
