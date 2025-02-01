@@ -11,7 +11,7 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     [TextArea]
     [SerializeField] private string skillDescription;
-    
+
     [SerializeField] private UI_SkillTreeSlot[] shouldBeUnlocked;
     [SerializeField] private UI_SkillTreeSlot[] shouldBeLocked;
 
@@ -79,16 +79,7 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         ui.skillTooltip.HideTooltip();
     }
 
-    public void LoadData(GameData _data) => StartCoroutine(LoadWithDelay(_data));
-
-    public IEnumerator LoadWithDelay(GameData _data)
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        LoadUnlockStatus(_data);
-    }
-
-    public void LoadUnlockStatus(GameData _data)
+    public void LoadData(GameData _data)
     {
         if (_data.skillTree.TryGetValue(skillName, out bool value))
         {

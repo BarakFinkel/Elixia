@@ -137,24 +137,15 @@ public class UI : MonoBehaviour, ISaveManager
 
     public void RestartGameButton() => GameManager.instance.RestartScene();
 
-    public void LoadData(GameData _data) => StartCoroutine(LoadWithDelay(_data));
-    
-    private IEnumerator LoadWithDelay(GameData _data)
-    {
-        yield return new WaitForSeconds(0.1f); // Small delay, not meant to change.
-        
-        LoadVolumeSettings(_data);
-    }
-
-    public void LoadVolumeSettings(GameData _data)
+    public void LoadData(GameData _data)
     {
         foreach (KeyValuePair<string, float> pair in _data.volumeSettings)
         {
-            foreach (UI_VolumeSlider slider in volumeSettings)
+            foreach (UI_VolumeSlider setting in volumeSettings)
             {
-                if (slider.parameter == pair.Key)
+                if (setting.parameter == pair.Key)
                 {
-                    slider.LoadSlider(pair.Value);
+                    setting.LoadSlider(pair.Value);
                 }
             }
         }
@@ -164,9 +155,9 @@ public class UI : MonoBehaviour, ISaveManager
     {
         _data.volumeSettings.Clear();
 
-        foreach (UI_VolumeSlider slider in volumeSettings)
+        foreach (UI_VolumeSlider setting in volumeSettings)
         {
-            _data.volumeSettings.Add(slider.parameter, slider.slider.value);
+            _data.volumeSettings.Add(setting.parameter, setting.slider.value);
         }
     }
 }

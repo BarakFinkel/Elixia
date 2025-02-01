@@ -30,7 +30,7 @@ public class UI_MainMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("Exit Game");
+        Application.Quit();
     }
 
     private IEnumerator LoadSceneWithFadeEffect(float _delay)

@@ -2,25 +2,24 @@ using UnityEngine;
 using System;
 using System.IO;
 
-public class FileDataHandler
+public class FileDataHandler 
 {
     private string dataDirPath = "";
     private string dataFileName = "";
     private bool encryptData = false;
-    private string codeWord = "PhilosophersStone";
+    private string codeWord = "NikitaBarak";
 
-    public FileDataHandler(string _dataDirPath, string _dataFileName, bool _encryptData)
+    public FileDataHandler(string _dataDirPath, string _dataFileName,bool _encryptData)
     {
-        this.dataDirPath = _dataDirPath;
-        this.dataFileName = _dataFileName;
-        this.encryptData = _encryptData;
+        dataDirPath = _dataDirPath;
+        dataFileName = _dataFileName;
+        encryptData = _encryptData;
     }
 
     public void Save(GameData _data)
     {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
-        // We try to create a directory of savefiles, and there we try to create and write to a json file to save the data in.
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -28,9 +27,7 @@ public class FileDataHandler
             string dataToStore = JsonUtility.ToJson(_data, true);
 
             if (encryptData)
-            {
                 dataToStore = EncryptDecrypt(dataToStore);
-            }
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
@@ -40,14 +37,15 @@ public class FileDataHandler
                 }
             }
         }
-        catch (Exception e)
+
+        catch(Exception e)
         {
-            Debug.LogError("Error trying to save data in file: " + fullPath + "\n" + e);
+            Debug.LogError("Error on trying to save data to file: " + fullPath + "\n" + e);
         }
     }
 
     public GameData Load()
-    {
+    { 
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         GameData loadData = null;
 
@@ -66,18 +64,16 @@ public class FileDataHandler
                 }
 
                 if (encryptData)
-                {
                     dataToLoad = EncryptDecrypt(dataToLoad);
-                }
 
                 loadData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
             catch (Exception e)
             {
-                Debug.LogError("Error trying to load data from file: " + fullPath + "\n" + e);
+                Debug.LogError("Error on trying to load data from file:" + fullPath + "\n" + e);
             }
         }
-
+        
         return loadData;
     }
 
@@ -85,13 +81,10 @@ public class FileDataHandler
     {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
-        if (File.Exists(fullPath))
-        {
+        if(File.Exists(fullPath))
             File.Delete(fullPath);
-        }
     }
 
-    // Simple encryption/decryption for preventing data exploits.
     private string EncryptDecrypt(string _data)
     {
         string modifiedData = "";

@@ -10,7 +10,6 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         player = PlayerManager.instance.player;
-        CheckUnlock();
     }
 
     protected virtual void Update()
@@ -19,6 +18,8 @@ public class Skill : MonoBehaviour
         {
             cooldownTimer = Mathf.Max(cooldownTimer - Time.deltaTime, 0);
         }
+
+        CheckUnlock();
     }
 
     protected virtual void CheckUnlock()

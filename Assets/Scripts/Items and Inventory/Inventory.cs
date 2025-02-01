@@ -1,7 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Inventory : MonoBehaviour, ISaveManager
 {
@@ -44,7 +46,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     public float syringeCooldown { get; private set; }
 
     [Header("Database")]
-    public List<ItemData> itemDataBase;
+    [SerializeField] private List<ItemData> itemDatabase;
     public List<InventoryItem> loadedItems;
     public List<ItemData_Equipment> loadedEquipment;
 
@@ -76,16 +78,19 @@ public class Inventory : MonoBehaviour, ISaveManager
         stashItemSlots = stashSlotsParent.GetComponentsInChildren<UI_ItemSlot>();
         statSlots = statSlotsParent.GetComponentsInChildren<UI_StatSlot>();
 
+        Debug.Log("Adding Start Items");
+
         AddStartingItems();
     }
 
-    private void AddStartingItems()
+    public void AddStartingItems()
     {
         foreach (ItemData_Equipment item in loadedEquipment)
         {
             EquipItem(item);
         }
-        
+
+
         // If we have previously saved items in our inventory, we load them instead.
         if (loadedItems.Count > 0)
         {
@@ -96,12 +101,12 @@ public class Inventory : MonoBehaviour, ISaveManager
                     AddItem(item.data);
                 }
             }
-            
+
             return;
         }
-        
+
         // If we are on a fresh save, we'll start with the starting items.
-        for (var i = 0; i < startingItems.Count; i++)
+        for (int i = 0; i < startingItems.Count; i++)
         {
             if (startingItems[i] != null)
             {
@@ -112,13 +117,13 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void EquipItem(ItemData _item)
     {
-        var newEquipment = _item as ItemData_Equipment; // Converts the item to ItemData_Equipment type.
-        var newItem =
+        ItemData_Equipment newEquipment = _item as ItemData_Equipment; // Converts the item to ItemData_Equipment type.
+        InventoryItem newItem =
             new InventoryItem(
                 newEquipment); // Constructs a new inventory item with the ItemData_Equipment object we just created.
 
         // If we already have an equipment item of the same type already equipped, we'll remove from the equipment.
-        var oldEquipment = GetEquipmentOfSameType(newEquipment);
+        ItemData_Equipment oldEquipment = GetEquipmentOfSameType(newEquipment);
         if (oldEquipment != null)
         {
             UnequipItem(oldEquipment); // Unequip old item.
@@ -139,7 +144,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     public ItemData_Equipment GetEquipmentOfSameType(ItemData_Equipment _newEquipment)
     {
         // We now check if there's already an item in the equipment with the same type, and 
-        foreach (var item in equipmentDictionary)
+        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
             if (item.Key.equipmentType == _newEquipment.equipmentType)
             {
                 return item.Key;
@@ -151,7 +156,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     public ItemData_Equipment GetEquipmentOfType(EquipmentType _type)
     {
         // We now check if there's already an item in the equipment with the same type, and 
-        foreach (var item in equipmentDictionary)
+        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
             if (item.Key.equipmentType == _type)
             {
                 return item.Key;
@@ -163,7 +168,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     // Removes an item from the equipment.
     public void UnequipItem(ItemData_Equipment itemToRemove)
     {
-        if (equipmentDictionary.TryGetValue(itemToRemove, out var value))
+        if (equipmentDictionary.TryGetValue(itemToRemove, out InventoryItem value))
         {
             equipment.Remove(value);
             equipmentDictionary.Remove(itemToRemove);
@@ -175,10 +180,10 @@ public class Inventory : MonoBehaviour, ISaveManager
     public void UpdateUISlots()
     {
         // Update the UI Item slots in the equipment tab
-        for (var i = 0; i < equipmentItemSlots.Length; i++)
+        for (int i = 0; i < equipmentItemSlots.Length; i++)
         {
             // For pair in our dictionary
-            foreach (var item in equipmentDictionary)
+            foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
                 // We check if the key's equipment type matches the one item we currently iterating over.
                 if (item.Key.equipmentType == equipmentItemSlots[i].slotType)
                 {
@@ -187,22 +192,22 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
         }
 
-        for (var i = 0; i < inventoryItemSlots.Length; i++)
+        for (int i = 0; i < inventoryItemSlots.Length; i++)
         {
             inventoryItemSlots[i].CleanUpSlot();
         }
 
-        for (var i = 0; i < inventoryItemSlots.Length; i++)
+        for (int i = 0; i < inventoryItemSlots.Length; i++)
         {
             stashItemSlots[i].CleanUpSlot();
         }
 
-        for (var i = 0; i < inventory.Count; i++)
+        for (int i = 0; i < inventory.Count; i++)
         {
             inventoryItemSlots[i].UpdateSlot(inventory[i]);
         }
 
-        for (var i = 0; i < stash.Count; i++)
+        for (int i = 0; i < stash.Count; i++)
         {
             stashItemSlots[i].UpdateSlot(stash[i]);
         }
@@ -227,7 +232,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     public void RemoveItem(ItemData _item)
     {
         // If the item type exists in our inventory, we have 2 choices:
-        if (inventoryDictionary.TryGetValue(_item, out var value))
+        if (inventoryDictionary.TryGetValue(_item, out InventoryItem value))
         {
             // If it's the last item of the itemData type, we remove it from both the list and the dictionary
             if (value.stackSize == 1)
@@ -243,7 +248,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
 
         // If the item type exists in our stash, we have 2 choices:
-        if (stashDictionary.TryGetValue(_item, out var stashValue))
+        if (stashDictionary.TryGetValue(_item, out InventoryItem stashValue))
         {
             // If it's the last item of the itemData type, we remove it from both the list and the dictionary
             if (stashValue.stackSize == 1)
@@ -264,7 +269,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     private void AddToInventory(ItemData _item)
     {
         // If the item type is already in our inventory, we just increment it's stack value.
-        if (inventoryDictionary.TryGetValue(_item, out var value))
+        if (inventoryDictionary.TryGetValue(_item, out InventoryItem value))
         {
             value.AddToStack();
         }
@@ -272,7 +277,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         // and also add it to the dictionary as a key with the newly created inventory item object.
         else
         {
-            var newItem = new InventoryItem(_item);
+            InventoryItem newItem = new InventoryItem(_item);
             inventory.Add(newItem);
             inventoryDictionary.Add(_item, newItem);
         }
@@ -281,7 +286,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     private void AddToStash(ItemData _item)
     {
         // If the item type is already in our inventory, we just increment it's stack value.
-        if (stashDictionary.TryGetValue(_item, out var value))
+        if (stashDictionary.TryGetValue(_item, out InventoryItem value))
         {
             value.AddToStack();
         }
@@ -289,7 +294,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         // and also add it to the dictionary as a key with the newly created inventory item object.
         else
         {
-            var newItem = new InventoryItem(_item);
+            InventoryItem newItem = new InventoryItem(_item);
             stash.Add(newItem);
             stashDictionary.Add(_item, newItem);
         }
@@ -307,12 +312,12 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiredMaterials)
     {
-        var materialsToRemove = new List<InventoryItem>();
+        List<InventoryItem> materialsToRemove = new List<InventoryItem>();
 
-        for (var i = 0; i < _requiredMaterials.Count; i++)
+        for (int i = 0; i < _requiredMaterials.Count; i++)
         {
             // If we can find this type of item in our inventory by looking at our stash's dictionary
-            if (stashDictionary.TryGetValue(_requiredMaterials[i].data, out var stashValue))
+            if (stashDictionary.TryGetValue(_requiredMaterials[i].data, out InventoryItem stashValue))
             {
                 // If we don't have enough of the required type, we return false;
                 if (stashValue.stackSize < _requiredMaterials[i].stackSize)
@@ -333,7 +338,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
 
         // If we reached here, we have all items required to craft the item, so we remvoe them from the stash.
-        for (var i = 0; i < materialsToRemove.Count; i++)
+        for (int i = 0; i < materialsToRemove.Count; i++)
         {
             RemoveItem(materialsToRemove[i].data);
         }
@@ -347,7 +352,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public ItemData_Equipment CanUseSyringe()
     {
-        var currentSyringe = GetEquipmentOfType(EquipmentType.Syringe);
+        ItemData_Equipment currentSyringe = GetEquipmentOfType(EquipmentType.Syringe);
 
         if (currentSyringe != null)
         {
@@ -374,7 +379,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public bool CanUseArmor()
     {
-        var currentArmor = GetEquipmentOfType(EquipmentType.Armor);
+        ItemData_Equipment currentArmor = GetEquipmentOfType(EquipmentType.Armor);
 
         if (currentArmor != null)
         {
@@ -405,33 +410,33 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void UpdateStatsUI()
     {
-        for (var i = 0; i < statSlots.Length; i++)
+        for (int i = 0; i < statSlots.Length; i++)
         {
             statSlots[i].UpdateStatValueUI();
         }        
     }
 
-    public void LoadData(GameData _data) => StartCoroutine(LoadWithDelay(_data));
-
-    private IEnumerator LoadWithDelay(GameData _data)
+    public bool EquipmentOfTypeExists(EquipmentType type)
     {
-        yield return new WaitForSeconds(0.1f);
-
-        LoadInventory(_data);
+        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
+        {
+            if (pair.Key.equipmentType == type)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void LoadInventory(GameData _data)
+    public void LoadData(GameData _data)
     {
-        // For each pair in the serializable dictionary
         foreach (KeyValuePair<string, int> pair in _data.inventory)
         {
-            // We go over each item in the database
-            foreach (ItemData loadedItemID in itemDataBase)
-            {    
-                // If we have a match between the id's of both sides, we create an InventoryItem that will be store in our load file.
-                if (loadedItemID != null && loadedItemID.itemID == pair.Key)
+            foreach (var item in itemDatabase)
+            {
+                if (item != null && item.itemID == pair.Key)
                 {
-                    InventoryItem itemToLoad = new InventoryItem(loadedItemID);
+                    InventoryItem itemToLoad = new InventoryItem(item);
                     itemToLoad.stackSize = pair.Value;
 
                     loadedItems.Add(itemToLoad);
@@ -439,9 +444,9 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
         }
 
-        foreach (string loadedItemID in _data.equipmentIDs)
+        foreach (string loadedItemID in _data.equipmentId)
         {
-            foreach (ItemData item in itemDataBase)
+            foreach (var item in itemDatabase)
             {
                 if (item != null && loadedItemID == item.itemID)
                 {
@@ -454,15 +459,13 @@ public class Inventory : MonoBehaviour, ISaveManager
     public void SaveData(ref GameData _data)
     {
         _data.inventory.Clear();
-        _data.equipmentIDs.Clear();
+        _data.equipmentId.Clear();
 
-        // Saving Inventory Items
         foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictionary)
         {
             _data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
         }
 
-        // Saving Stash Materials
         foreach (KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
         {
             _data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
@@ -470,20 +473,21 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
         {
-            _data.equipmentIDs.Add(pair.Key.itemID);
+            _data.equipmentId.Add(pair.Key.itemID);
         }
     }
 
     #if UNITY_EDITOR
-    [ContextMenu("Fillup item data base")]
-    private void FillUpItemDataBase() => itemDataBase = new List<ItemData>(GetItemDataBase());
+    
+    [ContextMenu("Fill item data base")]
+    private void FillItemDataBase() => itemDatabase = new List<ItemData>(GetItemDatabase());
 
-    private List<ItemData> GetItemDataBase()
+    private List<ItemData> GetItemDatabase()
     {
         List<ItemData> itemDataBase = new List<ItemData>();
         string[] assetNames = AssetDatabase.FindAssets("", new[] {"Assets/Data/Items"});
 
-        foreach (string SOName in assetNames)
+        foreach(string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
             var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
@@ -493,17 +497,6 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         return itemDataBase;
     }
-    #endif
 
-    public bool EquipmentOfTypeExists(EquipmentType type)
-    {
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
-        {
-            if(pair.Key.equipmentType == type)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    #endif
 }

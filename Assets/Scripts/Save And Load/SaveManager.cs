@@ -1,39 +1,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.Collections;
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
-    
-    [SerializeField] private string fileName;
-    [SerializeField] private string filePath = "idbfs/ElixiaGameSaveDirectory206332bfnb";
+
+    [SerializeField] private string fileName = "ElixiaSave.NikitaBarak";
+    private string dirPath = "/idbfs/Elixia206332bfnb";
     [SerializeField] private bool encryptData;
+    private GameData gameData;
     [SerializeField] private List<ISaveManager> saveManagers;
-    public GameData gameData;
     private FileDataHandler dataHandler;
 
-    private bool saveLoaded = false;
 
-    public void Awake()
+    [ContextMenu("Delete save file")]
+    public void DeleteSavedData()
     {
-        if (instance != null)
-        {
-            Destroy(instance.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
+        dataHandler = new FileDataHandler(dirPath, fileName,encryptData);
+        dataHandler.Delete();
+
     }
 
-    public void Start()
+    private void Awake()
     {
-        dataHandler = new FileDataHandler(filePath, fileName, encryptData);
-        FindAllSaveManagers();
+        if (instance != null)
+            Destroy(instance.gameObject);
+        else
+            instance = this;
+    }
+
+
+    private void Start()
+    {
+        dataHandler = new FileDataHandler(dirPath, fileName,encryptData);
+        saveManagers = FindAllSaveManagers();
+
+        //Invoke("LoadGame", .05f);
+        
         LoadGame();
-        saveLoaded = true;
     }
 
     public void NewGame()
@@ -51,7 +56,7 @@ public class SaveManager : MonoBehaviour
             NewGame();
         }
 
-        foreach (ISaveManager saveManager in saveManagers)
+        foreach(ISaveManager saveManager in saveManagers)
         {
             saveManager.LoadData(gameData);
         }
@@ -59,7 +64,8 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        foreach (ISaveManager saveManager in saveManagers)
+
+        foreach(ISaveManager saveManager in saveManagers)
         {
             saveManager.SaveData(ref gameData);
         }
@@ -72,18 +78,11 @@ public class SaveManager : MonoBehaviour
         SaveGame();
     }
 
-    [ContextMenu("Delete Save File")]
-    public void DeleteSavedData()
+    private List<ISaveManager> FindAllSaveManagers()
     {
-        dataHandler = new FileDataHandler(filePath, fileName, encryptData);
-        dataHandler.Delete();
-    }
+        IEnumerable<ISaveManager> saveManagers = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<ISaveManager>();
 
-    private void FindAllSaveManagers()
-    {
-
-        IEnumerable<ISaveManager> saveManagersEnum = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ISaveManager>();
-        saveManagers = new List<ISaveManager>(saveManagersEnum);
+        return new List<ISaveManager>(saveManagers);
     }
 
     public bool HasSavedData()
@@ -92,11 +91,7 @@ public class SaveManager : MonoBehaviour
         {
             return true;
         }
-        return false;
-    }
 
-    public bool LoadStatus()
-    {
-        return saveLoaded;
+        return false;
     }
 }

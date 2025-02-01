@@ -69,6 +69,8 @@ public class PotionSkill : Skill
 
     protected override void Update()
     {
+        CheckUnlock();
+        
         // Change the color we display if it has changed.
         if (potionOnPlayer.color != PotionEffectManager.instance.CurrentEffect().potionColor)
         {
