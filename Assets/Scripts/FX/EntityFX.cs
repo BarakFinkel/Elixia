@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EntityFX : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class EntityFX : MonoBehaviour
     [Header("Ailment Colors")]
     [SerializeField]
     private Color[] ignitedColor;
+    [FormerlySerializedAs("shockColor")]
+    [SerializeField]
+    private Color[] electricityColor;
+
 
     [SerializeField]
     private float ignitedColorChangeFreq = 0.25f;
@@ -172,5 +177,26 @@ public class EntityFX : MonoBehaviour
         }
     }
 
+    #endregion
+    
+    #region Electricity FX
+    private void ElectricityColorFX()
+    {
+        if (sr.color != electricityColor[0])
+        {
+            sr.color = electricityColor[0];
+        }
+        else
+        {
+            sr.color = electricityColor[1];
+        }
+    }
+
+    public void ElectricityFXFor(float _sec)
+    {
+        InvokeRepeating("ElectricityColorFX", 0, .3f);
+        Invoke("CancelColorChange", _sec);
+    }
+    
     #endregion
 }
