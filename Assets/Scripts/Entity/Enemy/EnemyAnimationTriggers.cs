@@ -1,9 +1,9 @@
 using UnityEngine;
 
 // Component used on the player's animator object in order to stop animations when finished if necessary.
-public class SkeletonAnimationTriggers : MonoBehaviour
+public class EnemyAnimationTriggers : MonoBehaviour
 {
-    private Skeleton enemy => GetComponentInParent<Skeleton>();
+    private Enemy enemy => GetComponentInParent<Enemy>();
 
     private void AnimationTrigger()
     {
