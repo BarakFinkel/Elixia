@@ -37,5 +37,5 @@ MonoBehaviour:
   poisonDamage: 0
   arcaneDamage: 0
   craftingMaterials:
-  - data: {fileID: 11400000, guid: 35623d70a93244e6e960ca6dc238fecf, type: 2}
+  - data: {fileID: 11400000, guid: 4f9eb68ad4220f046b7411a68ce31874, type: 2}
     stackSize: 1
