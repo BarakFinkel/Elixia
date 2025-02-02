@@ -59,24 +59,6 @@ TextureImporter:
   - first:
       213: -5765561074389130039
     second: Normal Attack_18
-  - first:
-      213: 8536292863944459660
-    second: Normal Attack_19
-  - first:
-      213: -5136397121279187402
-    second: Normal Attack_20
-  - first:
-      213: 5968188892617596691
-    second: Normal Attack_21
-  - first:
-      213: 9046477068557567154
-    second: Normal Attack_22
-  - first:
-      213: -1607203912630763219
-    second: Normal Attack_23
-  - first:
-      213: 6348786638735674086
-    second: Normal Attack_24
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -214,12 +196,12 @@ TextureImporter:
       name: Normal Attack_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 202
-        width: 30
-        height: 39
+        x: 0
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,12 +218,12 @@ TextureImporter:
       name: Normal Attack_1
       rect:
         serializedVersion: 2
-        x: 87
-        y: 202
-        width: 29
-        height: 39
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -258,12 +240,12 @@ TextureImporter:
       name: Normal Attack_2
       rect:
         serializedVersion: 2
-        x: 151
-        y: 202
-        width: 27
-        height: 44
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -280,12 +262,12 @@ TextureImporter:
       name: Normal Attack_3
       rect:
         serializedVersion: 2
-        x: 215
-        y: 202
-        width: 27
-        height: 44
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -302,12 +284,12 @@ TextureImporter:
       name: Normal Attack_4
       rect:
         serializedVersion: 2
-        x: 279
-        y: 202
-        width: 27
-        height: 49
+        x: 256
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -324,12 +306,12 @@ TextureImporter:
       name: Normal Attack_5
       rect:
         serializedVersion: 2
-        x: 343
-        y: 202
-        width: 35
-        height: 44
+        x: 320
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,12 +328,12 @@ TextureImporter:
       name: Normal Attack_6
       rect:
         serializedVersion: 2
-        x: 407
-        y: 202
-        width: 30
-        height: 44
+        x: 384
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -368,12 +350,12 @@ TextureImporter:
       name: Normal Attack_7
       rect:
         serializedVersion: 2
-        x: 471
-        y: 202
-        width: 27
-        height: 44
+        x: 448
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -390,12 +372,12 @@ TextureImporter:
       name: Normal Attack_8
       rect:
         serializedVersion: 2
-        x: 23
-        y: 138
-        width: 27
-        height: 44
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -412,12 +394,12 @@ TextureImporter:
       name: Normal Attack_9
       rect:
         serializedVersion: 2
-        x: 87
-        y: 138
-        width: 27
-        height: 44
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -434,12 +416,12 @@ TextureImporter:
       name: Normal Attack_10
       rect:
         serializedVersion: 2
-        x: 151
-        y: 138
-        width: 29
-        height: 39
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,59 +435,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal Attack_11
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 65
-        width: 11
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3167c302fa86a8180800000000000000
-      internalID: -9112355794661378541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal Attack_12
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 65
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 39f068e2016d14dc0800000000000000
-      internalID: -3656406057459773549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Normal Attack_13
       rect:
         serializedVersion: 2
-        x: 24
-        y: 65
-        width: 10
-        height: 10
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -522,12 +460,12 @@ TextureImporter:
       name: Normal Attack_14
       rect:
         serializedVersion: 2
-        x: 34
-        y: 61
-        width: 11
-        height: 15
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -544,12 +482,12 @@ TextureImporter:
       name: Normal Attack_15
       rect:
         serializedVersion: 2
-        x: 47
-        y: 65
-        width: 14
-        height: 14
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -566,12 +504,12 @@ TextureImporter:
       name: Normal Attack_16
       rect:
         serializedVersion: 2
-        x: 60
-        y: 65
-        width: 21
-        height: 13
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -588,12 +526,12 @@ TextureImporter:
       name: Normal Attack_17
       rect:
         serializedVersion: 2
-        x: 81
-        y: 65
-        width: 8
-        height: 10
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -610,12 +548,12 @@ TextureImporter:
       name: Normal Attack_18
       rect:
         serializedVersion: 2
-        x: 88
-        y: 65
-        width: 12
-        height: 15
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -628,143 +566,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Normal Attack_19
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 10
-        width: 27
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c858c1ee121077670800000000000000
-      internalID: 8536292863944459660
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal Attack_20
-      rect:
-        serializedVersion: 2
-        x: 87
-        y: 10
-        width: 27
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 636a0d0380ad7b8b0800000000000000
-      internalID: -5136397121279187402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal Attack_21
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 10
-        width: 35
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31f57e05d2443d250800000000000000
-      internalID: 5968188892617596691
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal Attack_22
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 10
-        width: 30
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b4471ca6fa8b8d70800000000000000
-      internalID: 9046477068557567154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal Attack_23
-      rect:
-        serializedVersion: 2
-        x: 279
-        y: 10
-        width: 27
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d21860a8e8012b9e0800000000000000
-      internalID: -1607203912630763219
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Normal Attack_24
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 10
-        width: 27
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ea06948fcb6b1850800000000000000
-      internalID: 6348786638735674086
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bba0a7e7e1a9e224c9e495f37c88b97c
     internalID: 0
     vertices: []
     indices: 
@@ -785,13 +591,7 @@ TextureImporter:
       Normal Attack_16: 3282303646110841374
       Normal Attack_17: -809401319684012152
       Normal Attack_18: -5765561074389130039
-      Normal Attack_19: 8536292863944459660
       Normal Attack_2: 904662729802295156
-      Normal Attack_20: -5136397121279187402
-      Normal Attack_21: 5968188892617596691
-      Normal Attack_22: 9046477068557567154
-      Normal Attack_23: -1607203912630763219
-      Normal Attack_24: 6348786638735674086
       Normal Attack_3: 7235422728252231080
       Normal Attack_4: 6271653839618972131
       Normal Attack_5: -1714499552130740450

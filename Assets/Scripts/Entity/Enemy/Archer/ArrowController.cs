@@ -2,20 +2,29 @@ using UnityEngine;
 
 public class ArrowController : MonoBehaviour
 {
-    [SerializeField] private string targetLayerName = "Player";
-    [SerializeField] private int damage = 0;
-
-    [SerializeField] private float xVelocity;
     [SerializeField] private Rigidbody2D rb;
+    private CharacterStats archerStats;
 
-    [SerializeField] private bool canMove = true;
-
+    [SerializeField] private string targetLayerName = "Player";
     [SerializeField] private float minDestructionTime = 4.0f;
     [SerializeField] private float maxDestructionTime = 6.0f;
+    private float xVelocity;
+    private bool canMove = true;
 
+    public void SetupArrow(float _speed, CharacterStats _archerStats)
+    {
+        xVelocity = _speed;
+        archerStats = _archerStats;
+
+        if (xVelocity < 0)
+        {
+            transform.Rotate(0, 180, 0);
+        }
+    }
+    
     private void Update()
     {
-        if(canMove)
+        if (canMove)
         {
             rb.linearVelocity = new Vector2(xVelocity, rb.linearVelocityY);
         }
@@ -25,7 +34,7 @@ public class ArrowController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            other.GetComponent<CharacterStats>()?.TakeDamage(damage);
+            archerStats.DoDamage(other.GetComponent<CharacterStats>());
             StickInto(other);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -45,4 +54,6 @@ public class ArrowController : MonoBehaviour
 
         Destroy(gameObject, Random.Range(minDestructionTime, maxDestructionTime));
     }
+
+
 }

@@ -5446,7 +5446,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -5503,8 +5505,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 792710198}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -8949,7 +8951,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -9006,8 +9010,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 923479232}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -10760,7 +10764,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -10817,8 +10823,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 870605398}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -12833,7 +12839,7 @@ MonoBehaviour:
   knockBackDuration: 0
   busyWaitDuration: 0.17
   moveSpeed: 8
-  jumpForce: 12
+  jumpForce: 13
   airSpeedFactor: 0.7
   jumpToAirThreshold: -0.5
   swordReturnImpact: 4
@@ -12936,7 +12942,7 @@ Transform:
   m_GameObject: {fileID: 634892133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4, y: -3.74, z: 0}
+  m_LocalPosition: {x: -13.83, y: -1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15966,8 +15972,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 1853301391}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -16682,7 +16688,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -16739,8 +16747,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 954272155}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -17109,7 +17117,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -17166,8 +17176,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 1384498482}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -18235,7 +18245,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -18292,8 +18304,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 1296073321}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -32357,7 +32369,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -32414,8 +32428,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 746788680}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -38945,7 +38959,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -39002,8 +39018,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 1867263086}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -44938,7 +44954,7 @@ Transform:
   m_GameObject: {fileID: 1483374430}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7996993, y: 6.0741215, z: -10.048653}
+  m_LocalPosition: {x: -22.0297, y: 8.164122, z: -10.048653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46444,7 +46460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -46501,8 +46519,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 508537569}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -91201,7 +91219,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: 2adc3e3c31139734782303590c2b1529, type: 2}
   flashDuration: 0.2
-  electricityColor: []
+  electricityColor:
+  - {r: 0.87341774, g: 1, b: 0, a: 0}
+  - {r: 0.9543518, g: 1, b: 0.6462264, a: 0}
   electricityColorChangeFreq: 0.3
   ignitedColor:
   - {r: 1, g: 0.55590045, b: 0, a: 1}
@@ -91258,8 +91278,8 @@ MonoBehaviour:
   attackDistanceFromPlayer: 0.1
   lastTimeAttacked: 0
   stunnedDuration: 0.3
-  blinkDelay: 0.07
   stunnedDirection: {x: 6, y: 3}
+  blinkDelay: 0.07
   counterImage: {fileID: 37608749}
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 5}
@@ -94332,7 +94352,7 @@ Transform:
   m_GameObject: {fileID: 2073149421}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7996993, y: 6.0741215, z: -10.048653}
+  m_LocalPosition: {x: -22.0297, y: 8.164122, z: -10.048653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96442,6 +96462,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 634892140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4677737382171786213
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1801419847090245719, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_Name
+      value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175796566166808134, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175796566166808134, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535365431972779275, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 81e7555eff2512b4fb5e9a10f7aba07f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -96462,3 +96547,4 @@ SceneRoots:
   - {fileID: 674398129}
   - {fileID: 1793452350}
   - {fileID: 634892140}
+  - {fileID: 4677737382171786213}

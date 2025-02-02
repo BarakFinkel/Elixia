@@ -24,7 +24,7 @@ public class Enemy : Entity
 
     [Header("Attack Information")]
     [SerializeField]
-    public float attackDistance;
+    public float attackDistance = 2.0f;
 
     [SerializeField]
     public float attackCooldown = 0.6f;
@@ -46,13 +46,13 @@ public class Enemy : Entity
 
     [Header("Stunned Information")]
     [SerializeField]
-    public float stunnedDuration;
+    public float stunnedDuration = 1.0f;
+
+    [SerializeField]
+    public Vector2 stunnedDirection = new Vector2(10,3);
 
     [SerializeField]
     public float blinkDelay;
-
-    [SerializeField]
-    public Vector2 stunnedDirection;
 
     [SerializeField]
     protected GameObject counterImage;
@@ -116,10 +116,9 @@ public class Enemy : Entity
         moveSpeed = defaultMoveSpeed;
     }
 
-    public virtual void AnimationTrigger()
-    {
-        stateMachine.currentState.AnimationFinishTrigger();
-    }
+    public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
+    public virtual void AnimationSpecialAttackTrigger() {}
 
     public virtual RaycastHit2D IsPlayerDetected()
     {

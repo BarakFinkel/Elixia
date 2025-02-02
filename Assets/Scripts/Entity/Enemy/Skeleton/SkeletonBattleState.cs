@@ -32,6 +32,34 @@ public class SkeletonBattleState : EnemyState
         if (player.gameObject.GetComponent<CharacterStats>().isDead)
         {
             stateMachine.ChangeState(enemy.idleState);
+            return;
+        }
+
+        // If the player is detected
+        if (enemy.IsPlayerDetected())
+        {
+            stateTimer = enemy.battleTime; // Set the state timer to the desired battle time.
+
+            if (enemy.IsPlayerDetected().distance < enemy.attackDistance && CanAttack())
+            {
+                stateMachine.ChangeState(enemy.attackState);
+                return;
+            }
+        }
+        else
+        {
+            if (stateTimer == 0 || Vector2.Distance(player.transform.position, enemy.transform.position) >
+                enemy.battleDistance)
+            {
+                stateMachine.ChangeState(enemy.idleState);
+                return;
+            }
+        }
+
+        // If the enemy is close enough to the player, it won't move.
+        if (enemy.IsPlayerDetected() && enemy.IsPlayerDetected().distance < enemy.attackDistance - enemy.attackDistanceFromPlayer)
+        {
+            return;
         }
 
         // Determine the direcion in which the player is at, and move towards him.
@@ -45,28 +73,6 @@ public class SkeletonBattleState : EnemyState
         }
 
         enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.linearVelocityY);
-
-        // If the player is detected
-        if (enemy.IsPlayerDetected())
-        {
-            stateTimer = enemy.battleTime; // Set the state timer to the desired battle time.
-
-            if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
-            {
-                if (CanAttack())
-                {
-                    stateMachine.ChangeState(enemy.attackState);
-                }
-            }
-        }
-        else
-        {
-            if (stateTimer == 0 || Vector2.Distance(player.transform.position, enemy.transform.position) >
-                enemy.battleDistance)
-            {
-                stateMachine.ChangeState(enemy.idleState);
-            }
-        }
     }
 
     public override void Exit()

@@ -4937,13 +4937,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f216d8ab083604fae09cdcbd1e198d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayerName: Player
-  damage: 20
-  xVelocity: 6
   rb: {fileID: 969792713663318263}
-  canMove: 1
-  minDestructionTime: 4
-  maxDestructionTime: 6
+  targetLayerName: Player
+  minDestructionTime: 2
+  maxDestructionTime: 4
 --- !u!61 &3482465909774960335
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4978,7 +4975,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.12231493, y: 0.0059598684}
+  m_Offset: {x: -0.08342266, y: 0.0059598684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4988,7 +4985,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.97282887, y: 0.14593959}
+  m_Size: {x: 0.8950443, y: 0.14593959}
   m_EdgeRadius: 0
 --- !u!50 &969792713663318263
 Rigidbody2D:

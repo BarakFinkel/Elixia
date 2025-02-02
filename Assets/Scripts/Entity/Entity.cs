@@ -9,13 +9,13 @@ public class Entity : MonoBehaviour
     public Transform attackCheck;
 
     [SerializeField]
-    public float attackCheckRadius;
+    public float attackCheckRadius = 1.2f;
 
     [SerializeField]
     protected Transform groundCheck;
 
     [SerializeField]
-    protected float groundCheckDistance;
+    protected float groundCheckDistance = 0.3f;
 
     [SerializeField]
     public float groundCheckCancelTime = 0.2f;
@@ -24,20 +24,20 @@ public class Entity : MonoBehaviour
     protected Transform wallCheck;
 
     [SerializeField]
-    protected Vector2 wallCheckSize = new Vector3 (0.2f, 2.0f, 0.0f);
+    protected Vector2 wallCheckSize = new Vector2 (0.2f, 1.5f);
 
     [SerializeField]
     protected LayerMask whatIsGround;
 
     [Header("Knockback Information")]
     [SerializeField]
-    protected Vector2 knockbackPower;
+    protected Vector2 knockbackPower = new Vector2(7, 3);
 
     [SerializeField]
-    protected Vector2 knockbackOffset;
+    protected Vector2 knockbackOffset = new Vector2(0.5f, 2.0f);
 
     [SerializeField]
-    protected float knockBackDuration;
+    protected float knockBackDuration = 0.07f;
 
     protected bool facingRight = true;
     protected bool isKnocked;

@@ -13,8 +13,10 @@ https://gabry-corti.itch.io/plague-doctor
 Warrior (Previous Main Character Sprites)
 https://clembod.itch.io/warrior-free-animation-set
 
-Skeleton
+Enemies
 https://jesse-m.itch.io/skeleton-pack
+https://rvros.itch.io/pixel-art-animated-slime
+https://darkpixel-kronovi.itch.io/archer-hero
 
 Town Background
 https://szadiart.itch.io/background-town

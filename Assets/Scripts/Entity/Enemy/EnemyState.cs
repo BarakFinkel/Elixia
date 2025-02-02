@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyState
 {
-    private readonly string animBoolName;
+    protected readonly string animBoolName;
     protected Enemy enemyBase;
     protected Rigidbody2D rb;
     protected EnemyStateMachine stateMachine;
