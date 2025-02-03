@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 95f3fffe80658420aa22dd1d84cce1c9
   itemType: 1
-  itemName: Wooden Band
+  itemName: Leather Band
   iconTransparent: {fileID: -229098253, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   iconBackground: {fileID: 837366136, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropChance: 0
@@ -37,5 +37,5 @@ MonoBehaviour:
   poisonDamage: 0
   arcaneDamage: 0
   craftingMaterials:
-  - data: {fileID: 11400000, guid: fd90ac7b7f0074b57aef008e3cfa6479, type: 2}
+  - data: {fileID: 11400000, guid: 4f9eb68ad4220f046b7411a68ce31874, type: 2}
     stackSize: 1
