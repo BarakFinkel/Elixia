@@ -41,7 +41,7 @@ MonoBehaviour:
   craftingMaterials:
   - data: {fileID: 11400000, guid: aa7746774b5cc46429c7ec6c9eff4d6f, type: 2}
     stackSize: 1
-  - data: {fileID: 11400000, guid: 527657c287cbb4462a181f10db296272, type: 2}
+  - data: {fileID: 11400000, guid: 0dc4f247149cb4a7d9b39506d2046486, type: 2}
     stackSize: 1
   - data: {fileID: 11400000, guid: 1b97b075585da4792a552e1a69510106, type: 2}
     stackSize: 1

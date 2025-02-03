@@ -52,11 +52,15 @@ public class EntityFX : MonoBehaviour
     private Color ogSpriteColor;
     private SpriteRenderer sr;
 
+    private GameObject myHealthBar;
+
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         ogMaterial = sr.material;
         ogSpriteColor = sr.color;
+        
+        myHealthBar = GetComponentInChildren<UI_HealthBar>().gameObject;
     }
 
     public IEnumerator FlashFX()
@@ -91,10 +95,12 @@ public class EntityFX : MonoBehaviour
     {
         if (_transparent)
         {
+            myHealthBar.SetActive(false);
             sr.color = Color.clear;
         }
         else
         {
+            myHealthBar.SetActive(true);
             sr.color = Color.white;
         }
     }
