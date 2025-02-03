@@ -81,15 +81,12 @@ public class ArcherBattleState : EnemyState
         }
         else
         {
+            enemy.anim.SetBool("Move", false);
+            enemy.anim.SetBool("Idle", true);
+            
             if (stateTimer == 0 || Vector2.Distance(playerTransform.transform.position, enemy.transform.position) >
                 enemy.battleDistance)
             {
-                if (enemy.anim.GetBool("Move"))
-                {
-                    enemy.anim.SetBool("Move", false);
-                    enemy.anim.SetBool("Idle", true);
-                }
-
                 stateMachine.ChangeState(enemy.idleState);
             }
         }

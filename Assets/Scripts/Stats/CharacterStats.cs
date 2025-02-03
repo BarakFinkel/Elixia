@@ -292,6 +292,12 @@ public class CharacterStats : MonoBehaviour
         Inventory.instance.UpdateUISlots();
     }
 
+    public void EnableInvulnerabilityFor(float _seconds)
+    {
+        EnableInvulnerability();
+        Invoke("DisableInvulnerability", _seconds);
+    }
+
     public void EnableInvulnerability()
     {
         isInvulnerable = true;

@@ -4,6 +4,7 @@ public class ArrowController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     private CharacterStats archerStats;
+    private Transform parentTransform;
 
     [SerializeField] private string targetLayerName = "Player";
     [SerializeField] private float minDestructionTime = 4.0f;
@@ -21,12 +22,21 @@ public class ArrowController : MonoBehaviour
             transform.Rotate(0, 180, 0);
         }
     }
-    
+
     private void Update()
     {
         if (canMove)
         {
             rb.linearVelocity = new Vector2(xVelocity, rb.linearVelocityY);
+        }
+
+        if (parentTransform != null)
+        {
+            PlayerStats playerStats = parentTransform.GetComponent<PlayerStats>();
+            if(playerStats != null && playerStats.isDead)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -51,6 +61,7 @@ public class ArrowController : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         transform.parent = other.transform;
+        parentTransform = other.transform;
 
         Destroy(gameObject, Random.Range(minDestructionTime, maxDestructionTime));
     }

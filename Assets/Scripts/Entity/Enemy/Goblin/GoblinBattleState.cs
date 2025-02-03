@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class SkeletonBattleState : EnemyState
+public class GoblinBattleState : EnemyState
 {
-    private readonly Skeleton enemy;
+    private readonly Goblin enemy;
     private int moveDir;
     private Transform player;
 
-    public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Skeleton _enemy)
+    public GoblinBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Goblin _enemy)
         : base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
@@ -41,10 +41,19 @@ public class SkeletonBattleState : EnemyState
 
             if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
             {
+                // If the enemy is close enough to the player, it won't move from it's spot
+                enemy.anim.SetBool("Move", false);
+                enemy.anim.SetBool("Idle", true);
+
                 if (CanAttack())
                 {
                     stateMachine.ChangeState(enemy.attackState);
                 }
+            }
+            else
+            {
+                enemy.anim.SetBool("Move", false);
+                enemy.anim.SetBool("Idle", true);
             }
         }
         else
@@ -78,6 +87,7 @@ public class SkeletonBattleState : EnemyState
     public override void Exit()
     {
         base.Exit();
+        enemy.anim.SetBool("Idle", false);
     }
 
     private bool CanAttack()

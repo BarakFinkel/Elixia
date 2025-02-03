@@ -17,6 +17,7 @@ Enemies
 https://jesse-m.itch.io/skeleton-pack
 https://rvros.itch.io/pixel-art-animated-slime
 https://darkpixel-kronovi.itch.io/archer-hero
+https://nastanliev.itch.io/goblins
 
 Town Background
 https://szadiart.itch.io/background-town
@@ -34,6 +35,7 @@ Visual FX
 https://www.gamedevmarket.net/asset/super-pixel-fantasy-fx-pack-2-pixel-art-effect-animations
 https://www.gamedevmarket.net/asset/super-pixel-effects-pack-3-pixel-art-effect-animations
 https://www.gamedevmarket.net/asset/super-pixel-projectiles-pack-2-pixel-art-animated-projectiles
+https://www.gamedevmarket.net/asset/super-pixel-explosion-fx-pack-1-pixel-art-effect-animations
 
 Sound FX
 https://freesound.org/people/PorkMuncher/sounds/263595/
