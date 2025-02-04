@@ -24,10 +24,14 @@ public class DeathbringerSpell_Controller : MonoBehaviour
         {
             if (hit.GetComponent<Player>() != null)
             {
-                //hit.GetComponent<Entity>().SetupKnockbackDir(transform);
                 myStats.DoDamage(hit.GetComponent<CharacterStats>());
             }
         }
+    }
+
+    private void SFXTrigger()
+    {
+        AudioManager.instance.PlaySFX(49, 0, null);
     }
 
     private void OnDrawGizmosSelected()

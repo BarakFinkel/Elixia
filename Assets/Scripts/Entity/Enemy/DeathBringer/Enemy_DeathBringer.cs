@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class Enemy_DeathBringer : Enemy
@@ -24,7 +25,11 @@ public class Enemy_DeathBringer : Enemy
     [SerializeField]
     private Vector2 spellOffset;
 
-    
+    // Sound
+    private bool bossMusicPlaying = false;
+    private float voiceCooldown = 10.0f;
+    private float voiceTimer = 0;
+
     #region States
 
     public DeathBringer_BattleState battleState { get;private set; }
@@ -58,7 +63,14 @@ public class Enemy_DeathBringer : Enemy
         
         stateMachine.Initiallize(idleState);
     }
-    
+
+    protected override void Update()
+    {
+        base.Update();
+
+        HandleBossSFX();
+    }
+
     public override void Die()
     {
         base.Die();
@@ -142,6 +154,31 @@ public class Enemy_DeathBringer : Enemy
         
         GameObject newSpell = Instantiate(spellPrefab, spellPos, Quaternion.identity);
         newSpell.GetComponent<DeathbringerSpell_Controller>().SetupSpell(cs);
+    }
+
+    public void HandleBossSFX()
+    {
+        if (!bossMusicPlaying && bossFightBegun)
+        {
+            AudioManager.instance.PlayMusic(3);
+            bossMusicPlaying = true;
+        }
+
+        if (bossFightBegun && voiceTimer == 0)
+        {
+            int coinFlip = Random.Range(0,2);
+
+            if (coinFlip == 0)
+            {
+                AudioManager.instance.PlaySFX(44, 0, transform);
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX(45, 0, transform);
+            }
+
+            voiceTimer = voiceCooldown;
+        }
     }
 }
 

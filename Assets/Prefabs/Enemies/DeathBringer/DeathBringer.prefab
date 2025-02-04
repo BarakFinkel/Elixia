@@ -611,6 +611,8 @@ MonoBehaviour:
   evasion:
     baseValue: 0
     modifiers: 
+  primaryMagicType: 0
+  usingPrimaryMagicType: 0
   fireDamage:
     baseValue: 0
     modifiers: 

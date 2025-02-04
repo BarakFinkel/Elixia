@@ -19,6 +19,8 @@ public class DeathBringer_SpellCastState: EnemyState
 
         amountOfSpells = enemy.amountOfSpells;
         spellTimer = .5f;
+
+        AudioManager.instance.PlaySFX(43, 0, null);
     }
 
     public override void Update()
@@ -54,5 +56,7 @@ public class DeathBringer_SpellCastState: EnemyState
     {
         base.Exit();
         enemy.lastTimeCast = Time.time;
+
+        AudioManager.instance.StopSFX(43);
     }
 }

@@ -8,13 +8,14 @@ public class DeathBringer_AttackState : EnemyState
     {
         this.enemy = _enemy;
     }
-    
-    
+
     public override void Enter()
     {
         base.Enter();
 
         enemy.chanceToTeleport += 5;
+
+        AudioManager.instance.PlaySFX(46, 0, enemy.transform);
     }
 
     public override void Update()
