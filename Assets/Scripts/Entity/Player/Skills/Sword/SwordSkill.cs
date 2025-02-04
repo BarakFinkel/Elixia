@@ -14,47 +14,91 @@ public class SwordSkill : Skill
 {
     public SwordType swordType = SwordType.Regular;
 
-    [SerializeField] private UI_SkillTreeSlot bounceUnlockButton;
-    [SerializeField] public UI_InGame uiIngame;
-    [SerializeField] private int bounceAmount;
-    [SerializeField] private float bounceGravity;
-    [SerializeField] private float bounceSpeed;
+    [SerializeField]
+    private UI_SkillTreeSlot bounceUnlockButton;
+
+    [SerializeField]
+    public UI_InGame uiIngame;
+
+    [SerializeField]
+    private int bounceAmount;
+
+    [SerializeField]
+    private float bounceGravity;
+
+    [SerializeField]
+    private float bounceSpeed;
 
     [Header("Pierce Information")]
-    [SerializeField] private UI_SkillTreeSlot pierceUnlockButton;
-    [SerializeField] private int pierceAmount;
-    [SerializeField] private float pierceGravity;
+    [SerializeField]
+    private UI_SkillTreeSlot pierceUnlockButton;
+
+    [SerializeField]
+    private int pierceAmount;
+
+    [SerializeField]
+    private float pierceGravity;
 
     [Header("Spin Information")]
-    [SerializeField] private UI_SkillTreeSlot spinUnlockButton;
-    [SerializeField] private float hitCooldown;
-    [SerializeField] private float maxTravelDist;
-    [SerializeField] private float spinDuration;
-    [SerializeField] private float spinGravity;
+    [SerializeField]
+    private UI_SkillTreeSlot spinUnlockButton;
+
+    [SerializeField]
+    private float hitCooldown;
+
+    [SerializeField]
+    private float maxTravelDist;
+
+    [SerializeField]
+    private float spinDuration;
+
+    [SerializeField]
+    private float spinGravity;
 
     [Header("Skill Information")]
-    [SerializeField] private UI_SkillTreeSlot swordUnlockButton;
-    public bool swordUnlocked { get; private set; }
-    [SerializeField] private GameObject swordPrefab;
-    [SerializeField] private float freezeTimeDuration;
-    [SerializeField] private float returnSpeed;
-    [SerializeField] private Vector2 launchForce;
-    [SerializeField] private float swordGravity;
+    [SerializeField]
+    private UI_SkillTreeSlot swordUnlockButton;
+
+    [SerializeField]
+    private GameObject swordPrefab;
+
+    [SerializeField]
+    private float freezeTimeDuration;
+
+    [SerializeField]
+    private float returnSpeed;
+
+    [SerializeField]
+    private Vector2 launchForce;
+
+    [SerializeField]
+    private float swordGravity;
 
     [Header("Passive Skills")]
-    [SerializeField] private UI_SkillTreeSlot stunEnemyUnlockButton;
-    [SerializeField] private UI_SkillTreeSlot stunShockUnlockButton;
-    public bool stunUnlocked { get; private set; }
-    public bool shockUnlocked { get; private set; }
+    [SerializeField]
+    private UI_SkillTreeSlot stunEnemyUnlockButton;
+
+    [SerializeField]
+    private UI_SkillTreeSlot stunShockUnlockButton;
 
     [Header("Aim Dots Information")]
-    [SerializeField] private GameObject aimDotPrefab;
-    [SerializeField] private int numberOfDots;
-    [SerializeField] private float spaceBetweenDots;
-    [SerializeField] private Transform dotsParent;
+    [SerializeField]
+    private GameObject aimDotPrefab;
+
+    [SerializeField]
+    private int numberOfDots;
+
+    [SerializeField]
+    private float spaceBetweenDots;
+
+    [SerializeField]
+    private Transform dotsParent;
 
     private GameObject[] dots;
     private Vector2 finalDir;
+    public bool swordUnlocked { get; private set; }
+    public bool stunUnlocked { get; private set; }
+    public bool shockUnlocked { get; private set; }
 
     protected override void Start()
     {
@@ -74,7 +118,7 @@ public class SwordSkill : Skill
     protected override void Update()
     {
         base.Update();
-        
+
         if (player.canUseSwordSkill)
         {
             if (Input.GetKeyUp(KeyCode.Mouse1))
@@ -143,6 +187,28 @@ public class SwordSkill : Skill
         DotsActive(false);
     }
 
+    public void ChangeToNextType()
+    {
+        swordType = (SwordType)(((int)swordType + 1) % Enum.GetValues(typeof(SwordType)).Length);
+        SetupGravity();
+    }
+
+    public void SetCooldown()
+    {
+        cooldownTimer = cooldown;
+    }
+
+    public override bool CanUseSkill()
+    {
+        if (cooldownTimer == 0)
+        {
+            return true;
+        }
+
+        Debug.Log("Skill on Cooldown");
+        return false;
+    }
+
     #region Unlock
 
     private void UnlockSword()
@@ -195,27 +261,6 @@ public class SwordSkill : Skill
     }
 
     #endregion
-
-    public void ChangeToNextType()
-    {
-        swordType = (SwordType)(((int)swordType + 1) % Enum.GetValues(typeof(SwordType)).Length);
-        SetupGravity();
-    }
-
-    public void SetCooldown()
-    {
-        cooldownTimer = cooldown;
-    }
-
-    public override bool CanUseSkill()
-    {
-        if (cooldownTimer == 0)
-        {
-            return true;
-        }
-        Debug.Log("Skill on Cooldown");
-        return false;
-    }
 
     #region Aiming
 

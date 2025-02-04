@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SlimeMoveState : SlimeGroundedState
 {
     public SlimeMoveState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Slime _enemy) :

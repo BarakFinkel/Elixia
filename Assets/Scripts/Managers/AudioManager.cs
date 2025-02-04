@@ -5,12 +5,22 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    
-    [SerializeField] private AudioSource[] sfx;
-    [SerializeField] private AudioSource[] music;
-    [SerializeField] private float sfxMaxPitch = 1.0f;
-    [SerializeField] private float sfxMinPitch = 0.85f;
-    [SerializeField] private float sfxMaxDistance = 5.0f;
+
+    [SerializeField]
+    private AudioSource[] sfx;
+
+    [SerializeField]
+    private AudioSource[] music;
+
+    [SerializeField]
+    private float sfxMaxPitch = 1.0f;
+
+    [SerializeField]
+    private float sfxMinPitch = 0.85f;
+
+    [SerializeField]
+    private float sfxMaxDistance = 5.0f;
+
     public bool playMusic;
     private bool canPlaySFX;
     private int musicIndex = 2;
@@ -50,7 +60,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(int _sfxIndex, float _delay, Transform _source)
     {
-        if (canPlaySFX && 0 <= _sfxIndex &&_sfxIndex < sfx.Length)
+        if (canPlaySFX && 0 <= _sfxIndex && _sfxIndex < sfx.Length)
         {
             /*
             if (sfx[_sfxIndex].isPlaying)
@@ -60,13 +70,13 @@ public class AudioManager : MonoBehaviour
             */
 
             // If we pass the maximum distance from the source of the sound, and care about it (_source isn't null) - we will not play the sound.
-            if (_source != null && Vector2.Distance(PlayerManager.instance.player.transform.position, _source.position) > sfxMaxDistance)
+            if (_source != null &&
+                Vector2.Distance(PlayerManager.instance.player.transform.position, _source.position) > sfxMaxDistance)
             {
                 return;
             }
 
             sfx[_sfxIndex].pitch = Random.Range(sfxMinPitch, sfxMaxPitch);
-            
 
 
             if (_delay <= 0)
@@ -82,7 +92,7 @@ public class AudioManager : MonoBehaviour
 
     public void StopSFX(int _sfxIndex)
     {
-        if (0 <= _sfxIndex &&_sfxIndex < sfx.Length)
+        if (0 <= _sfxIndex && _sfxIndex < sfx.Length)
         {
             sfx[_sfxIndex].Stop();
         }
@@ -90,10 +100,11 @@ public class AudioManager : MonoBehaviour
 
     public bool IsPlayingSFX(int _sfxIndex)
     {
-        if (0 <= _sfxIndex &&_sfxIndex < sfx.Length)
+        if (0 <= _sfxIndex && _sfxIndex < sfx.Length)
         {
             return sfx[_sfxIndex].isPlaying;
         }
+
         return false;
     }
 
@@ -107,7 +118,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator DecreaseVolume(AudioSource _audio)
     {
-        float defaultVolume = _audio.volume;
+        var defaultVolume = _audio.volume;
 
         while (_audio.volume > 0.05f)
         {
@@ -138,11 +149,14 @@ public class AudioManager : MonoBehaviour
 
     public void StopAllMusic()
     {
-        for (int i = 0; i < music.Length; i++)
+        for (var i = 0; i < music.Length; i++)
         {
             music[i].Stop();
         }
     }
 
-    private void AllowSFX() => canPlaySFX = true;
+    private void AllowSFX()
+    {
+        canPlaySFX = true;
+    }
 }

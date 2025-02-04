@@ -2,26 +2,15 @@ using UnityEngine;
 
 public class IceShardController : MonoBehaviour
 {
-    private Rigidbody2D rb;
     private int damage;
-    private Vector3 initialScale = new Vector3(1,1,1);
-    private Vector3 smallestScale;
-    private float enemyFreezeDuration;
     private float duration;
     private float durationTimer;
-    
-    public void SetupIceShard(int _damage, Vector2 _velocity, float _targetScale, float _enemyFreezeDuration, float _duration)
-    {
-        damage = _damage;
-        rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = _velocity;
-        SetupTargetScale(_targetScale);
-        enemyFreezeDuration = _enemyFreezeDuration;
-        duration = _duration;
-        durationTimer = _duration;
-    }
+    private float enemyFreezeDuration;
+    private readonly Vector3 initialScale = new(1, 1, 1);
+    private Rigidbody2D rb;
+    private Vector3 smallestScale;
 
-    void Update()
+    private void Update()
     {
         durationTimer -= Time.deltaTime;
 
@@ -45,18 +34,31 @@ public class IceShardController : MonoBehaviour
         }
 
         // If the shard touches an enemy, deal magic damage to it, freeze it, and destroy the shard.
-        Enemy enemy = other.GetComponent<Enemy>();
+        var enemy = other.GetComponent<Enemy>();
         if (enemy != null)
         {
-            PlayerManager.instance.player.cs.DoMagicalDamage(enemy.GetComponent<CharacterStats>(), MagicType.Ice, damage);
+            PlayerManager.instance.player.cs.DoMagicalDamage(enemy.GetComponent<CharacterStats>(), MagicType.Ice,
+                damage);
             enemy.FreezeTimeFor(enemyFreezeDuration);
             Destroy(gameObject);
         }
     }
 
+    public void SetupIceShard(int _damage, Vector2 _velocity, float _targetScale, float _enemyFreezeDuration,
+        float _duration)
+    {
+        damage = _damage;
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = _velocity;
+        SetupTargetScale(_targetScale);
+        enemyFreezeDuration = _enemyFreezeDuration;
+        duration = _duration;
+        durationTimer = _duration;
+    }
+
     public void ScaleShard()
     {
-        float t = 1 - durationTimer / duration;
+        var t = 1 - durationTimer / duration;
         transform.localScale = Vector3.Lerp(initialScale, smallestScale, t);
     }
 

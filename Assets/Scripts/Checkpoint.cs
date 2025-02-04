@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    private Animator anim => GetComponent<Animator>();
     public string id;
     public bool activationStatus;
+    private Animator anim => GetComponent<Animator>();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,15 +18,16 @@ public class Checkpoint : MonoBehaviour
     [ContextMenu("Generate Checkpoint ID")]
     private void GenerateID()
     {
-        id = System.Guid.NewGuid().ToString();
+        id = Guid.NewGuid().ToString();
     }
 
     public void ActivateCheckpoint()
     {
-        if(!activationStatus)
+        if (!activationStatus)
         {
             AudioManager.instance.PlaySFX(20, 0, PlayerManager.instance.player.transform);
         }
+
         activationStatus = true;
         anim.SetBool("active", true);
     }

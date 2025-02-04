@@ -5,37 +5,55 @@ using UnityEngine.UI;
 public class CloneSkill : Skill
 {
     [Header("General Information")]
-    [SerializeField] private GameObject clonePrefab;
-    [SerializeField] private float cloneDuration;
-    [SerializeField] private float cloneSpawnOffset = 2.0f;
-    [SerializeField] private float cloneSpawnDelay = 0.4f;
-    private float attackMultiplier = 0.0f;
-    
+    [SerializeField]
+    private GameObject clonePrefab;
+
+    [SerializeField]
+    private float cloneDuration;
+
+    [SerializeField]
+    private float cloneSpawnOffset = 2.0f;
+
+    [SerializeField]
+    private float cloneSpawnDelay = 0.4f;
+
     [Header("Clone Attack Information")]
-    [SerializeField] private UI_SkillTreeSlot cloneAttackUnlockButton;
+    [SerializeField]
+    private UI_SkillTreeSlot cloneAttackUnlockButton;
+
     [Range(0.0f, 1.0f)]
-    [SerializeField] private float cloneAttackDamageRatio;
-    public bool cloneAttackUnlocked { get; private set; }
+    [SerializeField]
+    private float cloneAttackDamageRatio;
 
     [Header("Enhanced Clone Attack Information")]
-    [SerializeField] private UI_SkillTreeSlot enhancedCloneAttackUnlockButton;
+    [SerializeField]
+    private UI_SkillTreeSlot enhancedCloneAttackUnlockButton;
+
     [Range(0.0f, 1.0f)]
-    [SerializeField] private float enhancedCloneAttackDamageRatio;
-    public bool enhancedCloneAttackUnlocked { get; private set; }
+    [SerializeField]
+    private float enhancedCloneAttackDamageRatio;
 
     [Header("Duplicate Clone Information")]
-    [SerializeField] private UI_SkillTreeSlot duplicateCloneUnlockButton;
-    [SerializeField] private float duplicationChance = 30.0f;
-    public bool duplicateCloneUnlocked { get; private set; }
+    [SerializeField]
+    private UI_SkillTreeSlot duplicateCloneUnlockButton;
+
+    [SerializeField]
+    private float duplicationChance = 30.0f;
 
     [Header("Crystal Alternative Information")]
-    [SerializeField] private UI_SkillTreeSlot crystalAlternativeUnlockButton;
+    [SerializeField]
+    private UI_SkillTreeSlot crystalAlternativeUnlockButton;
+
+    private float attackMultiplier;
+    public bool cloneAttackUnlocked { get; private set; }
+    public bool enhancedCloneAttackUnlocked { get; private set; }
+    public bool duplicateCloneUnlocked { get; private set; }
     public bool crystalAlternativeUnlocked { get; private set; }
 
     protected override void Start()
     {
         base.Start();
-        
+
         cloneAttackUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockAttack);
         enhancedCloneAttackUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockEnhancedAttack);
         duplicateCloneUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockDuplicateClone);
@@ -55,7 +73,8 @@ public class CloneSkill : Skill
         var newClone = Instantiate(clonePrefab);
 
         newClone.GetComponent<CloneSkillController>().SetupClone(_clonePosition, cloneDuration, cloneAttackUnlocked,
-            duplicateCloneUnlocked, duplicationChance, _offset, player, FindClosestEnemy(newClone.transform), attackMultiplier);
+            duplicateCloneUnlocked, duplicationChance, _offset, player, FindClosestEnemy(newClone.transform),
+            attackMultiplier);
     }
 
     public void CreateCloneWithDelay(Transform _enemyTransform)
@@ -92,7 +111,7 @@ public class CloneSkill : Skill
 
     private void UnlockEnhancedAttack()
     {
-        if(enhancedCloneAttackUnlockButton.unlocked && !enhancedCloneAttackUnlocked)
+        if (enhancedCloneAttackUnlockButton.unlocked && !enhancedCloneAttackUnlocked)
         {
             enhancedCloneAttackUnlocked = true;
             attackMultiplier = enhancedCloneAttackDamageRatio;

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SlimeDeadState : EnemyState
 {
     private readonly Slime enemy;

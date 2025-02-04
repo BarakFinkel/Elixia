@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PoisonColliderController : MonoBehaviour
 {
-    protected CircleCollider2D cd;
     public int damage;
+    protected CircleCollider2D cd;
     protected float damageCooldown = 2f;
     protected Dictionary<Enemy, float> damageCooldowns = new();
 
@@ -25,7 +25,8 @@ public class PoisonColliderController : MonoBehaviour
             {
                 if (CanDamage(enemy))
                 {
-                    PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Poison, damage);
+                    PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(),
+                        MagicType.Poison, damage);
                     damageCooldowns[enemy] = Time.time + damageCooldown;
                 }
             }

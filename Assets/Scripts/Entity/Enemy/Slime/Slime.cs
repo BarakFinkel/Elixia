@@ -10,28 +10,32 @@ public enum SlimeType
 public class Slime : Enemy
 {
     [Header("Slime Specifics")]
-    [SerializeField] private SlimeType slimeType;
-    [SerializeField] private int slimesToCreate;
-    [SerializeField] private GameObject slimePrefab;
-    [SerializeField] private Vector2 minCreationVelocity;
-    [SerializeField] private Vector2 maxCreationVelocity;
-    [SerializeField] private float cancelKnockbackDelay = 1.5f;
-    [SerializeField] private AudioSource slimeAudio;
-    [SerializeField] private float distanceToPlayAudio = 10.0f;
+    [SerializeField]
+    private SlimeType slimeType;
+
+    [SerializeField]
+    private int slimesToCreate;
+
+    [SerializeField]
+    private GameObject slimePrefab;
+
+    [SerializeField]
+    private Vector2 minCreationVelocity;
+
+    [SerializeField]
+    private Vector2 maxCreationVelocity;
+
+    [SerializeField]
+    private float cancelKnockbackDelay = 1.5f;
+
+    [SerializeField]
+    private AudioSource slimeAudio;
+
+    [SerializeField]
+    private float distanceToPlayAudio = 10.0f;
 
     public bool initialBattleState;
     private Transform player;
-    
-    #region States
-
-    public SlimeIdleState idleState { get; private set; }
-    public SlimeMoveState moveState { get; private set; }
-    public SlimeBattleState battleState { get; private set; }
-    public SlimeAttackState attackState { get; private set; }
-    public SlimeStunnedState stunnedState { get; private set; }
-    public SlimeDeadState deadState { get; private set; }
-
-    #endregion
 
     protected override void Awake()
     {
@@ -88,10 +92,23 @@ public class Slime : Enemy
 
     private void CreateSlimes(int _amountOfSlimes, GameObject _slimePrefab)
     {
-        for (int i = 0; i < _amountOfSlimes; i++)
-        {
-            GameObject newSlime = Instantiate(_slimePrefab, transform.position, Quaternion.identity);
+        var spawnRadius = 0.5f; // Adjust this value as needed to control how far slimes spawn apart
 
+        for (var i = 0; i < _amountOfSlimes; i++)
+        {
+            // Generate a small random offset
+            var randomOffset = new Vector2(
+                Random.Range(-spawnRadius, spawnRadius),
+                Random.Range(-spawnRadius, spawnRadius)
+            );
+
+            // Adjust the spawn position
+            var spawnPosition = transform.position + (Vector3)randomOffset;
+
+            // Instantiate the new slime
+            var newSlime = Instantiate(_slimePrefab, spawnPosition, Quaternion.identity);
+
+            // Set up the slime
             newSlime.GetComponent<Slime>().SetupSlime(facingDir);
         }
     }
@@ -102,9 +119,9 @@ public class Slime : Enemy
         {
             Flip();
         }
-        
-        float xVelocity = Random.Range(minCreationVelocity.x, maxCreationVelocity.x);
-        float yVelocity = Random.Range(minCreationVelocity.y, maxCreationVelocity.y);
+
+        var xVelocity = Random.Range(minCreationVelocity.x, maxCreationVelocity.x);
+        var yVelocity = Random.Range(minCreationVelocity.y, maxCreationVelocity.y);
 
         isKnocked = true;
 
@@ -113,18 +130,34 @@ public class Slime : Enemy
         Invoke("CancelKnockback", cancelKnockbackDelay);
     }
 
-    private void CancelKnockback() => isKnocked = false;
+    private void CancelKnockback()
+    {
+        isKnocked = false;
+    }
 
     private void HandleSound()
     {
-        if (slimeAudio.isPlaying && Vector2.Distance(this.transform.position, player.transform.position) > distanceToPlayAudio)
+        if (slimeAudio.isPlaying &&
+            Vector2.Distance(transform.position, player.transform.position) > distanceToPlayAudio)
         {
             slimeAudio.Stop();
         }
 
-        if (!slimeAudio.isPlaying && Vector2.Distance(this.transform.position, player.transform.position) < distanceToPlayAudio)
+        if (!slimeAudio.isPlaying &&
+            Vector2.Distance(transform.position, player.transform.position) < distanceToPlayAudio)
         {
             slimeAudio.Play();
-        }       
+        }
     }
+
+    #region States
+
+    public SlimeIdleState idleState { get; private set; }
+    public SlimeMoveState moveState { get; private set; }
+    public SlimeBattleState battleState { get; private set; }
+    public SlimeAttackState attackState { get; private set; }
+    public SlimeStunnedState stunnedState { get; private set; }
+    public SlimeDeadState deadState { get; private set; }
+
+    #endregion
 }

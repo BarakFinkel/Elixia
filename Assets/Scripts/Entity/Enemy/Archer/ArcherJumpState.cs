@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class ArcherJumpState : EnemyState
 {
-    private Archer enemy;
-    
-    public ArcherJumpState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Archer _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    private readonly Archer enemy;
+
+    public ArcherJumpState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Archer _enemy) :
+        base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
     }

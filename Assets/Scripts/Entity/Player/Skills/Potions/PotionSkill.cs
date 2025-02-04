@@ -4,16 +4,23 @@ using UnityEngine.UI;
 public class PotionSkill : Skill
 {
     [Header("Unlock Information")]
-    [SerializeField] private UI_SkillTreeSlot potionUnlockButton;
-    [SerializeField] private UI_SkillTreeSlot secondPotionUnlockButton;
-    [SerializeField] private UI_SkillTreeSlot thirdPotionUnlockButton;
-    [SerializeField] private UI_SkillTreeSlot fourthPotionUnlockButton;
-    [SerializeField] public UI_Potions potionsUI;
-    [SerializeField] private UI_InGame ingameUI;
-    public bool potionUnlocked { get; private set; }
-    public bool secondUnlocked { get; private set; }
-    public bool thirdUnlocked { get; private set; }
-    public bool fourthUnlocked { get; private set; }
+    [SerializeField]
+    private UI_SkillTreeSlot potionUnlockButton;
+
+    [SerializeField]
+    private UI_SkillTreeSlot secondPotionUnlockButton;
+
+    [SerializeField]
+    private UI_SkillTreeSlot thirdPotionUnlockButton;
+
+    [SerializeField]
+    private UI_SkillTreeSlot fourthPotionUnlockButton;
+
+    [SerializeField]
+    public UI_Potions potionsUI;
+
+    [SerializeField]
+    private UI_InGame ingameUI;
 
     [Header("Skill Information")]
     [SerializeField]
@@ -54,6 +61,10 @@ public class PotionSkill : Skill
     private Vector2 finalDirection;
 
     private bool updateTimer;
+    public bool potionUnlocked { get; private set; }
+    public bool secondUnlocked { get; private set; }
+    public bool thirdUnlocked { get; private set; }
+    public bool fourthUnlocked { get; private set; }
 
     protected override void Start()
     {
@@ -63,14 +74,14 @@ public class PotionSkill : Skill
         secondPotionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSecondPotion);
         thirdPotionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockThirdPotion);
         fourthPotionUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockFourthPotion);
-        
+
         GenerateDots();
     }
 
     protected override void Update()
     {
         CheckUnlock();
-        
+
         // Change the color we display if it has changed.
         if (potionOnPlayer.color != PotionEffectManager.instance.CurrentEffect().potionColor)
         {
@@ -122,10 +133,13 @@ public class PotionSkill : Skill
 
     public void CreatePotion()
     {
-        BasePotionEffect potionEffect = PotionEffectManager.instance.CurrentEffect(); // To be replaced with a better method of keeping track of player inputs and effect retrieval.
+        var potionEffect =
+            PotionEffectManager.instance
+                .CurrentEffect(); // To be replaced with a better method of keeping track of player inputs and effect retrieval.
 
-        GameObject newPotion = Instantiate(potionEffect.potionPrefab, player.transform.position + potionSpawnOffset, transform.rotation);
-        PotionSkillController newPotionScript = newPotion.GetComponent<PotionSkillController>();
+        var newPotion = Instantiate(potionEffect.potionPrefab, player.transform.position + potionSpawnOffset,
+            transform.rotation);
+        var newPotionScript = newPotion.GetComponent<PotionSkillController>();
 
         newPotionScript.SetupPotion(finalDirection, potionGravity, potionEffect);
 
@@ -134,53 +148,6 @@ public class PotionSkill : Skill
 
         DotsActive(false); // We stop updating and displaying the aim dots since we already threw the potion.
     }
-
-    #region Aiming
-
-    // Method to return the direction from the player to the cursor in order to calculate the potion throwing direction and accordingly update the aim dots' positions.
-    public Vector2 AimDirection()
-    {
-        Vector2 playerPosition = player.transform.position;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var direction = mousePosition - playerPosition;
-
-        return direction;
-    }
-
-    // Method to activate the dots game object.
-    public void DotsActive(bool _isActive)
-    {
-        for (var i = 0; i < dots.Length; i++)
-        {
-            dots[i].SetActive(_isActive);
-        }
-    }
-
-    // Method to generate the dots from within the start function (done above).
-    private void GenerateDots()
-    {
-        dots = new GameObject[numberOfDots];
-
-        for (var i = 0; i < numberOfDots; i++)
-        {
-            dots[i] = Instantiate(dotPrefab, player.transform.position + potionSpawnOffset, Quaternion.identity, dotsParent);
-            dots[i].SetActive(false);
-        }
-    }
-
-    // A method returning the positions in which the dots are supposed to be placed at
-    // Note - 0.5f is not a 'magic number', it is necessary for computing the necessary positions and is not flexible.
-    private Vector2 DotsPosition(float t)
-    {
-        var aimDirection = AimDirection().normalized;
-        var position = (Vector2)dotsParent.transform.position
-                       + new Vector2(aimDirection.x * throwForce.x, aimDirection.y * throwForce.y) * t
-                       + 0.5f * (Physics2D.gravity * potionGravity) * (t * t);
-
-        return position;
-    }
-
-    #endregion
 
     private void UnlockPotion()
     {
@@ -217,4 +184,52 @@ public class PotionSkill : Skill
             potionsUI.UnlockPotionFour();
         }
     }
+
+    #region Aiming
+
+    // Method to return the direction from the player to the cursor in order to calculate the potion throwing direction and accordingly update the aim dots' positions.
+    public Vector2 AimDirection()
+    {
+        Vector2 playerPosition = player.transform.position;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var direction = mousePosition - playerPosition;
+
+        return direction;
+    }
+
+    // Method to activate the dots game object.
+    public void DotsActive(bool _isActive)
+    {
+        for (var i = 0; i < dots.Length; i++)
+        {
+            dots[i].SetActive(_isActive);
+        }
+    }
+
+    // Method to generate the dots from within the start function (done above).
+    private void GenerateDots()
+    {
+        dots = new GameObject[numberOfDots];
+
+        for (var i = 0; i < numberOfDots; i++)
+        {
+            dots[i] = Instantiate(dotPrefab, player.transform.position + potionSpawnOffset, Quaternion.identity,
+                dotsParent);
+            dots[i].SetActive(false);
+        }
+    }
+
+    // A method returning the positions in which the dots are supposed to be placed at
+    // Note - 0.5f is not a 'magic number', it is necessary for computing the necessary positions and is not flexible.
+    private Vector2 DotsPosition(float t)
+    {
+        var aimDirection = AimDirection().normalized;
+        var position = (Vector2)dotsParent.transform.position
+                       + new Vector2(aimDirection.x * throwForce.x, aimDirection.y * throwForce.y) * t
+                       + 0.5f * (Physics2D.gravity * potionGravity) * (t * t);
+
+        return position;
+    }
+
+    #endregion
 }

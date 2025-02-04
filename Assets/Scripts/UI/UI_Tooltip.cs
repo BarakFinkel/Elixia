@@ -1,16 +1,26 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class UI_Tooltip : MonoBehaviour
 {
-    [SerializeField] private float xLimit = 960;
-    [SerializeField] private float yLimit = 540;
+    [SerializeField]
+    private float xLimit = 960;
 
-    [SerializeField] private float xOffset = 150;
-    [SerializeField] private float yOffset = 150;
+    [SerializeField]
+    private float yLimit = 540;
 
-    [SerializeField] private int decreaseSizeTextLength = 20;
-    [SerializeField] private float decreaseSizeFactor = 0.8f;
+    [SerializeField]
+    private float xOffset = 150;
+
+    [SerializeField]
+    private float yOffset = 150;
+
+    [SerializeField]
+    private int decreaseSizeTextLength = 20;
+
+    [SerializeField]
+    private float decreaseSizeFactor = 0.8f;
+
     public virtual void AdjustPosition()
     {
         Vector2 mousePosition = Input.mousePosition;
@@ -41,7 +51,7 @@ public class UI_Tooltip : MonoBehaviour
 
     public void AdjustFontSize(TextMeshProUGUI _text)
     {
-        if(_text.text.Length > decreaseSizeTextLength)
+        if (_text.text.Length > decreaseSizeTextLength)
         {
             _text.fontSize = _text.fontSize * decreaseSizeFactor;
         }

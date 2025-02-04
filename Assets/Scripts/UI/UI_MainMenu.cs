@@ -4,10 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class UI_MainMenu : MonoBehaviour
 {
-    [SerializeField] private string sceneName = "MainScene";
-    [SerializeField] private GameObject continueButton;
-    [SerializeField] private UI_ScreenFade screenFade;
-    [SerializeField] private float fadeTime = 2.0f;
+    [SerializeField]
+    private string sceneName = "MainScene";
+
+    [SerializeField]
+    private GameObject continueButton;
+
+    [SerializeField]
+    private UI_ScreenFade screenFade;
+
+    [SerializeField]
+    private float fadeTime = 2.0f;
 
     public void Start()
     {

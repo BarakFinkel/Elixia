@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EntityFX : MonoBehaviour
 {
@@ -14,18 +13,18 @@ public class EntityFX : MonoBehaviour
     [Header("Ailment Colors")]
     [SerializeField]
     private Color[] electricityColor;
+
     [SerializeField]
-    private float electricityColorChangeFreq = 0.3f;    
+    private float electricityColorChangeFreq = 0.3f;
 
     [Space]
-
     [SerializeField]
     private Color[] ignitedColor;
+
     [SerializeField]
     private float ignitedColorChangeFreq = 0.25f;
 
     [Space]
-
     [SerializeField]
     private Color[] chilledColor;
 
@@ -33,7 +32,6 @@ public class EntityFX : MonoBehaviour
     private float chilledColorChangeFreq = 0.5f;
 
     [Space]
-
     [SerializeField]
     private Color[] poisonedColor;
 
@@ -41,26 +39,25 @@ public class EntityFX : MonoBehaviour
     private float poisonedColorChangeFreq = 0.5f;
 
     [Space]
-
     [SerializeField]
     private Color[] enchantedColor;
 
     [SerializeField]
     private float enchantedColorChangeFreq = 0.5f;
 
+    private GameObject myHealthBar;
+
     private Material ogMaterial;
     private Color ogSpriteColor;
     private SpriteRenderer sr;
-
-    private GameObject myHealthBar;
 
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         ogMaterial = sr.material;
         ogSpriteColor = sr.color;
-        
-        myHealthBar = GetComponentInChildren<UI_HealthBar>().gameObject;
+
+        myHealthBar = GetComponentInChildren<UI_HealthBar>()?.gameObject;
     }
 
     public IEnumerator FlashFX()
@@ -192,8 +189,9 @@ public class EntityFX : MonoBehaviour
     }
 
     #endregion
-    
+
     #region Electricity FX
+
     private void ElectricityColorFX()
     {
         if (sr.color != electricityColor[0])
@@ -211,6 +209,6 @@ public class EntityFX : MonoBehaviour
         InvokeRepeating("ElectricityColorFX", 0, electricityColorChangeFreq);
         Invoke("CancelColorChange", _sec);
     }
-    
+
     #endregion
 }

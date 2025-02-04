@@ -5,7 +5,7 @@ public class PoisonPotionEffect : BasePotionEffect
     [SerializeField]
     private GameObject poisonCloud;
 
-    [SerializeField] 
+    [SerializeField]
     private int damage;
 
     [SerializeField]

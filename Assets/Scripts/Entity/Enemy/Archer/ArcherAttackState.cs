@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ArcherAttackState : EnemyState
 {
-    private Archer enemy;
+    private readonly Archer enemy;
 
     public ArcherAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Archer _enemy)
         : base(_enemyBase, _stateMachine, _animBoolName)

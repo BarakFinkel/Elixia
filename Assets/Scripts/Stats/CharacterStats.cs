@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public enum StatType
@@ -74,13 +71,13 @@ public class CharacterStats : MonoBehaviour
     private int mrBalanceFactor = 300;
 
     [Range(1.0f, 2.0f)]
-    [SerializeField] private float stunShockDamageMultiplier = 1.1f;
+    [SerializeField]
+    private float stunShockDamageMultiplier = 1.1f;
 
     public Stat evasion;
 
     [Header("Magic Stats")]
     [Space]
-
     [SerializeField]
     public MagicType primaryMagicType = MagicType.Fire;
 
@@ -88,7 +85,6 @@ public class CharacterStats : MonoBehaviour
     public bool usingPrimaryMagicType;
 
     [Space]
-
     [Header("Fire")]
     public Stat fireDamage;
 
@@ -147,21 +143,24 @@ public class CharacterStats : MonoBehaviour
 
     [Header("Electricity")]
     public Stat lightningDamage;
+
     public bool isElectrified;
+
     [SerializeField]
     private float electrifiedDuration = 5.0f;
-    private float electrifiedTimer;
-    private int lightningDmg;
+
     [SerializeField]
     private GameObject lightningStrikePrefab;
-    
+
     public int currentHealth;
     private int burnDamage;
     private float chilledTimer;
+    private float electrifiedTimer;
     private float enchantedTimer;
     private EntityFX fx;
     private float ignitedTickTimer;
     private float ignitedTimer;
+    private int lightningDmg;
 
     public Action onHealthChanged;
     private int poisonedDamage;
@@ -199,11 +198,10 @@ public class CharacterStats : MonoBehaviour
         // Enchant Timers:
         enchantedTimer = UpdateTimer(enchantedTimer);
         HandleEnchantedAilment();
-        
+
         // Shock Timers:
         electrifiedTimer = UpdateTimer(electrifiedTimer);
         HandleElectricityAilment();
-
     }
 
     // Calculation Pipeline of the physical damage dealt to the target.
@@ -213,7 +211,7 @@ public class CharacterStats : MonoBehaviour
         {
             return;
         }
-        
+
         // We check if the target evades the attack, is so - we return and do nothing.
         if (TargetCanEvadeAttack(_targetStats))
         {
@@ -234,7 +232,7 @@ public class CharacterStats : MonoBehaviour
 
         // We deal the overall damage to the target.
         _targetStats.TakeDamage(totalDamage);
-        
+
         // If we want the character to passively do magic damage on phsyical attacks, we allow it via the usingPrimaryMagicType bool
         if (usingPrimaryMagicType)
         {
@@ -263,7 +261,7 @@ public class CharacterStats : MonoBehaviour
         {
             _damage = Mathf.RoundToInt(_damage * stunShockDamageMultiplier);
         }
-        
+
         currentHealth -= _damage;
 
         if (onHealthChanged != null)
@@ -293,7 +291,10 @@ public class CharacterStats : MonoBehaviour
         StartCoroutine(StartModCoroutine(_statToModifiy, _modifier, _duration));
     }
 
-    public void StunShockFor(float _duration) => StartCoroutine(StunShockedCoroutine(_duration));
+    public void StunShockFor(float _duration)
+    {
+        StartCoroutine(StunShockedCoroutine(_duration));
+    }
 
     public IEnumerator StunShockedCoroutine(float _duration)
     {
@@ -325,7 +326,7 @@ public class CharacterStats : MonoBehaviour
     {
         isInvulnerable = true;
     }
-    
+
     public void DisableInvulnerability()
     {
         isInvulnerable = false;
@@ -338,7 +339,6 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void OnEvasion()
     {
-
     }
 
     // Method to update timers down to 0.
@@ -428,14 +428,15 @@ public class CharacterStats : MonoBehaviour
     public virtual void DoMagicalDamage(CharacterStats _targetStats, MagicType _magicType, int _damage)
     {
         // Seting the magical types' damage
-        int _fireDamage = _magicType == MagicType.Fire ? fireDamage.GetValue() : 0;
-        int _iceDamage = _magicType == MagicType.Ice ? iceDamage.GetValue() : 0;
-        int _poisonDamage = _magicType == MagicType.Poison ? poisonDamage.GetValue() : 0;
-        int _arcaneDamage = _magicType == MagicType.Arcane ? arcaneDamage.GetValue() : 0;
-        int _lightningDamage = _magicType == MagicType.Lightning ? lightningDamage.GetValue() : 0;
+        var _fireDamage = _magicType == MagicType.Fire ? fireDamage.GetValue() : 0;
+        var _iceDamage = _magicType == MagicType.Ice ? iceDamage.GetValue() : 0;
+        var _poisonDamage = _magicType == MagicType.Poison ? poisonDamage.GetValue() : 0;
+        var _arcaneDamage = _magicType == MagicType.Arcane ? arcaneDamage.GetValue() : 0;
+        var _lightningDamage = _magicType == MagicType.Lightning ? lightningDamage.GetValue() : 0;
 
         // Summing up them all.
-        int totalMagicalDamage = _damage + _fireDamage + _iceDamage + _poisonDamage + _arcaneDamage + _lightningDamage + intelligence.GetValue();
+        var totalMagicalDamage = _damage + _fireDamage + _iceDamage + _poisonDamage + _arcaneDamage + _lightningDamage +
+                                 intelligence.GetValue();
 
         // Calculating MR damage reduction.
         totalMagicalDamage = TargetMagicalDamageReduction(_targetStats, totalMagicalDamage);
@@ -448,11 +449,11 @@ public class CharacterStats : MonoBehaviour
     private void AttemptApplyingAilments(CharacterStats _targetStats, MagicType _magicType, float _totalDamage)
     {
         // We check which of the elements we can apply
-        bool canApplyIgnite = _magicType == MagicType.Fire;
-        bool canApplyChill = _magicType == MagicType.Ice;
-        bool canApplyPoison = _magicType == MagicType.Poison;
-        bool canApplyEnchant = _magicType == MagicType.Arcane;
-        bool canApplyElectricity = _magicType == MagicType.Lightning;
+        var canApplyIgnite = _magicType == MagicType.Fire;
+        var canApplyChill = _magicType == MagicType.Ice;
+        var canApplyPoison = _magicType == MagicType.Poison;
+        var canApplyEnchant = _magicType == MagicType.Arcane;
+        var canApplyElectricity = _magicType == MagicType.Lightning;
 
         // In the following if statements, we change the overtime damage the target takes accordingly, or keep it the same if unnecessary.
         if (canApplyIgnite)
@@ -479,7 +480,7 @@ public class CharacterStats : MonoBehaviour
         if (_ignited)
         {
             DisableAllAilments();
-            
+
             isIgnited = _ignited;
             ignitedTimer = ignitedDuration;
 
@@ -489,7 +490,7 @@ public class CharacterStats : MonoBehaviour
         if (_chilled)
         {
             DisableAllAilments();
-            
+
             isChilled = _chilled;
             chilledTimer = chilledDuration;
 
@@ -500,7 +501,7 @@ public class CharacterStats : MonoBehaviour
         if (_poisoned)
         {
             DisableAllAilments();
-            
+
             isPoisoned = _poisoned;
             poisonedTimer = poisonedDuration;
 
@@ -510,7 +511,7 @@ public class CharacterStats : MonoBehaviour
         if (_enchanted)
         {
             DisableAllAilments();
-            
+
             isEnchanted = _enchanted;
             enchantedTimer = enchantedDuration;
 
@@ -520,12 +521,12 @@ public class CharacterStats : MonoBehaviour
         if (_electrified)
         {
             DisableAllAilments();
-            
+
             if (!isElectrified)
             {
                 ApplyShock(_electrified);
             }
-            else if (GetComponent<Player>() ==null)
+            else if (GetComponent<Player>() == null)
             {
                 HitNearesTargetWithLightningStrike();
             }
@@ -602,7 +603,7 @@ public class CharacterStats : MonoBehaviour
             isEnchanted = false;
         }
     }
-    
+
     private void HandleElectricityAilment()
     {
         if (electrifiedTimer == 0)
@@ -625,7 +626,7 @@ public class CharacterStats : MonoBehaviour
     {
         lightningDmg = _damage;
     }
-    
+
     public void ApplyShock(bool _shock)
     {
         if (isElectrified)

@@ -4,33 +4,41 @@ using UnityEngine.UI;
 public class Goblin : Enemy
 {
     [Header("Goblin Specifics")]
-    [SerializeField] public GameObject bombPrefab;
-    [SerializeField] public Transform bombSpawn;
-    [SerializeField] public Slider healthSlider;
-    [SerializeField] public GameObject rageMark;
-    [SerializeField] public float bombDamageMultiplier = 10.0f;
-    [SerializeField] public float bombTriggerHealthPercentage = 0.30f;
-    [SerializeField] public float bombTriggerDistance = 0.5f;
-    [SerializeField] public float bombMaxScale = 2.0f;
-    [SerializeField] public float bombGrowthSpeed = 5.0f;
-    [SerializeField] public float delayBeforeMoveFast = 1.0f;
-    [SerializeField] public float fastMoveSpeed = 10.0f;
+    [SerializeField]
+    public GameObject bombPrefab;
+
+    [SerializeField]
+    public Transform bombSpawn;
+
+    [SerializeField]
+    public Slider healthSlider;
+
+    [SerializeField]
+    public GameObject rageMark;
+
+    [SerializeField]
+    public float bombDamageMultiplier = 10.0f;
+
+    [SerializeField]
+    public float bombTriggerHealthPercentage = 0.30f;
+
+    [SerializeField]
+    public float bombTriggerDistance = 0.5f;
+
+    [SerializeField]
+    public float bombMaxScale = 2.0f;
+
+    [SerializeField]
+    public float bombGrowthSpeed = 5.0f;
+
+    [SerializeField]
+    public float delayBeforeMoveFast = 1.0f;
+
+    [SerializeField]
+    public float fastMoveSpeed = 10.0f;
 
     public bool initialBattleState = true;
-    private bool enteredMoveFastState = false;
-    
-    #region States
-
-    public GoblinIdleState idleState { get; private set; }
-    public GoblinMoveState moveState { get; private set; }
-    public GoblinBattleState battleState { get; private set; }
-    public GoblinAttackState attackState { get; private set; }
-    public GoblinStunnedState stunnedState { get; private set; }
-    public GoblinMoveFastState moveFastState { get; private set; }
-    // public GoblinBombState bombState { get; private set; }
-    public GoblinDeadState deadState { get; private set; }
-
-    #endregion
+    private bool enteredMoveFastState;
 
     // When awaking, we construct the state machines and all possible states.
     protected override void Awake()
@@ -58,7 +66,8 @@ public class Goblin : Enemy
     {
         base.Update();
 
-        if (!enteredMoveFastState && healthSlider.value < Mathf.RoundToInt(bombTriggerHealthPercentage * healthSlider.maxValue))
+        if (!enteredMoveFastState &&
+            healthSlider.value < Mathf.RoundToInt(bombTriggerHealthPercentage * healthSlider.maxValue))
         {
             rageMark.SetActive(true);
             stateMachine.ChangeState(moveFastState);
@@ -88,7 +97,22 @@ public class Goblin : Enemy
 
     public override void AnimationSpecialAttackTrigger()
     {
-        GameObject newBomb = Instantiate(bombPrefab, bombSpawn.position, Quaternion.identity);
+        var newBomb = Instantiate(bombPrefab, bombSpawn.position, Quaternion.identity);
         newBomb.GetComponent<BombController>().SetupBomb(bombMaxScale, bombGrowthSpeed, bombDamageMultiplier, cs);
-    } 
+    }
+
+    #region States
+
+    public GoblinIdleState idleState { get; private set; }
+    public GoblinMoveState moveState { get; private set; }
+    public GoblinBattleState battleState { get; private set; }
+    public GoblinAttackState attackState { get; private set; }
+    public GoblinStunnedState stunnedState { get; private set; }
+
+    public GoblinMoveFastState moveFastState { get; private set; }
+
+    // public GoblinBombState bombState { get; private set; }
+    public GoblinDeadState deadState { get; private set; }
+
+    #endregion
 }

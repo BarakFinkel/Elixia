@@ -1,9 +1,7 @@
-using UnityEngine;
-
 public class Skeleton : Enemy
 {
     public bool initialBattleState = true;
-    
+
     // When awaking, we construct the state machines and all possible states.
     protected override void Awake()
     {

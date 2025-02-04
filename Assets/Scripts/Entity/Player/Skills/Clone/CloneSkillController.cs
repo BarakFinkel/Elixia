@@ -2,20 +2,25 @@ using UnityEngine;
 
 public class CloneSkillController : MonoBehaviour
 {
-    [SerializeField] private float colorFadeSpeed;
-    [SerializeField] private Transform attackCheck;
-    [SerializeField] private float attackCheckRadius = 0.8f;
+    [SerializeField]
+    private float colorFadeSpeed;
+
+    [SerializeField]
+    private Transform attackCheck;
+
+    [SerializeField]
+    private float attackCheckRadius = 0.8f;
 
     private Animator anim;
-    private Player player;
-    private SpriteRenderer sr;
-    private Transform closestEnemy;
-    
+
     private bool canDuplicateClone;
+    private float cloneAttackMultiplier;
     private float cloneTimer;
+    private Transform closestEnemy;
     private float duplicationChance;
     private int facingDir = 1;
-    private float cloneAttackMultiplier;
+    private Player player;
+    private SpriteRenderer sr;
 
     private void Awake()
     {
@@ -94,18 +99,17 @@ public class CloneSkillController : MonoBehaviour
         var colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius);
 
         foreach (var hit in colliders)
-        {
             if (hit.GetComponent<Enemy>() != null)
             {
-                PlayerStats ps = player.GetComponent<PlayerStats>();
-                EnemyStats es = hit.GetComponent<EnemyStats>();
+                var ps = player.GetComponent<PlayerStats>();
+                var es = hit.GetComponent<EnemyStats>();
 
                 ps.CloneDoDamage(es, cloneAttackMultiplier);
 
                 // If the player enhanced the shadow clones via the skill tree, they will apply on-hit effects.
                 if (player.skillManager.clone.enhancedCloneAttackUnlocked)
                 {
-                    ItemData_Equipment weaponData = Inventory.instance.GetEquipmentOfType(EquipmentType.Weapon);
+                    var weaponData = Inventory.instance.GetEquipmentOfType(EquipmentType.Weapon);
                     if (weaponData != null)
                     {
                         weaponData.Effect(hit.transform);
@@ -121,6 +125,5 @@ public class CloneSkillController : MonoBehaviour
                     }
                 }
             }
-        }
     }
 }

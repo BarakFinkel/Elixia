@@ -1,17 +1,16 @@
 using UnityEngine;
-using UnityEngine.Windows;
-using Input = UnityEngine.Input;
 
-public class DeathBringer_IdleState: EnemyState
+public class DeathBringer_IdleState : EnemyState
 {
-    private Enemy_DeathBringer enemy;
+    private readonly Enemy_DeathBringer enemy;
     private Transform player;
-    
-    public DeathBringer_IdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_DeathBringer _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+
+    public DeathBringer_IdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
+        Enemy_DeathBringer _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
-        this.enemy = _enemy;
+        enemy = _enemy;
     }
-    
+
     public override void Enter()
     {
         base.Enter();

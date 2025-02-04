@@ -4,18 +4,23 @@ using UnityEngine.UI;
 public class CounterAttackSkill : Skill
 {
     [Header("Counter Attack")]
-    [SerializeField] private UI_SkillTreeSlot counterAttackUnlockButton;
-    public bool counterAttackUnlocked { get; private set; }
+    [SerializeField]
+    private UI_SkillTreeSlot counterAttackUnlockButton;
 
     [Header("Resource Restoration")]
-    [SerializeField] private UI_SkillTreeSlot restoreUnlockButton;
-    
+    [SerializeField]
+    private UI_SkillTreeSlot restoreUnlockButton;
+
     [Range(0.0f, 1.0f)]
-    [SerializeField] private float restoreHealthPercentage;
-    public bool restoreUnlocked { get; private set; }
+    [SerializeField]
+    private float restoreHealthPercentage;
 
     [Header("Counter Attack Clone")]
-    [SerializeField] private UI_SkillTreeSlot cloneUnlockButton;
+    [SerializeField]
+    private UI_SkillTreeSlot cloneUnlockButton;
+
+    public bool counterAttackUnlocked { get; private set; }
+    public bool restoreUnlocked { get; private set; }
     public bool cloneUnlocked { get; private set; }
 
     protected override void Start()
@@ -33,7 +38,7 @@ public class CounterAttackSkill : Skill
 
         if (restoreUnlocked)
         {
-            int restoreAmount = Mathf.RoundToInt(player.cs.GetMaxHealthValue() * restoreHealthPercentage);
+            var restoreAmount = Mathf.RoundToInt(player.cs.GetMaxHealthValue() * restoreHealthPercentage);
             player.cs.IncreaseHealthBy(restoreAmount);
         }
     }

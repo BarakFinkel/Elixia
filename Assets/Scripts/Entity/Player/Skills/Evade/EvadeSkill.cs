@@ -4,14 +4,21 @@ using UnityEngine.UI;
 public class EvadeSkill : Skill
 {
     [Header("Unlock Information")]
-    [SerializeField] private UI_SkillTreeSlot unlockEvadeButton;
-    [SerializeField] private UI_SkillTreeSlot unlockCloneButton;
+    [SerializeField]
+    private UI_SkillTreeSlot unlockEvadeButton;
+
+    [SerializeField]
+    private UI_SkillTreeSlot unlockCloneButton;
+
     public bool evadeUnlocked;
     public bool cloneUnlocked;
 
     [Header("Evade Information")]
-    [SerializeField] private int evasionAmount;
-    [SerializeField] private Vector3 cloneOffset;
+    [SerializeField]
+    private int evasionAmount;
+
+    [SerializeField]
+    private Vector3 cloneOffset;
 
     protected override void Start()
     {

@@ -21,8 +21,8 @@ MonoBehaviour:
   equipmentType: 2
   itemCooldown: 0
   itemEffects: []
-  strength: 5
-  agility: 15
+  strength: 0
+  agility: 10
   intelligence: 0
   vitality: 0
   damage: 0

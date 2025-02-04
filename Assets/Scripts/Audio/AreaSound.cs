@@ -2,19 +2,10 @@ using UnityEngine;
 
 public class AreaSound : MonoBehaviour
 {
-    [SerializeField] private int areaSoundIndex;
-    private bool isInside = false;
+    [SerializeField]
+    private int areaSoundIndex;
 
-    
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if(!isInside && other.gameObject.GetComponent<Player>() != null)
-        {
-            AudioManager.instance.PlaySFX(areaSoundIndex, 0, null);
-            isInside = true;
-        }
-    }
+    private bool isInside;
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -22,6 +13,16 @@ public class AreaSound : MonoBehaviour
         {
             AudioManager.instance.StopSFXWithTime(areaSoundIndex);
             isInside = false;
+        }
+    }
+
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!isInside && other.gameObject.GetComponent<Player>() != null)
+        {
+            AudioManager.instance.PlaySFX(areaSoundIndex, 0, null);
+            isInside = true;
         }
     }
 }

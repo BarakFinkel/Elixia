@@ -21,17 +21,17 @@ MonoBehaviour:
   equipmentType: 1
   itemCooldown: 0
   itemEffects: []
-  strength: 10
+  strength: 7
   agility: 0
   intelligence: 0
-  vitality: 30
+  vitality: 20
   damage: 0
   critChance: 0
   critPower: 0
   health: 200
-  armor: 120
-  evasion: 20
-  magicResistance: 20
+  armor: 50
+  evasion: 10
+  magicResistance: 10
   fireDamage: 0
   iceDamage: 0
   poisonDamage: 0

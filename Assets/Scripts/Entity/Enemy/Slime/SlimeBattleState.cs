@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SlimeBattleState : EnemyState
 {
-    private Slime enemy;
+    private readonly Slime enemy;
     private int moveDir;
     private Transform player;
 
@@ -66,7 +66,8 @@ public class SlimeBattleState : EnemyState
         }
 
         // If the enemy is close enough to the player, it won't move.
-        if (enemy.IsPlayerDetected() && enemy.IsPlayerDetected().distance < enemy.attackDistance - enemy.attackDistanceFromPlayer)
+        if (enemy.IsPlayerDetected() &&
+            enemy.IsPlayerDetected().distance < enemy.attackDistance - enemy.attackDistanceFromPlayer)
         {
             return;
         }

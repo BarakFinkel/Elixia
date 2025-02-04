@@ -64,13 +64,16 @@ public class ItemData_Equipment : ItemData
         playerStats.strength.AddModifier(strength);
         playerStats.agility.AddModifier(agility);
         playerStats.intelligence.AddModifier(intelligence);
-        playerStats.vitality.AddModifier(vitality);
 
         playerStats.damage.AddModifier(damage);
         playerStats.critChance.AddModifier(critChance);
         playerStats.critPower.AddModifier(critPower);
 
+        var healthToHeal = (float)playerStats.currentHealth / playerStats.GetMaxHealthValue(); // current health percent
         playerStats.maxHealth.AddModifier(health);
+        playerStats.vitality.AddModifier(vitality);
+        playerStats.currentHealth = (int)(healthToHeal * playerStats.GetMaxHealthValue());
+
         playerStats.armor.AddModifier(armor);
         playerStats.evasion.AddModifier(evasion);
         playerStats.magicResistance.AddModifier(magicResistance);
@@ -88,13 +91,17 @@ public class ItemData_Equipment : ItemData
         playerStats.strength.RemoveModifier(strength);
         playerStats.agility.RemoveModifier(agility);
         playerStats.intelligence.RemoveModifier(intelligence);
-        playerStats.vitality.RemoveModifier(vitality);
+
 
         playerStats.damage.RemoveModifier(damage);
         playerStats.critChance.RemoveModifier(critChance);
         playerStats.critPower.RemoveModifier(critPower);
 
+        var healthToHeal = (float)playerStats.currentHealth / playerStats.GetMaxHealthValue(); // current health percent
         playerStats.maxHealth.RemoveModifier(health);
+        playerStats.vitality.RemoveModifier(vitality);
+        playerStats.currentHealth = (int)(healthToHeal * playerStats.GetMaxHealthValue());
+
         playerStats.armor.RemoveModifier(armor);
         playerStats.evasion.RemoveModifier(evasion);
         playerStats.magicResistance.RemoveModifier(magicResistance);
@@ -129,7 +136,7 @@ public class ItemData_Equipment : ItemData
         AddItemDescription(poisonDamage, "Poison Damage");
         AddItemDescription(arcaneDamage, "Arcane Damage");
 
-        for (int i = 0; i < itemEffects.Length; i++)
+        for (var i = 0; i < itemEffects.Length; i++)
         {
             if (itemEffects[i].itemEffectDescription.Length > 0)
             {

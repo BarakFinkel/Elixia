@@ -20,7 +20,7 @@ public class SkeletonBattleState : EnemyState
 
         if (enemy.initialBattleState)
         {
-            AudioManager.instance.PlaySFX(10,0,enemy.transform);
+            AudioManager.instance.PlaySFX(10, 0, enemy.transform);
             enemy.initialBattleState = false;
         }
     }
@@ -67,7 +67,8 @@ public class SkeletonBattleState : EnemyState
         }
 
         // If the enemy is close enough to the player, it won't move.
-        if (enemy.IsPlayerDetected() && enemy.IsPlayerDetected().distance < enemy.attackDistance - enemy.attackDistanceFromPlayer)
+        if (enemy.IsPlayerDetected() &&
+            enemy.IsPlayerDetected().distance < enemy.attackDistance - enemy.attackDistanceFromPlayer)
         {
             return;
         }

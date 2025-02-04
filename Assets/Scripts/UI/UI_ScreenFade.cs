@@ -9,6 +9,13 @@ public class UI_ScreenFade : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void FadeOut() => anim.SetTrigger("fadeOut");
-    public void FadeIn() => anim.SetTrigger("fadeIn");
+    public void FadeOut()
+    {
+        anim.SetTrigger("fadeOut");
+    }
+
+    public void FadeIn()
+    {
+        anim.SetTrigger("fadeIn");
+    }
 }

@@ -1,20 +1,28 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_HealthBar : MonoBehaviour
 {
-    private Entity entity => GetComponentInParent<Entity>();
-    private CharacterStats myStats => GetComponentInParent<CharacterStats>();
     private RectTransform myTransform;
     private Slider slider;
+    private Entity entity => GetComponentInParent<Entity>();
+    private CharacterStats myStats => GetComponentInParent<CharacterStats>();
 
-    private void Start()
+    private void Awake()
     {
         myTransform = GetComponent<RectTransform>();
         slider = GetComponentInChildren<Slider>();
-        
+    }
+
+    private void Start()
+    {
         UpdateHealthUI();
+    }
+
+    private void OnEnable()
+    {
+        entity.onFlipped += FlipUI;
+        myStats.onHealthChanged += UpdateHealthUI;
     }
 
     private void OnDisable()
@@ -39,11 +47,5 @@ public class UI_HealthBar : MonoBehaviour
     private void FlipUI()
     {
         myTransform.Rotate(0, 180, 0);
-    }
-
-    private void OnEnable()
-    {
-        entity.onFlipped += FlipUI;
-        myStats.onHealthChanged += UpdateHealthUI;
     }
 }

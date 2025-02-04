@@ -21,7 +21,8 @@ public class FireEffectController : MonoBehaviour
             {
                 if (CanDamage(enemy))
                 {
-                    PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Fire, damage);
+                    PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Fire,
+                        damage);
                     damageCooldowns[enemy] = Time.time + damageCooldown;
                 }
             }

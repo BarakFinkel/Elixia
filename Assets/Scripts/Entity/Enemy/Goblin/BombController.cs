@@ -2,27 +2,12 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour
 {
-    private CharacterStats goblinStats;
+    private bool bombTriggered;
     private CircleCollider2D cd;
+    private float damageMultiplier;
+    private CharacterStats goblinStats;
     private float growScale;
     private float growSpeed;
-    private float damageMultiplier;
-    private bool bombTriggered = false;
-
-    public void SetupBomb(float _growScale, float _growSpeed, float _damageMultiplier, CharacterStats _goblinStats)
-    {
-        cd = GetComponent<CircleCollider2D>();
-        
-        growScale = _growScale;
-        growSpeed = _growSpeed;
-        damageMultiplier = _damageMultiplier;
-        goblinStats = _goblinStats;
-
-        int addedDamage = Mathf.RoundToInt(goblinStats.damage.GetValue() * (damageMultiplier - 1));
-        goblinStats.damage.AddModifier(addedDamage);
-
-        AudioManager.instance.PlaySFX(34, 0, this.transform);
-    }
 
     private void Update()
     {
@@ -30,10 +15,11 @@ public class BombController : MonoBehaviour
         if (bombTriggered)
         {
             // Increase size
-            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(growScale, growScale), growSpeed * Time.deltaTime);
+            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(growScale, growScale),
+                growSpeed * Time.deltaTime);
 
             // Hit enemies caught within the blast radius
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, cd.radius);
+            var colliders = Physics2D.OverlapCircleAll(transform.position, cd.radius);
             foreach (var hit in colliders)
             {
                 if (hit.GetComponent<Player>() != null)
@@ -49,6 +35,21 @@ public class BombController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetupBomb(float _growScale, float _growSpeed, float _damageMultiplier, CharacterStats _goblinStats)
+    {
+        cd = GetComponent<CircleCollider2D>();
+
+        growScale = _growScale;
+        growSpeed = _growSpeed;
+        damageMultiplier = _damageMultiplier;
+        goblinStats = _goblinStats;
+
+        var addedDamage = Mathf.RoundToInt(goblinStats.damage.GetValue() * (damageMultiplier - 1));
+        goblinStats.damage.AddModifier(addedDamage);
+
+        AudioManager.instance.PlaySFX(34, 0, transform);
     }
 
     public void TriggerBomb()

@@ -23,13 +23,13 @@ MonoBehaviour:
   itemEffects: []
   strength: 0
   agility: 0
-  intelligence: 20
+  intelligence: 10
   vitality: 0
   damage: 0
   critChance: 0
   critPower: 0
   health: 30
-  armor: 20
+  armor: 10
   evasion: 30
   magicResistance: 30
   fireDamage: 0

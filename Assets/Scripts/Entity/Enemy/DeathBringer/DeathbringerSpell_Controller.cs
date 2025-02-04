@@ -10,23 +10,29 @@ public class DeathbringerSpell_Controller : MonoBehaviour
 
     [SerializeField]
     private LayerMask whatIsPlayer;
-    
+
     private CharacterStats myStats;
-    
-    public void SetupSpell(CharacterStats _stats) => myStats = _stats;
-    
-    
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(check.position, boxSize);
+    }
+
+    public void SetupSpell(CharacterStats _stats)
+    {
+        myStats = _stats;
+    }
+
+
     private void AnimationTrigger()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(check.position, boxSize, whatIsPlayer);
+        var colliders = Physics2D.OverlapBoxAll(check.position, boxSize, whatIsPlayer);
 
         foreach (var hit in colliders)
-        {
             if (hit.GetComponent<Player>() != null)
             {
                 myStats.DoDamage(hit.GetComponent<CharacterStats>());
             }
-        }
     }
 
     private void SFXTrigger()
@@ -34,10 +40,8 @@ public class DeathbringerSpell_Controller : MonoBehaviour
         AudioManager.instance.PlaySFX(49, 0, null);
     }
 
-    private void OnDrawGizmosSelected()
+    private void SelfDestroy()
     {
-        Gizmos.DrawWireCube(check.position, boxSize);
+        Destroy(gameObject);
     }
-    
-    private void SelfDestroy() => Destroy(gameObject);
 }

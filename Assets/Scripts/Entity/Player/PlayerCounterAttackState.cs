@@ -30,8 +30,8 @@ public class PlayerCounterAttackState : PlayerState
         // Any of "Enemy" type will be stunned, and the counter attack animation will play.
         foreach (var hit in colliders)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
-            
+            var enemy = hit.GetComponent<Enemy>();
+
             if (enemy != null)
             {
                 if (hit.GetComponent<Enemy>().CanBeStunned())
@@ -40,7 +40,8 @@ public class PlayerCounterAttackState : PlayerState
                     player.anim.SetBool("SuccessfulCounterAttack", true);
                     AudioManager.instance.PlaySFX(28, 0, null);
 
-                    player.skillManager.counterAttack.UseSkill(); // Will have effect when the player unlocks the health restoration feature on this skill.
+                    player.skillManager.counterAttack
+                        .UseSkill(); // Will have effect when the player unlocks the health restoration feature on this skill.
 
                     if (canCreateClone)
                     {

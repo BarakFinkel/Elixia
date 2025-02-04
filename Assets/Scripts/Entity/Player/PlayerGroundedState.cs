@@ -35,13 +35,15 @@ public class PlayerGroundedState : PlayerState
         }
 
         // If we press R-Click, we move to the aim sword state if we're able to.
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !player.isUIActive && player.skillManager.sword.swordUnlocked && player.canUseSwordSkill && HasNoSword() && player.skillManager.sword.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !player.isUIActive && player.skillManager.sword.swordUnlocked &&
+            player.canUseSwordSkill && HasNoSword() && player.skillManager.sword.CanUseSkill())
         {
             stateMachine.ChangeState(player.aimSwordState);
         }
 
         // If we press R-Click, we move to the aim potion state if we're able to.
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !player.isUIActive && player.skillManager.potion.potionUnlocked && !player.canUseSwordSkill && player.skillManager.potion.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !player.isUIActive && player.skillManager.potion.potionUnlocked &&
+            !player.canUseSwordSkill && player.skillManager.potion.CanUseSkill())
         {
             stateMachine.ChangeState(player.aimState);
         }
@@ -53,13 +55,15 @@ public class PlayerGroundedState : PlayerState
         }
 
         // If we press F, we move to the counter attack state.
-        if (Input.GetKeyDown(KeyCode.F) && !player.IsWallDetected() && player.skillManager.counterAttack.counterAttackUnlocked && player.skillManager.counterAttack.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.F) && !player.IsWallDetected() &&
+            player.skillManager.counterAttack.counterAttackUnlocked && player.skillManager.counterAttack.CanUseSkill())
         {
             stateMachine.ChangeState(player.counterAttackState);
         }
 
         // If we press X and the ability's off-cooldown, we enter the blackhole ultimate ability state.
-        if (Input.GetKeyDown(KeyCode.X) && player.skillManager.blackhole.blackholeUnlocked && player.skillManager.blackhole.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.X) && player.skillManager.blackhole.blackholeUnlocked &&
+            player.skillManager.blackhole.CanUseSkill())
         {
             stateMachine.ChangeState(player.blackholeState);
         }

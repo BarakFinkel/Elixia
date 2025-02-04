@@ -2,17 +2,22 @@ using UnityEngine;
 
 public class ArcaneEffectController : MonoBehaviour
 {
-    [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private AudioSource movementSound;
-    [SerializeField] private AudioSource explosionSound;
+    [SerializeField]
+    private LayerMask whatIsEnemy;
+
+    [SerializeField]
+    private AudioSource movementSound;
+
+    [SerializeField]
+    private AudioSource explosionSound;
 
     private bool canExplode;
     private bool canGrow;
     private bool canMove;
     private Transform closestTarget;
+    private int crystalDamage;
 
     private float crystalExistTimer;
-    private int crystalDamage;
     private float growScale;
     private float growSpeed;
     private float moveSpeed;
@@ -86,7 +91,8 @@ public class ArcaneEffectController : MonoBehaviour
         foreach (var hit in colliders)
             if (hit.GetComponent<Enemy>() != null)
             {
-                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Arcane, crystalDamage);
+                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Arcane,
+                    crystalDamage);
             }
     }
 

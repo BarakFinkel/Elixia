@@ -67,7 +67,8 @@ public class GoblinBattleState : EnemyState
         }
 
         // If the enemy is close enough to the player, it won't move.
-        if (enemy.IsPlayerDetected() && enemy.IsPlayerDetected().distance < enemy.attackDistance - enemy.attackDistanceFromPlayer)
+        if (enemy.IsPlayerDetected() &&
+            enemy.IsPlayerDetected().distance < enemy.attackDistance - enemy.attackDistanceFromPlayer)
         {
             return;
         }

@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class DeathBringer_SpellCastState: EnemyState
+public class DeathBringer_SpellCastState : EnemyState
 {
-    private Enemy_DeathBringer enemy;
-
     private int amountOfSpells;
+    private readonly Enemy_DeathBringer enemy;
     private float spellTimer;
-    
-    public DeathBringer_SpellCastState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_DeathBringer _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+
+    public DeathBringer_SpellCastState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
+        Enemy_DeathBringer _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
-        this.enemy = _enemy;
+        enemy = _enemy;
     }
 
 
@@ -49,6 +49,7 @@ public class DeathBringer_SpellCastState: EnemyState
             spellTimer = enemy.spellCooldown;
             return true;
         }
+
         return false;
     }
 

@@ -4,8 +4,11 @@ using UnityEngine;
 public class PlayerItemDrop : ItemDrop
 {
     [Header("Player's Drop")]
-    [SerializeField] private float chanceToLoseItems;
-    [SerializeField] private float chanceToLoseMaterials;
+    [SerializeField]
+    private float chanceToLoseItems;
+
+    [SerializeField]
+    private float chanceToLoseMaterials;
 
     public override void GenerateDrop()
     {

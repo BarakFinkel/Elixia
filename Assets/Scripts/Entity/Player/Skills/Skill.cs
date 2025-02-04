@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    [SerializeField] public float cooldown;
+    [SerializeField]
+    public float cooldown;
+
     protected float cooldownTimer;
 
     protected Player player;
@@ -24,7 +26,6 @@ public class Skill : MonoBehaviour
 
     protected virtual void CheckUnlock()
     {
-        
     }
 
     public virtual bool CanUseSkill()

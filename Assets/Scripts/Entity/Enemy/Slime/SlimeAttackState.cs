@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SlimeAttackState : EnemyState
 {
-    private Slime enemy;
+    private readonly Slime enemy;
 
     public SlimeAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Slime _enemy)
         : base(_enemyBase, _stateMachine, _animBoolName)

@@ -22,7 +22,7 @@ MonoBehaviour:
   itemCooldown: 0
   itemEffects: []
   strength: 0
-  agility: 20
+  agility: 10
   intelligence: 0
   vitality: 0
   damage: 0
@@ -30,8 +30,8 @@ MonoBehaviour:
   critPower: 0
   health: 50
   armor: 10
-  evasion: 100
-  magicResistance: 20
+  evasion: 30
+  magicResistance: 10
   fireDamage: 0
   iceDamage: 0
   poisonDamage: 0

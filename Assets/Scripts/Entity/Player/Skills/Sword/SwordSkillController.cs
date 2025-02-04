@@ -168,9 +168,9 @@ public class SwordSkillController : MonoBehaviour
 
     private void SwordSkillDamage(Enemy enemy)
     {
-        EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
+        var enemyStats = enemy.GetComponent<EnemyStats>();
         player.cs.DoDamage(enemyStats);
-        
+
         // If the player unlocked the stun passive skill, the enemy will be stunned.
         if (player.skillManager.sword.stunUnlocked)
         {

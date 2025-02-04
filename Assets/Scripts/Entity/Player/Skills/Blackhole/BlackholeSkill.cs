@@ -3,21 +3,37 @@ using UnityEngine.UI;
 
 public class BlackholeSkill : Skill
 {
-    [SerializeField] private UI_SkillTreeSlot BlackholeUnlockButton;
-    public bool blackholeUnlocked { get; private set; }
-    [SerializeField] private float cloneCooldown;
-    [SerializeField] private int amountOfAttacks;
-    [SerializeField] private float blackholeDuration;
+    [SerializeField]
+    private UI_SkillTreeSlot BlackholeUnlockButton;
+
+    [SerializeField]
+    private float cloneCooldown;
+
+    [SerializeField]
+    private int amountOfAttacks;
+
+    [SerializeField]
+    private float blackholeDuration;
 
     [Space]
-    [SerializeField] private GameObject blackholePrefab;
-    [SerializeField] private float maxSize;
-    [SerializeField] private float growSpeed;
-    [SerializeField] private float shrinkSpeed;
-    [SerializeField] private float yOffset;
+    [SerializeField]
+    private GameObject blackholePrefab;
+
+    [SerializeField]
+    private float maxSize;
+
+    [SerializeField]
+    private float growSpeed;
+
+    [SerializeField]
+    private float shrinkSpeed;
+
+    [SerializeField]
+    private float yOffset;
 
     private BlackholeSkillController currentBlackhole;
-    
+    public bool blackholeUnlocked { get; private set; }
+
 
     protected override void Start()
     {

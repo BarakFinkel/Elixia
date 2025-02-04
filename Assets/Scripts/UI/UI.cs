@@ -1,28 +1,47 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UI : MonoBehaviour, ISaveManager
 {
     [Header("Game Over Screen")]
-    [SerializeField] private UI_ScreenFade screenFade;
-    [SerializeField] private GameObject youDiedMessage;
-    [SerializeField] private float youDiedDisplayDelay = 1.0f;
-    [SerializeField] private GameObject restartButton;
-    [SerializeField] private float restartButtonDisplayDelay = 2.0f;
+    [SerializeField]
+    private UI_ScreenFade screenFade;
+
+    [SerializeField]
+    private GameObject youDiedMessage;
+
+    [SerializeField]
+    private float youDiedDisplayDelay = 1.0f;
+
+    [SerializeField]
+    private GameObject restartButton;
+
+    [SerializeField]
+    private float restartButtonDisplayDelay = 2.0f;
+
     [Space]
-    [SerializeField] private GameObject characterUI;
-    [SerializeField] private GameObject skillTreeUI;
-    [SerializeField] private GameObject craftUI;
-    [SerializeField] private GameObject settingsUI;
-    [SerializeField] private GameObject inGameUI;
+    [SerializeField]
+    private GameObject characterUI;
+
+    [SerializeField]
+    private GameObject skillTreeUI;
+
+    [SerializeField]
+    private GameObject craftUI;
+
+    [SerializeField]
+    private GameObject settingsUI;
+
+    [SerializeField]
+    private GameObject inGameUI;
 
     public UI_ItemTooltip itemTooltip;
     public UI_StatTooltip statTooltip;
     public UI_SkillTooltip skillTooltip;
     public UI_CraftWindow craftWindow;
 
-    [SerializeField] private UI_VolumeSlider[] volumeSettings;
+    [SerializeField]
+    private UI_VolumeSlider[] volumeSettings;
 
     // Helps assign events to the skill tree slots before we assign events on the skill scripts
     private void Awake()
@@ -73,12 +92,29 @@ public class UI : MonoBehaviour, ISaveManager
         }
     }
 
+    public void LoadData(GameData _data)
+    {
+        foreach (var pair in _data.volumeSettings)
+        foreach (var setting in volumeSettings)
+            if (setting.parameter == pair.Key)
+            {
+                setting.LoadSlider(pair.Value);
+            }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.volumeSettings.Clear();
+
+        foreach (var setting in volumeSettings) _data.volumeSettings.Add(setting.parameter, setting.slider.value);
+    }
+
     // Responsible for switching to the desired menu tab on-click
     public void SwitchTo(GameObject _menu)
-    {      
+    {
         for (var i = 0; i < transform.childCount; i++)
         {
-            bool screenFade = transform.GetChild(i).GetComponent<UI_ScreenFade>() != null;
+            var screenFade = transform.GetChild(i).GetComponent<UI_ScreenFade>() != null;
             if (!screenFade)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
@@ -97,7 +133,6 @@ public class UI : MonoBehaviour, ISaveManager
         {
             _menu.SetActive(false);
             CheckForInGameUI();
-            return;
         }
         else
         {
@@ -107,9 +142,10 @@ public class UI : MonoBehaviour, ISaveManager
 
     private void CheckForInGameUI()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (var i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).GetComponent<UI_ScreenFade>() == null && transform.GetChild(i).gameObject.activeSelf)
+            if (transform.GetChild(i).GetComponent<UI_ScreenFade>() == null &&
+                transform.GetChild(i).gameObject.activeSelf)
             {
                 return;
             }
@@ -135,29 +171,8 @@ public class UI : MonoBehaviour, ISaveManager
         restartButton.SetActive(true);
     }
 
-    public void RestartGameButton() => GameManager.instance.RestartScene();
-
-    public void LoadData(GameData _data)
+    public void RestartGameButton()
     {
-        foreach (KeyValuePair<string, float> pair in _data.volumeSettings)
-        {
-            foreach (UI_VolumeSlider setting in volumeSettings)
-            {
-                if (setting.parameter == pair.Key)
-                {
-                    setting.LoadSlider(pair.Value);
-                }
-            }
-        }
-    }
-
-    public void SaveData(ref GameData _data)
-    {
-        _data.volumeSettings.Clear();
-
-        foreach (UI_VolumeSlider setting in volumeSettings)
-        {
-            _data.volumeSettings.Add(setting.parameter, setting.slider.value);
-        }
+        GameManager.instance.RestartScene();
     }
 }

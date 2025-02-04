@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
 
-[System.Serializable]
+[Serializable]
 public class GameData
 {
     public int currency;
@@ -21,11 +22,11 @@ public class GameData
 
     public GameData()
     {
-        this.lostCurrencyX = 0;
-        this.lostCurrencyY = 0;
-        this.lostCurrencyAmount = 0;
+        lostCurrencyX = 0;
+        lostCurrencyY = 0;
+        lostCurrencyAmount = 0;
 
-        this.currency = 0;
+        currency = 0;
         skillTree = new SerializableDictionary<string, bool>();
         inventory = new SerializableDictionary<string, int>();
         equipmentId = new List<string>();

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GoblinDeadState : EnemyState
 {
     private readonly Goblin enemy;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Entity : MonoBehaviour
 {
@@ -24,17 +25,17 @@ public class Entity : MonoBehaviour
     protected Transform wallCheck;
 
     [SerializeField]
-    protected Vector2 wallCheckSize = new Vector2 (0.2f, 1.5f);
+    protected Vector2 wallCheckSize = new(0.2f, 1.5f);
 
     [SerializeField]
     protected LayerMask whatIsGround;
 
     [Header("Knockback Information")]
     [SerializeField]
-    protected Vector2 knockbackPower = new Vector2(7, 3);
+    protected Vector2 knockbackPower = new(7, 3);
 
     [SerializeField]
-    protected Vector2 knockbackOffset = new Vector2(0.5f, 2.0f);
+    protected Vector2 knockbackOffset = new(0.5f, 2.0f);
 
     [SerializeField]
     protected float knockBackDuration = 0.07f;
@@ -85,9 +86,9 @@ public class Entity : MonoBehaviour
     {
         isKnocked = true;
 
-        float xOffset = UnityEngine.Random.Range(knockbackOffset.x, knockbackOffset.y);
+        var xOffset = Random.Range(knockbackOffset.x, knockbackOffset.y);
 
-        rb.linearVelocity = new Vector2((knockbackPower.x + xOffset)* -facingDir, knockbackPower.y);
+        rb.linearVelocity = new Vector2((knockbackPower.x + xOffset) * -facingDir, knockbackPower.y);
 
         yield return new WaitForSeconds(knockBackDuration);
 
@@ -149,7 +150,8 @@ public class Entity : MonoBehaviour
     // A method to check if the player is within the given distance from a ground object.
     public bool IsWallDetected()
     {
-        return Physics2D.OverlapBox(wallCheck.position, new Vector2(wallCheckSize.x, wallCheckSize.y), transform.eulerAngles.z, whatIsGround);
+        return Physics2D.OverlapBox(wallCheck.position, new Vector2(wallCheckSize.x, wallCheckSize.y),
+            transform.eulerAngles.z, whatIsGround);
     }
 
     // A method to display a line representing the ray for collision checks.
@@ -170,7 +172,8 @@ public class Entity : MonoBehaviour
     {
         facingDir = facingDir * -1; // -1 in order to represent flipping on the x axis on the opposite direction.
         facingRight = !facingRight;
-        transform.Rotate(0, 180, 0); // 180 Degrees in order to actively flip the player to the opposite x-axis direction.
+        transform.Rotate(0, 180,
+            0); // 180 Degrees in order to actively flip the player to the opposite x-axis direction.
 
         if (onFlipped != null)
         {

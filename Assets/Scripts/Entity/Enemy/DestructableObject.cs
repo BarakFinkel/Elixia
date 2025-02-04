@@ -1,8 +1,5 @@
-using UnityEngine;
-
 public class DestructibleObject : Enemy
 {
-
     protected override void Start()
     {
         base.Start();
@@ -12,14 +9,14 @@ public class DestructibleObject : Enemy
     {
     }
 
+
+    protected override void OnDrawGizmos()
+    {
+    }
+
     public override void Die()
     {
         base.Die();
         Destroy(gameObject);
-    }
-    
-
-    protected override void OnDrawGizmos()
-    {
     }
 }

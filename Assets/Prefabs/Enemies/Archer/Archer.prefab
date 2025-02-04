@@ -250,7 +250,7 @@ MonoBehaviour:
     modifiers: 
   vitToHP: 5
   damage:
-    baseValue: 15
+    baseValue: 70
     modifiers: 
   critChance:
     baseValue: 0
@@ -260,20 +260,22 @@ MonoBehaviour:
     modifiers: 
   baseCritPower: 150
   maxHealth:
-    baseValue: 150
+    baseValue: 200
     modifiers: 
   armor:
-    baseValue: 0
+    baseValue: 50
     modifiers: 
   armorBalanceFactor: 300
   magicResistance:
-    baseValue: 0
+    baseValue: 50
     modifiers: 
   mrBalanceFactor: 300
   stunShockDamageMultiplier: 1.1
   evasion:
-    baseValue: 0
+    baseValue: 50
     modifiers: 
+  primaryMagicType: 3
+  usingPrimaryMagicType: 1
   fireDamage:
     baseValue: 0
     modifiers: 
@@ -297,9 +299,9 @@ MonoBehaviour:
   poisonedDuration: 5
   poisonedTickFrequency: 1
   arcaneDamage:
-    baseValue: 0
+    baseValue: 10
     modifiers: 
-  isEnchanted: 0
+  isEnchanted: 1
   enchantedMagicResistReduction: 20
   enchantedDuration: 3
   lightningDamage:
@@ -310,11 +312,8 @@ MonoBehaviour:
   lightningStrikePrefab: {fileID: 0}
   currentHealth: 0
   level: 1
-  startAmount: 10000
+  startAmount: 1000
   percentageModifier: 0.4
-  soulsDropAmount:
-    baseValue: 0
-    modifiers: 
 --- !u!114 &1385604291918818102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,28 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 4263761490552956838, guid: 244488400d2bb5145b8c4120f8704838, type: 3}
   possibleAmountOfItems: 3
-  possibleDrop:
-  - {fileID: 11400000, guid: 4f9eb68ad4220f046b7411a68ce31874, type: 2}
-  - {fileID: 11400000, guid: fa601ebf30f134bcb9543d14bcfcec5b, type: 2}
-  - {fileID: 11400000, guid: 102065946c14740e79e273f6d77e5355, type: 2}
-  - {fileID: 11400000, guid: 35623d70a93244e6e960ca6dc238fecf, type: 2}
-  - {fileID: 11400000, guid: 189dae17b34c44ed8bde26bb6828d25e, type: 2}
-  - {fileID: 11400000, guid: 8fcf9221745e5425e8d69dca73a8866f, type: 2}
-  - {fileID: 11400000, guid: c0d204f2e0ac4450690aa6b9e0b9732e, type: 2}
-  - {fileID: 11400000, guid: 4f041e31a30d84765912cdc6c3d0fae0, type: 2}
-  - {fileID: 11400000, guid: a3a34e970dae74b7db22cc9dc448ae02, type: 2}
-  - {fileID: 11400000, guid: 9c6c7814c26e44de28c78b00f43a3328, type: 2}
-  - {fileID: 11400000, guid: 527657c287cbb4462a181f10db296272, type: 2}
-  - {fileID: 11400000, guid: 1ba8aa3830b1d4686be90974ca8872a3, type: 2}
-  - {fileID: 11400000, guid: 8bda71cdde93544188243b32a2217b51, type: 2}
-  - {fileID: 11400000, guid: 81541ca0f47da8e4999dbd992e2d598a, type: 2}
-  - {fileID: 11400000, guid: 8c1cbe86a13d54a9b95cc8477f5fd6b9, type: 2}
-  - {fileID: 11400000, guid: aa7746774b5cc46429c7ec6c9eff4d6f, type: 2}
-  - {fileID: 11400000, guid: c4e86aabadf94467aaa09f76a25a17fc, type: 2}
-  - {fileID: 11400000, guid: 0dc4f247149cb4a7d9b39506d2046486, type: 2}
-  - {fileID: 11400000, guid: 1b97b075585da4792a552e1a69510106, type: 2}
-  - {fileID: 11400000, guid: fd90ac7b7f0074b57aef008e3cfa6479, type: 2}
-  - {fileID: 11400000, guid: 0ace0a00934894ab9bf3a8b55c442823, type: 2}
+  possibleDrop: []
   xVelocity: 5
   minYVelocity: 15
   maxYVelocity: 20

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class Player : Entity
-{  
+{
     [SerializeField]
     public float busyWaitDuration = 0.2f;
 
@@ -34,14 +34,21 @@ public class Player : Entity
 
     [SerializeField]
     public float wallJumpXSpeed = 5.0f;
-    [SerializeField] private PlayerLedgeDetection ledgeDetector;
-    [SerializeField] private Vector2 ledgeOffset1;
-    [SerializeField] private Vector2 ledgeOffset2;
+
+    [SerializeField]
+    private PlayerLedgeDetection ledgeDetector;
+
+    [SerializeField]
+    private Vector2 ledgeOffset1;
+
+    [SerializeField]
+    private Vector2 ledgeOffset2;
+
     public Vector2 climbBegunPosition;
     public Vector2 climbOverPosition;
     public bool canGrabLedge = true;
     public bool canClimb;
-    public bool jumpAfterLedgeClimb = false;
+    public bool jumpAfterLedgeClimb;
 
     [Header("Dodge Information")]
     [SerializeField]
@@ -67,12 +74,12 @@ public class Player : Entity
     public float counterAttackDuration = 0.3f;
 
     public bool canUseSwordSkill;
-    private float defaultDodgeSpeed;
-    private float defaultJumpForce;
-    private float defaultMovespeed;
     public bool ledgeDetected;
 
     public bool isUIActive;
+    private float defaultDodgeSpeed;
+    private float defaultJumpForce;
+    private float defaultMovespeed;
 
     [Header("General Information")] public bool isBusy { get; private set; }
 
@@ -200,8 +207,11 @@ public class Player : Entity
     {
         Invoke("AllowLedgeGrab", 0.5f);
     }
-    
-    private void AllowLedgeGrab() => canGrabLedge = true;
+
+    private void AllowLedgeGrab()
+    {
+        canGrabLedge = true;
+    }
 
     public IEnumerator CancelGroundCheck(float _seconds)
     {

@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class GoblinMoveFastState : EnemyState
 {
-    private Goblin enemy;
-    private Transform player;
-    private int moveDir;
-    private bool movingFast = false;
     private bool bombTriggered;
+    private readonly Goblin enemy;
+    private int moveDir;
+    private bool movingFast;
+    private Transform player;
 
-    public GoblinMoveFastState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Goblin _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public GoblinMoveFastState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Goblin _enemy) :
+        base(_enemyBase, _stateMachine, _animBoolName)
     {
         enemy = _enemy;
     }
@@ -53,7 +54,8 @@ public class GoblinMoveFastState : EnemyState
 
                 enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.linearVelocityY);
 
-                if (enemy.IsWallDetected() || !enemy.IsGroundDetected() || Vector2.Distance(player.position, enemy.transform.position) < enemy.bombTriggerDistance)
+                if (enemy.IsWallDetected() || !enemy.IsGroundDetected() ||
+                    Vector2.Distance(player.position, enemy.transform.position) < enemy.bombTriggerDistance)
                 {
                     enemy.anim.SetTrigger("Bomb");
                     bombTriggered = true;

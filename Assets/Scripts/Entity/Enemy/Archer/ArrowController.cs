@@ -2,26 +2,22 @@ using UnityEngine;
 
 public class ArrowController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField]
+    private Rigidbody2D rb;
+
+    [SerializeField]
+    private string targetLayerName = "Player";
+
+    [SerializeField]
+    private float minDestructionTime = 4.0f;
+
+    [SerializeField]
+    private float maxDestructionTime = 6.0f;
+
     private CharacterStats archerStats;
-    private Transform parentTransform;
-
-    [SerializeField] private string targetLayerName = "Player";
-    [SerializeField] private float minDestructionTime = 4.0f;
-    [SerializeField] private float maxDestructionTime = 6.0f;
-    private float xVelocity;
     private bool canMove = true;
-
-    public void SetupArrow(float _speed, CharacterStats _archerStats)
-    {
-        xVelocity = _speed;
-        archerStats = _archerStats;
-
-        if (xVelocity < 0)
-        {
-            transform.Rotate(0, 180, 0);
-        }
-    }
+    private Transform parentTransform;
+    private float xVelocity;
 
     private void Update()
     {
@@ -32,7 +28,7 @@ public class ArrowController : MonoBehaviour
 
         if (parentTransform != null)
         {
-            PlayerStats playerStats = parentTransform.GetComponent<PlayerStats>();
+            var playerStats = parentTransform.GetComponent<PlayerStats>();
             if (playerStats != null && playerStats.isDead)
             {
                 Destroy(gameObject);
@@ -44,7 +40,7 @@ public class ArrowController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            CharacterStats playerStats = other.GetComponent<CharacterStats>();
+            var playerStats = other.GetComponent<CharacterStats>();
             if (playerStats != null && !playerStats.isInvulnerable)
             {
                 archerStats.DoDamage(other.GetComponent<CharacterStats>());
@@ -54,6 +50,17 @@ public class ArrowController : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             StickInto(other);
+        }
+    }
+
+    public void SetupArrow(float _speed, CharacterStats _archerStats)
+    {
+        xVelocity = _speed;
+        archerStats = _archerStats;
+
+        if (xVelocity < 0)
+        {
+            transform.Rotate(0, 180, 0);
         }
     }
 
@@ -69,6 +76,4 @@ public class ArrowController : MonoBehaviour
 
         Destroy(gameObject, Random.Range(minDestructionTime, maxDestructionTime));
     }
-
-
 }

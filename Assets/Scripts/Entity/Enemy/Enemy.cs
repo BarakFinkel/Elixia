@@ -37,7 +37,7 @@ public class Enemy : Entity
 
     [SerializeField]
     public float closeAggroDistance = 2.0f;
-    
+
     [SerializeField]
     public float attackDistanceFromPlayer = 0.1f;
 
@@ -49,7 +49,7 @@ public class Enemy : Entity
     public float stunnedDuration = 1.0f;
 
     [SerializeField]
-    public Vector2 stunnedDirection = new Vector2(10,3);
+    public Vector2 stunnedDirection = new(10, 3);
 
     [SerializeField]
     public float blinkDelay;
@@ -68,7 +68,8 @@ public class Enemy : Entity
     public float destructionDelay = 3.0f;
 
     [Header("Sound Information")]
-    [SerializeField] public int attackSoundIndex;
+    [SerializeField]
+    public int attackSoundIndex;
 
     public string lastAnimBoolName;
     protected bool canBeStunned;
@@ -119,9 +120,14 @@ public class Enemy : Entity
         moveSpeed = defaultMoveSpeed;
     }
 
-    public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public virtual void AnimationTrigger()
+    {
+        stateMachine.currentState.AnimationFinishTrigger();
+    }
 
-    public virtual void AnimationSpecialAttackTrigger() {}
+    public virtual void AnimationSpecialAttackTrigger()
+    {
+    }
 
     public virtual RaycastHit2D IsPlayerDetected()
     {

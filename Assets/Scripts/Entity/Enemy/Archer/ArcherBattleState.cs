@@ -4,8 +4,8 @@ public class ArcherBattleState : EnemyState
 {
     private readonly Archer enemy;
     private int moveDir;
-    private Transform playerTransform;
     private Player player;
+    private Transform playerTransform;
 
     public ArcherBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Archer _enemy)
         : base(_enemyBase, _stateMachine, _animBoolName)
@@ -16,7 +16,7 @@ public class ArcherBattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        
+
         playerTransform = PlayerManager.instance.player.transform;
         player = PlayerManager.instance.player;
 
@@ -45,7 +45,7 @@ public class ArcherBattleState : EnemyState
         }
 
         // If the player is detected
-        RaycastHit2D playerDetection = enemy.IsPlayerDetected();
+        var playerDetection = enemy.IsPlayerDetected();
         if (playerDetection)
         {
             stateTimer = enemy.battleTime; // Set the state timer to the desired battle time.
@@ -83,7 +83,7 @@ public class ArcherBattleState : EnemyState
         {
             enemy.anim.SetBool("Move", false);
             enemy.anim.SetBool("Idle", true);
-            
+
             if (stateTimer == 0 || Vector2.Distance(playerTransform.transform.position, enemy.transform.position) >
                 enemy.battleDistance)
             {
@@ -111,7 +111,7 @@ public class ArcherBattleState : EnemyState
     }
 
     private bool CanJump()
-    {     
+    {
         if (enemy.IsGrounBehind() && !enemy.IsWallBehind() && Time.time >= enemy.lastTimeJumped + enemy.jumpCooldown)
         {
             enemy.lastTimeJumped = Time.time;

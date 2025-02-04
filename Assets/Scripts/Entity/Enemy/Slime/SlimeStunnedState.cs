@@ -3,7 +3,7 @@ using UnityEngine;
 public class SlimeStunnedState : EnemyState
 {
     private readonly Slime enemy;
-    private bool stunFoldDone = false;
+    private bool stunFoldDone;
     private float stunVelocityApplyDuration = 0.05f; // small delay for updating velocity in case of bugs.
 
     public SlimeStunnedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,
@@ -35,7 +35,7 @@ public class SlimeStunnedState : EnemyState
 
         if (!stunFoldDone && rb.linearVelocityY < .1f && enemy.IsGroundDetected())
         {
-            enemy.fx.Invoke("CancelColorChange", 0.0f);            
+            enemy.fx.Invoke("CancelColorChange", 0.0f);
             enemy.anim.SetTrigger("StunFold");
             enemy.cs.EnableInvulnerability();
             stunFoldDone = true;

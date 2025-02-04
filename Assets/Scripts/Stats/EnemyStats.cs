@@ -15,7 +15,7 @@ public class EnemyStats : CharacterStats
 
     private Enemy enemy;
     private ItemDrop myDropSystem;
-    public Stat soulsDropAmount;
+    private readonly Stat soulsDropAmount = new();
 
     protected override void Start()
     {

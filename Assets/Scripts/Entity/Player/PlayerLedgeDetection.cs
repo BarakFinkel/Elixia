@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class PlayerLedgeDetection : MonoBehaviour
 {
-    private Player player => GetComponentInParent<Player>();
-    [SerializeField] private LayerMask whatIsGround;
-    [SerializeField] private float radius;
+    [SerializeField]
+    private LayerMask whatIsGround;
+
+    [SerializeField]
+    private float radius;
 
     private bool canDetect;
+    private Player player => GetComponentInParent<Player>();
 
     private void Update()
     {
@@ -14,6 +17,11 @@ public class PlayerLedgeDetection : MonoBehaviour
         {
             player.ledgeDetected = Physics2D.OverlapCircle(transform.position, radius, whatIsGround);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -30,10 +38,5 @@ public class PlayerLedgeDetection : MonoBehaviour
         {
             canDetect = true;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

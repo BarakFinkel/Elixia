@@ -22,17 +22,17 @@ MonoBehaviour:
   itemCooldown: 60
   itemEffects:
   - {fileID: 11400000, guid: 5e1e0dae51845d9418d3dc1156ad3380, type: 2}
-  strength: 30
-  agility: 30
-  intelligence: 30
-  vitality: 30
+  strength: 20
+  agility: 20
+  intelligence: 20
+  vitality: 20
   damage: 0
   critChance: 0
   critPower: 0
   health: 100
-  armor: 100
-  evasion: 100
-  magicResistance: 100
+  armor: 50
+  evasion: 50
+  magicResistance: 50
   fireDamage: 0
   iceDamage: 0
   poisonDamage: 0

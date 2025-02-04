@@ -4,12 +4,17 @@ using UnityEngine.UI;
 public class DodgeSkill : Skill
 {
     [Header("Dodge")]
-    [SerializeField] private UI_SkillTreeSlot unlockDashButton;
-    public bool dodgeUnlocked { get; private set; }
+    [SerializeField]
+    private UI_SkillTreeSlot unlockDashButton;
 
     [Header("Clone on Dodge")]
-    [SerializeField] private UI_SkillTreeSlot unlockStartCloneButton;
-    [SerializeField] private UI_SkillTreeSlot unlockEndCloneButton;
+    [SerializeField]
+    private UI_SkillTreeSlot unlockStartCloneButton;
+
+    [SerializeField]
+    private UI_SkillTreeSlot unlockEndCloneButton;
+
+    public bool dodgeUnlocked { get; private set; }
     public bool cloneOnStartDashUnlocked { get; private set; }
     public bool cloneOnEndDashUnlocked { get; private set; }
 
@@ -75,5 +80,4 @@ public class DodgeSkill : Skill
             SkillManager.instance.clone.CreateClone(player.transform, Vector3.zero);
         }
     }
-
 }

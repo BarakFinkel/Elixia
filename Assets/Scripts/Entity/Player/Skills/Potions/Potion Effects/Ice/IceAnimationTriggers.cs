@@ -8,7 +8,7 @@ public class IceAnimationTriggers : MonoBehaviour
     {
         iceEffectController = GetComponentInParent<IceEffectController>();
     }
-    
+
     private void TriggerDamage()
     {
         iceEffectController.IceBlastDamage();

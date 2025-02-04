@@ -4,35 +4,64 @@ using UnityEngine.UI;
 
 public class UI_InGame : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private Slider HPslider;
+    [SerializeField]
+    private PlayerStats playerStats;
+
+    [SerializeField]
+    private Slider HPslider;
 
     // Locked Images
-    [SerializeField] private Image lockedSyringeImage;
-    [SerializeField] private Image lockedDodgeImage;
-    [SerializeField] private Image lockedCounterAttackImage;
-    [SerializeField] private Image lockedBlackholeImage;
-    [SerializeField] private Image lockedSwordImage;
-    [SerializeField] private Image lockedPotionImage;
+    [SerializeField]
+    private Image lockedSyringeImage;
 
-    [SerializeField] private Image syringeImage;
-    [SerializeField] private Image dodgeImage;
-    [SerializeField] private Image counterAttackImage;
-    [SerializeField] private Image blackholeImage;
-    [SerializeField] private Image swordImage;
-    [SerializeField] private Image potionImage;
+    [SerializeField]
+    private Image lockedDodgeImage;
 
-    private SkillManager skills;
+    [SerializeField]
+    private Image lockedCounterAttackImage;
+
+    [SerializeField]
+    private Image lockedBlackholeImage;
+
+    [SerializeField]
+    private Image lockedSwordImage;
+
+    [SerializeField]
+    private Image lockedPotionImage;
+
+    [SerializeField]
+    private Image syringeImage;
+
+    [SerializeField]
+    private Image dodgeImage;
+
+    [SerializeField]
+    private Image counterAttackImage;
+
+    [SerializeField]
+    private Image blackholeImage;
+
+    [SerializeField]
+    private Image swordImage;
+
+    [SerializeField]
+    private Image potionImage;
 
     [Header("Souls Information")]
-    [SerializeField] private TextMeshProUGUI currentSoulEssence;
-    [SerializeField] private float increaseRate = 2500;
-    private float soulsAmount = 0;
+    [SerializeField]
+    private TextMeshProUGUI currentSoulEssence;
+
+    [SerializeField]
+    private float increaseRate = 2500;
+
+    private float currentPotionCooldown;
+    private float potionCooldownTimer;
+
+    private SkillManager skills;
+    private float soulsAmount;
+    private float swordCooldownTimer;
 
     private bool usingSword = true;
-    private float swordCooldownTimer;
-    private float potionCooldownTimer;
-    private float currentPotionCooldown;
 
     private void Start()
     {
@@ -59,7 +88,7 @@ public class UI_InGame : MonoBehaviour
         {
             potionCooldownTimer = Mathf.Max(potionCooldownTimer - Time.deltaTime, 0);
         }
-        
+
         usingSword = PlayerManager.instance.player.canUseSwordSkill;
         if (usingSword)
         {
@@ -69,10 +98,11 @@ public class UI_InGame : MonoBehaviour
         else
         {
             swordImage.transform.parent.gameObject.SetActive(false);
-            potionImage.transform.parent.gameObject.SetActive(true);                
+            potionImage.transform.parent.gameObject.SetActive(true);
         }
-        
-        if (Input.GetKeyDown(KeyCode.LeftShift) && skills.dodge.dodgeUnlocked && !PlayerManager.instance.player.IsWallDetected())
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && skills.dodge.dodgeUnlocked &&
+            !PlayerManager.instance.player.IsWallDetected())
         {
             SetCooldownOf(dodgeImage);
         }
@@ -189,7 +219,7 @@ public class UI_InGame : MonoBehaviour
         {
             lockedCounterAttackImage.gameObject.SetActive(false);
         }
-        
+
         if (skills.blackhole.blackholeUnlocked)
         {
             lockedBlackholeImage.gameObject.SetActive(false);

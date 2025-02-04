@@ -587,7 +587,7 @@ MonoBehaviour:
     modifiers: 
   vitToHP: 5
   damage:
-    baseValue: 0
+    baseValue: 100
     modifiers: 
   critChance:
     baseValue: 0
@@ -597,24 +597,24 @@ MonoBehaviour:
     modifiers: 
   baseCritPower: 150
   maxHealth:
-    baseValue: 1000
+    baseValue: 4000
     modifiers: 
   armor:
-    baseValue: 0
+    baseValue: 200
     modifiers: 
   armorBalanceFactor: 300
   magicResistance:
-    baseValue: 0
+    baseValue: 100
     modifiers: 
   mrBalanceFactor: 300
   stunShockDamageMultiplier: 1.1
   evasion:
     baseValue: 0
     modifiers: 
-  primaryMagicType: 0
-  usingPrimaryMagicType: 0
+  primaryMagicType: 3
+  usingPrimaryMagicType: 1
   fireDamage:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   isIgnited: 0
   burnDamageRatio: 0.2
@@ -636,7 +636,7 @@ MonoBehaviour:
   poisonedDuration: 5
   poisonedTickFrequency: 1
   arcaneDamage:
-    baseValue: 0
+    baseValue: 40
     modifiers: 
   isEnchanted: 0
   enchantedMagicResistReduction: 20
@@ -651,9 +651,6 @@ MonoBehaviour:
   level: 1
   startAmount: 10000
   percentageModifier: 0.4
-  soulsDropAmount:
-    baseValue: 0
-    modifiers: 
 --- !u!114 &2562372582270579533
 MonoBehaviour:
   m_ObjectHideFlags: 0

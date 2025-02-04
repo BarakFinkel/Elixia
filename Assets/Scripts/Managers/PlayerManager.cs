@@ -7,7 +7,8 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
     [SerializeField]
     public Player player;
-    public int currency = 0;
+
+    public int currency;
 
     private void Awake()
     {
@@ -21,26 +22,29 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         }
     }
 
+    public void LoadData(GameData _data)
+    {
+        currency = _data.currency;
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.currency = currency;
+    }
+
     public bool HaveEnoughCurrency(int _price)
     {
         if (_price > currency)
         {
             return false;
         }
-        
+
         currency -= _price;
         return true;
     }
 
-    public int GetCurrencyAmount() => currency;
-
-    public void LoadData(GameData _data)
+    public int GetCurrencyAmount()
     {
-        this.currency = _data.currency;
-    }
-
-    public void SaveData(ref GameData _data)
-    {
-        _data.currency = this.currency;
+        return currency;
     }
 }

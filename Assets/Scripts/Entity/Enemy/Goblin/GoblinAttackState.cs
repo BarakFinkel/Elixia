@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GoblinAttackState : EnemyState
 {
-    private Goblin enemy;
+    private readonly Goblin enemy;
 
     public GoblinAttackState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Goblin _enemy)
         : base(_enemyBase, _stateMachine, _animBoolName)

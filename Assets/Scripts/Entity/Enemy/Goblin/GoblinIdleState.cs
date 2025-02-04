@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GoblinIdleState : GoblinGroundedState
 {
     public GoblinIdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Goblin _enemy) :

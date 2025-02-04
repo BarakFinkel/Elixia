@@ -15,7 +15,7 @@ public class PlayerJumpState : PlayerState
 
         // If we are next to the wall when we start jumping, we want to prevent a bug that will make us not move.
         isToSlide = !player.IsWallDetected();
-        
+
         if (player.jumpAfterLedgeClimb)
         {
             rb.linearVelocity = new Vector2((rb.linearVelocityX + 2) * player.facingDir, player.jumpForce * 0.5f);

@@ -4,20 +4,25 @@ using UnityEngine.UI;
 
 public class UI_Potions : MonoBehaviour
 {
-    [SerializeField] private Transform potionOne;
-    private List<Image> potionOneImages = new List<Image>();
+    [SerializeField]
+    private Transform potionOne;
 
-    [SerializeField] private Transform potionTwo;
-    private List<Image> potionTwoImages = new List<Image>();
+    [SerializeField]
+    private Transform potionTwo;
 
-    [SerializeField] private Transform potionThree;
-    private List<Image> potionThreeImages = new List<Image>();
+    [SerializeField]
+    private Transform potionThree;
 
-    [SerializeField] private Transform potionFour;
-    private List<Image> potionFourImages = new List<Image>();
+    [SerializeField]
+    private Transform potionFour;
 
-    private bool[] unlockedPotions = new bool[4];
-    private bool[] currentPotions = new bool[4];
+    private readonly bool[] currentPotions = new bool[4];
+    private readonly List<Image> potionFourImages = new();
+    private readonly List<Image> potionOneImages = new();
+    private readonly List<Image> potionThreeImages = new();
+    private readonly List<Image> potionTwoImages = new();
+
+    private readonly bool[] unlockedPotions = new bool[4];
 
     private void Start()
     {
@@ -88,13 +93,13 @@ public class UI_Potions : MonoBehaviour
             potionTwoImages[0].gameObject.SetActive(!currentPotions[1]);
             potionTwoImages[1].gameObject.SetActive(currentPotions[1]);
         }
-        
+
         if (unlockedPotions[2])
-        {        
+        {
             potionThreeImages[0].gameObject.SetActive(!currentPotions[2]);
             potionThreeImages[1].gameObject.SetActive(currentPotions[2]);
         }
-        
+
         if (unlockedPotions[2])
         {
             potionFourImages[0].gameObject.SetActive(!currentPotions[3]);
@@ -104,7 +109,7 @@ public class UI_Potions : MonoBehaviour
 
     public void resetOnPotions()
     {
-        for (int i = 0; i < unlockedPotions.Length; i++)
+        for (var i = 0; i < unlockedPotions.Length; i++)
         {
             if (unlockedPotions[i])
             {
@@ -115,22 +120,22 @@ public class UI_Potions : MonoBehaviour
 
     public void SetupPotionImages()
     {
-        for (int i = 0; i < potionOne.childCount; i++)
+        for (var i = 0; i < potionOne.childCount; i++)
         {
             potionOneImages.Add(potionOne.GetChild(i).GetComponent<Image>());
         }
 
-        for (int i = 0; i < potionTwo.childCount; i++)
+        for (var i = 0; i < potionTwo.childCount; i++)
         {
             potionTwoImages.Add(potionTwo.GetChild(i).GetComponent<Image>());
         }
 
-        for (int i = 0; i < potionThree.childCount; i++)
+        for (var i = 0; i < potionThree.childCount; i++)
         {
             potionThreeImages.Add(potionThree.GetChild(i).GetComponent<Image>());
         }
 
-        for (int i = 0; i < potionFour.childCount; i++)
+        for (var i = 0; i < potionFour.childCount; i++)
         {
             potionFourImages.Add(potionFour.GetChild(i).GetComponent<Image>());
         }

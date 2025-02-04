@@ -21,11 +21,12 @@ public class IceEffectController : MonoBehaviour
         var colliders = Physics2D.OverlapCircleAll(transform.position, cd.radius);
         foreach (var hit in colliders)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
+            var enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.FreezeTimeFor(enemyFreezeTime);
-                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Ice, damage);
+                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Ice,
+                    damage);
             }
         }
     }
