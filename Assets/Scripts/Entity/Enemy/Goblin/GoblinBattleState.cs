@@ -20,7 +20,7 @@ public class GoblinBattleState : EnemyState
 
         if (enemy.initialBattleState)
         {
-            AudioManager.instance.PlaySFX(10,0,enemy.transform);
+            AudioManager.instance.PlaySFX(33, 0, enemy.transform);
             enemy.initialBattleState = false;
         }
     }
@@ -41,19 +41,10 @@ public class GoblinBattleState : EnemyState
 
             if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
             {
-                // If the enemy is close enough to the player, it won't move from it's spot
-                enemy.anim.SetBool("Move", false);
-                enemy.anim.SetBool("Idle", true);
-
                 if (CanAttack())
                 {
                     stateMachine.ChangeState(enemy.attackState);
                 }
-            }
-            else
-            {
-                enemy.anim.SetBool("Move", false);
-                enemy.anim.SetBool("Idle", true);
             }
         }
         else
@@ -87,7 +78,6 @@ public class GoblinBattleState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        enemy.anim.SetBool("Idle", false);
     }
 
     private bool CanAttack()

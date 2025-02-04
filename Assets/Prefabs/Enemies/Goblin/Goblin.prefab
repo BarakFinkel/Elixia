@@ -965,6 +965,7 @@ MonoBehaviour:
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 10}
   destructionDelay: 3
+  attackSoundIndex: 35
   lastAnimBoolName: 
   bombPrefab: {fileID: 7980030626488456233, guid: 56d1c662ef6f9d5489bf7820b02c5c94, type: 3}
   bombSpawn: {fileID: 6573562979198604231}

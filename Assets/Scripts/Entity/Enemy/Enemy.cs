@@ -67,6 +67,9 @@ public class Enemy : Entity
     [SerializeField]
     public float destructionDelay = 3.0f;
 
+    [Header("Sound Information")]
+    [SerializeField] public int attackSoundIndex;
+
     public string lastAnimBoolName;
     protected bool canBeStunned;
     private float defaultMoveSpeed;

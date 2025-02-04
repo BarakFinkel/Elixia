@@ -3,10 +3,8 @@ using UnityEngine;
 public class ArcaneEffectController : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsEnemy;
-    [SerializeField] private AudioClip movementSound;
-    [SerializeField] private AudioClip explosionSound;
-    private AudioSource movementSoundSource;
-    private AudioSource explosionSoundSource;
+    [SerializeField] private AudioSource movementSound;
+    [SerializeField] private AudioSource explosionSound;
 
     private bool canExplode;
     private bool canGrow;
@@ -29,6 +27,13 @@ public class ArcaneEffectController : MonoBehaviour
 
         if (crystalExistTimer == 0)
         {
+            movementSound.Stop();
+
+            if (!AudioManager.instance.IsPlayingSFX(42))
+            {
+                AudioManager.instance.PlaySFX(42, 0, transform);
+            }
+
             EndCrystalCycle();
         }
 
@@ -49,6 +54,8 @@ public class ArcaneEffectController : MonoBehaviour
             // * 1 is not a magic number, it is exactly right for how close the crystal should be to the target before exploding.
             if (Vector2.Distance(transform.position, closestTarget.position) < 1)
             {
+                movementSound.Stop();
+                explosionSound.Play();
                 EndCrystalCycle();
             }
         }
@@ -66,14 +73,7 @@ public class ArcaneEffectController : MonoBehaviour
         growScale = _growScale;
         closestTarget = FindClosestEnemy(gameObject.transform);
 
-        movementSoundSource = gameObject.AddComponent<AudioSource>();
-        movementSoundSource.clip = movementSound;
-
-        explosionSoundSource = gameObject.AddComponent<AudioSource>();
-        explosionSoundSource.clip = explosionSound;
-
-        movementSoundSource.volume = 0.25f;
-        movementSoundSource.Play();
+        movementSound.Play();
     }
 
     private void AnimationExplodeEvent()
@@ -107,8 +107,6 @@ public class ArcaneEffectController : MonoBehaviour
             canMove = false;
             canGrow = true;
 
-            movementSoundSource.Stop();
-            //explosionSoundSource.Play();
             anim.SetTrigger("Explode");
         }
         else

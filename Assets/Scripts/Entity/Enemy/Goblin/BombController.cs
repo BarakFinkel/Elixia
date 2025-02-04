@@ -20,6 +20,8 @@ public class BombController : MonoBehaviour
 
         int addedDamage = Mathf.RoundToInt(goblinStats.damage.GetValue() * (damageMultiplier - 1));
         goblinStats.damage.AddModifier(addedDamage);
+
+        AudioManager.instance.PlaySFX(34, 0, this.transform);
     }
 
     private void Update()

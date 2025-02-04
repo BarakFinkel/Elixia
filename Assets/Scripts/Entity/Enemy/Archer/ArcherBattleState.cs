@@ -22,7 +22,7 @@ public class ArcherBattleState : EnemyState
 
         if (enemy.initialBattleState)
         {
-            AudioManager.instance.PlaySFX(10,0,enemy.transform);
+            AudioManager.instance.PlaySFX(36, 0, enemy.transform);
             enemy.initialBattleState = false;
         }
     }

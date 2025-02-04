@@ -174,7 +174,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 6
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -433,10 +433,11 @@ MonoBehaviour:
   knockUpTime: 0.1
   knockUpVelocity: {x: 0, y: 10}
   destructionDelay: 3
+  attackSoundIndex: 0
   lastAnimBoolName: 
   arrowPrefab: {fileID: 3813523724378097850, guid: a360694cea4e1644d914282f88ba59af, type: 3}
   arrowSpeed: 9
-  jumpVelocity: {x: 12, y: 12}
+  jumpVelocity: {x: 9, y: 11}
   maxDistanceForJump: 3
   jumpCooldown: 4
   lastTimeJumped: 0

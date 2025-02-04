@@ -12,7 +12,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
 
     private void AttackTrigger()
     {
-        AudioManager.instance.PlaySFX(17, 0, null);
+        AudioManager.instance.PlaySFX(enemy.attackSoundIndex, 0, null);
 
         // All enemies within the attack range
         var colliders = Physics2D.OverlapCircleAll(enemy.attackCheck.position, enemy.attackCheckRadius);
@@ -20,6 +20,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
         foreach (var hit in colliders)
             if (hit.GetComponent<Player>() != null)
             {
+                AudioManager.instance.PlaySFX(41, 0, null);
                 var target = hit.GetComponent<PlayerStats>();
                 enemy.cs.DoDamage(target);
             }

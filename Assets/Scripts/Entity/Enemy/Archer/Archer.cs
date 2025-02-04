@@ -75,6 +75,8 @@ public class Archer : Enemy
     {
         GameObject newArrow = Instantiate(arrowPrefab, attackCheck.position, Quaternion.identity);
         newArrow.GetComponent<ArrowController>().SetupArrow(arrowSpeed * facingDir, cs);
+
+        AudioManager.instance.PlaySFX(38, 0, this.transform);
     }
 
     // Helps check if there is ground around the ground check object - will serve checking if the archer can jump back.

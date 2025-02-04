@@ -29,7 +29,5 @@ public class GoblinIdleState : GoblinGroundedState
     public override void Exit()
     {
         base.Exit();
-
-        AudioManager.instance.PlaySFX(9, 0, enemy.transform);
     }
 }

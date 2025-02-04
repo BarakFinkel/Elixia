@@ -16,8 +16,11 @@ public class Slime : Enemy
     [SerializeField] private Vector2 minCreationVelocity;
     [SerializeField] private Vector2 maxCreationVelocity;
     [SerializeField] private float cancelKnockbackDelay = 1.5f;
+    [SerializeField] private AudioSource slimeAudio;
+    [SerializeField] private float distanceToPlayAudio = 10.0f;
 
     public bool initialBattleState;
+    private Transform player;
     
     #region States
 
@@ -49,6 +52,15 @@ public class Slime : Enemy
         base.Start();
 
         stateMachine.Initiallize(idleState);
+        player = PlayerManager.instance.player.transform;
+        slimeAudio.Stop();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        HandleSound();
     }
 
     public override bool CanBeStunned()
@@ -102,4 +114,17 @@ public class Slime : Enemy
     }
 
     private void CancelKnockback() => isKnocked = false;
+
+    private void HandleSound()
+    {
+        if (slimeAudio.isPlaying && Vector2.Distance(this.transform.position, player.transform.position) > distanceToPlayAudio)
+        {
+            slimeAudio.Stop();
+        }
+
+        if (!slimeAudio.isPlaying && Vector2.Distance(this.transform.position, player.transform.position) < distanceToPlayAudio)
+        {
+            slimeAudio.Play();
+        }       
+    }
 }

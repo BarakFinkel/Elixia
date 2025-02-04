@@ -20,6 +20,8 @@ public class GoblinMoveFastState : EnemyState
         player = PlayerManager.instance.player.transform;
         enemy.moveSpeed = enemy.fastMoveSpeed;
         stateTimer = enemy.delayBeforeMoveFast;
+
+        AudioManager.instance.PlaySFX(32, 0, enemy.transform);
     }
 
     public override void Update()

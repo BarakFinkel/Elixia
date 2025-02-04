@@ -78,8 +78,6 @@ public class Inventory : MonoBehaviour, ISaveManager
         stashItemSlots = stashSlotsParent.GetComponentsInChildren<UI_ItemSlot>();
         statSlots = statSlotsParent.GetComponentsInChildren<UI_StatSlot>();
 
-        Debug.Log("Adding Start Items");
-
         AddStartingItems();
     }
 

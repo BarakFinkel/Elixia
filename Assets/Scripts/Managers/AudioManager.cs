@@ -88,6 +88,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public bool IsPlayingSFX(int _sfxIndex)
+    {
+        if (0 <= _sfxIndex &&_sfxIndex < sfx.Length)
+        {
+            return sfx[_sfxIndex].isPlaying;
+        }
+        return false;
+    }
+
     public void StopSFXWithTime(int _index)
     {
         if (0 <= _index && _index <= sfx.Length - 1)

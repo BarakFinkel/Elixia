@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 // Component used on the player's animator object in order to stop animations when finished if necessary.
 public class PlayerAnimationTriggers : MonoBehaviour
 {
     private Player player => GetComponentInParent<Player>();
+    private bool playSoundEffect = true;
 
     private void AnimationTrigger()
     {
@@ -25,6 +27,12 @@ public class PlayerAnimationTriggers : MonoBehaviour
                 if (target != null)
                 {
                     player.cs.DoDamage(target);
+
+                    if (playSoundEffect)
+                    {
+                        AudioManager.instance.PlaySFX(40, 0, null);
+                        playSoundEffect = false;
+                    }
                 }
 
                 ItemData_Equipment weaponData = Inventory.instance.GetEquipmentOfType(EquipmentType.Weapon);
@@ -34,6 +42,8 @@ public class PlayerAnimationTriggers : MonoBehaviour
                 }
             }
         }
+
+        playSoundEffect = true;
     }
 
     private void StepSound1()

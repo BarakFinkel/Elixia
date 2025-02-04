@@ -20,7 +20,6 @@ public class SlimeBattleState : EnemyState
 
         if (enemy.initialBattleState)
         {
-            AudioManager.instance.PlaySFX(10,0,enemy.transform);
             enemy.initialBattleState = false;
         }
     }
