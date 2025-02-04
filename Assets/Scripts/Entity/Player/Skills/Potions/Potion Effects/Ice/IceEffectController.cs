@@ -3,10 +3,12 @@ using UnityEngine;
 public class IceEffectController : MonoBehaviour
 {
     private CircleCollider2D cd;
+    private int damage;
     private float enemyFreezeTime;
 
-    public void SetupIceBlast(float _enemyFreezeTime)
+    public void SetupIceBlast(int _damage, float _enemyFreezeTime)
     {
+        damage = _damage;
         enemyFreezeTime = _enemyFreezeTime;
         cd = GetComponent<CircleCollider2D>();
 
@@ -23,7 +25,7 @@ public class IceEffectController : MonoBehaviour
             if (enemy != null)
             {
                 enemy.FreezeTimeFor(enemyFreezeTime);
-                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>());
+                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Ice, damage);
             }
         }
     }

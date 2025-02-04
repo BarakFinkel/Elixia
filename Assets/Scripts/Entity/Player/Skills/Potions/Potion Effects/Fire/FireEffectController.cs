@@ -5,6 +5,7 @@ public class FireEffectController : MonoBehaviour
 {
     private readonly Dictionary<Enemy, float> damageCooldowns = new();
     private CapsuleCollider2D cd;
+    private int damage;
     private float damageCooldown;
     private bool toDamage;
 
@@ -20,15 +21,16 @@ public class FireEffectController : MonoBehaviour
             {
                 if (CanDamage(enemy))
                 {
-                    PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>());
+                    PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Fire, damage);
                     damageCooldowns[enemy] = Time.time + damageCooldown;
                 }
             }
         }
     }
 
-    public void SetupFlame(float _damageCooldown)
+    public void SetupFlame(int _damage, float _damageCooldown)
     {
+        damage = _damage;
         damageCooldown = _damageCooldown;
         cd = GetComponent<CapsuleCollider2D>();
         AudioManager.instance.PlaySFX(7, 0, PlayerManager.instance.player.transform);

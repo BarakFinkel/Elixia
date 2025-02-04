@@ -30,7 +30,7 @@ public class PoisonEffectController : MonoBehaviour
         UpdateScaling();
     }
 
-    public void SetupPoisonCloud(float _totalDuration, float _emissionDuration, float _startScale, float _endScale,
+    public void SetupPoisonCloud(int _damage, float _totalDuration, float _emissionDuration, float _startScale, float _endScale,
         float _scalingDuration)
     {
         emissionDuration = _emissionDuration;
@@ -46,6 +46,7 @@ public class PoisonEffectController : MonoBehaviour
         if (colliderObject != null)
         {
             colliderObject.localScale = Vector3.one * startScale;
+            colliderObject.GetComponent<PoisonColliderController>().damage = _damage;
         }
     }
 

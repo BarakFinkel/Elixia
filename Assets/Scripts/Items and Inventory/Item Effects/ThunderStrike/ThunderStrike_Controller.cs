@@ -9,7 +9,7 @@ public class ThunderStrike_Controller : MonoBehaviour
             var playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
             var enemyStats = collision.GetComponent<EnemyStats>();
 
-            playerStats.DoMagicalDamage(enemyStats);
+            playerStats.DoMagicalDamage(enemyStats, MagicType.Lightning, 5);
         }
     }
 }

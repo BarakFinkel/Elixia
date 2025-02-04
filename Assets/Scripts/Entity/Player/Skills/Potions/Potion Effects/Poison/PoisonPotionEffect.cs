@@ -5,6 +5,9 @@ public class PoisonPotionEffect : BasePotionEffect
     [SerializeField]
     private GameObject poisonCloud;
 
+    [SerializeField] 
+    private int damage;
+
     [SerializeField]
     private float totalDuration; // The total duration of the poison
 
@@ -34,7 +37,7 @@ public class PoisonPotionEffect : BasePotionEffect
         var currentPoisonCloudScript = currentPoisonCloud.GetComponent<PoisonEffectController>();
         currentPoisonCloudScript.SetupPoisonCloud
         (
-            totalDuration, poisonEmissionDuration, startColliderScale, endColliderScale, scalingDuration
+            damage, totalDuration, poisonEmissionDuration, startColliderScale, endColliderScale, scalingDuration
         );
     }
 }

@@ -3,14 +3,16 @@ using UnityEngine;
 public class IceShardController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private int damage;
     private Vector3 initialScale = new Vector3(1,1,1);
     private Vector3 smallestScale;
     private float enemyFreezeDuration;
     private float duration;
     private float durationTimer;
     
-    public void SetupIceShard(Vector2 _velocity, float _targetScale, float _enemyFreezeDuration, float _duration)
+    public void SetupIceShard(int _damage, Vector2 _velocity, float _targetScale, float _enemyFreezeDuration, float _duration)
     {
+        damage = _damage;
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = _velocity;
         SetupTargetScale(_targetScale);
@@ -46,7 +48,7 @@ public class IceShardController : MonoBehaviour
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy != null)
         {
-            PlayerManager.instance.player.cs.DoMagicalDamage(enemy.GetComponent<CharacterStats>());
+            PlayerManager.instance.player.cs.DoMagicalDamage(enemy.GetComponent<CharacterStats>(), MagicType.Ice, damage);
             enemy.FreezeTimeFor(enemyFreezeDuration);
             Destroy(gameObject);
         }

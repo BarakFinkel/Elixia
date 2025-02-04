@@ -8,6 +8,8 @@ public class IcePotionEffect : BasePotionEffect
 
     [Header("Ice Shard Information")]
     [SerializeField] public GameObject iceShardPrefab;
+    [SerializeField] private int blastDamage;
+    [SerializeField] private int shardDamage;
     [SerializeField] private float iceShardOffset;
     [SerializeField] private float iceShardVelocity;
     [SerializeField] private float iceShardSmallestScale;
@@ -28,7 +30,7 @@ public class IcePotionEffect : BasePotionEffect
         currentIceBlast = Instantiate(iceBlastPrefab, obj.transform.position + offset, Quaternion.identity);
 
         IceEffectController currentIceBlastScript = currentIceBlast.GetComponent<IceEffectController>();
-        currentIceBlastScript.SetupIceBlast(enemyFreezeTime);
+        currentIceBlastScript.SetupIceBlast(blastDamage, enemyFreezeTime);
     }
 
     // Spawns 8 ice shards around the game object that spawns them.
@@ -56,7 +58,7 @@ public class IcePotionEffect : BasePotionEffect
 
             // Setup the ice shard controller
             IceShardController currentIceShardScript = currentIceShard.GetComponent<IceShardController>();
-            currentIceShardScript.SetupIceShard(direction * iceShardVelocity, iceShardSmallestScale, enemyFreezeTime, iceShardDuration);
+            currentIceShardScript.SetupIceShard(shardDamage, direction * iceShardVelocity, iceShardSmallestScale, enemyFreezeTime, iceShardDuration);
         }
     }
 }

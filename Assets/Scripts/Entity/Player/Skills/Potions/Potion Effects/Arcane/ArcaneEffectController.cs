@@ -12,6 +12,7 @@ public class ArcaneEffectController : MonoBehaviour
     private Transform closestTarget;
 
     private float crystalExistTimer;
+    private int crystalDamage;
     private float growScale;
     private float growSpeed;
     private float moveSpeed;
@@ -63,7 +64,7 @@ public class ArcaneEffectController : MonoBehaviour
 
 
     public void SetupCrystal(float _crystalDuration, bool _canExplode, bool _canMove, float _moveSpeed,
-        float _growSpeed, float _growScale)
+        float _growSpeed, float _growScale, int _damage)
     {
         crystalExistTimer = _crystalDuration;
         canExplode = _canExplode;
@@ -71,6 +72,7 @@ public class ArcaneEffectController : MonoBehaviour
         moveSpeed = _moveSpeed;
         growSpeed = _growSpeed;
         growScale = _growScale;
+        crystalDamage = _damage;
         closestTarget = FindClosestEnemy(gameObject.transform);
 
         movementSound.Play();
@@ -84,20 +86,8 @@ public class ArcaneEffectController : MonoBehaviour
         foreach (var hit in colliders)
             if (hit.GetComponent<Enemy>() != null)
             {
-                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>());
-
-                ItemEffect(hit.transform);
+                PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Arcane, crystalDamage);
             }
-    }
-
-    // If we have an amulet that should add additional effects to the ability - we execute the effect.
-    protected void ItemEffect(Transform _target)
-    {
-        var equippedAmulet = Inventory.instance.GetEquipmentOfType(EquipmentType.Jewelry);
-        if (equippedAmulet != null)
-        {
-            equippedAmulet.Effect(_target);
-        }
     }
 
     public void EndCrystalCycle()

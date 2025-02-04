@@ -7,6 +7,7 @@ public class ArcanePotionEffect : BasePotionEffect
     [Header("General Information")]
     [SerializeField] private GameObject arcaneEffectPrefab;
     [SerializeField] private GameObject crystalPrefab;
+    [SerializeField] private int crystalDamage;
     [SerializeField] private float crystalDuration;
     [SerializeField] private float spawnHeightOffset;
     public GameObject currentEffect;
@@ -110,7 +111,8 @@ public class ArcanePotionEffect : BasePotionEffect
             canMoveToEnemy,
             Random.Range(minMoveSpeed, maxMoveSpeed),
             growSpeed,
-            growScale
+            growScale,
+            crystalDamage
         );
     }
 

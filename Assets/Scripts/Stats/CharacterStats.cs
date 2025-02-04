@@ -26,6 +26,15 @@ public enum StatType
     lightningDamage
 }
 
+public enum MagicType
+{
+    Fire,
+    Ice,
+    Poison,
+    Arcane,
+    Lightning
+}
+
 public class CharacterStats : MonoBehaviour
 {
     [Header("Major Stats")]
@@ -71,6 +80,15 @@ public class CharacterStats : MonoBehaviour
 
     [Header("Magic Stats")]
     [Space]
+
+    [SerializeField]
+    public MagicType primaryMagicType = MagicType.Fire;
+
+    [SerializeField]
+    public bool usingPrimaryMagicType;
+
+    [Space]
+
     [Header("Fire")]
     public Stat fireDamage;
 
@@ -216,7 +234,12 @@ public class CharacterStats : MonoBehaviour
 
         // We deal the overall damage to the target.
         _targetStats.TakeDamage(totalDamage);
-        DoMagicalDamage(_targetStats);
+        
+        // If we want the character to passively do magic damage on phsyical attacks, we allow it via the usingPrimaryMagicType bool
+        if (usingPrimaryMagicType)
+        {
+            DoMagicalDamage(_targetStats, primaryMagicType, 0);
+        }
     }
 
     // Method responsible for taking impactful damage (ailments not included)
@@ -402,123 +425,61 @@ public class CharacterStats : MonoBehaviour
 
     #region Magical Damage and Ailments Handling
 
-    public virtual void DoMagicalDamage(CharacterStats _targetStats)
+    public virtual void DoMagicalDamage(CharacterStats _targetStats, MagicType _magicType, int _damage)
     {
         // Seting the magical types' damage
-        var _fireDamage = fireDamage.GetValue();
-        var _iceDamage = iceDamage.GetValue();
-        var _poisonDamage = poisonDamage.GetValue();
-        var _arcaneDamage = arcaneDamage.GetValue();
-        var _lightningDamage = lightningDamage.GetValue();
+        int _fireDamage = _magicType == MagicType.Fire ? fireDamage.GetValue() : 0;
+        int _iceDamage = _magicType == MagicType.Ice ? iceDamage.GetValue() : 0;
+        int _poisonDamage = _magicType == MagicType.Poison ? poisonDamage.GetValue() : 0;
+        int _arcaneDamage = _magicType == MagicType.Arcane ? arcaneDamage.GetValue() : 0;
+        int _lightningDamage = _magicType == MagicType.Lightning ? lightningDamage.GetValue() : 0;
 
         // Summing up them all.
-        var totalMagicalDamage = _fireDamage + _iceDamage + _poisonDamage + _arcaneDamage + _lightningDamage + intelligence.GetValue();
+        int totalMagicalDamage = _damage + _fireDamage + _iceDamage + _poisonDamage + _arcaneDamage + _lightningDamage + intelligence.GetValue();
 
         // Calculating MR damage reduction.
         totalMagicalDamage = TargetMagicalDamageReduction(_targetStats, totalMagicalDamage);
         _targetStats.TakeDamage(totalMagicalDamage);
 
         // Choosing the element which will apply ailment to the target.
-        AttemptApplyingAilments(_targetStats, _fireDamage, _iceDamage, _poisonDamage, _arcaneDamage,_lightningDamage);
+        AttemptApplyingAilments(_targetStats, _magicType, totalMagicalDamage);
     }
 
-    private void AttemptApplyingAilments(CharacterStats _targetStats, int _fireDamage, int _iceDamage,
-        int _poisonDamage, int _arcaneDamage, int _lightningDamage)
+    private void AttemptApplyingAilments(CharacterStats _targetStats, MagicType _magicType, float _totalDamage)
     {
-        // Choosing the element which will apply ailment to the target.
-        var DominantElement = GetMaxDamageElement(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage, _lightningDamage);
-
-        // If there was no element returned, it means that all elements have no damage, so we can't apply an ailment and return.
-        if (DominantElement == string.Empty)
-        {
-            return;
-        }
-
         // We check which of the elements we can apply
-        var canApplyIgnite = DominantElement == "Fire";
-        var canApplyChill = DominantElement == "Ice";
-        var canApplyPoison = DominantElement == "Poison";
-        var canApplyEnchant = DominantElement == "Arcane";
-        var canApplyElectricity = DominantElement == "Lightning";
+        bool canApplyIgnite = _magicType == MagicType.Fire;
+        bool canApplyChill = _magicType == MagicType.Ice;
+        bool canApplyPoison = _magicType == MagicType.Poison;
+        bool canApplyEnchant = _magicType == MagicType.Arcane;
+        bool canApplyElectricity = _magicType == MagicType.Lightning;
 
         // In the following if statements, we change the overtime damage the target takes accordingly, or keep it the same if unnecessary.
         if (canApplyIgnite)
         {
-            _targetStats.SetupBurnDamage(Mathf.RoundToInt(_fireDamage * burnDamageRatio));
+            _targetStats.SetupBurnDamage(Mathf.RoundToInt(_totalDamage * burnDamageRatio));
         }
 
         if (canApplyPoison)
         {
-            _targetStats.SetupPoisonedDamage(Mathf.RoundToInt(_poisonDamage * poisonedDamageRatio));
+            _targetStats.SetupPoisonedDamage(Mathf.RoundToInt(_totalDamage * poisonedDamageRatio));
         }
 
         if (canApplyElectricity)
         {
-            _targetStats.SetupLightningDamage(Mathf.RoundToInt(_lightningDamage));
+            _targetStats.SetupLightningDamage(Mathf.RoundToInt(_totalDamage));
         }
 
         // Lastly, we apply the chosen ailment to the target.
         _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyPoison, canApplyEnchant, canApplyElectricity);
     }
 
-    private string GetMaxDamageElement(int _fireDamage, int _iceDamage, int _poisonDamage, int _arcaneDamage, int _lightningDamage)
-    {
-        // Check if there is no magical damage type greater than 0
-        if (Mathf.Max(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage, _lightningDamage) <= 0)
-        {
-            return string.Empty;
-        }
-
-        // Create a list to hold elements with maximum damage
-        var tiedElements = new List<string>();
-        float maxDamage = Mathf.Max(_fireDamage, _iceDamage, _poisonDamage, _arcaneDamage, _lightningDamage);
-
-        // Add elements that are tied in damage
-        if (_fireDamage == maxDamage && _fireDamage > 0)
-        {
-            tiedElements.Add("Fire");
-        }
-
-        if (_iceDamage == maxDamage && _iceDamage > 0)
-        {
-            tiedElements.Add("Ice");
-        }
-
-        if (_poisonDamage == maxDamage && _poisonDamage > 0)
-        {
-            tiedElements.Add("Poison");
-        }
-
-        if (_arcaneDamage == maxDamage && _arcaneDamage > 0)
-        {
-            tiedElements.Add("Arcane");
-        }
-
-        if (_lightningDamage == maxDamage && _lightningDamage > 0)
-        {
-            tiedElements.Add("Lightning");
-        }
-
-        // If there's only one tied element, return it directly
-        if (tiedElements.Count == 1)
-        {
-            return tiedElements[0];
-        }
-
-        // Randomly select one of the tied elements
-        var randomIndex = Random.Range(0, tiedElements.Count);
-        return tiedElements[randomIndex];
-    }
-
     public void ApplyAilments(bool _ignited, bool _chilled, bool _poisoned, bool _enchanted, bool _electrified)
     {
-        if (isIgnited || isChilled || isPoisoned || isEnchanted || isElectrified)
-        {
-            return;
-        }
-
         if (_ignited)
         {
+            DisableAllAilments();
+            
             isIgnited = _ignited;
             ignitedTimer = ignitedDuration;
 
@@ -527,6 +488,8 @@ public class CharacterStats : MonoBehaviour
 
         if (_chilled)
         {
+            DisableAllAilments();
+            
             isChilled = _chilled;
             chilledTimer = chilledDuration;
 
@@ -536,6 +499,8 @@ public class CharacterStats : MonoBehaviour
 
         if (_poisoned)
         {
+            DisableAllAilments();
+            
             isPoisoned = _poisoned;
             poisonedTimer = poisonedDuration;
 
@@ -544,6 +509,8 @@ public class CharacterStats : MonoBehaviour
 
         if (_enchanted)
         {
+            DisableAllAilments();
+            
             isEnchanted = _enchanted;
             enchantedTimer = enchantedDuration;
 
@@ -552,6 +519,8 @@ public class CharacterStats : MonoBehaviour
 
         if (_electrified)
         {
+            DisableAllAilments();
+            
             if (!isElectrified)
             {
                 ApplyShock(_electrified);
@@ -561,6 +530,15 @@ public class CharacterStats : MonoBehaviour
                 HitNearesTargetWithLightningStrike();
             }
         }
+    }
+
+    private void DisableAllAilments()
+    {
+        isIgnited = false;
+        isChilled = false;
+        isPoisoned = false;
+        isEnchanted = false;
+        isElectrified = false;
     }
 
     private void HandleIgnitedAilment()
@@ -659,7 +637,7 @@ public class CharacterStats : MonoBehaviour
         isElectrified = _shock;
         fx.ElectricityFXFor(electrifiedTimer);
     }
-    
+
     private void HitNearesTargetWithLightningStrike()
     {
         var detectingRadius = 25;

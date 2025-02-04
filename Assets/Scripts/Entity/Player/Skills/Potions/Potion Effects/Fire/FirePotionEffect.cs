@@ -6,6 +6,9 @@ public class FirePotionEffect : BasePotionEffect
     private GameObject flamePrefab;
 
     [SerializeField]
+    private int damage;
+
+    [SerializeField]
     private float tickDuration;
 
     [SerializeField]
@@ -24,6 +27,6 @@ public class FirePotionEffect : BasePotionEffect
         currentFlame = Instantiate(flamePrefab, obj.transform.position + offset, Quaternion.identity);
 
         FireEffectController currentFlameScript = currentFlame.GetComponent<FireEffectController>();
-        currentFlameScript.SetupFlame(tickDuration);
+        currentFlameScript.SetupFlame(damage, tickDuration);
     }
 }

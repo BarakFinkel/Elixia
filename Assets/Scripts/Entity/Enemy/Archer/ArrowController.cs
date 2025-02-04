@@ -33,7 +33,7 @@ public class ArrowController : MonoBehaviour
         if (parentTransform != null)
         {
             PlayerStats playerStats = parentTransform.GetComponent<PlayerStats>();
-            if(playerStats != null && playerStats.isDead)
+            if (playerStats != null && playerStats.isDead)
             {
                 Destroy(gameObject);
             }
@@ -44,8 +44,12 @@ public class ArrowController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            archerStats.DoDamage(other.GetComponent<CharacterStats>());
-            StickInto(other);
+            CharacterStats playerStats = other.GetComponent<CharacterStats>();
+            if (playerStats != null && !playerStats.isInvulnerable)
+            {
+                archerStats.DoDamage(other.GetComponent<CharacterStats>());
+                StickInto(other);
+            }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
