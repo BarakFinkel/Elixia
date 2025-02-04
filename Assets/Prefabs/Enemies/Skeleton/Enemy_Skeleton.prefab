@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCheck: {fileID: 853465687893356218}
-  attackCheckRadius: 0.8
+  attackCheckRadius: 1.2
   groundCheck: {fileID: 6359287133003904952}
   groundCheckDistance: 1
   groundCheckCancelTime: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   detectPlayerRadius: 10
   moveSpeed: 1.5
   idleTime: 2
-  attackDistance: 1.5
+  attackDistance: 2.5
   attackCooldown: 0.6
   battleTime: 10
   battleDistance: 10
@@ -862,7 +862,7 @@ Transform:
   m_GameObject: {fileID: 7984647065839392734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.16, y: -0.32, z: 0}
+  m_LocalPosition: {x: 1.57, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

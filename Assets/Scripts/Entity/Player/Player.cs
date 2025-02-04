@@ -222,6 +222,11 @@ public class Player : Entity
         groundCheck.gameObject.SetActive(true);
     }
 
+    protected override void SetupZeroKnockbackPower()
+    {
+        knockbackPower = new Vector2(0, 0);
+    }
+
     // Used to trigger the animation end boolean varible in the PlayerState component.
     public void AnimationTrigger()
     {

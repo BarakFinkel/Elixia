@@ -37,6 +37,8 @@ public class IceShardController : MonoBehaviour
         var enemy = other.GetComponent<Enemy>();
         if (enemy != null)
         {
+            enemy.SetupKnockbackDir(transform);
+            
             PlayerManager.instance.player.cs.DoMagicalDamage(enemy.GetComponent<CharacterStats>(), MagicType.Ice,
                 damage);
             enemy.FreezeTimeFor(enemyFreezeDuration);

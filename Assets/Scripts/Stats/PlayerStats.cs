@@ -32,6 +32,12 @@ public class PlayerStats : CharacterStats
     {
         base.DecreaseHealthBy(_damage);
 
+        // If the player receives massive damage, bigger than 30 percent of his max HP, we knock him back.
+        if (_damage > GetMaxHealthValue() * 0.3f)
+        {
+            player.SetupKnockbackPower(new Vector2(8, 6));
+        }
+
         // Apply on-take-hit effects when health is decreased.
         var currentArmor = Inventory.instance.GetEquipmentOfType(EquipmentType.Armor);
         if (currentArmor != null)

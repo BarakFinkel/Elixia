@@ -47,6 +47,7 @@ public class Entity : MonoBehaviour
 
 
     // Entity model direction control variables
+    public int knockBackDir { get; private set; }
     public int facingDir { get; private set; } = 1;
 
     protected virtual void Awake()
@@ -82,18 +83,38 @@ public class Entity : MonoBehaviour
         StartCoroutine("HitKnockback");
     }
 
+    public virtual void SetupKnockbackDir(Transform _damageDirection)
+    {
+        if (_damageDirection.position.x > transform.position.x)
+        {
+            knockBackDir = -1;
+        }
+        else if (_damageDirection.position.x < transform.position.x)
+        {
+            knockBackDir = 1;
+        }
+    }
+
+    public void SetupKnockbackPower(Vector2 _knockbackPower) => knockbackPower = _knockbackPower;
+
     protected virtual IEnumerator HitKnockback()
     {
         isKnocked = true;
 
         var xOffset = Random.Range(knockbackOffset.x, knockbackOffset.y);
 
-        rb.linearVelocity = new Vector2((knockbackPower.x + xOffset) * -facingDir, knockbackPower.y);
+        rb.linearVelocity = new Vector2((knockbackPower.x + xOffset) * knockBackDir, knockbackPower.y);
 
         yield return new WaitForSeconds(knockBackDuration);
 
         rb.linearVelocity = new Vector2(0, 0);
         isKnocked = false;
+
+        SetupZeroKnockbackPower();
+    }
+
+    protected virtual void SetupZeroKnockbackPower()
+    {
     }
 
     public virtual void Die()

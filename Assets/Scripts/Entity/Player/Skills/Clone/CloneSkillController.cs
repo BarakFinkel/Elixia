@@ -101,6 +101,8 @@ public class CloneSkillController : MonoBehaviour
         foreach (var hit in colliders)
             if (hit.GetComponent<Enemy>() != null)
             {
+                hit.GetComponent<Entity>().SetupKnockbackDir(transform);
+                
                 var ps = player.GetComponent<PlayerStats>();
                 var es = hit.GetComponent<EnemyStats>();
 

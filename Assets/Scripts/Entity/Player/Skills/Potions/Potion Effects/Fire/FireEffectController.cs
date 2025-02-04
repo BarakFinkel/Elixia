@@ -21,6 +21,8 @@ public class FireEffectController : MonoBehaviour
             {
                 if (CanDamage(enemy))
                 {
+                    enemy.SetupKnockbackDir(transform);
+                    
                     PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Fire,
                         damage);
                     damageCooldowns[enemy] = Time.time + damageCooldown;

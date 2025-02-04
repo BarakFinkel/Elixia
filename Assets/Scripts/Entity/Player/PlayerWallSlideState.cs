@@ -41,6 +41,7 @@ public class PlayerWallSlideState : PlayerState
             stateMachine.ChangeState(player.idleState);
         }
 
+        // If the player no longer detects the wall, he moves to air state.
         if (!player.IsWallDetected())
         {
             stateMachine.ChangeState(player.airState);

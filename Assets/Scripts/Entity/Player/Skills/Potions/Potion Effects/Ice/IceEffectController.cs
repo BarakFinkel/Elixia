@@ -24,6 +24,8 @@ public class IceEffectController : MonoBehaviour
             var enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
+                enemy.SetupKnockbackDir(transform);
+                
                 enemy.FreezeTimeFor(enemyFreezeTime);
                 PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Ice,
                     damage);

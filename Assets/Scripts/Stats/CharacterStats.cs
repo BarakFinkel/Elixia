@@ -212,6 +212,8 @@ public class CharacterStats : MonoBehaviour
             return;
         }
 
+        _targetStats.GetComponent<Entity>().SetupKnockbackDir(transform);
+
         // We check if the target evades the attack, is so - we return and do nothing.
         if (TargetCanEvadeAttack(_targetStats))
         {
