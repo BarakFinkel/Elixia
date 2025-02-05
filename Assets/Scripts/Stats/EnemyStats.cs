@@ -13,9 +13,10 @@ public class EnemyStats : CharacterStats
     [SerializeField]
     private float percentageModifier = 0.4f;
 
+    private readonly Stat soulsDropAmount = new();
+
     private Enemy enemy;
     private ItemDrop myDropSystem;
-    private readonly Stat soulsDropAmount = new();
 
     protected override void Start()
     {

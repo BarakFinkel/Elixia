@@ -12,8 +12,9 @@ public class SaveManager : MonoBehaviour
     [SerializeField]
     private bool encryptData;
 
-    private FileDataHandler dataHandler;
     private readonly string dirPath = "/idbfs/Elixia206332bfnb";
+
+    private FileDataHandler dataHandler;
     private GameData gameData;
 
     [SerializeField]

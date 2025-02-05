@@ -92,7 +92,7 @@ public class ArcaneEffectController : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 hit.GetComponent<Entity>().SetupKnockbackDir(transform);
-                
+
                 PlayerManager.instance.player.cs.DoMagicalDamage(hit.GetComponent<CharacterStats>(), MagicType.Arcane,
                     crystalDamage);
             }

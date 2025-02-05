@@ -250,7 +250,7 @@ MonoBehaviour:
     modifiers: 
   vitToHP: 5
   damage:
-    baseValue: 70
+    baseValue: 40
     modifiers: 
   critChance:
     baseValue: 0

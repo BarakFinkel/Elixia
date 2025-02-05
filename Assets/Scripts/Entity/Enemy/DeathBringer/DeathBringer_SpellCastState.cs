@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DeathBringer_SpellCastState : EnemyState
 {
-    private int amountOfSpells;
     private readonly Enemy_DeathBringer enemy;
+    private int amountOfSpells;
     private float spellTimer;
 
     public DeathBringer_SpellCastState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,

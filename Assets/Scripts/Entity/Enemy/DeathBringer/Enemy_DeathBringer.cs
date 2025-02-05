@@ -30,9 +30,10 @@ public class Enemy_DeathBringer : Enemy
     [SerializeField]
     private Vector2 spellOffset;
 
+    private readonly float voiceCooldown = 10.0f;
+
     // Sound
     private bool bossMusicPlaying;
-    private readonly float voiceCooldown = 10.0f;
     private float voiceTimer;
 
     protected override void Awake()

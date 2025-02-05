@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class GoblinMoveFastState : EnemyState
 {
-    private bool bombTriggered;
     private readonly Goblin enemy;
+    private bool bombTriggered;
     private int moveDir;
     private bool movingFast;
     private Transform player;

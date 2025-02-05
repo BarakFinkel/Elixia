@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class IceShardController : MonoBehaviour
 {
+    private readonly Vector3 initialScale = new(1, 1, 1);
     private int damage;
     private float duration;
     private float durationTimer;
     private float enemyFreezeDuration;
-    private readonly Vector3 initialScale = new(1, 1, 1);
     private Rigidbody2D rb;
     private Vector3 smallestScale;
 
@@ -38,7 +38,7 @@ public class IceShardController : MonoBehaviour
         if (enemy != null)
         {
             enemy.SetupKnockbackDir(transform);
-            
+
             PlayerManager.instance.player.cs.DoMagicalDamage(enemy.GetComponent<CharacterStats>(), MagicType.Ice,
                 damage);
             enemy.FreezeTimeFor(enemyFreezeDuration);

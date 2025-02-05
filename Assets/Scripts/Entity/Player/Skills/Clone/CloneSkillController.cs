@@ -102,7 +102,7 @@ public class CloneSkillController : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 hit.GetComponent<Entity>().SetupKnockbackDir(transform);
-                
+
                 var ps = player.GetComponent<PlayerStats>();
                 var es = hit.GetComponent<EnemyStats>();
 

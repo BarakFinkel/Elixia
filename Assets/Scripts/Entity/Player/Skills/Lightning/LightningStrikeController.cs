@@ -52,7 +52,7 @@ public class LightningStrikeController : MonoBehaviour
     private void DamageAndSelfDestroy()
     {
         targetStats.GetComponent<Entity>().SetupKnockbackDir(transform);
-        
+
         targetStats.ApplyShock(true);
         targetStats.TakeDamage(damage);
         Destroy(gameObject, .4f);

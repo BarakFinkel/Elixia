@@ -92,12 +92,12 @@ public class EntityFX : MonoBehaviour
     {
         if (_transparent)
         {
-            myHealthBar.SetActive(false);
+            myHealthBar?.SetActive(false);
             sr.color = Color.clear;
         }
         else
         {
-            myHealthBar.SetActive(true);
+            myHealthBar?.SetActive(true);
             sr.color = Color.white;
         }
     }

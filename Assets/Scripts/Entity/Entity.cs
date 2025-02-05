@@ -95,7 +95,10 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public void SetupKnockbackPower(Vector2 _knockbackPower) => knockbackPower = _knockbackPower;
+    public void SetupKnockbackPower(Vector2 _knockbackPower)
+    {
+        knockbackPower = _knockbackPower;
+    }
 
     protected virtual IEnumerator HitKnockback()
     {
