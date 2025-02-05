@@ -72027,6 +72027,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1776683734}
   - {fileID: 586188225}
   - {fileID: 1321558361}
   - {fileID: 873310433}
@@ -72039,7 +72040,6 @@ RectTransform:
   - {fileID: 224705355}
   - {fileID: 1038467723}
   - {fileID: 1509463294}
-  - {fileID: 1776683734}
   - {fileID: 1900147291}
   - {fileID: 347321014}
   - {fileID: 105428211}
