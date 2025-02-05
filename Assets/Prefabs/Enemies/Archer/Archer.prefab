@@ -274,8 +274,8 @@ MonoBehaviour:
   evasion:
     baseValue: 50
     modifiers: 
-  primaryMagicType: 3
-  usingPrimaryMagicType: 1
+  primaryMagicType: 2
+  usingPrimaryMagicType: 0
   fireDamage:
     baseValue: 0
     modifiers: 
@@ -301,7 +301,7 @@ MonoBehaviour:
   arcaneDamage:
     baseValue: 10
     modifiers: 
-  isEnchanted: 1
+  isEnchanted: 0
   enchantedMagicResistReduction: 20
   enchantedDuration: 3
   lightningDamage:
@@ -311,8 +311,8 @@ MonoBehaviour:
   electrifiedDuration: 5
   lightningStrikePrefab: {fileID: 0}
   currentHealth: 0
-  level: 1
-  startAmount: 1000
+  level: 2
+  startAmount: 600
   percentageModifier: 0.4
 --- !u!114 &1385604291918818102
 MonoBehaviour:

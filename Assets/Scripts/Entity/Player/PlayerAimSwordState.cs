@@ -37,6 +37,7 @@ public class PlayerAimSwordState : PlayerState
         base.Exit();
 
         player.skillManager.sword.DotsActive(false);
+        AudioManager.instance.PlaySFX(54, 0, null);
         player.StartCoroutine("BusyFor", .2f);
     }
 }

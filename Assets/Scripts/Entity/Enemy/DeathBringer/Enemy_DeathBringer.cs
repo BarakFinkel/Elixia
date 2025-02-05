@@ -30,6 +30,12 @@ public class Enemy_DeathBringer : Enemy
     [SerializeField]
     private Vector2 spellOffset;
 
+    [SerializeField]
+    public GameObject arenaBounds;
+
+    [SerializeField]
+    private Door nextLevelDoor;
+
     private readonly float voiceCooldown = 10.0f;
 
     // Sound
@@ -79,6 +85,7 @@ public class Enemy_DeathBringer : Enemy
         base.Die();
 
         stateMachine.ChangeState(deadState);
+        nextLevelDoor.OpenDoor();
     }
 
     public void FindPosition()

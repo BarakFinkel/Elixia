@@ -18,6 +18,9 @@ public class DeathBringer_DeadState : EnemyState
         enemy.cd.enabled = false;
         stateTimer = enemy.knockUpTime;
 
+        AudioManager.instance.PlaySFX(52, 0, null);
+        AudioManager.instance.DisableMusic();
+
         enemy.DestroySelfInDelay();
     }
 

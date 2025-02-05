@@ -150,6 +150,7 @@ public class Player : Entity
         if (canUseSwordSkill)
         {
             stateMachine.ChangeState(catchSwordState);
+            AudioManager.instance.StopSFX(56);
             Destroy(sword);
         }
     }

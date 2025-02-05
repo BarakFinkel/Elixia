@@ -26,6 +26,7 @@ public class DeathBringer_IdleState : EnemyState
         if (!enemy.bossFightBegun && Vector2.Distance(player.transform.position, enemy.transform.position) < 7)
         {
             enemy.bossFightBegun = true;
+            enemy.arenaBounds.SetActive(true);
         }
 
         if (stateTimer <= 0 && enemy.bossFightBegun)

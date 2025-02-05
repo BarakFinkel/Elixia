@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour, ISaveManager
 {
@@ -158,6 +159,21 @@ public class UI : MonoBehaviour, ISaveManager
     {
         screenFade.FadeOut();
         StartCoroutine(EndScreenCoroutine());
+    }
+
+    public void ExitToMainMenu()
+    {
+        StartCoroutine(MainMenuLoad(2.0f));
+    }
+
+    private IEnumerator MainMenuLoad(float _seconds)
+    {
+        SaveManager.instance.SaveGame();
+        screenFade.FadeOut();
+        
+        yield return new WaitForSeconds(_seconds);
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     private IEnumerator EndScreenCoroutine()

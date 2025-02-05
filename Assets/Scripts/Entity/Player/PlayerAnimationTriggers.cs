@@ -28,7 +28,6 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
                     if (playSoundEffect)
                     {
-                        AudioManager.instance.PlaySFX(40, 0, null);
                         playSoundEffect = false;
                     }
                 }

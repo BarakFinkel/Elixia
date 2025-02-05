@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private float sfxMaxDistance = 5.0f;
 
-    public bool playMusic;
+    private bool playMusic = true;
     private bool canPlaySFX;
     private int musicIndex = 2;
 
@@ -38,11 +38,15 @@ public class AudioManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            musicIndex = 1;
+            musicIndex = 0;
+        }
+        else if (SceneManager.GetActiveScene().name == "EndScene")
+        {
+            musicIndex = 4;
         }
         else
         {
-            Invoke("AllowSFX", 1); // constant delay before sfx can be played, just to avoid some bugs.
+            Invoke("AllowSFX", 0.3f); // constant delay before sfx can be played, just to avoid some bugs.
         }
     }
 
@@ -137,6 +141,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(int _musicIndex)
     {
+        playMusic = true;
+        
         if (0 > _musicIndex || _musicIndex >= sfx.Length)
         {
             return;
@@ -145,6 +151,11 @@ public class AudioManager : MonoBehaviour
         musicIndex = _musicIndex;
         StopAllMusic();
         music[_musicIndex].Play();
+    }
+
+    public void DisableMusic()
+    {
+        playMusic = false;
     }
 
     public void StopAllMusic()

@@ -1006,7 +1006,7 @@ MonoBehaviour:
     modifiers: 
   vitToHP: 5
   damage:
-    baseValue: 70
+    baseValue: 20
     modifiers: 
   critChance:
     baseValue: 0
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   electrifiedDuration: 5
   lightningStrikePrefab: {fileID: 5028295832695213768, guid: feca79c5f9fe4fb89ae5e45ee0c4be43, type: 3}
   currentHealth: 0
-  level: 1
+  level: 2
   startAmount: 500
   percentageModifier: 0.4
 --- !u!114 &7014462063766470005

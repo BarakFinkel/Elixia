@@ -82,6 +82,11 @@ https://freesound.org/people/Robinhood76/sounds/66132/
 https://freesound.org/people/test_sound/sounds/464266/
 https://freesound.org/people/EminYILDIRIM/sounds/610135/
 https://freesound.org/people/opticaillusions/sounds/521882/
+https://freesound.org/people/QuantumFellow/sounds/734841
+https://freesound.org/people/Artninja/sounds/726494/
+https://freesound.org/people/jwsounddesign/sounds/611473/
+https://freesound.org/people/EminYILDIRIM/sounds/540300/
+https://freesound.org/people/SypherZent/sounds/420668/
 
 Background Music:
 https://freesound.org/people/jarrodwhitley/sounds/610522/

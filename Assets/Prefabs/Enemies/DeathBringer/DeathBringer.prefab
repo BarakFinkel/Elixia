@@ -587,7 +587,7 @@ MonoBehaviour:
     modifiers: 
   vitToHP: 5
   damage:
-    baseValue: 100
+    baseValue: 50
     modifiers: 
   critChance:
     baseValue: 0
@@ -597,7 +597,7 @@ MonoBehaviour:
     modifiers: 
   baseCritPower: 150
   maxHealth:
-    baseValue: 4000
+    baseValue: 3000
     modifiers: 
   armor:
     baseValue: 200
@@ -636,7 +636,7 @@ MonoBehaviour:
   poisonedDuration: 5
   poisonedTickFrequency: 1
   arcaneDamage:
-    baseValue: 40
+    baseValue: 10
     modifiers: 
   isEnchanted: 0
   enchantedMagicResistReduction: 20

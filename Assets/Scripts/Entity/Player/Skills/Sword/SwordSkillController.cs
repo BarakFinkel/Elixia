@@ -36,6 +36,8 @@ public class SwordSkillController : MonoBehaviour
     private int targetIndex;
     private bool wasStopped;
 
+    // Sound Info
+    private bool isSpinPlaying = false;
 
     private void Awake()
     {
@@ -92,6 +94,12 @@ public class SwordSkillController : MonoBehaviour
     {
         if (isSpining)
         {
+            if(!isSpinPlaying)
+            {
+                AudioManager.instance.PlaySFX(56, 0, null);
+                isSpinPlaying = true;
+            }
+            
             if (Vector2.Distance(player.transform.position, transform.position) > maxTravelDist && !wasStopped)
             {
                 StopWhenSpinning();
@@ -127,6 +135,11 @@ public class SwordSkillController : MonoBehaviour
                         }
                 }
             }
+        }
+        else
+        {
+            AudioManager.instance.StopSFX(56);
+            isSpinPlaying = false;
         }
     }
 
@@ -287,5 +300,5 @@ public class SwordSkillController : MonoBehaviour
         maxTravelDist = _maxTravelDist;
         spinDuration = _spinDuration;
         hitCooldown = _hitCooldown;
-    }
+    }   
 }

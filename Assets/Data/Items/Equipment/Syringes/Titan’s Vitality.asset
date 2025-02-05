@@ -19,7 +19,7 @@ MonoBehaviour:
   iconBackground: {fileID: 1923829048, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropChance: 0
   equipmentType: 3
-  itemCooldown: 80
+  itemCooldown: 35
   itemEffects:
   - {fileID: 11400000, guid: e744a0a79457b2943bf34ad632af3ed7, type: 2}
   - {fileID: 11400000, guid: e0c088c879a744f8687fbc97345bdd2f, type: 2}
