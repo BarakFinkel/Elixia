@@ -12,7 +12,7 @@ New Features:
     - Character Info
     - Skill Tree
     - Crafting
-    - Settings (Not functional yet).
+    - Settings.
 
 - Saving and Loading
 
